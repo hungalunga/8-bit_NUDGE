@@ -28,4 +28,4 @@ jobs:
 
       - name: Run tests
         working-directory: my-app
-        run: npm test -- -a
+        run: npm test -- a
