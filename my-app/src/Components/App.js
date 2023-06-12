@@ -1,10 +1,14 @@
 // import logo from './logo.svg';
+
 import "./App.css";
+
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+
         NUDGE
         <div className="Profile">
           <h2>Welcome Back</h2>
