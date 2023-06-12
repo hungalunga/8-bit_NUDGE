@@ -1,7 +1,7 @@
 import QuestionDisplay from "../QuestionDisplay/QuestionDisplay";
 
 export default function MainQuiz() {
-  // quizQuestion, hard coded array for now API call later
+  // quizQuestion, hard coded array for now, API call later
   const quizQuestions = [
     {
       question: "59 + 95",
