@@ -1,12 +1,13 @@
-
 // import logo from './logo.svg';
-import './App.css';
+
+import "./App.css";
+
+
 
 function App() {
-
-
   return (
     <div className="App">
+<<<<<<< HEAD
       <header className="App-header">NUDGE
       </header>
       <div className="Profile">
@@ -21,6 +22,23 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
           Learn React
+=======
+      <header className="App-header">
+
+        NUDGE
+        <div className="Profile">
+          <h2>Welcome Back</h2>
+          <h3>UserName</h3>
+        </div>
+        <div className="Quiz">
+          <button className="Quiz-button">Quiz</button>
+        </div>
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        Learn React
+      </header>
+>>>>>>> question
     </div>
   );
 }
