@@ -1,6 +1,7 @@
 import QuestionDisplay from "../QuestionDisplay/QuestionDisplay";
 
 export default function MainQuiz() {
+  // quizQuestion, hard coded array for now API call later
   const quizQuestions = [
     {
       question: "59 + 95",
@@ -30,10 +31,12 @@ export default function MainQuiz() {
     },
   ];
 
+  // picking a random question/answer object from the array
   function randomQuestion(questionArray) {
     return questionArray[Math.floor(Math.random() * questionArray.length)];
   }
 
+  //handing the array to the established function into a variable to be passed down as props to the necessary parts
   var questionObject = randomQuestion(quizQuestions);
 
   return (
