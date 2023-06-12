@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
-
+import React from "react"
 import "./App.css";
-
+import MainQuiz from "./MainQuiz/MainQuiz"
 
 
 function App() {
@@ -22,6 +22,9 @@ function App() {
         </p>
         Learn React
       </header>
+      <div>
+        <MainQuiz/>
+      </div>
     </div>
   );
 }

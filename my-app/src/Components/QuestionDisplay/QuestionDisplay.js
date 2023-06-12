@@ -16,11 +16,13 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 
 
 export default function QuestionDisplay(props) {
-    const x = props.questionObject  
-
+    const x = props.questionObject; 
+    const question = props.questionObject.question;   
+console.log(question)
 
     return (
         <div>
+            <p>{ question }</p>
             <AnswerCheckbox x={x} />
         </div>
     )
