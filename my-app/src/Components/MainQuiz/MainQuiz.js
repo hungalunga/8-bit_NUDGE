@@ -78,7 +78,7 @@ const [questionObject, setQuestionObject] = useState("");
 
   // creating initial states as empty arrays
 // questions that have already been asked 
-const [remainingQuestions, setRemainingQuestions] = useState(quizQuestions);
+const [questionSet, setQuestionSet] = useState(quizQuestions);
 
 //correct answers and incorrect answers.
 // const [correctAnswers, setCorrectAnswers] = useState([]);
@@ -87,13 +87,16 @@ const [remainingQuestions, setRemainingQuestions] = useState(quizQuestions);
   function getRandomQuestion() {
 
     //select random question
-    const randomIndex = Math.floor(Math.random() * remainingQuestions.length);
-    const randomQuestion = remainingQuestions[randomIndex];
+    const randomIndex = Math.floor(Math.random() * questionSet.length);
+    const randomQuestion = questionSet[randomIndex];
     console.log("random question is ", randomQuestion);
     
-let newRemainingQuestions = remainingQuestions;
+    const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
+
+    setQuestionSet(remainingQuestions);
+
     // remove from remaining questions array
-    setRemainingQuestions ([...newRemainingQuestions.slice(0, randomIndex), ...newRemainingQuestions.slice(randomIndex + 2)]);
+    //setRemainingQuestions (remainingQuestions.slice(0, randomIndex).concat(remainingQuestions.slice(randomIndex + 1)));
 
     console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
     
@@ -115,7 +118,8 @@ let newRemainingQuestions = remainingQuestions;
     }
 
 
-  // previous atempt at random question function
+  // picking a random question/answer object from the array
+
   // function randomQuestion(questionArray) {
   //   console.log("usedQuestions equals ", usedQuestions);
 
