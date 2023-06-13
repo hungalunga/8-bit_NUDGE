@@ -1,11 +1,6 @@
 import QuestionDisplay from "../QuestionDisplay/QuestionDisplay";
 import { useState, useEffect } from "react";
 export default function MainQuiz() {
-  // import usestate
-  // use state to create an empty array, usedQuestions
-  // in random question, test whether the randomly chosen question is in usedQuestions
-  // if not, return it
-  // if so, recurse on randomQuestion
 
   // quizQuestion, hard coded array for now, API call later
   const quizQuestions = [
@@ -95,9 +90,6 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
 
     setQuestionSet(remainingQuestions);
 
-    // remove from remaining questions array
-    //setRemainingQuestions (remainingQuestions.slice(0, randomIndex).concat(remainingQuestions.slice(randomIndex + 1)));
-
     console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
     
       // // if there are no more questions left in remaining array...
@@ -116,48 +108,6 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
       // returns the random question
       return randomQuestion;
     }
-
-
-  // picking a random question/answer object from the array
-
-  // function randomQuestion(questionArray) {
-  //   console.log("usedQuestions equals ", usedQuestions);
-
-  //   // Empties usedQuestions when it nearly equals the complete array of questions
-  //   // if (usedQuestions.length > questionArray.length - 2) {
-  //   //   setUsedQuestions([]);
-  //   // }
-
-  //   //Chooses a random question from questionArray
-  //   let randomlyChosenQuestion =
-  //     questionArray[Math.floor(Math.random() * questionArray.length)];
-
-  //   // checks whether the random question has been used. If not, adds to usedQuestions and returns it
-  //   const isObjectInArray = usedQuestions.some(function (element) {
-  //     console.log(`the selected question id is ${randomlyChosenQuestion.id}`);
-  //     console.log(` the element id is ${element.id}`);
-  //     // Compare based on object properties
-  //     return element.id === randomlyChosenQuestion.id;
-  //   });
-
-  //   console.log(
-  //     `for item ${randomlyChosenQuestion.question} isObjectInArray has value:`,
-  //     isObjectInArray
-  //   );
-  //   if (isObjectInArray) {
-  //     console.log("we have called the function again");
-  //     randomQuestion(questionArray);
-
-  //   }
-
-  //   // otherwise goes looking for a random question again.
-  //   else {
-  //     console.log("found unused question");
-  //     setUsedQuestions([...usedQuestions, randomlyChosenQuestion]);
-  //     console.log(`returned question is ${randomlyChosenQuestion.question}`)
-  //     return randomlyChosenQuestion;
-  //   }
-  // }
 
   //handing the array to the established function into a variable to be passed down as props to the necessary parts
   useEffect(() => {
