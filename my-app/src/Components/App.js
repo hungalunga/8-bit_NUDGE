@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 
 import "./App.css";
-
+import PromptQuiz from "./PromptQuiz/PromptQuiz";
 
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
         </p>
         Learn React
       </header>
+      <PromptQuiz />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import logoIcon from "./logo2.png";
+// import logoIcon from "./logo2.png";
 
 // Write an if statement to check if the notification has been sent or not
     // if notification has been sent do not send another notification
@@ -7,11 +7,13 @@ import logoIcon from "./logo2.png";
         // Internal clock that checks time and does not send notification at unsociable hours
         // send notification logic at random time
 // Notification link to send to a singular quiz question        
-        
+  
     
-        
 export default function PromptQuiz() { 
 
+const date = new Date();
+const showTime = date.getHours()
+// const time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
     //   const buttonRef = useRef(null);
     //   const timer = useRef(null);
       const awayTimer = useRef(null);
@@ -33,36 +35,39 @@ export default function PromptQuiz() {
       const createNotification = (title, body) => {
         const options = {
           body: body,
-          icon: logoIcon,
-          badge: logoIcon,
+          // icon: logoIcon,
+          // badge: logoIcon,
         };
     
-        if ("Notification" in window && Notification.permission === "granted") {
+        if ("Notification" in window && Notification.permission === "granted" && showTime >= 9 && showTime <= 17) {
           const notification = new Notification(title, options);
     
           notification.addEventListener("click", function (event) {
-            window.open("https://www.google.com", "_blank");
+            window.open("https://localhost:3000", "_blank");
           });
-        } else if ("Notification" in window && Notification.permission !== "denied") {
+        } else if ("Notification" in window && Notification.permission !== "denied" && showTime >= 9 && showTime <= 17) {
           Notification.requestPermission().then((permission) => {
             if (permission === "granted") {
               const notification = new Notification(title, options);
     
               notification.addEventListener("click", function (event) {
-                window.open("https://www.google.com", "_blank");
+                window.open("https://localhost:3000", "_blank");
               });
             }
           });
         }
     };
     
+
+console.log(showTime)
+
     useEffect(() => {
         if (typeof window !== 'undefined') {
           const handleVisibilityChange = () => {
             if (document.hidden) {
               awayTimer.current = setInterval(() => {
                 createNotification("Reminder", "You've been away for 10 seconds, please get back to work!");
-              }, 10000);  // 10 seconds reminder
+              }, 2000);  // 10 seconds reminder
             } else {
               clearInterval(awayTimer.current);
             }
