@@ -41,7 +41,7 @@ export default function MainQuiz() {
   // store them in an array
 
   // const [usedQuestions, setUsedQuestions] = useState(usedUpQuestionsTestSet);
-const [questionObject, setQuestionObject] = useState("");
+const [questionObject, setQuestionObject] = useState({});
 
   // creating initial states as empty arrays
 // questions that have already been asked 
@@ -67,6 +67,7 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
       // // if there are no more questions left in remaining array...
       if (remainingQuestions.length === 0) {
         console.log("no more questions left");
+        return null;
       //   // if incorrect answers array is more than 0...
       //   if (incorrectAnswers.length > 0) {
       //     // remove and return (re-ask) the first question in the incorrect answers array
@@ -82,14 +83,23 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
     }
 
   //handing the array to the established function into a variable to be passed down as props to the necessary parts
-  useEffect(() => {
-    const qObject = getRandomQuestion();
-    if (qObject !== undefined) {
-      setQuestionObject(qObject);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const qObject = getRandomQuestion();
+  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
+  //   setQuestionObject(qObject);
+    
+  // }, []);
 
-  console.log("question object is ", questionObject);
+  useEffect( () => {
+    const qObject = getRandomQuestion();
+    console.log("HEY HEY HEY HERE qObject is", qObject); 
+    setQuestionObject(qObject);
+    console.log("question object is ", questionObject);
+
+  }, []);
+    
+
+
 
   return (
     <div>
