@@ -60,14 +60,25 @@ const showTime = date.getHours()
     
 
 console.log(showTime)
+// const random time for between 10 minutes and an hour (in milliseconds)
+const randomTime = Math.floor(Math.random() * (3600000 - 600000 + 1) + 600000);
+
+// const getRandomInterval = () => {
+//   const startHour = 9; // 9am
+//   const endHour = 17; // 5pm
+//   const millisecondsInHour = 60 * 60 * 1000;
+//   const randomInterval = Math.floor(Math.random() * (endHour - startHour + 1) + startHour);
+
+//   return randomInterval * millisecondsInHour;
+// };
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
           const handleVisibilityChange = () => {
             if (document.hidden) {
               awayTimer.current = setInterval(() => {
-                createNotification("Reminder", "You've been away for 10 seconds, please get back to work!");
-              }, 2000);  // 10 seconds reminder
+                createNotification("Reminder", "Time for your daily quiz!!");
+              }, 6000);  // 10 seconds reminder
             } else {
               clearInterval(awayTimer.current);
             }
