@@ -24,14 +24,19 @@ const shuffleArray = (array) => {
     return shuffledArray;
   };
 
-export default function AnswerCheckbox(props) {
-    const { quizAnswers } = props;
+export default function AnswerCheckbox({questionObject}) {
+  let correctAnswer = questionObject.answer;
+  let wrongAnswers = questionObject.wrong_answers;
+
+  // const { quizAnswers } = props;
+
+console.log("lol", correctAnswer, wrongAnswers);
 
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
 
   useEffect(() => {
-    const shuffledAnswers = shuffleArray([quizAnswers.answer, ...quizAnswers.wrong_answers]);
+    const shuffledAnswers = shuffleArray([correctAnswer, ...wrongAnswers]);
     setAllAnswers(shuffledAnswers);
   }, []);
 
@@ -59,6 +64,5 @@ export default function AnswerCheckbox(props) {
             </div>
           </div>
         </div>
-
       );
     };

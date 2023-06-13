@@ -1,5 +1,4 @@
-
-    // retrieve the question and answer data from the "data base" --done
+ // retrieve the question and answer data from the "data base" --done
         // assign the question to a state variable
         // call variable in the return
 
@@ -16,13 +15,15 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 
 
 export default function QuestionDisplay(props) {
-    const x = props.questionObject; // to pass down to AnswerCheckbox
+    const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
+
+console.log("question", question);
 
     return (
         <div>
             <p>{ question }</p>
-            <AnswerCheckbox x={x} />
+            <AnswerCheckbox questionObject={questionObject} />
         </div>
     )
-}
+};

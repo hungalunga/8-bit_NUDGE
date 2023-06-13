@@ -37,34 +37,6 @@ export default function MainQuiz() {
     },
   ];
 
-  const usedUpQuestionsTestSet = [
-    {
-      id: 1,
-      question: "59 + 95",
-      answer: 154,
-      wrong_answers: [54, 102, 112],
-    },
-    {
-      id: 2,
-      question: "313 x 5",
-      level: "HARD",
-      answer: 1565,
-      wrong_answers: [1315, 1535, 1554],
-    },
-    {
-      id: 3,
-      question: "376 - 1",
-      answer: 375,
-      wrong_answers: [275, 323, 333],
-    },
-    {
-      id: 4,
-      question: "304 x 79",
-      answer: 24016,
-      wrong_answers: [23766, 23986, 24005],
-    },
-  ];
-
   // choose ten random questions from the main question dataset
   // store them in an array
 
@@ -116,6 +88,8 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
       setQuestionObject(qObject);
     }
   }, []);
+
+  console.log("question object is ", questionObject);
 
   return (
     <div>
