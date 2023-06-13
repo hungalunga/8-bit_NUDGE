@@ -7,22 +7,6 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-<<<<<<< HEAD
-      <header className="App-header">NUDGE
-      </header>
-      <div className="Profile">
-      Welcome back
-      <div className='UserName'>Username</div>
-      </div>
-      <div className="Quiz">
-      <iframe src="https://quizlet.com/516241505/match/embed?i=5647tq&x=1jj1" height="500" width="100%"></iframe>
-        <button className="Quiz-button">Quiz</button>
-      </div>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-          Learn React
-=======
       <header className="App-header">
 
         NUDGE
@@ -38,7 +22,6 @@ function App() {
         </p>
         Learn React
       </header>
->>>>>>> question
     </div>
   );
 }
