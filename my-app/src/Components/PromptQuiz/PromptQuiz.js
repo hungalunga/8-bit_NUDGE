@@ -29,6 +29,15 @@ const showTime = date.getHours()
     //       clearTimeout(timer.current);
     //     };
     //   }, []);
+
+
+
+
+    //while (showTime >= 9 && showTime <= 17) {
+     //   const notification = new Notification("Quiz Time");
+     //   console.log("Quiz Time")
+    //    break;
+    //}
     
       
     
@@ -41,7 +50,6 @@ const showTime = date.getHours()
     
         if ("Notification" in window && Notification.permission === "granted" && showTime >= 9 && showTime <= 17) {
           const notification = new Notification(title, options);
-    
           notification.addEventListener("click", function (event) {
             window.open("https://localhost:3000", "_blank");
           });
@@ -58,27 +66,34 @@ const showTime = date.getHours()
         }
     };
     
-
 console.log(showTime)
 // const random time for between 10 minutes and an hour (in milliseconds)
-const randomTime = Math.floor(Math.random() * (3600000 - 600000 + 1) + 600000);
 
+
+if (showTime >= 9 && showTime <= 17) {
+    let range = 17 - showTime;
+    let randomTime = Math.floor(Math.random() * (range * 60 * 60 * 1000 - 1000) + 1000); // this will give a random point in time between the current time and 17:00
+    console.log(randomTime)
+    setTimeout(() => {
+    createNotification("Reminder", "Time for your daily quiz!!");
+    }, randomTime); 
+}
 // const getRandomInterval = () => {
 //   const startHour = 9; // 9am
 //   const endHour = 17; // 5pm
 //   const millisecondsInHour = 60 * 60 * 1000;
 //   const randomInterval = Math.floor(Math.random() * (endHour - startHour + 1) + startHour);
-
 //   return randomInterval * millisecondsInHour;
-// };
+// };128478
 
-    useEffect(() => {
+
+ /*   useEffect(() => {
         if (typeof window !== 'undefined') {
           const handleVisibilityChange = () => {
             if (document.hidden) {
               awayTimer.current = setInterval(() => {
                 createNotification("Reminder", "Time for your daily quiz!!");
-              }, 6000);  // 10 seconds reminder
+              }, 1000000);  // 10 seconds reminder
             } else {
               clearInterval(awayTimer.current);
             }
@@ -88,7 +103,7 @@ const randomTime = Math.floor(Math.random() * (3600000 - 600000 + 1) + 600000);
           return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
         }
       }, []);
-    
+    */
     //   const handleClick = () => {
     //     createNotification("Hello, Bernard! Hurry!", "👾⏰👾\nClick to complete your daily quiz too!!");
     //   };
