@@ -37,8 +37,12 @@ console.log("wrong_answers", props.questionObject.wrong_answers);
 const handleClick = () => {
     console.log("clicked");
     // if user chooses correct answer
-
-    // if user chooses incorrect answer
+    if (selectedAnswer === questionObject.answer) {
+        console.log("Correct answer!");
+    } else {
+          // if user chooses incorrect answer
+        console.log("Incorrect answer.");
+      }
 
 }
 
