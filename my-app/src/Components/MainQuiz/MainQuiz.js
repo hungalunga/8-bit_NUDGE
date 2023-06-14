@@ -90,15 +90,25 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
     
   // }, []);
 
-  useEffect( () => {
+  // useEffect( () => {
+  //   const qObject = getRandomQuestion();
+  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
+  //   setQuestionObject(qObject);
+  //   console.log("question object is ", questionObject);
+
+  // }, []);
+    
+  useEffect(() => {
+    console.log("1. questionObject is ", questionObject);
     const qObject = getRandomQuestion();
-    console.log("HEY HEY HEY HERE qObject is", qObject); 
     setQuestionObject(qObject);
-    console.log("question object is ", questionObject);
+    console.log("2. question object is ", questionObject);
 
   }, []);
-    
 
+  useEffect(() => {
+    console.log("3. question object is ", questionObject);
+  }, [questionObject]);
 
 
   return (
