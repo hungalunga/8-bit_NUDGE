@@ -8,8 +8,6 @@ import Dashboard from "./Dashboard/Dashboard";
 
 
 function App() {
-
-
   return (
     <>
     <div className="App">
@@ -27,7 +25,6 @@ function App() {
           </li>
         </ul>
       </nav>
-      <Dashboard />
     </div>
     <Routes>
       <Route path="/quiz" element={<MainQuiz />} />
