@@ -18,7 +18,6 @@ import { useState } from "react";
 export default function QuestionDisplay(props) {
 
 // seems like it's being passed down as undefined so let's delay it
-const [selectedAnswer, setSelectedAnswer] = useState(null);
 
 if (Object.keys(props.questionObject).length === 0) {
     return <div>loading...</div>
@@ -37,12 +36,8 @@ console.log("wrong_answers", props.questionObject.wrong_answers);
 const handleClick = () => {
     console.log("clicked");
     // if user chooses correct answer
-    if (selectedAnswer === questionObject.answer) {
-        console.log("Correct answer!");
-    } else {
-          // if user chooses incorrect answer
-        console.log("Incorrect answer.");
-      }
+
+    // if user chooses incorrect answer
 
 }
 
@@ -54,7 +49,7 @@ const handleClick = () => {
                 id = {questionObject.id}
                 question = {questionObject.question}
                 correct_answer = {questionObject.answer}
-                setSelectedAnswer={setSelectedAnswer}
+   
                  />
             <button onClick={handleClick}>Confirm</button>
         </div>
