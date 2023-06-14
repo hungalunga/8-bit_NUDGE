@@ -24,22 +24,44 @@ const shuffleArray = (array) => {
     return shuffledArray;
   };
 
-export default function AnswerCheckbox(props) {
-    const { quizAnswers } = props;
+export default function AnswerCheckbox({correct_answer, wrong_answers, id, question}) {
+
+  // const { quizAnswers } = props;
+
+console.log("lol", correct_answer, wrong_answers);
 
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
 
   useEffect(() => {
-    const shuffledAnswers = shuffleArray([quizAnswers.answer, ...quizAnswers.wrong_answers]);
+    const shuffledAnswers = shuffleArray([correct_answer, ...wrong_answers]);
     setAllAnswers(shuffledAnswers);
   }, []);
 
   const onAnswerChange = (e) => {
     setAnswer(e.value);
+    setFeedbackText("");
     console.log(answer);
   };
-  
+
+  const handleClick = () => {
+    console.log("clicked");
+    console.log("user answer is :", answer)
+    console.log("correct answer is :", correct_answer)
+    // if user chooses correct answer
+    if (answer == correct_answer){
+      console.log(`Answered correctly!`)
+      setFeedbackText("Correct!")
+    }
+    else {
+      console.log("Answered incorrectly. :-(")
+      setFeedbackText("Incorrect! ;-(")
+    }
+    // if user chooses incorrect answer
+}
+const [feedbackText, setFeedbackText] = useState(""); 
+
+  //console.log("handleclick is " , handleClick); 
     return (
         <div className="card flex flex-wrap justify-content-center gap-3">
           <div className="flex align-items-center">
@@ -53,12 +75,14 @@ export default function AnswerCheckbox(props) {
                     onChange={onAnswerChange}
                     checked={answer === answerOption}
                   />
+              
                   <label>{answerOption}</label>
                 </div>
               ))}
+              <button onClick={handleClick}>Confirm</button>
+            <p>{ feedbackText }</p>
             </div>
           </div>
         </div>
-
       );
     };
