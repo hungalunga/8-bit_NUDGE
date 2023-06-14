@@ -56,13 +56,13 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
     //select random question
     const randomIndex = Math.floor(Math.random() * questionSet.length);
     const randomQuestion = questionSet[randomIndex];
-    console.log("random question is ", randomQuestion);
+    // console.log("random question is ", randomQuestion);
     
     const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
 
     setQuestionSet(remainingQuestions);
 
-    console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
+    // console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
     
       // // if there are no more questions left in remaining array...
       if (remainingQuestions.length === 0) {
@@ -97,18 +97,17 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
   //   console.log("question object is ", questionObject);
 
   // }, []);
-    
-  useEffect(() => {
-    console.log("1. questionObject is ", questionObject);
-    const qObject = getRandomQuestion();
-    setQuestionObject(qObject);
-    console.log("2. question object is ", questionObject);
+  
 
-  }, []);
-
-  useEffect(() => {
-    console.log("3. question object is ", questionObject);
-  }, [questionObject]);
+useEffect(() => {
+  const qObject = getRandomQuestion()
+  setQuestionObject(qObject);
+}, []);
+  
+  // useEffect(() => {
+  //   setQuestionObject(qObject);
+  //   // console.log("3. question object is ", questionObject);
+  // }, [qObject]);
 
 
   return (
