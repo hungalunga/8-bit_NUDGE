@@ -31,10 +31,6 @@ console.log("question", question);
 console.log("correct_answer", props.questionObject.answer);
 console.log("wrong_answers", props.questionObject.wrong_answers);
 
-
-
-
-
     return (
         <div>
             <p>{ question }</p>
@@ -43,6 +39,9 @@ console.log("wrong_answers", props.questionObject.wrong_answers);
                 id = {questionObject.id}
                 question = {questionObject.question}
                 correct_answer = {questionObject.answer}
+                questionNumber = {props.questionNumber} 
+                setQuestionNumber = {props.setQuestionNumber}
+                // ^^send questionNumber props down to re-render after each answer
    
                  />
         </div>

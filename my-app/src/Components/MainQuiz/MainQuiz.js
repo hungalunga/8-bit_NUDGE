@@ -36,6 +36,8 @@ export default function MainQuiz() {
       wrong_answers: [36, 32, -13],
     },
   ];
+const [count, setCount] = useState(10);
+
 
   // choose ten random questions from the main question dataset
   // store them in an array
@@ -95,14 +97,26 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
   //   console.log("HEY HEY HEY HERE qObject is", qObject); 
   //   setQuestionObject(qObject);
   //   console.log("question object is ", questionObject);
-
+// let qObject
   // }, []);
-  
+// create a state to update after every question is answered to then render the next question
+const [questionNumber, setQuestionNumber] = useState(1); // pass these down to all children as props
 
 useEffect(() => {
-  const qObject = getRandomQuestion()
-  setQuestionObject(qObject);
-}, []);
+    const qObject = getRandomQuestion()
+    setQuestionObject(qObject);
+
+  }, [questionNumber]); // when questionNumber changes, rerender
+  
+  //  while (count > 0) {
+  //     setTimeout(()=> {setCount(count - 1)}, 1000);
+  
+  
+    console.log("count is ", count);
+  // const qObject = getRandomQuestion()
+  // setQuestionObject(qObject);
+  
+
   
   // useEffect(() => {
   //   setQuestionObject(qObject);
@@ -112,7 +126,8 @@ useEffect(() => {
 
   return (
     <div>
-      <QuestionDisplay questionObject={questionObject} />
+      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber}/>
     </div>
   );
 }
+// }

@@ -23,11 +23,13 @@ GETTING THE QUIZ BY ITERATING ONE QUESTION
   Loop on this. 
 5. Implement scoring. Add score to congrats page. 
 */
-import React from 'react';
+import React, { useReducer } from 'react';
 import { useState,useEffect } from 'react';
 import { Checkbox } from 'primereact/checkbox';
 import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
+
+
 
 const shuffleArray = (array) => {
     const shuffledArray = [...array];
@@ -38,7 +40,7 @@ const shuffleArray = (array) => {
     return shuffledArray;
   };
 
-export default function AnswerCheckbox({correct_answer, wrong_answers, id, question}) {
+export default function AnswerCheckbox({correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber}) {
 
   // const { quizAnswers } = props;
 
@@ -50,13 +52,17 @@ console.log("lol", correct_answer, wrong_answers);
   useEffect(() => {
     const shuffledAnswers = shuffleArray([correct_answer, ...wrong_answers]);
     setAllAnswers(shuffledAnswers);
-  }, []);
+    setAnswer(""); // reset answer after rerender
+  }, [correct_answer, wrong_answers]); // added dependency array to rerender when props change
 
   const onAnswerChange = (e) => {
     setAnswer(e.value);
     setFeedbackText("");
     console.log(answer);
   };
+
+  
+
 
   const handleClick = () => {
     console.log("clicked");
@@ -66,6 +72,12 @@ console.log("lol", correct_answer, wrong_answers);
     if (answer == correct_answer){
       console.log(`Answered correctly!`)
       setFeedbackText("Correct!")
+      // render the next question
+      // force a rerender by updating the question number
+      setQuestionNumber(questionNumber + 1)
+
+      // reloads the page after 2.5 seconds to display the next question minus the one that was just answered
+      
     }
     else {
       console.log("Answered incorrectly. :-(")
