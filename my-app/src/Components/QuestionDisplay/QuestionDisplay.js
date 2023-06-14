@@ -33,13 +33,7 @@ console.log("wrong_answers", props.questionObject.wrong_answers);
 
 
 
-const handleClick = () => {
-    console.log("clicked");
-    // if user chooses correct answer
 
-    // if user chooses incorrect answer
-
-}
 
     return (
         <div>
@@ -51,7 +45,6 @@ const handleClick = () => {
                 correct_answer = {questionObject.answer}
    
                  />
-            <button onClick={handleClick}>Confirm</button>
         </div>
     )
 };
