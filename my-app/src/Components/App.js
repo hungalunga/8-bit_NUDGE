@@ -38,26 +38,6 @@ function App() {
         <Route path="/home" element={<Dashboard />} />
         <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
       </Routes>
-    <div className="App">
-      <header className="App-header">
-        NUDGE
-      </header>
-      <PromptQuiz />
-      <nav>
-        <ul>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/quiz">Quiz</Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    <Routes>
-      <Route path="/quiz" element={<MainQuiz />} />
-      <Route path="/home" element={<Dashboard />} />
-    </Routes>
     </>
   );
 }
