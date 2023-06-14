@@ -9,6 +9,20 @@ we want to be able to select only one answer at a time, when the user selects a 
 each checkbox needs to be randomly placed on the page
 each checkbox needs to be assigned a value
 */
+
+/*
+GETTING THE QUIZ BY ITERATING ONE QUESTION 
+1. get the question to initiate another question after being answered. 
+    (implement something to handle the questions runnning out)
+2. implement a counter that subtracts 1 from counter when a question is answered. 
+  Initialise counter at 10. 
+  When counter reaches 0, display a congratulations and stop cycle. 
+3. Get it to add wrong answers to an array. 
+4. Change it so that, when counter reaches 0, if array is empty, congrats. Else ask question from array. 
+  If answered correctly, remove question from array. Else, push question to end. 
+  Loop on this. 
+5. Implement scoring. Add score to congrats page. 
+*/
 import React from 'react';
 import { useState,useEffect } from 'react';
 import { Checkbox } from 'primereact/checkbox';
