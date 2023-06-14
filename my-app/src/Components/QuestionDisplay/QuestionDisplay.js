@@ -12,8 +12,6 @@
 
 
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
-import { useState } from "react";
-
 
 export default function QuestionDisplay(props) {
 
