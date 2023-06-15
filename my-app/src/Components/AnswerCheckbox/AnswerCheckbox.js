@@ -82,6 +82,7 @@ console.log("lol", correct_answer, wrong_answers);
     else {
       console.log("Answered incorrectly. :-(")
       setFeedbackText("Incorrect! ;-(")
+      setQuestionNumber(questionNumber + 1)
     }
     // if user chooses incorrect answer
 }
