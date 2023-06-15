@@ -126,7 +126,7 @@ useEffect(() => {
 
   return (
     <div>
-      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber}/>
+      <QuestionDisplay questionObject={questionObject} questionNumber={questionNumber} setQuestionNumber ={setQuestionNumber}/>
     </div>
   );
 }
