@@ -12,4 +12,3 @@ test('welcome back exists on page', () => {
   const linkElement = screen.getByText('Welcome Back');
   expect(linkElement).toBeInTheDocument();
 });
-
