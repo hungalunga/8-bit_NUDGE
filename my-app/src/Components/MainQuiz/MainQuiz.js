@@ -25,7 +25,7 @@ export default function MainQuiz() {
     },
     {
       id: 4,
-      question: "304 x 79"
+      question: "304 x 79",
       answer: 24016,
       wrong_answers: [23766, 23986, 24005],
     },
