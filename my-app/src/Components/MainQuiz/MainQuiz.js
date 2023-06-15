@@ -52,6 +52,8 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
 //correct answers and incorrect answers.
 // const [correctAnswers, setCorrectAnswers] = useState([]);
 // const [incorrectAnswers, setIncorrectAnswers] = useState([]);
+const [questionNumber, setQuestionNumber] = useState(1); // pass these down to all children as props
+const [incorrectAnswers, setIncorrectAnswers] = useState([{}]);
 
   function getRandomQuestion() {
 
@@ -62,23 +64,32 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
     
     const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
 
+    console.log("INCORRECT ANSWERS FROM MAINQUIZ:", incorrectAnswers);
+    console.log("QUESTION NUMBER MAIN QUIZ:", questionNumber);
+
+   
+    if (questionNumber < 6) {
     setQuestionSet(remainingQuestions);
+    } else if (questionNumber >= 6){
+      setQuestionSet(incorrectAnswers);
+    }
+
 
     // console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
     
       // // if there are no more questions left in remaining array...
-      if (remainingQuestions.length === 0) {
-        console.log("no more questions left");
-        return null;
-      //   // if incorrect answers array is more than 0...
-      //   if (incorrectAnswers.length > 0) {
-      //     // remove and return (re-ask) the first question in the incorrect answers array
-      //     return incorrectAnswers.shift();
-      //   } else {
-      //     // All questions have been asked and there are no incorrect answers
-      //     return null;
-      //   }
-      }
+      // if (remainingQuestions.length === 0) {
+      //   console.log("no more questions left");
+      //   return null;
+      // //   // if incorrect answers array is more than 0...
+      // //   if (incorrectAnswers.length > 0) {
+      // //     // remove and return (re-ask) the first question in the incorrect answers array
+      // //     return incorrectAnswers.shift();
+      // //   } else {
+      // //     // All questions have been asked and there are no incorrect answers
+      // //     return null;
+      // //   }
+      // }
     
       // returns the random question
       return randomQuestion;
@@ -100,7 +111,7 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
 // let qObject
   // }, []);
 // create a state to update after every question is answered to then render the next question
-const [questionNumber, setQuestionNumber] = useState(1); // pass these down to all children as props
+
 
 useEffect(() => {
     const qObject = getRandomQuestion()
@@ -125,9 +136,10 @@ useEffect(() => {
 
 
   return (
-    <div>
-      <QuestionDisplay questionObject={questionObject} questionNumber={questionNumber} setQuestionNumber ={setQuestionNumber}/>
+    <div data-testid="question-display">
+      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers}/>
     </div>
   );
 }
 // }
+
