@@ -19,20 +19,20 @@ export default function QuestionDisplay(props) {
 
 // seems like it's being passed down as undefined so let's delay it
 
+
 if (Object.keys(props.questionObject).length === 0) {
     return <div>loading...</div>
 }
 
+
+if (props.questionNumber < 10) {
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
-
-    
-
-console.log("props:", props)
-console.log("question", question);
-console.log("correct_answer", props.questionObject.answer);
-console.log("wrong_answers", props.questionObject.wrong_answers);
-
+    console.log("questionObject:", questionObject)
+    console.log("props:", props)
+    console.log("question",question);
+    console.log("correct_answer", props.questionObject.answer);
+    console.log("wrong_answers", props.questionObject.wrong_answers);
     return (
         <div>
             <p>{ question }</p>
@@ -46,7 +46,16 @@ console.log("wrong_answers", props.questionObject.wrong_answers);
                 // ^^send questionNumber props down to re-render after each answer
                 incorrectAnswers = {props.incorrectAnswers}
                 setIncorrectAnswers = {props.setIncorrectAnswers}
-                 />
+                 /> 
+        </div>
+    )
+}
+    
+
+
+    return (
+        <div>
+            <p>Quiz Complete!</p>
         </div>
     )
 };

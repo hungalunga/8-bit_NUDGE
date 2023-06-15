@@ -25,7 +25,7 @@ export default function MainQuiz() {
     },
     {
       id: 4,
-      question: "304 x 79",
+      question: "304 x 79"
       answer: 24016,
       wrong_answers: [23766, 23986, 24005],
     },
@@ -36,7 +36,7 @@ export default function MainQuiz() {
       wrong_answers: [36, 32, -13],
     },
   ];
-const [count, setCount] = useState(10);
+// const [count, setCount] = useState(10);
 
 
   // choose ten random questions from the main question dataset
@@ -53,9 +53,10 @@ const [questionSet, setQuestionSet] = useState(quizQuestions);
 // const [correctAnswers, setCorrectAnswers] = useState([]);
 // const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 const [questionNumber, setQuestionNumber] = useState(1); // pass these down to all children as props
-const [incorrectAnswers, setIncorrectAnswers] = useState([{}]);
-
+const [incorrectAnswers, setIncorrectAnswers] = useState([]);
+ 
   function getRandomQuestion() {
+
 
     //select random question
     const randomIndex = Math.floor(Math.random() * questionSet.length);
@@ -67,12 +68,72 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([{}]);
     console.log("INCORRECT ANSWERS FROM MAINQUIZ:", incorrectAnswers);
     console.log("QUESTION NUMBER MAIN QUIZ:", questionNumber);
 
-   
-    if (questionNumber < 6) {
+
     setQuestionSet(remainingQuestions);
-    } else if (questionNumber >= 6){
-      setQuestionSet(incorrectAnswers);
+      return randomQuestion;
     }
+
+// create a state to update after every question is answered to then render the next question
+
+// function getRandomIncorrect() {
+
+//   //select random question
+//   const randomIndex = Math.floor(Math.random() * questionSet.length);
+//   const randomQuestion = questionSet[randomIndex];
+//   // console.log("random question is ", randomQuestion);
+  
+//   const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
+
+//   console.log("INCORRECT ANSWERS FROM MAINQUIZ:", incorrectAnswers);
+//   console.log("QUESTION NUMBER MAIN QUIZ:", questionNumber);
+
+//   setQuestionSet(incorrectAnswers);
+
+//     return randomQuestion;
+//   }
+
+
+useEffect(() => {
+    const qObject = getRandomQuestion()
+    setQuestionObject(qObject);
+    console.log(questionSet)
+    // if (questionNumber > 5) {
+    //   const qObject = getRandomIncorrect()
+    //   setQuestionObject(qObject);
+    //}
+    if(questionNumber === 5 ){
+      setQuestionSet(incorrectAnswers);
+      console.log("question set is ", questionSet);
+    }
+  }, [questionNumber]); // when questionNumber changes, rerender
+//    console.log("count is ", count);
+
+
+  return (
+    <div>
+      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers}/>
+    </div>
+  );
+}
+// }
+
+
+
+//handing the array to the established function into a variable to be passed down as props to the necessary parts
+  // useEffect(() => {
+  //   const qObject = getRandomQuestion();
+  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
+  //   setQuestionObject(qObject);
+    
+  // }, []);
+
+  // useEffect( () => {
+  //   const qObject = getRandomQuestion();
+  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
+  //   setQuestionObject(qObject);
+  //   console.log("question object is ", questionObject);
+// let qObject
+  // }, []);
 
 
     // console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
@@ -90,56 +151,9 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([{}]);
       // //     return null;
       // //   }
       // }
-    
-      // returns the random question
-      return randomQuestion;
-    }
-
-  //handing the array to the established function into a variable to be passed down as props to the necessary parts
-  // useEffect(() => {
-  //   const qObject = getRandomQuestion();
-  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
-  //   setQuestionObject(qObject);
-    
-  // }, []);
-
-  // useEffect( () => {
-  //   const qObject = getRandomQuestion();
-  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
-  //   setQuestionObject(qObject);
-  //   console.log("question object is ", questionObject);
-// let qObject
-  // }, []);
-// create a state to update after every question is answered to then render the next question
 
 
-useEffect(() => {
-    const qObject = getRandomQuestion()
-    setQuestionObject(qObject);
 
-  }, [questionNumber]); // when questionNumber changes, rerender
-  
-  //  while (count > 0) {
+    //  while (count > 0) {
   //     setTimeout(()=> {setCount(count - 1)}, 1000);
   
-  
-    console.log("count is ", count);
-  // const qObject = getRandomQuestion()
-  // setQuestionObject(qObject);
-  
-
-  
-  // useEffect(() => {
-  //   setQuestionObject(qObject);
-  //   // console.log("3. question object is ", questionObject);
-  // }, [qObject]);
-
-
-  return (
-    <div>
-      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers}/>
-    </div>
-  );
-}
-// }
-

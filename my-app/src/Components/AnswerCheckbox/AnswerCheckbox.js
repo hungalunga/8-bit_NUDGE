@@ -59,8 +59,7 @@ export default function AnswerCheckbox({correct_answer, wrong_answers, id, quest
     setAnswer(e.value);
     setFeedbackText("");
     console.log(answer);
-  };
-
+  };;
 
   const handleClick = () => {
     // console.log("clicked");
@@ -82,7 +81,7 @@ export default function AnswerCheckbox({correct_answer, wrong_answers, id, quest
       console.log("Answered incorrectly. :-(")
       setFeedbackText("Incorrect! ;-(")
       setQuestionNumber(questionNumber + 1)
-      setIncorrectAnswers([...incorrectAnswers, {question: question, correct_answer: correct_answer, wrong_answers: wrong_answers, id: id}])
+      setIncorrectAnswers([...incorrectAnswers, {question: question, answer: correct_answer, wrong_answers: wrong_answers, id: id}])
     }
 
     // if user chooses incorrect answer
@@ -96,7 +95,7 @@ const [feedbackText, setFeedbackText] = useState("");
             <div className="answerBox">
             <h3>{answer}</h3>
               {allAnswers.map((answerOption, index) => (
-                <div className = "checkbox" key={index}>
+                <div className = {`${index}`} key={index}>
                   <Checkbox
                     inputId={`answer${index + 1}`}
                     value={answerOption}
