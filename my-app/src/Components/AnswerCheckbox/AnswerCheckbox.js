@@ -40,11 +40,11 @@ const shuffleArray = (array) => {
     return shuffledArray;
   };
 
-export default function AnswerCheckbox({correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber}) {
+export default function AnswerCheckbox({correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber, incorrectAnswers, setIncorrectAnswers}) {
 
   // const { quizAnswers } = props;
 
-console.log("lol", correct_answer, wrong_answers);
+// console.log("lol", correct_answer, wrong_answers);
 
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
@@ -61,13 +61,12 @@ console.log("lol", correct_answer, wrong_answers);
     console.log(answer);
   };
 
-  
-
 
   const handleClick = () => {
-    console.log("clicked");
+    // console.log("clicked");
     console.log("user answer is :", answer)
     console.log("correct answer is :", correct_answer)
+    // console.log("incorrect answers are :", incorrectAnswers)
     // if user chooses correct answer
     if (answer == correct_answer){
       console.log(`Answered correctly!`)
@@ -83,7 +82,9 @@ console.log("lol", correct_answer, wrong_answers);
       console.log("Answered incorrectly. :-(")
       setFeedbackText("Incorrect! ;-(")
       setQuestionNumber(questionNumber + 1)
+      setIncorrectAnswers([...incorrectAnswers, {question: question, correct_answer: correct_answer, wrong_answers: wrong_answers, id: id}])
     }
+
     // if user chooses incorrect answer
 }
 const [feedbackText, setFeedbackText] = useState(""); 

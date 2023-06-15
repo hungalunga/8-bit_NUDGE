@@ -26,6 +26,8 @@ if (Object.keys(props.questionObject).length === 0) {
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
 
+    
+
 console.log("props:", props)
 console.log("question", question);
 console.log("correct_answer", props.questionObject.answer);
@@ -42,7 +44,8 @@ console.log("wrong_answers", props.questionObject.wrong_answers);
                 questionNumber = {props.questionNumber} 
                 setQuestionNumber = {props.setQuestionNumber}
                 // ^^send questionNumber props down to re-render after each answer
-   
+                incorrectAnswers = {props.incorrectAnswers}
+                setIncorrectAnswers = {props.setIncorrectAnswers}
                  />
         </div>
     )
