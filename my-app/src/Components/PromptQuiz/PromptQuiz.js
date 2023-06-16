@@ -22,7 +22,6 @@ export default function PromptQuiz() {
     //         buttonRef.current.click();
     //       }
     //     }, 5000);
-    
     //     return () => {
     //       clearTimeout(timer.current);
     //     };
