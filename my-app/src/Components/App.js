@@ -18,7 +18,7 @@ function App() {
 
       </header>
       
-      <div>
+      <div className="MainQuiz">
         <MainQuiz/>
       </div>
     </div>
