@@ -110,7 +110,7 @@ useEffect(() => {
 
 
   return (
-    <div>
+    <div data-testid='question-display'>
       <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers}/>
     </div>
   );

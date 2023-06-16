@@ -1,8 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import MainQuiz from './MainQuiz/MainQuiz';
-import QuestionDisplay from './QuestionDisplay/QuestionDisplay';
-import jest from '@testing-library/jest-dom'; 
 
 test('renders MyComponent and asserts existence of elements', () => {
     render(<MainQuiz />);
