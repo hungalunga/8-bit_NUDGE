@@ -6,6 +6,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import { Menubar } from "primereact/menubar";
 import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
 import "primeicons/primeicons.css";
+import "../theme.css"
 
 function App() {
   const items = [
@@ -29,7 +30,7 @@ function App() {
       <div className="App">
         <header className="App-header">NUDGE</header>
         <PromptQuiz />
-        <Menubar model={items} />
+        <Menubar className= "menubar" model={items} />
       </div>
       <Routes>
         <Route path="/quiz" element={<MainQuiz />} />
