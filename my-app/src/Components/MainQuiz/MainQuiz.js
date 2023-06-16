@@ -54,96 +54,31 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
     //select random question
     const randomIndex = Math.floor(Math.random() * questionSet.length);
     const randomQuestion = questionSet[randomIndex];
-    // console.log("random question is ", randomQuestion);
     
     const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
-
-    console.log("INCORRECT ANSWERS FROM MAINQUIZ:", incorrectAnswers);
-    console.log("QUESTION NUMBER MAIN QUIZ:", questionNumber);
+    console.log("remaining questions are ", remainingQuestions);
 
     setQuestionSet(remainingQuestions);
+    if (questionSet.length === 0) {
+      if(incorrectAnswers.length > 0){
+        return incorrectAnswers.shift();
+      }
+    }
       return randomQuestion;
     }
-
-useEffect(() => {
-  if(questionNumber === 5){
-      if(incorrectAnswers.length > 0){
-            setQuestionSet(incorrectAnswers);
-            console.log("question set is ", questionSet);
-          };
-        }
-      }
-      ,[questionNumber,questionSet,incorrectAnswers]);
 
 useEffect(() => {
     const qObject = getRandomQuestion()
     
       setQuestionObject(qObject);
-    console.log(questionSet)
   }, [questionNumber]); // when questionNumber changes, rerender
-
 
   return (
     <div data-testid='question-display' className="mainQuiz">
+      <h1>Question {questionNumber}</h1>
       <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers}/>
     </div>
   );
 }
 
 
-//handing the array to the established function into a variable to be passed down as props to the necessary parts
-  // useEffect(() => {
-  //   const qObject = getRandomQuestion();
-  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
-  //   setQuestionObject(qObject);
-    
-  // }, []);
-
-  // useEffect( () => {
-  //   const qObject = getRandomQuestion();
-  //   console.log("HEY HEY HEY HERE qObject is", qObject); 
-  //   setQuestionObject(qObject);
-  //   console.log("question object is ", questionObject);
-// let qObject
-  // }, []);
-
-
-    // console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
-    
-      // // if there are no more questions left in remaining array...
-      // if (remainingQuestions.length === 0) {
-      //   console.log("no more questions left");
-      //   return null;
-      // //   // if incorrect answers array is more than 0...
-      // //   if (incorrectAnswers.length > 0) {
-      // //     // remove and return (re-ask) the first question in the incorrect answers array
-      // //     return incorrectAnswers.shift();
-      // //   } else {
-      // //     // All questions have been asked and there are no incorrect answers
-      // //     return null;
-      // //   }
-      // }
-
-
-
-    //  while (count > 0) {
-  //     setTimeout(()=> {setCount(count - 1)}, 1000);
-  
-  // create a state to update after every question is answered to then render the next question
-
-// function getRandomIncorrect() {
-
-//   //select random question
-//   const randomIndex = Math.floor(Math.random() * questionSet.length);
-//   const randomQuestion = questionSet[randomIndex];
-//   // console.log("random question is ", randomQuestion);
-  
-//   const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
-
-//   console.log("INCORRECT ANSWERS FROM MAINQUIZ:", incorrectAnswers);
-//   console.log("QUESTION NUMBER MAIN QUIZ:", questionNumber);
-
-//   setQuestionSet(incorrectAnswers);
-
-//     return randomQuestion;
-//   }
