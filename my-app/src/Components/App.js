@@ -11,17 +11,13 @@ function App() {
 
         NUDGE
         <div className="Profile">
-          <h2>Welcome Back</h2>
-          <h3>UserName</h3>
         </div>
         <div className="Quiz">
           <button className="Quiz-button">Quiz</button>
         </div>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        Learn React
+
       </header>
+      
       <div>
         <MainQuiz/>
       </div>
