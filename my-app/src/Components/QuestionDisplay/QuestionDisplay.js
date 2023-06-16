@@ -31,8 +31,8 @@ if (typeof props.questionObject === 'object') {
     console.log("correct_answer", props.questionObject.answer);
     console.log("wrong_answers", props.questionObject.wrong_answers);
     return (
-        <div>
-            <p>{ question }</p>
+        <div className="mainQuiz">
+            <p className="question">{ question }</p>
             <AnswerCheckbox 
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}

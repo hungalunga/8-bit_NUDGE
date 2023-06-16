@@ -1,4 +1,5 @@
 import {useRef } from "react";
+import logoIcon from "./logo2.png";
 
 export default function PromptQuiz() {
   const date = new Date();
@@ -8,8 +9,8 @@ export default function PromptQuiz() {
   const createNotification = (title, body) => {
     const options = {
       body: body,
-      // icon: logoIcon,
-      // badge: logoIcon,
+      icon: logoIcon,
+      badge: logoIcon,
     };
 
     if (

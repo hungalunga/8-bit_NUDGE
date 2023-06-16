@@ -100,7 +100,7 @@ export default function AnswerCheckbox({correct_answer, wrong_answers, id, quest
               <label>{answerOption}</label>
             </div>
           ))}
-          <button onClick={handleClick}>Confirm</button>
+          <button className="answerButton" onClick={handleClick}>Confirm</button>
           <p>{feedbackText}</p>
         </div>
       </div>
