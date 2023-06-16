@@ -1,40 +1,9 @@
-import { useEffect, useRef } from "react";
-import { withRouter } from "react-router-dom";
-// import logoIcon from "./logo2.png";
-
-// Write an if statement to check if the notification has been sent or not
-// if notification has been sent do not send another notification
-// if notification hasn't been sent randomly send notification between 9:00 - 17:00
-// Internal clock that checks time and does not send notification at unsociable hours
-// send notification logic at random time
-// Notification link to send to a singular quiz question
+import {useRef } from "react";
 
 export default function PromptQuiz() {
   const date = new Date();
   const showTime = date.getHours();
-  // const time = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
-    const buttonRef = useRef(null);
-  //   const timer = useRef(null);
-  const awayTimer = useRef(null);
- ;
-
-  //   useEffect(() => {
-  //     timer.current = setTimeout(() => {
-  //       if (buttonRef.current) {
-  //         buttonRef.current.click();
-  //       }
-  //     }, 5000);
-
-  //     return () => {
-  //       clearTimeout(timer.current);
-  //     };
-  //   }, []);
-
-  //while (showTime >= 9 && showTime <= 17) {
-  //   const notification = new Notification("Quiz Time");
-  //   console.log("Quiz Time")
-  //    break;
-  //}
+  const buttonRef = useRef(null);
 
   const createNotification = (title, body) => {
     const options = {
@@ -71,9 +40,6 @@ export default function PromptQuiz() {
     }
   };
 
-  console.log(showTime);
-  // const random time for between 10 minutes and an hour (in milliseconds)
-
   const handleClick = () => { createNotification("Hello, Bernard! Hurry!", "👾⏰👾\nClick to complete your daily quiz too!!"); };
 
 
@@ -87,34 +53,6 @@ export default function PromptQuiz() {
       createNotification("Reminder", "Time for your daily quiz!!");
     }, randomTime);
   }
-  // const getRandomInterval = () => {
-  //   const startHour = 9; // 9am
-  //   const endHour = 17; // 5pm
-  //   const millisecondsInHour = 60 * 60 * 1000;
-  //   const randomInterval = Math.floor(Math.random() * (endHour - startHour + 1) + startHour);
-  //   return randomInterval * millisecondsInHour;
-  // };128478
-
-  /*   useEffect(() => {
-        if (typeof window !== 'undefined') {
-          const handleVisibilityChange = () => {
-            if (document.hidden) {
-              awayTimer.current = setInterval(() => {
-                createNotification("Reminder", "Time for your daily quiz!!");
-              }, 1000000);  // 10 seconds reminder
-            } else {
-              clearInterval(awayTimer.current);
-            }
-          };
-    
-          document.addEventListener('visibilitychange', handleVisibilityChange);
-          return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-        }
-      }, []);
-    */
-  //   const handleClick = () => {
-  //     createNotification("Hello, Bernard! Hurry!", "👾⏰👾\nClick to complete your daily quiz too!!");
-  //   };
 
     return (
       <button ref={buttonRef} onClick={handleClick}>

@@ -23,22 +23,23 @@ GETTING THE QUIZ BY ITERATING ONE QUESTION
   Loop on this. 
 5. Implement scoring. Add score to congrats page. 
 */
-import React, { useReducer } from 'react';
-import { useState,useEffect } from 'react';
-import { Checkbox } from 'primereact/checkbox';
-import 'primereact/resources/primereact.min.css';
-import 'primereact/resources/themes/saga-blue/theme.css';
+
+import React from "react";
+import { useState, useEffect } from "react";
+import { Checkbox } from "primereact/checkbox";
+import "primereact/resources/primereact.min.css";
+import "primereact/resources/themes/saga-blue/theme.css";
 
 
 
 const shuffleArray = (array) => {
-    const shuffledArray = [...array];
-    for (let i = shuffledArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
-    }
-    return shuffledArray;
-  };
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+  }
+  return shuffledArray;
+};
 
 export default function AnswerCheckbox({correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber, incorrectAnswers, setIncorrectAnswers}) {
 
@@ -78,31 +79,31 @@ export default function AnswerCheckbox({correct_answer, wrong_answers, id, quest
     }
 
     // if user chooses incorrect answer
-}
-const [feedbackText, setFeedbackText] = useState(""); 
+  };
+  const [feedbackText, setFeedbackText] = useState("");
 
-  //console.log("handleclick is " , handleClick); 
-    return (
-        <div className="card flex flex-wrap justify-content-center gap-3">
-          <div className="flex align-items-center">
-            <div className="answerBox">
-            <h3>{answer}</h3>
-              {allAnswers.map((answerOption, index) => (
-                <div className = {`${index}`} key={index}>
-                  <Checkbox
-                    inputId={`answer${index + 1}`}
-                    value={answerOption}
-                    onChange={onAnswerChange}
-                    checked={answer === answerOption}
-                  />
-              
-                  <label>{answerOption}</label>
-                </div>
-              ))}
-              <button onClick={handleClick}>Confirm</button>
-            <p>{ feedbackText }</p>
+  //console.log("handleclick is " , handleClick);
+  return (
+    <div className="card flex flex-wrap justify-content-center gap-3">
+      <div className="flex align-items-center">
+        <div className="answerBox">
+          <h3>{answer}</h3>
+          {allAnswers.map((answerOption, index) => (
+            <div className="checkbox" key={index}>
+              <Checkbox
+                inputId={`answer${index + 1}`}
+                value={answerOption}
+                onChange={onAnswerChange}
+                checked={answer === answerOption}
+              />
+
+              <label>{answerOption}</label>
             </div>
-          </div>
+          ))}
+          <button onClick={handleClick}>Confirm</button>
+          <p>{feedbackText}</p>
         </div>
-      );
-    };
+      </div>
+    </div>
+  );
+}
