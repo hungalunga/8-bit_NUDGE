@@ -41,7 +41,7 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-export default function AnswerCheckbox({correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber, incorrectAnswers, setIncorrectAnswers}) {
+export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber, incorrectAnswers, setIncorrectAnswers}) {
 
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
@@ -62,6 +62,7 @@ export default function AnswerCheckbox({correct_answer, wrong_answers, id, quest
     console.log("user answer:", answer, "correct answer:", correct_answer)
     // if user chooses correct answer
     if (answer == correct_answer){
+      setResultsValue(+1);
       console.log(`Answered correctly!`)
       setFeedbackText("Correct!")
       // render the next question
@@ -72,6 +73,7 @@ export default function AnswerCheckbox({correct_answer, wrong_answers, id, quest
       
     }
     else {
+      setResultsValue(-1);
       console.log("Answered incorrectly. :-(")
       setFeedbackText("Incorrect! ;-(")
       setQuestionNumber(questionNumber + 1)
@@ -101,7 +103,6 @@ export default function AnswerCheckbox({correct_answer, wrong_answers, id, quest
             </div>
           ))}
           <button className="answerButton" onClick={handleClick}>Confirm</button>
-          <p>{feedbackText}</p>
         </div>
       </div>
     </div>

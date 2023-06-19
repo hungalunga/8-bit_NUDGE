@@ -41,6 +41,7 @@ export default function MainQuiz() {
   // store them in an array
 
 const [questionObject, setQuestionObject] = useState({});
+const [resultsValue, setResultsValue] = useState(0);
 
   // creating initial states as empty arrays
   // questions that have already been asked 
@@ -59,6 +60,7 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
     console.log("remaining questions are ", remainingQuestions);
 
     setQuestionSet(remainingQuestions);
+    
     if (questionSet.length === 0) {
       if(incorrectAnswers.length > 0){
         return incorrectAnswers.shift();
@@ -69,14 +71,13 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
 useEffect(() => {
     const qObject = getRandomQuestion()
-    
       setQuestionObject(qObject);
   }, [questionNumber]); // when questionNumber changes, rerender
 
   return (
     <div data-testid='question-display' className="mainQuiz">
       <h1>Question {questionNumber}</h1>
-      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers}/>
+      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers} resultsValue = {resultsValue} setResultsValue ={setResultsValue} />
     </div>
   );
 }
