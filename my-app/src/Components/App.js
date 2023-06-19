@@ -8,7 +8,8 @@ import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
 import "primeicons/primeicons.css";
 import "../theme.css"
 
-function App() {
+
+function App(props) {
   const items = [
     {
       label: "Home",
@@ -23,6 +24,13 @@ function App() {
       command: () => {
         window.location = "/quiz";
       },
+    },
+    {
+      label: "Logout",
+      icon: "pi pi-fw pi-power-off",
+      command: () => {
+        const { error } = props.supabase.auth.signOut();
+      }
     },
   ];
   return (
