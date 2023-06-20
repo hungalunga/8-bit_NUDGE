@@ -45,8 +45,7 @@ const [resultsValue, setResultsValue] = useState(0);
 
   // creating initial states as empty arrays
   // questions that have already been asked 
-const [questionSet, setQuestionSet] = useState(quizQuestions);
-
+const [questionSet, setQuestionSet] = useState(quizQuestions)
 const [questionNumber, setQuestionNumber] = useState(1); // pass these down to all children as props
 const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
@@ -61,7 +60,7 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
     setQuestionSet(remainingQuestions);
     
-    if (questionSet.length === 0) {
+    if (questionNumber > 10 || questionSet.length === 0) {
       if(incorrectAnswers.length > 0){
         return incorrectAnswers.shift();
       }
