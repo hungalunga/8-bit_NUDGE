@@ -15,12 +15,12 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 
 export default function QuestionDisplay(props) {
 
-// seems like it's being passed down as undefined so let's delay it
 function handleClick(){
     props.setResultsValue(0);
     props.setQuestionNumber(props.questionNumber + 1)
 }
 
+// if the questionObject is empty, display loading
 if (props.questionObject && Object.keys(props.questionObject).length === 0) {
     return <div>loading...</div>;
   }
