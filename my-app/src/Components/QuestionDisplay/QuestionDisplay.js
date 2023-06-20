@@ -69,13 +69,13 @@ if (typeof props.questionObject === 'object') {
                 <p>ERROR didnt recieve a value of either 1,0 or -1</p>
             </div>
         )
-    }
+    }}
 
-} else {
-    return (
-        <div className = "MainQuiz">
-            <p>{ props.completionMessage }</p>
-        </div>
-    )
-}
+// } else {
+//     return (
+//         <div className = "MainQuiz">
+//             <p>xxxQuiz Complete!</p>
+//         </div>
+//     )
+// }
 }

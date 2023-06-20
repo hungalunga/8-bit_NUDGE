@@ -20,13 +20,13 @@ export default function MainQuiz() {
     const data = await response.json();
     console.log(data);
     setQuestionSet(data);
+    const qObject = getRandomQuestion()
+    setQuestionObject(qObject);
   }
 
   getQuestions();
   }, []);
 
-// displays the completion message at the end of the quiz
-const completionMessage = "xxxQuiz Complete!";
 
   function getRandomQuestion() {
     //select random question
@@ -48,15 +48,11 @@ const completionMessage = "xxxQuiz Complete!";
     }
 
 // Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
-useEffect(() => {
-    const qObject = getRandomQuestion()
-      setQuestionObject(qObject);
-  }, [questionNumber]); // when questionNumber changes, rerender
+ // when questionNumber changes, rerender
 
 // display the question & answers
   return (
     <div data-testid='question-display' className="mainQuiz">
-      {/* <h1>Question {questionNumber}</h1> */}
       <QuestionDisplay 
         questionObject={questionObject} 
         questionNumber= {questionNumber} 
@@ -65,7 +61,6 @@ useEffect(() => {
         setIncorrectAnswers = {setIncorrectAnswers} 
         resultsValue = {resultsValue} 
         setResultsValue ={setResultsValue}
-        completionMessage = {completionMessage}
 
         />
     </div>
