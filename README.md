@@ -48,3 +48,12 @@ To run the front-end locally follow the steps below:
 | Periwinkle|<img width="20" alt="Screenshot 2023-06-20 at 19 23 37" src="https://github.com/hungalunga/8-bit_NUDGE/assets/127150103/aee44811-8494-4636-a649-b4e1a95a4170"> `#D9D1F3`|
 | Seasalt|<img width="20" alt="Screenshot 2023-06-20 at 19 23 47" src="https://github.com/hungalunga/8-bit_NUDGE/assets/127150103/9162cf61-bee7-4d40-aee9-1133be1096be"> `#F7F7F7`|
 
+## **_The Team!_**
+We are 8-bit!
+
+- [Ely Dreaves](https://github.com/SimplyEly)
+- [Rosie Jones](https://github.com/rosiegracejones)
+- [Bernard Molyneux](https://github.com/CitizenBabbage)
+- [Michael Hawkes](https://github.com/octohmy)
+- [Hung Vo](https://github.com/hungalunga)
+- [Aisling Brogan-Smith](https://github.com/ashwantspizza)
