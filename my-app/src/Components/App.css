@@ -36,6 +36,7 @@
   }
 }
 
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
 
 .question{
   display: flex;
@@ -45,21 +46,14 @@
   margin: 0 auto;
   width: 50vw;
   height: 25vh;
-  font-size: calc(10px + 2vmin);
+  font-family: 'Quicksand';
+  font-weight: bold;
+  font-size: calc(5vh);
   border: 2px solid rgba(137, 24, 145, 0.5);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
   border-radius: 2.5vh;
-}
-
-.checkbox{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: 100%;
-  height: 100%;
-  font-size: calc(10px + 2vmin);
+  color: rgba(57, 32, 126, 1);
+  
 }
 
 .answerButton{
@@ -82,8 +76,11 @@
 }
 
 .answerBox {
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
   width: 100%;
-  height: 100%;
+  height: 50%;
   font-size: calc(10px + 3vmin);
 }
+

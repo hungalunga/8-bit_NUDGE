@@ -26,9 +26,10 @@ GETTING THE QUIZ BY ITERATING ONE QUESTION
 
 import React from "react";
 import { useState, useEffect } from "react";
-import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
+import { Button } from "primereact/button";
+
 
 
 
@@ -41,69 +42,58 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber, incorrectAnswers, setIncorrectAnswers}) {
-
+export default function AnswerCheckbox({
+  setResultsValue,
+  correct_answer,
+  wrong_answers,
+  id,
+  question,
+  questionNumber,
+  setQuestionNumber,
+  incorrectAnswers,
+  setIncorrectAnswers
+}) {
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
 
   useEffect(() => {
     const shuffledAnswers = shuffleArray([correct_answer, ...wrong_answers]);
     setAllAnswers(shuffledAnswers);
-    setAnswer(""); // reset answer after rerender
-  }, [correct_answer, wrong_answers]); // added dependency array to rerender when props change
+    setAnswer("");
+  }, [correct_answer, wrong_answers]);
 
-  const onAnswerChange = (e) => {
-    setAnswer(e.value);
-    setFeedbackText("");
+  const onAnswerChange = (selectedAnswer) => {
+    setAnswer(selectedAnswer);
     console.log(answer);
-  };;
+  };
 
   const handleClick = () => {
-    console.log("user answer:", answer, "correct answer:", correct_answer)
-    // if user chooses correct answer
-    if (answer == correct_answer){
-      setResultsValue(+1);
-      console.log(`Answered correctly!`)
-      setFeedbackText("Correct!")
-      // render the next question
-      // force a rerender by updating the question number
-      
-
-      // reloads the page after 2.5 seconds to display the next question minus the one that was just answered
-      
-    }
-    else {
+    console.log("user answer:", answer, "correct answer:", correct_answer);
+    if (answer === correct_answer) {
+      setResultsValue(1);
+      console.log(`Answered correctly!`);
+      setFeedbackText("Correct!");
+    } else {
       setResultsValue(-1);
-      console.log("Answered incorrectly. :-(")
-      setFeedbackText("Incorrect! ;-(")
-      setIncorrectAnswers([...incorrectAnswers, {question: question, answer: correct_answer, wrong_answers: wrong_answers, id: id}])
+      console.log("Answered incorrectly. :-(");
+      setFeedbackText("Incorrect! ;-(");
+      setIncorrectAnswers([...incorrectAnswers, { question, answer: correct_answer, wrong_answers, id }]);
     }
-
-    // if user chooses incorrect answer
   };
+
   const [feedbackText, setFeedbackText] = useState("");
 
-  //console.log("handleclick is " , handleClick);
   return (
-    <div className="card flex flex-wrap justify-content-center gap-3">
-      <div className="flex align-items-center">
         <div className="answerBox">
-          <h3>{answer}</h3>
           {allAnswers.map((answerOption, index) => (
-            <div className="checkbox" key={index}>
-              <Checkbox
-                inputId={`answer${index + 1}`}
-                value={answerOption}
-                onChange={onAnswerChange}
-                checked={answer === answerOption}
-              />
-
-              <label>{answerOption}</label>
-            </div>
+            <Button
+              className={answer === answerOption ? "answerButton selected" : "answerButton"}
+              key={index}
+              label={answerOption}
+              onClick={() => onAnswerChange(answerOption)}  
+            />   
           ))}
-          <button className="answerButton" onClick={handleClick}>Confirm</button>
+          <Button label="Confirm" className="answerButton" onClick={handleClick} />
         </div>
-      </div>
-    </div>
   );
 }
