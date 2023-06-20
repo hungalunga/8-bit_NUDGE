@@ -4,7 +4,7 @@ import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import { Menubar } from "primereact/menubar";
-import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
+import PromptRandomGrab from "./PromptRandomGrab/PromptRandomGrab";
 import "primeicons/primeicons.css";
 import "../theme.css"
 
@@ -35,7 +35,7 @@ function App() {
       <Routes>
         <Route path="/quiz" element={<MainQuiz />} />
         <Route path="/home" element={<Dashboard />} />
-        <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
+        <Route path="/daily-quiz" element={<PromptRandomGrab />} />
       </Routes>
     </>
   );

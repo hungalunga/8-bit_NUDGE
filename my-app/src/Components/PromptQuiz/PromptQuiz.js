@@ -21,11 +21,11 @@ export default function PromptQuiz() {
     ) {
       const notification = new Notification(title, options);
       notification.addEventListener("click", function (event) {
-        window.open("http://localhost:3000/daily-quiz");
+        window.open("http://localhost:3000/daily-quiz"); 
       });
     } else if (
       "Notification" in window &&
-      Notification.permission !== "denied" &&
+      Notification.permission === "denied" &&
       showTime >= 9 &&
       showTime <= 17
     ) {
@@ -41,7 +41,7 @@ export default function PromptQuiz() {
     }
   };
 
-  const handleClick = () => { createNotification("Hello, Bernard! Hurry!", "👾⏰👾\nClick to complete your daily quiz too!!"); };
+  const handleClick = () => { createNotification("Hello, Ash! Hurry!", "👾⏰👾\nClick to complete your daily quiz too!!"); };
 
 
   if (showTime >= 9 && showTime <= 17) {

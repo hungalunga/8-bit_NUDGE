@@ -2,7 +2,7 @@ import QuestionDisplay from "../QuestionDisplay/QuestionDisplay";
 import { useState, useEffect } from "react";
 import { quizQuestions } from "../../QuizData";
 
-export default function MainQuiz() {
+export default function PromptRandomGrab() {
 
   // choose ten random questions from the main question dataset
   // store them in an array
@@ -23,10 +23,10 @@ const [questionNumber, setQuestionNumber] = useState(1);
 const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
 // sets the number of questions in the quiz
-const [numberOfQuestions, setNumberOfQuestions] = useState(2);
+const [numberOfQuestions, setNumberOfQuestions] = useState(1);
 
-// displays the completion message at the end of the quiz
-const completionMessage = "xxxQuiz Complete!";
+// displays the completion message at the end of the quiz (variable bc regular quiz passes a different message)
+const completionMessage = "Congratulations, you answered your daily nudge!";
  
   function getRandomQuestion() {
     //select random question
@@ -65,7 +65,6 @@ useEffect(() => {
         resultsValue = {resultsValue} 
         setResultsValue ={setResultsValue}
         completionMessage = {completionMessage}
-
         />
     </div>
   );
