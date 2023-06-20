@@ -74,7 +74,7 @@ if (typeof props.questionObject === 'object') {
 } else {
     return (
         <div className = "MainQuiz">
-            <p>Quiz Complete!</p>
+            <p>{ props.completionMessage }</p>
         </div>
     )
 }

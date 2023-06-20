@@ -24,37 +24,38 @@ export default function AnswerCheckbox({
   questionNumber,
   setQuestionNumber,
   incorrectAnswers,
-  setIncorrectAnswers
-}) {
+  setIncorrectAnswers,
+}) 
+//start function body
+{
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
+  //const [feedbackText, setFeedbackText] = useState("");
 
+
+  // this shuffles the order of the answers
+  // (wrapped in useEffect to block infinite renders)
   useEffect(() => {
     const shuffledAnswers = shuffleArray([correct_answer, ...wrong_answers]);
     setAllAnswers(shuffledAnswers);
     setAnswer("");
   }, [correct_answer, wrong_answers]);
 
+  // function triggered by Button onClick, sets user answer to answerOption from JSX below 
   const onAnswerChange = (selectedAnswer) => {
     setAnswer(selectedAnswer);
-    console.log(answer);
   };
 
-  const handleClick = () => {
-    console.log("user answer:", answer, "correct answer:", correct_answer);
+// compares user answer with correct answer and sets feedback text, incorrect answers, incorrect answer numbers
+  const handleConfirmClick = () => {
     if (answer === correct_answer) {
       setResultsValue(1);
-      console.log(`Answered correctly!`);
-      setFeedbackText("Correct!");
+      //setFeedbackText("Correct!");
     } else {
       setResultsValue(-1);
-      console.log("Answered incorrectly. :-(");
-      setFeedbackText("Incorrect! ;-(");
-      setIncorrectAnswers([...incorrectAnswers, { question, answer: correct_answer, wrong_answers, id }]);
+      //setFeedbackText("Incorrect! ;-(");
     }
   };
-
-  const [feedbackText, setFeedbackText] = useState("");
 
   return (
     <div className="card flex flex-wrap justify-content-center gap-3">
@@ -69,7 +70,7 @@ export default function AnswerCheckbox({
               onClick={() => onAnswerChange(answerOption)}
             />
           ))}
-          <Button label="Confirm" className="answerButton" onClick={handleClick} />
+          <Button label="Confirm" className="answerButton" onClick={handleConfirmClick} />
         </div>
       </div>
     </div>

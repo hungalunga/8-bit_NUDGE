@@ -4,7 +4,7 @@ import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import { Menubar } from "primereact/menubar";
-import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
+import PromptRandomGrab from "./PromptRandomGrab/PromptRandomGrab";
 import "primeicons/primeicons.css";
 import "../theme.css";
 import { useState, useEffect } from "react";
@@ -104,46 +104,18 @@ export default function App() {
       },
     },
   ];
-
-  const [session, setSession] = useState(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  if (!session) {
-    return (
-      <Auth
-        supabaseClient={supabase}
-        theme="default" // can also be "dark" or "evenDarker"
-        appearance={{ theme: customTheme }}
-        providers={["google", "facebook", "apple"]}
-      />
-    );
-  } else {
-    return (
-      <>
-        <div className="App">
-          <header className="App-header">NUDGE</header>
-          <PromptQuiz />
-          <Menubar className="menubar" model={items} />
-        </div>
-        <Routes>
-          <Route path="/quiz" element={<MainQuiz />} />
-          <Route path="/home" element={<Dashboard />} />
-          <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
-        </Routes>
-      </>
-    );
-  }
+  return (
+    <>
+      <div className="App">
+        <header className="App-header">NUDGE</header>
+        <PromptQuiz />
+        <Menubar className= "menubar" model={items} />
+      </div>
+      <Routes>
+        <Route path="/quiz" element={<MainQuiz />} />
+        <Route path="/home" element={<Dashboard />} />
+        <Route path="/daily-quiz" element={<PromptRandomGrab />} />
+      </Routes>
+    </>
+  );
 }

@@ -2,35 +2,34 @@ import QuestionDisplay from "../QuestionDisplay/QuestionDisplay";
 import { useState, useEffect } from "react";
 import { quizQuestions } from "../../QuizData";
 
-export default function MainQuiz() {
+export default function PromptRandomGrab() {
 
-  const [questionObject, setQuestionObject] = useState({});
-  const [questionSet, setQuestionSet] = useState([]);
-  const [questionNumber, setQuestionNumber] = useState(1);
-  const [incorrectAnswers, setIncorrectAnswers] = useState([]);
-  const [resultsValue, setResultsValue] = useState(0);
-  const numberOfQuestions = quizQuestions.length;
+  // choose ten random questions from the main question dataset
+  // store them in an array
 
-  // creating initial states as empty arrays
-  // questions that have already been asked
+const [questionObject, setQuestionObject] = useState({});
 
-  useEffect (() => {
-  async function getQuestions() {
-    const response = await fetch("http://localhost:3001/math_questions");
-    const data = await response.json();
-    console.log(data);
-    setQuestionSet(data);
-  }
+//takes values of 0, 1, -1 corresponding to no answer, correct answer, incorrect answer
+  // This value will determine which JSX QuestionDisplay displays (q&a, "Correct!" or "Not Quite" + feedback)
+const [resultsValue, setResultsValue] = useState(0); 
 
-  getQuestions();
-  }, []);
+// duplicates question database for purposes of manipulation
+const [questionSet, setQuestionSet] = useState(quizQuestions)
 
-// displays the completion message at the end of the quiz
-const completionMessage = "xxxQuiz Complete!";
+// carries the number of the question user is up to in the quiz 
+const [questionNumber, setQuestionNumber] = useState(1); 
 
+// an array that keeps track of the questions you got wrong
+const [incorrectAnswers, setIncorrectAnswers] = useState([]);
+
+// sets the number of questions in the quiz
+const [numberOfQuestions, setNumberOfQuestions] = useState(1);
+
+// displays the completion message at the end of the quiz (variable bc regular quiz passes a different message)
+const completionMessage = "Congratulations, you answered your daily nudge!";
+ 
   function getRandomQuestion() {
     //select random question
-    console.log(`questionSet is ${JSON.stringify(questionSet)}`)
     const randomIndex = Math.floor(Math.random() * questionSet.length);
     const randomQuestion = questionSet[randomIndex];
     
@@ -66,7 +65,6 @@ useEffect(() => {
         resultsValue = {resultsValue} 
         setResultsValue ={setResultsValue}
         completionMessage = {completionMessage}
-
         />
     </div>
   );
