@@ -37,21 +37,29 @@ export default function MainQuiz() {
   //     wrong_answers: [36, 32, -13],
   //   },
   // ];
+  const [questionObject, setQuestionObject] = useState({});
+  const [questionSet, setQuestionSet] = useState([]);
 
-  const quizQuestions = async () => {
+useEffect (() => {
+async function getQuizQuestions () {
+  try {
     const response = await fetch("http://localhost:3001/math_questions");
     const data = await response.json();
-    return data;
+    console.log("data is", data)
+    setQuestionSet(data); 
+    console.log("questionSet is", questionSet)
+  } catch (error) {
+    console.error("Error fetching questions", error);
   }
-
-  const [questionObject, setQuestionObject] = useState({});
-
+}
+getQuizQuestions()
   // creating initial states as empty arrays
   // questions that have already been asked
-  const [questionSet, setQuestionSet] = useState(quizQuestions);
+}, [])
 
   function getRandomQuestion() {
     //select random question
+    console.log(`questionSet is ${JSON.stringify(questionSet)}`)
     const randomIndex = Math.floor(Math.random() * questionSet.length);
     const randomQuestion = questionSet[randomIndex];
     const remainingQuestions = questionSet.filter(
@@ -75,7 +83,7 @@ export default function MainQuiz() {
   useEffect(() => {
     const qObject = getRandomQuestion();
     setQuestionObject(qObject);
-  }, []);
+  }, [questionSet]);
 
   return (
     <div>

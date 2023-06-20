@@ -17,32 +17,79 @@ export default function QuestionDisplay(props) {
 
 // seems like it's being passed down as undefined so let's delay it
 
-if (Object.keys(props.questionObject).length === 0) {
-    return <div>loading...</div>
+if (props.questionObject && Object.keys(props.questionObject).length === 0) {
+    return <div>loading...</div>;
+  }
+  else if (props.questionObject === null || undefined) { 
+    return <div>loading...</div>;
+  }
+
+function handleClick(){
+    props.setResultsValue(0);
+    props.setQuestionNumber(props.questionNumber + 1)
 }
 
+if (typeof props.questionObject === 'object') {
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
-
-console.log("props:", props)
-console.log("question", question);
-console.log("correct_answer", props.questionObject.answer);
-console.log("wrong_answers", props.questionObject.wrong_answers);
-
-
-
-
-
+    //console.log("questionObject:", questionObject)
+    //console.log("props:", props)
+    //console.log("wrong_answers", props.questionObject.wrong_answers);
+    if (props.resultsValue === 0){
     return (
-        <div>
-            <p>{ question }</p>
+        <div className="mainQuiz">
+            <p className="question">{ question }</p>
             <AnswerCheckbox 
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}
                 question = {questionObject.question}
                 correct_answer = {questionObject.answer}
-   
-                 />
+                questionNumber = {props.questionNumber} 
+                setQuestionNumber = {props.setQuestionNumber}
+                // ^^send questionNumber props down to re-render after each answer
+                incorrectAnswers = {props.incorrectAnswers}
+                setIncorrectAnswers = {props.setIncorrectAnswers}
+                resultsValue = {props.resultsValue}
+                setResultsValue = {props.setResultsValue}
+                 /> 
         </div>
     )
-};
+    } else if (props.resultsValue === 1){
+        return (
+            <div className="MainQuiz">
+            <div className="resultsPageCorrect">
+                <p>Correct!</p>
+            </div>
+             <button onClick={handleClick}>Next</button>
+            </div>
+        )
+        
+    } else if (props.resultsValue === -1){
+        return (
+            <div className="MainQuiz">
+            <div className="resultsPageIncorrect">
+                <p>Not quite...</p>
+                <p>The correct answer for </p>
+                <p>{props.questionObject.question}</p>
+                <p>is</p>
+                <p>{props.questionObject.answer}</p>
+            </div>
+             <button onClick={handleClick}>Next</button>
+            </div>
+        )
+    } else {
+        return (
+            <div className="error">
+                <p>ERROR didnt recieve a value of either 1,0 or -1</p>
+            </div>
+        )
+    }
+
+} else {
+    return (
+        <div className = "MainQuiz">
+            <p>Quiz Complete!</p>
+        </div>
+    )
+}
+}
