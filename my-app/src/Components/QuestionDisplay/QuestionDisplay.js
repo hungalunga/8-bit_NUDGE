@@ -1,21 +1,9 @@
- // retrieve the question and answer data from the "data base" --done
-        // assign the question to a state variable
-        // call variable in the return
-
-// display the question on the page
-
-// import answer component
-
-// call answer component in the return
-
-
-
-
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 
 export default function QuestionDisplay(props) {
 
-function handleClick(){
+// Sets the new results, new question when Next is pressed
+function handleNextClick(){
     props.setResultsValue(0);
     props.setQuestionNumber(props.questionNumber + 1)
 }
@@ -24,7 +12,6 @@ function handleClick(){
 if (props.questionObject && Object.keys(props.questionObject).length === 0) {
     return <div>loading...</div>;
   }
-
 
 if (typeof props.questionObject === 'object') {
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
@@ -59,7 +46,7 @@ if (typeof props.questionObject === 'object') {
             <div className="resultsPageCorrect">
                 <p>Correct!</p>
             </div>
-             <button onClick={handleClick}>Next</button>
+             <button onClick={handleNextClick}>Next</button>
             </div>
         )
         
@@ -73,7 +60,7 @@ if (typeof props.questionObject === 'object') {
                 <p>is</p>
                 <p>{props.questionObject.answer}</p>
             </div>
-             <button onClick={handleClick}>Next</button>
+             <button onClick={handleNextClick}>Next</button>
             </div>
         )
     } else {

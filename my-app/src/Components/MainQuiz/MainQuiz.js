@@ -8,12 +8,18 @@ export default function MainQuiz() {
   // store them in an array
 
 const [questionObject, setQuestionObject] = useState({});
-const [resultsValue, setResultsValue] = useState(0); //takes values of 0, 1, -1 corresponding to no answer, correct answer, incorrect answer
 
-  // creating initial states as empty arrays
-  // questions that have already been asked 
+//takes values of 0, 1, -1 corresponding to no answer, correct answer, incorrect answer
+  // This value will determine which JSX QuestionDisplay displays (q&a, "Correct!" or "Not Quite" + feedback)
+const [resultsValue, setResultsValue] = useState(0); 
+
+// duplicates question database for purposes of manipulation
 const [questionSet, setQuestionSet] = useState(quizQuestions)
-const [questionNumber, setQuestionNumber] = useState(1); // pass these down to all children as props
+
+// carries the number of the question user is up to in the quiz 
+const [questionNumber, setQuestionNumber] = useState(1); 
+
+// an array that keeps track of the questions you got wrong
 const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
  
@@ -22,11 +28,11 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
     const randomIndex = Math.floor(Math.random() * questionSet.length);
     const randomQuestion = questionSet[randomIndex];
     
+    // remove the question from the DBcopy and reset using setQuestionSet
     const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
-    console.log("remaining questions are ", remainingQuestions);
-
     setQuestionSet(remainingQuestions);
     
+    // when to end the quiz (after preset number OR when you run out of questions (latter is for robustness))
     if (questionNumber > 10 || questionSet.length === 0) {
       if(incorrectAnswers.length > 0){
         return incorrectAnswers.shift();
@@ -35,11 +41,13 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
       return randomQuestion;
     }
 
+// Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
 useEffect(() => {
     const qObject = getRandomQuestion()
       setQuestionObject(qObject);
   }, [questionNumber]); // when questionNumber changes, rerender
 
+// display the question display
   return (
     <div data-testid='question-display' className="mainQuiz">
       <h1>Question {questionNumber}</h1>
