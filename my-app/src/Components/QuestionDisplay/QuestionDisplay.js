@@ -30,8 +30,6 @@ if (typeof props.questionObject === 'object') {
     const question = props.questionObject.question;   // to grab the question to display
     //console.log("questionObject:", questionObject)
     //console.log("props:", props)
-    console.log("question",question);
-    console.log("correct_answer", props.questionObject.answer);
     //console.log("wrong_answers", props.questionObject.wrong_answers);
     if (props.resultsValue === 0){
     return (

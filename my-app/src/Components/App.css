@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: #9efb618b;
 }
 
 .App-header {
@@ -44,9 +43,12 @@
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  width: 100%;
-  height: 100%;
+  width: 50vw;
+  height: 25vh;
   font-size: calc(10px + 2vmin);
+  border: 2px solid rgba(137, 24, 145, 0.5);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 2.5vh;
 }
 
 .checkbox{
@@ -73,6 +75,13 @@
 
 .UserName {
   display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  font-size: calc(10px + 3vmin);
+}
+
+.answerBox {
   margin: 0 auto;
   width: 100%;
   height: 100%;

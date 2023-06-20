@@ -76,7 +76,6 @@ useEffect(() => {
 
   return (
     <div data-testid='question-display' className="mainQuiz">
-      <h1>Question {questionNumber}</h1>
       <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers} resultsValue = {resultsValue} setResultsValue ={setResultsValue} />
     </div>
   );
