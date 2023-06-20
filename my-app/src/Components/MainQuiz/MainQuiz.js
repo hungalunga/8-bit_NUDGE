@@ -25,8 +25,8 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 // sets the number of questions in the quiz
 const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
-// displays the completion message at the end of the quiz
-const completionMessage = "xxxQuiz Complete!";
+// displays the completion message at the end of the quiz (variable bc prompt quiz passes a different message)
+const completionMessage = "Quiz Complete!";
  
   function getRandomQuestion() {
     //select random question
