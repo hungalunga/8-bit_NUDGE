@@ -1,8 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Checkbox } from "primereact/checkbox";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
+import { Button } from "primereact/button";
+
+
 
 const shuffleArray = (array) => {
   const shuffledArray = [...array];
@@ -14,63 +16,60 @@ const shuffleArray = (array) => {
 };
 
 export default function AnswerCheckbox({
+  setResultsValue,
   correct_answer,
   wrong_answers,
   id,
   question,
+  questionNumber,
+  setQuestionNumber,
+  incorrectAnswers,
+  setIncorrectAnswers
 }) {
-  console.log("lol", correct_answer, wrong_answers);
-
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
 
   useEffect(() => {
     const shuffledAnswers = shuffleArray([correct_answer, ...wrong_answers]);
     setAllAnswers(shuffledAnswers);
-  }, []);
+    setAnswer("");
+  }, [correct_answer, wrong_answers]);
 
-  const onAnswerChange = (e) => {
-    setAnswer(e.value);
-    setFeedbackText("");
+  const onAnswerChange = (selectedAnswer) => {
+    setAnswer(selectedAnswer);
     console.log(answer);
   };
 
   const handleClick = () => {
-    console.log("clicked");
-    console.log("user answer is :", answer);
-    console.log("correct answer is :", correct_answer);
-    // if user chooses correct answer
+    console.log("user answer:", answer, "correct answer:", correct_answer);
     if (answer === correct_answer) {
+      setResultsValue(1);
       console.log(`Answered correctly!`);
       setFeedbackText("Correct!");
     } else {
+      setResultsValue(-1);
       console.log("Answered incorrectly. :-(");
       setFeedbackText("Incorrect! ;-(");
+      setIncorrectAnswers([...incorrectAnswers, { question, answer: correct_answer, wrong_answers, id }]);
     }
-    // if user chooses incorrect answer
   };
+
   const [feedbackText, setFeedbackText] = useState("");
 
-  //console.log("handleclick is " , handleClick);
   return (
     <div className="card flex flex-wrap justify-content-center gap-3">
       <div className="flex align-items-center">
         <div className="answerBox">
           <h3>{answer}</h3>
           {allAnswers.map((answerOption, index) => (
-            <div className="checkbox" key={index}>
-              <Checkbox
-                inputId={`answer${index + 1}`}
-                value={answerOption}
-                onChange={onAnswerChange}
-                checked={answer === answerOption}
-              />
-
-              <label>{answerOption}</label>
-            </div>
+            <Button
+              key={index}
+              label={answerOption}
+              className={answer === answerOption ? 'selected' : ''}
+              onClick={() => onAnswerChange(answerOption)}
+            />
           ))}
-          <button onClick={handleClick}>Confirm</button>
-          <p>{feedbackText}</p>
+          <Button label="Confirm" className="answerButton" onClick={handleClick} />
         </div>
       </div>
     </div>

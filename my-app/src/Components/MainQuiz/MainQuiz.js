@@ -1,93 +1,62 @@
 import QuestionDisplay from "../QuestionDisplay/QuestionDisplay";
 import { useState, useEffect } from "react";
-
+import { quizQuestions } from "../../QuizData";
 
 export default function MainQuiz() {
-  // quizQuestion, hard coded array for now, API call later
-  // const quizQuestions = [
-  //   {
-  //     id: 1,
-  //     question: "59 + 95",
-  //     answer: 154,
-  //     wrong_answers: [54, 102, 112],
-  //   },
-  //   {
-  //     id: 2,
-  //     question: "313 x 5",
-  //     level: "HARD",
-  //     answer: 1565,
-  //     wrong_answers: [1315, 1535, 1554],
-  //   },
-  //   {
-  //     id: 3,
-  //     question: "376 - 1",
-  //     answer: 375,
-  //     wrong_answers: [275, 323, 333],
-  //   },
-  //   {
-  //     id: 4,
-  //     question: "304 x 79",
-  //     answer: 24016,
-  //     wrong_answers: [23766, 23986, 24005],
-  //   },
-  //   {
-  //     id: 5,
-  //     question: "116 - 79",
-  //     answer: 37,
-  //     wrong_answers: [36, 32, -13],
-  //   },
-  // ];
+
   const [questionObject, setQuestionObject] = useState({});
   const [questionSet, setQuestionSet] = useState([]);
+  const [questionNumber, setQuestionNumber] = useState(1);
+  const [incorrectAnswers, setIncorrectAnswers] = useState([]);
+  const [resultsValue, setResultsValue] = useState(0);
+  const numberOfQuestions = quizQuestions.length;
 
-useEffect (() => {
-async function getQuizQuestions () {
-  try {
-    const response = await fetch("http://localhost:3001/math_questions");
-    const data = await response.json();
-    console.log("data is", data)
-    setQuestionSet(data); 
-    console.log("questionSet is", questionSet)
-  } catch (error) {
-    console.error("Error fetching questions", error);
-  }
-}
-getQuizQuestions()
   // creating initial states as empty arrays
   // questions that have already been asked
-}, [])
+
+  useEffect (() => {
+  async function getQuestions() {
+    const response = await fetch("http://localhost:3001/math_questions");
+    const data = await response.json();
+    console.log(data);
+    setQuestionSet(data);
+  }
+
+  getQuestions();
+  }, []);
 
   function getRandomQuestion() {
     //select random question
     console.log(`questionSet is ${JSON.stringify(questionSet)}`)
     const randomIndex = Math.floor(Math.random() * questionSet.length);
     const randomQuestion = questionSet[randomIndex];
-    const remainingQuestions = questionSet.filter(
-      (question) => question.id !== randomQuestion.id
-    );
-
+    
+    // remove the question from the DBcopy and reset using setQuestionSet
+    const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
     setQuestionSet(remainingQuestions);
-
-    // console.log(`remaining questions array is now ${JSON.stringify(remainingQuestions)}`);
-
-    // // if there are no more questions left in remaining array...
-    if (remainingQuestions.length === 0) {
-      console.log("no more questions left");
-      return null;
+    
+    // grab from array of wrong answers(after preset number OR when you run out of questions (latter is for robustness))
+    if (questionNumber > numberOfQuestions || questionSet.length === 0) {
+      if(incorrectAnswers.length > 0){
+        return incorrectAnswers.shift(); //return the first wrong answer, removing from array
+      }
+    }
+    else return randomQuestion;
     }
 
-    // returns the random question
-    return randomQuestion;
-  }
+// Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
+useEffect(() => {
+    const qObject = getRandomQuestion()
+      setQuestionObject(qObject);
+  }, [questionNumber]); // when questionNumber changes, rerender
 
-  useEffect(() => {
-    const qObject = getRandomQuestion();
-    setQuestionObject(qObject);
-  }, [questionSet]);
-
+// display the question display
   return (
-    <div>
-      <QuestionDisplay questionObject={questionObject} />
+    <div data-testid='question-display' className="mainQuiz">
+      <h1>Question {questionNumber}</h1>
+      <QuestionDisplay questionObject={questionObject} questionNumber= {questionNumber} setQuestionNumber = {setQuestionNumber} incorrectAnswers = {incorrectAnswers} setIncorrectAnswers = {setIncorrectAnswers} resultsValue = {resultsValue} setResultsValue ={setResultsValue} />
     </div>
   );
 }
+
+
