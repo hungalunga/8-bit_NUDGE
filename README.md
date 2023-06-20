@@ -18,7 +18,7 @@ To run the front-end locally follow the steps below:
 1. Git clone the front-end repository by pasting the following into your terminal:
 
 ```bash
-  git clone https://github.com/SchoolOfCode/8_bit_NUDGE
+  git clone https://github.com/hungalunga/8-bit_NUDGE.git
 ```
 
 2. Remember to navigate to the correct folder: my-app
