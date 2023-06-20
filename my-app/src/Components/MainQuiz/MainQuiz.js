@@ -22,6 +22,8 @@ const [questionNumber, setQuestionNumber] = useState(1);
 // an array that keeps track of the questions you got wrong
 const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
+// sets the number of questions in the quiz
+const [numberOfQuestions, setNumberOfQuestions] = useState(2);
  
   function getRandomQuestion() {
     //select random question
@@ -32,13 +34,13 @@ const [incorrectAnswers, setIncorrectAnswers] = useState([]);
     const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
     setQuestionSet(remainingQuestions);
     
-    // when to end the quiz (after preset number OR when you run out of questions (latter is for robustness))
-    if (questionNumber > 10 || questionSet.length === 0) {
+    // grab from array of wrong answers(after preset number OR when you run out of questions (latter is for robustness))
+    if (questionNumber > numberOfQuestions || questionSet.length === 0) {
       if(incorrectAnswers.length > 0){
-        return incorrectAnswers.shift();
+        return incorrectAnswers.shift(); //return the first wrong answer, removing from array
       }
     }
-      return randomQuestion;
+    else return randomQuestion;
     }
 
 // Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
