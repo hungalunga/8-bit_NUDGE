@@ -46,7 +46,7 @@ if (typeof props.questionObject === 'object') {
             <div className="resultsPageCorrect">
                 <p>Correct!</p>
             </div>
-             <button onClick={handleNextClick}>Next</button>
+             <button onClick={handleNextClick}>{props.nextMessage}</button>
             </div>
         )
         
@@ -60,7 +60,7 @@ if (typeof props.questionObject === 'object') {
                 <p>is</p>
                 <p>{props.questionObject.answer}</p>
             </div>
-             <button onClick={handleNextClick}>Next</button>
+             <button onClick={handleNextClick}>{props.nextMessage}</button>
             </div>
         )
     } else {

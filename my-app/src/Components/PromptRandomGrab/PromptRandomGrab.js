@@ -13,9 +13,6 @@ const [questionObject, setQuestionObject] = useState({});
   // This value will determine which JSX QuestionDisplay displays (q&a, "Correct!" or "Not Quite" + feedback)
 const [resultsValue, setResultsValue] = useState(0); 
 
-// duplicates question database for purposes of manipulation
-const [questionSet, setQuestionSet] = useState(quizQuestions)
-
 // carries the number of the question user is up to in the quiz 
 const [questionNumber, setQuestionNumber] = useState(1); 
 
@@ -27,24 +24,19 @@ const [numberOfQuestions, setNumberOfQuestions] = useState(1);
 
 // displays the completion message at the end of the quiz (variable bc regular quiz passes a different message)
 const completionMessage = "Congratulations, you answered your daily nudge!";
+
+const nextMessage = "Finish";
  
   function getRandomQuestion() {
     //select random question
-    const randomIndex = Math.floor(Math.random() * questionSet.length);
-    const randomQuestion = questionSet[randomIndex];
-    
-    // remove the question from the DBcopy and reset using setQuestionSet
-    const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
-    setQuestionSet(remainingQuestions);
+    const randomIndex = Math.floor(Math.random() * quizQuestions.length);
+    const randomQuestion = quizQuestions[randomIndex];
     
     // grab from array of wrong answers(after preset number OR when you run out of questions (latter is for robustness))
-    if (questionNumber > numberOfQuestions || questionSet.length === 0) {
-      if(incorrectAnswers.length > 0){
-        return incorrectAnswers.shift(); //return the first wrong answer, removing from array
-      }
+    if (questionNumber <= numberOfQuestions) {
+     return randomQuestion;
     }
-    else return randomQuestion;
-    }
+  }
 
 // Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
 useEffect(() => {
@@ -65,9 +57,8 @@ useEffect(() => {
         resultsValue = {resultsValue} 
         setResultsValue ={setResultsValue}
         completionMessage = {completionMessage}
+        nextMessage = {nextMessage}
         />
     </div>
   );
 }
-
-

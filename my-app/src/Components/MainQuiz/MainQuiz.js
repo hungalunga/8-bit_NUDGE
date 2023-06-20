@@ -27,6 +27,7 @@ const [numberOfQuestions, setNumberOfQuestions] = useState(2);
 
 // displays the completion message at the end of the quiz (variable bc prompt quiz passes a different message)
 const completionMessage = "Quiz Complete!";
+const nextMessage = "Next";
  
   function getRandomQuestion() {
     //select random question
@@ -65,7 +66,7 @@ useEffect(() => {
         resultsValue = {resultsValue} 
         setResultsValue ={setResultsValue}
         completionMessage = {completionMessage}
-
+        nextMessage = {nextMessage}
         />
     </div>
   );
