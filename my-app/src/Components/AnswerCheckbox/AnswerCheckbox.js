@@ -67,7 +67,7 @@ export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_a
       setFeedbackText("Correct!")
       // render the next question
       // force a rerender by updating the question number
-      setQuestionNumber(questionNumber + 1)
+      
 
       // reloads the page after 2.5 seconds to display the next question minus the one that was just answered
       
@@ -76,7 +76,6 @@ export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_a
       setResultsValue(-1);
       console.log("Answered incorrectly. :-(")
       setFeedbackText("Incorrect! ;-(")
-      setQuestionNumber(questionNumber + 1)
       setIncorrectAnswers([...incorrectAnswers, {question: question, answer: correct_answer, wrong_answers: wrong_answers, id: id}])
     }
 
