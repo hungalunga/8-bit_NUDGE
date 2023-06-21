@@ -7223,6 +7223,7 @@ p {
 .p-avatar {
 	background-color: #eae8f3;
 	border-radius: 100%;
+	border: 2px solid #FFD500;
 }
 .p-avatar.p-avatar-lg {
 	width: 3rem;
