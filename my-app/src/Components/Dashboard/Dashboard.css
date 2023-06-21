@@ -1,24 +1,25 @@
- .points{
-    grid-column-start: 2;
-    display: flex;
-  }
-  .cardTitle{
-    font-size: 4vh;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background-color: pink;
-    display: flex;
-    flex:wrap;
-    align-items: center;
+ .navbar {
+  background-color: #D9D1F3;
+  width: 100%;
+ }
+ 
+ .profile-container {
 
-    }
-    .circleAvatar {
-        border-radius: 50%;
-      }
+ }
 
-    .leaderboardCard{
-        height: 200px;
-        width: 100px;
-        background-color: blueviolet;
-    }
+ .user-scores {
+
+ }
+
+ .dashboard-bottom {
+
+ }
+
+ .learning-container {
+
+ }
+
+ .leaderboard-container {
+
+ }
+

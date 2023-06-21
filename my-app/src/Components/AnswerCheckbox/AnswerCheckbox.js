@@ -86,14 +86,15 @@ export default function AnswerCheckbox({
   return (
         <div className="answerBox">
           {allAnswers.map((answerOption, index) => (
-            <Button
+            <Button 
+              severity="secondary"
               className={answer === answerOption ? "answerButton selected" : "answerButton"}
               key={index}
               label={answerOption}
               onClick={() => onAnswerChange(answerOption)}  
             />   
           ))}
-          <Button label="Confirm" className="answerButton" onClick={handleClick} />
+          <Button label="Confirm" className="" onClick={handleClick} />
         </div>
   );
 }

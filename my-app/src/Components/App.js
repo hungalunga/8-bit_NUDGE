@@ -1,15 +1,15 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
-import { Menubar } from "primereact/menubar";
 import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
-import "primeicons/primeicons.css";
-import "../theme.css";
+import { Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
+import "primeicons/primeicons.css";
+import "../prime-react-theme/theme.css";
+import "./App.css";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -17,6 +17,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cWZpY3N4cmZsZmdwZWJhdGh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcxNjk3ODQsImV4cCI6MjAwMjc0NTc4NH0.8HlWTJSEkeuM7lHOo8j572i3k_9eEF5855-th3yP3Hw"
 );
 
+// theme for login page for supabase
 const customTheme = {
   default: {
     colors: {
@@ -81,29 +82,28 @@ const customTheme = {
 };
 
 export default function App() {
-  const items = [
+  /*const items = [
     {
       label: "Home",
-      icon: "pi pi-fw pi-home",
       command: () => {
         window.location = "/home";
       },
     },
     {
       label: "Quiz",
-      icon: "pi pi-fw pi-calendar",
+
       command: () => {
         window.location = "/quiz";
       },
     },
     {
       label: "Logout",
-      icon: "pi pi-fw pi-power-off",
       command: () => {
         const { error } = supabase.auth.signOut();
       },
     },
   ];
+*/
 
   const [session, setSession] = useState(null);
 
@@ -125,8 +125,7 @@ export default function App() {
     return (
       <Auth
         supabaseClient={supabase}
-        theme="default" // can also be "dark" or "evenDarker"
-        appearance={{ theme: customTheme }}
+        theme="default"
         providers={["google", "facebook", "apple"]}
       />
     );
@@ -134,9 +133,11 @@ export default function App() {
     return (
       <>
         <div className="App">
-          <header className="App-header">NUDGE</header>
+        <p>quick links (to be removed): </p>
+        <Link to="/home">Home</Link>
+        <Link to="/quiz">Quiz</Link>
           <PromptQuiz />
-          <Menubar className="menubar" model={items} />
+          {/*<Menubar className="menubar" model={items} />*/}
         </div>
         <Routes>
           <Route path="/quiz" element={<MainQuiz />} />
