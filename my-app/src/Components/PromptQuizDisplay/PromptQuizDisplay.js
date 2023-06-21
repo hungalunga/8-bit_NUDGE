@@ -61,9 +61,10 @@ useEffect(() => {
         setResultsValue ={setResultsValue}
         completionMessage = {completionMessage}
         nextMessage = {nextMessage}
+        promptQuestionTimer = {PromptQuestionTimer}
         />
     </div>
-        <PromptQuestionTimer/>
+        {/* <PromptQuestionTimer/> */}
     </div>
   );
 }

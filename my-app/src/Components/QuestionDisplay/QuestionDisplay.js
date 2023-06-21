@@ -1,5 +1,6 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 import "./QuestionDisplay.css"
+import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
 
 export default function QuestionDisplay(props) {
 
@@ -23,6 +24,7 @@ if (typeof props.questionObject === 'object') {
     return (
         <div className="mainQuiz">
             <p className="question">{ question }</p>
+            <PromptQuestionTimer></PromptQuestionTimer>
             <AnswerCheckbox 
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}
@@ -35,6 +37,7 @@ if (typeof props.questionObject === 'object') {
                 setIncorrectAnswers = {props.setIncorrectAnswers}
                 resultsValue = {props.resultsValue}
                 setResultsValue = {props.setResultsValue}
+    
                  /> 
         </div>
     )
