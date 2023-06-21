@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
-
+import { Button } from "primereact/button";
 
 
 const shuffleArray = (array) => {
