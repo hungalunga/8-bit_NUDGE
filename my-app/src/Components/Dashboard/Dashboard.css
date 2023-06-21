@@ -1,25 +1,35 @@
- .navbar {
-  background-color: #D9D1F3;
-  width: 100%;
- }
- 
- .profile-container {
+.dashboard-page {
+	width: 100%;
+	background-color: #f7f7f7;
+	display: flex;
+}
 
- }
+.navbar {
+	display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	background-color: #d9d1f3;
+	width: 100%;
+	height: 60px;
+}
 
- .user-scores {
+.welcome-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
- }
+.user-scores {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
- .dashboard-bottom {
+.dashboard-bottom {
+}
 
- }
+.learning-container {
+}
 
- .learning-container {
-
- }
-
- .leaderboard-container {
-
- }
-
+.leaderboard-container {
+}

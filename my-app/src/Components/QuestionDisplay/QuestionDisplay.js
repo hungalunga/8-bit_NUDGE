@@ -12,6 +12,7 @@
 
 
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
+import { Card } from 'primereact/card';
 import "./QuestionDisplay.css"
 
 export default function QuestionDisplay(props) {
@@ -30,13 +31,13 @@ if (props.questionObject && Object.keys(props.questionObject).length === 0) {
 if (typeof props.questionObject === 'object') {
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
-    //console.log("questionObject:", questionObject)
-    //console.log("props:", props)
-    //console.log("wrong_answers", props.questionObject.wrong_answers);
+
     if (props.resultsValue === 0){
     return (
         <div className="mainQuiz">
-            <p className="question">{ question }</p>
+        
+            <Card className="big-card">{ question }</Card>
+            {/*<p className="question"></p>*/}
             <AnswerCheckbox 
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}

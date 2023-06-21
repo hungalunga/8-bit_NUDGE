@@ -133,10 +133,10 @@ export default function App() {
     return (
       <>
         <div className="App">
-        <p>quick links (to be removed): </p>
+        {/* <p>quick links (to be removed): </p>
         <Link to="/home">Home</Link>
         <Link to="/quiz">Quiz</Link>
-          <PromptQuiz />
+          <PromptQuiz /> */}
           {/*<Menubar className="menubar" model={items} />*/}
         </div>
         <Routes>

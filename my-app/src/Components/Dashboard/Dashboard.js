@@ -9,61 +9,62 @@ import "./Dashboard.css";
 
 export default function Dashboard() {
 	return (
-		<div>
+		<>
 			<div className="navbar">
 				<Link to="/home">Logo</Link>
 				<div>icon</div>
 			</div>
-
-			<div className="profile-container">
-				<Avatar
-					label="P"
-					size="xlarge"
-					shape="circle"
-					className="circleAvatar"
-				/>
-				<p>Welcome Back</p>
-				<h1>ashwantspizza</h1>
-				<div className="user-scores">
-					<Skeleton
-						height="75px"
-						width="75px"
-						borderRadius="20px"
-						className="mb-2"
+			<div className="dashboard-page">
+				<div className="welcome-container">
+					<Avatar
+						label="P"
+						size="xlarge"
+						shape="circle"
+						className="circleAvatar"
 					/>
-					<Skeleton
-						height="75px"
-						width="75px"
-						borderRadius="20px"
-						className="mb-2"
-					/>
-					<Skeleton
-						height="75px"
-						width="75px"
-						borderRadius="20px"
-						className="mb-2"
-					/>
-				</div>
-			</div>
-
-			<Divider />
-			<div className="dashboard-bottom">
-				<div className="learning-container">
-					<h2>today's learning quiz</h2>
-					<Link to="/quiz">
-						<Button label="Today's Quiz" size="large" />
-					</Link>
+					<p>Welcome Back</p>
+					<h1>ashwantspizza</h1>
+					</div>
+					<div className="user-scores">
+						<Skeleton
+							height="75px"
+							width="75px"
+							borderRadius="20px"
+							className="mb-2"
+						/>
+						<Skeleton
+							height="75px"
+							width="75px"
+							borderRadius="20px"
+							className="mb-2"
+						/>
+						<Skeleton
+							height="75px"
+							width="75px"
+							borderRadius="20px"
+							className="mb-2"
+						/>
+					</div>
 				</div>
 
-				<div className="leaderboard-container">
-					<h2>leaderboard</h2>
-					<DataTable tableStyle={{ minWidth: "50rem" }}>
-						<Column field="user" header="User"></Column>
-						<Column field="ranking" header="Ranking"></Column>
-						<Column field="xp" header="XP"></Column>
-					</DataTable>
+				<Divider />
+				<div className="dashboard-bottom">
+					<div className="learning-container">
+						<h2>today's learning quiz</h2>
+						<Link to="/quiz">
+							<Button label="Today's Quiz" size="large" />
+						</Link>
+					</div>
+
+					<div className="leaderboard-container">
+						<h2>leaderboard</h2>
+						<DataTable tableStyle={{ minWidth: "50rem" }}>
+							<Column field="user" header="User"></Column>
+							<Column field="ranking" header="Ranking"></Column>
+							<Column field="xp" header="XP"></Column>
+						</DataTable>
+					</div>
 				</div>
-			</div>
-		</div>
+		</>
 	);
 }
