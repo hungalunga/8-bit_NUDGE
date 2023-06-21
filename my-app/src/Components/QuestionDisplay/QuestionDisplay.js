@@ -16,6 +16,7 @@ if (props.questionObject && Object.keys(props.questionObject).length === 0) {
   }
 
 if (typeof props.questionObject === 'object') {
+    console.log("questionObject:", typeof props.questionObject)
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
     //console.log("questionObject:", questionObject)
@@ -28,6 +29,7 @@ if (typeof props.questionObject === 'object') {
         <div className="mainQuiz">
             <p className="question">{ question }</p>
             <AnswerCheckbox 
+            questionObject = {questionObject}
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}
                 question = {questionObject.question}
@@ -74,7 +76,9 @@ if (typeof props.questionObject === 'object') {
     }
 
 } else {
+
     return (
+        console.log("questionObject:", typeof props.questionObject),
         <div className = "MainQuiz">
             <p>xxxQuiz Complete!</p>
             <Button label="Home" />

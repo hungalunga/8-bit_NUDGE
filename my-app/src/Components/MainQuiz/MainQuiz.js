@@ -37,12 +37,13 @@ export default function MainQuiz() {
     // grab from array of wrong answers(after preset number OR when you run out of questions (latter is for robustness))
     if (questionNumber > numberOfQuestions || questionSet.length === 0) {
       if (incorrectAnswers.length > 0) {
-        console.log("2 incorrect answers:", incorrectAnswers);
-        setQuestionObject(incorrectAnswers[incorrectAnswers.length - 1]) && incorrectAnswers.pop()
-        console.log ("the questionObject is now the last incorrect answer in the array:", questionObject)
-        return incorrectAnswers[incorrectAnswers.length - 1]
-        ; //return the first wrong answer, removing from array
-        
+        const wrongAnswer = incorrectAnswers[0];
+        console.log("wrongAnswer:", wrongAnswer);
+        setQuestionObject(wrongAnswer);
+        const tryAgain = incorrectAnswers.filter((question) => question.id !== wrongAnswer.id);
+        setQuestionSet(tryAgain);
+        setIncorrectAnswers([]);
+        return wrongAnswer;
       }
     }
     else return DbQuestion;

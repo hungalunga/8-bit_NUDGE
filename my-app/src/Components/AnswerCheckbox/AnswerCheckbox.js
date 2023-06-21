@@ -25,6 +25,7 @@ export default function AnswerCheckbox({
   setQuestionNumber,
   incorrectAnswers,
   setIncorrectAnswers,
+  questionObject,
 }) 
 //start function body
 {
@@ -53,7 +54,7 @@ export default function AnswerCheckbox({
       //setFeedbackText("Correct!");
     } else {
       setResultsValue(-1);
-      setIncorrectAnswers([...incorrectAnswers, question]);
+      setIncorrectAnswers([...incorrectAnswers, questionObject]);
       
       //setFeedbackText("Incorrect! ;-(");
     }
