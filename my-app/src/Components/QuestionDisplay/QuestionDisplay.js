@@ -29,7 +29,7 @@ if (typeof props.questionObject === 'object') {
         <div className="mainQuiz">
             <p className="question">{ question }</p>
             <AnswerCheckbox 
-            questionObject = {questionObject}
+                questionObject = {questionObject}
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}
                 question = {questionObject.question}
