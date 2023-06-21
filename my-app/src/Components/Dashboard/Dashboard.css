@@ -55,15 +55,10 @@
 	color: #39207E;
 }
 
-.username-text {
-	color: #39207E;
-	font-weight: bold;
-}
-
 .leaderboard-container {
 	border-style: solid;
 	border-radius: 10px;
-	border: 2px solid #d9d1f3 ;
+	border: 3px solid #d9d1f3 ;
 	display: flex;
 	flex-direction: column;
 }
