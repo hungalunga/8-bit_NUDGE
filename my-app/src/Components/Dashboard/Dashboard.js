@@ -20,8 +20,8 @@ export default function Dashboard() {
 					<div className="welcome-container">
 						<Avatar label="A" size="xlarge" className="circleAvatar" />
 						<div className="welcome-text">
-							<p>Welcome Back,</p>
-							<h1>ashwantspizza</h1>
+							<h1>Welcome Back,</h1>
+							<h1>ashwantspizza!</h1>
 						</div>
 					</div>
 					<div className="user-scores">
@@ -63,7 +63,7 @@ export default function Dashboard() {
 					</div>
 
 					<div className="leaderboard-container">
-						<h2>Leaderboard</h2>
+						<h2 className = "leaderboard-text">Leaderboard</h2>
 						<DataTable tableStyle={{ minWidth: "30rem" }}>
 							<Column field="user" header="User"></Column>
 							<Column field="ranking" header="Ranking"></Column>

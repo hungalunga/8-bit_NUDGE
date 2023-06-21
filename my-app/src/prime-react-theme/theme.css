@@ -55,16 +55,19 @@
 
 /* font sizing */
 h1 {
-	font-size: 2rem;
-	font-weight: 600;
+	font-size: 1.5rem;
+	font-weight: 450;
+	color: #39207e;
 }
 h2 {
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	font-weight: 600;
+	color: #39207e;
 }
 h3 { 
-	font-size: 1.25rem;
+	font-size: 1.15rem;
 	font-weight: 500;
+	color: #39207e;
 }
 
 p {
@@ -7219,7 +7222,7 @@ p {
 }
 .p-avatar {
 	background-color: #eae8f3;
-	border-radius: 6px;
+	border-radius: 100%;
 }
 .p-avatar.p-avatar-lg {
 	width: 3rem;

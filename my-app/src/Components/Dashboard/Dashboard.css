@@ -51,9 +51,19 @@
 	flex: 2 1 0;
 }
 
+.welcome-back-text {
+	color: #39207E;
+}
+
+.username-text {
+	color: #39207E;
+	font-weight: bold;
+}
+
 .leaderboard-container {
 	border-style: solid;
-	border-color: blue;
+	border-radius: 10px;
+	border-color: #d9d1f3;
 	display: flex;
 	flex-direction: column;
 }
