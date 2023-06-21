@@ -24,7 +24,7 @@ if (typeof props.questionObject === 'object') {
     return (
         <div className="mainQuiz">
             <p className="question">{ question }</p>
-            <PromptQuestionTimer></PromptQuestionTimer>
+            {props.promptQuestionTimer && <PromptQuestionTimer />}
             <AnswerCheckbox 
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}
