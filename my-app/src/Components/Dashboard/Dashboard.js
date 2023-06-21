@@ -52,6 +52,13 @@ export default function Dashboard() {
 						<Link to="/quiz">
 							<Button label="Today's Quiz" size="large" />
 						</Link>
+						<h3>Want to level up? Try one of these...</h3>
+					<div className="learning-buttons">
+						<Button label="Geometry" severity="secondary"/>
+						<Button label="Algebra" severity="secondary"/>
+						<Button label="Trigonometry" severity="secondary"/>
+						<Button label="Surprise me!" severity="secondary"/>
+					</div>
 					</div>
 
 					<div className="leaderboard-container">

@@ -2067,9 +2067,9 @@ p {
 .p-buttonset.p-button-secondary > .p-button,
 .p-splitbutton.p-button-secondary > .p-button,
 .p-fileupload-choose.p-button-secondary {
-	color: #f7f7f7;
-	background: #c087c4;
-	border: 1px solid #c087c4;
+	color: #39207E;
+	background: #eae8f3;
+	border: 1px solid #D9D1F3;
 }
 .p-button.p-button-secondary:enabled:hover,
 .p-button.p-button-secondary:not(button):not(a):not(.p-disabled):hover,
@@ -2083,9 +2083,9 @@ p {
 .p-fileupload-choose.p-button-secondary:not(button):not(a):not(
 		.p-disabled
 	):hover {
-	background: #b471b9;
+	background: #D9D1F3;
 	color: #f7f7f7;
-	border-color: #b471b9;
+	border-color: #D9D1F3;
 }
 .p-button.p-button-secondary:enabled:focus,
 .p-button.p-button-secondary:not(button):not(a):not(.p-disabled):focus,
@@ -2113,9 +2113,9 @@ p {
 .p-fileupload-choose.p-button-secondary:not(button):not(a):not(
 		.p-disabled
 	):active {
-	background: #a95bae;
+	background: #D9D1F3;
 	color: #f7f7f7;
-	border-color: #a95bae;
+	border-color: #D9D1F3;
 }
 .p-button.p-button-secondary.p-button-outlined,
 .p-buttonset.p-button-secondary > .p-button.p-button-outlined,
@@ -4982,6 +4982,8 @@ p {
 	border: 1px solid #c087c4;
 	box-shadow: inset #c087c4;
 	border-radius: 6px;
+	/* width: 600px;
+	height: 300px; */
 }
 
 .big-card {
@@ -7217,11 +7219,8 @@ p {
 }
 .p-avatar {
 	background-color: #eae8f3;
-	border-color: #ffd500;
-	border-width: 2px;
-	border-radius: 50%;
+	border-radius: 6px;
 }
-
 .p-avatar.p-avatar-lg {
 	width: 3rem;
 	height: 3rem;
