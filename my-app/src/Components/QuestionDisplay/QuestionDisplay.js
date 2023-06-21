@@ -1,4 +1,5 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
+import { Button } from "primereact/button";
 
 export default function QuestionDisplay(props) {
 
@@ -6,6 +7,7 @@ export default function QuestionDisplay(props) {
 function handleNextClick(){
     props.setResultsValue(0);
     props.setQuestionNumber(props.questionNumber + 1)
+    props.getRandomQuestion(props.questionSet);
 }
 
 // if the questionObject is empty, display loading
@@ -69,13 +71,14 @@ if (typeof props.questionObject === 'object') {
                 <p>ERROR didnt recieve a value of either 1,0 or -1</p>
             </div>
         )
-    }}
+    }
 
-// } else {
-//     return (
-//         <div className = "MainQuiz">
-//             <p>xxxQuiz Complete!</p>
-//         </div>
-//     )
-// }
+} else {
+    return (
+        <div className = "MainQuiz">
+            <p>xxxQuiz Complete!</p>
+            <Button label="Home" />
+        </div>
+    )
+}
 }

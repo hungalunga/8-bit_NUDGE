@@ -53,6 +53,8 @@ export default function AnswerCheckbox({
       //setFeedbackText("Correct!");
     } else {
       setResultsValue(-1);
+      setIncorrectAnswers([...incorrectAnswers, question]);
+      
       //setFeedbackText("Incorrect! ;-(");
     }
   };

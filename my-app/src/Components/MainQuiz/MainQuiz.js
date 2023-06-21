@@ -15,36 +15,37 @@ export default function MainQuiz() {
   // questions that have already been asked
 
   useEffect (() => {
-  async function getQuestions() {
-    const response = await fetch("http://localhost:3001/math_questions");
-    const data = await response.json();
-    console.log(data);
-    setQuestionSet(data);
-    const qObject = getRandomQuestion()
-    setQuestionObject(qObject);
-  }
-
+    async function getQuestions() {
+      const response = await fetch("http://localhost:3001/math_questions");
+      const data = await response.json();
+      console.log(data);
+      getRandomQuestion(data);
+    }
   getQuestions();
   }, []);
 
 
-  function getRandomQuestion() {
+  function getRandomQuestion(data) {
     //select random question
-    console.log(`questionSet is ${JSON.stringify(questionSet)}`)
-    const randomIndex = Math.floor(Math.random() * questionSet.length);
-    const randomQuestion = questionSet[randomIndex];
-    
+    const DbQuestion = data[0];
+    console.log(DbQuestion);
+    setQuestionObject(DbQuestion);
     // remove the question from the DBcopy and reset using setQuestionSet
-    const remainingQuestions = questionSet.filter((question) => question.id !== randomQuestion.id);
+    const remainingQuestions = data.filter((question) => question.id !== DbQuestion.id);
     setQuestionSet(remainingQuestions);
-    
+    console.log("1 incorrect answers:", incorrectAnswers);
     // grab from array of wrong answers(after preset number OR when you run out of questions (latter is for robustness))
     if (questionNumber > numberOfQuestions || questionSet.length === 0) {
-      if(incorrectAnswers.length > 0){
-        return incorrectAnswers.shift(); //return the first wrong answer, removing from array
+      if (incorrectAnswers.length > 0) {
+        console.log("2 incorrect answers:", incorrectAnswers);
+        setQuestionObject(incorrectAnswers[incorrectAnswers.length - 1]) && incorrectAnswers.pop()
+        console.log ("the questionObject is now the last incorrect answer in the array:", questionObject)
+        return incorrectAnswers[incorrectAnswers.length - 1]
+        ; //return the first wrong answer, removing from array
+        
       }
     }
-    else return randomQuestion;
+    else return DbQuestion;
     }
 
 // Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
@@ -55,6 +56,8 @@ export default function MainQuiz() {
     <div data-testid='question-display' className="mainQuiz">
       <QuestionDisplay 
         questionObject={questionObject} 
+        getRandomQuestion={getRandomQuestion}
+        questionSet = {questionSet}
         questionNumber= {questionNumber} 
         setQuestionNumber = {setQuestionNumber} 
         incorrectAnswers = {incorrectAnswers} 
