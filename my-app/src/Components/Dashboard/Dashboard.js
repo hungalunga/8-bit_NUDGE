@@ -6,13 +6,14 @@ import { Avatar } from "primereact/avatar";
 import { Skeleton } from "primereact/skeleton";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
+// import nudgelogo from "../logo-image/nudgelogo.png";
 
 export default function Dashboard() {
 	return (
 		<>
 			<div className="navbar">
-				<Link to="/home">Logo</Link>
-				<div>icon</div>
+				<Link to="/home"> logo </Link>
+				{/* <img src={nudgelogo} alt="nudge-logo" /> */}
 			</div>
 			<div className="dashboard-page">
 				<div className="dashboard-top">
