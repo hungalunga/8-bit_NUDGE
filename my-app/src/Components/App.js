@@ -10,6 +10,7 @@ import "../theme.css";
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
+import UserProfile from "./UserProfile/UserProfile";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -112,6 +113,7 @@ export default function App() {
         <Menubar className= "menubar" model={items} />
       </div>
       <Routes>
+        <Route path="/profile" element={<UserProfile />} />
         <Route path="/quiz" element={<MainQuiz />} />
         <Route path="/home" element={<Dashboard />} />
         <Route path="/daily-quiz" element={<PromptRandomGrab />} />
