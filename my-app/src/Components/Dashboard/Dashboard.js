@@ -5,10 +5,25 @@ import { Divider } from "primereact/divider";
 import { Avatar } from "primereact/avatar";
 import { Skeleton } from "primereact/skeleton";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./Dashboard.css";
 // import nudgelogo from "../logo-image/nudgelogo.png";
 
 export default function Dashboard() {
+	const [firstChar, setFirstChar] = useState('');
+
+
+	useEffect(() => {
+		const usernameElement = document.getElementById('username');
+		if (usernameElement) {
+		  const textContent = usernameElement.textContent;
+		  if (textContent) {
+			const capitalFirstChar = textContent.charAt(0).toUpperCase();
+			setFirstChar(capitalFirstChar);
+		  }
+		}
+	  }, []);
+
 	return (
 		<>
 			<div className="navbar">
@@ -18,10 +33,10 @@ export default function Dashboard() {
 			<div className="dashboard-page">
 				<div className="dashboard-top">
 					<div className="welcome-container">
-						<Avatar label="A" size="xlarge" className="circleAvatar" />
+						<Avatar label={firstChar} size="xlarge" className="circleAvatar" />
 						<div className="welcome-text">
 							<h1>Welcome Back,</h1>
-							<h1>ashwantspizza!</h1>
+							<h1 id="username">ashwantspizza!</h1>
 						</div>
 					</div>
 					<div className="user-scores">
