@@ -29,7 +29,7 @@ export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_a
     setAnswer("");
   }, [correct_answer, wrong_answers]);
 
-  // function triggered by Button onClick, sets user answer to answerOption from JSX below 
+  // triggered by Button onClick below, sets user answer to answerOption from JSX below 
   const onAnswerChange = (selectedAnswer) => {
     setAnswer(selectedAnswer);
   };
