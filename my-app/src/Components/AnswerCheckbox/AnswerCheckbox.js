@@ -19,12 +19,12 @@ export default function AnswerCheckbox({
   setResultsValue,
   correct_answer,
   wrong_answers,
-  id,
-  question,
-  questionNumber,
-  setQuestionNumber,
-  incorrectAnswers,
-  setIncorrectAnswers,
+  // id,
+  // question,
+  // questionNumber,
+  // setQuestionNumber,
+  // incorrectAnswers,
+  // setIncorrectAnswers,
 }) 
 //start function body
 {

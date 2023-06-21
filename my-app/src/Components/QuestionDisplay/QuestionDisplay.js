@@ -16,11 +16,8 @@ if (props.questionObject && Object.keys(props.questionObject).length === 0) {
 if (typeof props.questionObject === 'object') {
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
-    //console.log("questionObject:", questionObject)
-    //console.log("props:", props)
     console.log("question",question);
     console.log("correct_answer", props.questionObject.answer);
-    //console.log("wrong_answers", props.questionObject.wrong_answers);
     if (props.resultsValue === 0){
     return (
         <div className="mainQuiz">
@@ -60,6 +57,7 @@ if (typeof props.questionObject === 'object') {
                 <p>is</p>
                 <p>{props.questionObject.answer}</p>
             </div>
+            {/* props.nextMessage has different value for main quiz than prompt quiz */}
              <button onClick={handleNextClick}>{props.nextMessage}</button>
             </div>
         )
@@ -74,6 +72,7 @@ if (typeof props.questionObject === 'object') {
 } else {
     return (
         <div className = "MainQuiz">
+            {/* props.completionMessage has different value for main quiz than prompt quiz */}
             <p>{ props.completionMessage }</p>
         </div>
     )

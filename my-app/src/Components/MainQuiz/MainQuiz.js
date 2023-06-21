@@ -13,20 +13,21 @@ const [questionObject, setQuestionObject] = useState({});
   // This value will determine which JSX QuestionDisplay displays (q&a, "Correct!" or "Not Quite" + feedback)
 const [resultsValue, setResultsValue] = useState(0); 
 
-// duplicates question database for purposes of manipulation
+// duplicate of question database for purposes of manipulation
 const [questionSet, setQuestionSet] = useState(quizQuestions)
 
-// carries the number of the question user is up to in the quiz 
+// the number the question user is up to in the quiz 
 const [questionNumber, setQuestionNumber] = useState(1); 
 
 // an array that keeps track of the questions you got wrong
 const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
-// sets the number of questions in the quiz
-const [numberOfQuestions, setNumberOfQuestions] = useState(2);
+// the number of questions in the quiz
+const [numberOfQuestions, setNumberOfQuestions] = useState(10);
 
-// displays the completion message at the end of the quiz (variable bc prompt quiz passes a different message)
+// displays the completion message at the end of the quiz (using variable bc prompt quiz passes a different message)
 const completionMessage = "Quiz Complete!";
+// displays the message on the button after answering a question (using variable bc prompt quiz passes a different message)
 const nextMessage = "Next";
  
   function getRandomQuestion() {
@@ -50,13 +51,13 @@ const nextMessage = "Next";
 // Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
 useEffect(() => {
     const qObject = getRandomQuestion()
-      setQuestionObject(qObject);
+    setQuestionObject(qObject);
   }, [questionNumber]); // when questionNumber changes, rerender
 
 // display the question & answers
   return (
     <div data-testid='question-display' className="mainQuiz">
-      {/* <h1>Question {questionNumber}</h1> */}
+      {/* <h1>Question {questionNumber}</h1> // old code displays question number*/}
       <QuestionDisplay 
         questionObject={questionObject} 
         questionNumber= {questionNumber} 
