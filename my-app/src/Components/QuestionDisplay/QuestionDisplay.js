@@ -1,6 +1,7 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 import { Button } from "primereact/button";
-
+import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
+import "./QuestionDisplay.css"
 export default function QuestionDisplay(props) {
 
 // Sets the new results, new question when Next is pressed

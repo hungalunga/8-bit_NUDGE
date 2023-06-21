@@ -10,6 +10,8 @@ export default function MainQuiz() {
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
   const [resultsValue, setResultsValue] = useState(0);
   const numberOfQuestions = quizQuestions.length;
+  const completionMessage = "You've completed the quiz!";
+  const nextMessage = "➜";
 
   // creating initial states as empty arrays
   // questions that have already been asked

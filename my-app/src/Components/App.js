@@ -10,6 +10,8 @@ import { Auth } from "@supabase/auth-ui-react";
 import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
+import {Menubar} from 'primereact/menubar';
+import PromptRandomGrab from "./PromptQuizDisplay/PromptQuizDisplay";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -82,7 +84,7 @@ const customTheme = {
 };
 
 export default function App() {
-  /*const items = [
+  const items = [
     {
       label: "Home",
       command: () => {
