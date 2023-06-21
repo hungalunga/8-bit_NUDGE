@@ -27,19 +27,19 @@ export default function Dashboard() {
 						<Skeleton
 							height="75px"
 							width="75px"
-							borderRadius="20px"
+							borderRadius="15px"
 							className="mb-2"
 						/>
 						<Skeleton
 							height="75px"
 							width="75px"
-							borderRadius="20px"
+							borderRadius="15px"
 							className="mb-2"
 						/>
 						<Skeleton
 							height="75px"
 							width="75px"
-							borderRadius="20px"
+							borderRadius="15px"
 							className="mb-2"
 						/>
 					</div>
@@ -56,7 +56,7 @@ export default function Dashboard() {
 
 					<div className="leaderboard-container">
 						<h2>Leaderboard</h2>
-						<DataTable tableStyle={{ minWidth: "50rem" }}>
+						<DataTable tableStyle={{ minWidth: "30rem" }}>
 							<Column field="user" header="User"></Column>
 							<Column field="ranking" header="Ranking"></Column>
 							<Column field="xp" header="XP"></Column>
