@@ -2,7 +2,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
-import { Button } from "primereact/button";
 
 
 
@@ -15,19 +14,8 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-export default function AnswerCheckbox({
-  setResultsValue,
-  correct_answer,
-  wrong_answers,
-  // id,
-  // question,
-  // questionNumber,
-  // setQuestionNumber,
-  // incorrectAnswers,
-  // setIncorrectAnswers,
-}) 
-//start function body
-{
+export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber, incorrectAnswers, setIncorrectAnswers}) {
+
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
   //const [feedbackText, setFeedbackText] = useState("");
@@ -58,21 +46,17 @@ export default function AnswerCheckbox({
   };
 
   return (
-    <div className="card flex flex-wrap justify-content-center gap-3">
-      <div className="flex align-items-center">
         <div className="answerBox">
-          <h3>{answer}</h3>
           {allAnswers.map((answerOption, index) => (
-            <Button
+            <Button 
+              severity="secondary"
+              className={answer === answerOption ? "answerButton selected" : "answerButton"}
               key={index}
               label={answerOption}
-              className={answer === answerOption ? 'selected' : ''}
-              onClick={() => onAnswerChange(answerOption)}
-            />
+              onClick={() => onAnswerChange(answerOption)}  
+            />   
           ))}
-          <Button label="Confirm" className="answerButton" onClick={handleConfirmClick} />
+          <Button label="Confirm" className="" onClick={handleConfirmClick} />
         </div>
-      </div>
-    </div>
   );
 }

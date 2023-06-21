@@ -1,4 +1,5 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
+import "./QuestionDisplay.css"
 
 export default function QuestionDisplay(props) {
 
