@@ -4982,8 +4982,6 @@ p {
 	border: 1px solid #c087c4;
 	box-shadow: inset #c087c4;
 	border-radius: 6px;
-	/* width: 600px;
-	height: 300px; */
 }
 
 .big-card {
@@ -7219,8 +7217,11 @@ p {
 }
 .p-avatar {
 	background-color: #eae8f3;
-	border-radius: 6px;
+	border-color: #ffd500;
+	border-width: 2px;
+	border-radius: 50%;
 }
+
 .p-avatar.p-avatar-lg {
 	width: 3rem;
 	height: 3rem;
