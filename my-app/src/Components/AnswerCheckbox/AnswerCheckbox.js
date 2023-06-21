@@ -14,8 +14,20 @@ const shuffleArray = (array) => {
   return shuffledArray;
 };
 
-export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_answers, id, question, questionNumber, setQuestionNumber, incorrectAnswers, setIncorrectAnswers}) {
-
+export default function AnswerCheckbox({
+  setResultsValue,
+  correct_answer,
+  wrong_answers,
+  id,
+  question,
+  questionNumber,
+  setQuestionNumber,
+  incorrectAnswers,
+  setIncorrectAnswers,
+  questionObject,
+}) 
+//start function body
+{
   const [answer, setAnswer] = useState("");
   const [allAnswers, setAllAnswers] = useState([]);
   //const [feedbackText, setFeedbackText] = useState("");
@@ -41,6 +53,8 @@ export default function AnswerCheckbox({setResultsValue, correct_answer, wrong_a
       //setFeedbackText("Correct!");
     } else {
       setResultsValue(-1);
+      setIncorrectAnswers([...incorrectAnswers, questionObject]);
+      
       //setFeedbackText("Incorrect! ;-(");
     }
   };

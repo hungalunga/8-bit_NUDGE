@@ -1,6 +1,5 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
-import "./QuestionDisplay.css"
-import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
+import { Button } from "primereact/button";
 
 export default function QuestionDisplay(props) {
 
@@ -8,6 +7,7 @@ export default function QuestionDisplay(props) {
 function handleNextClick(){
     props.setResultsValue(0);
     props.setQuestionNumber(props.questionNumber + 1)
+    props.getRandomQuestion(props.questionSet);
 }
 
 // if the questionObject is empty, display loading
@@ -16,6 +16,7 @@ if (props.questionObject && Object.keys(props.questionObject).length === 0) {
   }
 
 if (typeof props.questionObject === 'object') {
+    console.log("questionObject:", typeof props.questionObject)
     const questionObject = props.questionObject; // to pass down to AnswerCheckbox
     const question = props.questionObject.question;   // to grab the question to display
     console.log("question",question);
@@ -26,6 +27,7 @@ if (typeof props.questionObject === 'object') {
             <p className="question">{ question }</p>
             {props.promptQuestionTimer && <PromptQuestionTimer />}
             <AnswerCheckbox 
+                questionObject = {questionObject}
                 wrong_answers = {questionObject.wrong_answers}
                 id = {questionObject.id}
                 question = {questionObject.question}
@@ -74,10 +76,12 @@ if (typeof props.questionObject === 'object') {
     }
 
 } else {
+
     return (
+        console.log("questionObject:", typeof props.questionObject),
         <div className = "MainQuiz">
-            {/* props.completionMessage has different value for main quiz than prompt quiz */}
-            <p>{ props.completionMessage }</p>
+            <p>xxxQuiz Complete!</p>
+            <Button label="Home" />
         </div>
     )
 }
