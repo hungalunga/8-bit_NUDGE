@@ -19,7 +19,7 @@ export default function Dashboard() {
 					<div className="welcome-container">
 						<Avatar label="A" size="xlarge" className="circleAvatar" />
 						<div className="welcome-text">
-							<p>Welcome Back</p>
+							<p>Welcome Back,</p>
 							<h1>ashwantspizza</h1>
 						</div>
 					</div>

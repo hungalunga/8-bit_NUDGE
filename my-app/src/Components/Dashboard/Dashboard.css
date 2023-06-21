@@ -44,7 +44,14 @@
 }
 
 .learning-container {
+	display: flex;
+	flex-direction: column;
+	flex: 2 1 0;
 }
 
 .leaderboard-container {
+	border-style: solid;
+	border-color: blue;
+	display: flex;
+	flex-direction: column;
 }
