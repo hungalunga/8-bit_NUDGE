@@ -1,6 +1,7 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 import { Button } from "primereact/button";
 import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
+import { Card } from 'primereact/card';
 import "./QuestionDisplay.css"
 export default function QuestionDisplay(props) {
 
@@ -25,7 +26,9 @@ if (typeof props.questionObject === 'object') {
     if (props.resultsValue === 0){
     return (
         <div className="mainQuiz">
-            <p className="question">{ question }</p>
+        
+            <Card className="big-card">{ question }</Card>
+            {/*<p className="question"></p>*/}
             {props.promptQuestionTimer && <PromptQuestionTimer />}
             <AnswerCheckbox 
                 questionObject = {questionObject}

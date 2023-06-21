@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
 :root {
 	--surface-a: #f7f7f7;
 	--surface-b: #eae8f3;
@@ -9,7 +11,7 @@
 	--text-color-secondary: #891891;
 	--primary-color: #ffd500;
 	--primary-color-text: #39207e;
-	--font-family: poppins;
+	--font-family: "Quicksand", sans-serif;
 	--surface-0: #ffffff;
 	--surface-50: #f1f3f5;
 	--surface-100: #e2e6eb;
@@ -46,7 +48,32 @@
 	--highlight-text-color: #39207e;
 	color-scheme: light;
 }
+
+* {
+	font-family: "Quicksand", sans-serif;
+}
+
+/* font sizing */
+h1 {
+	font-size: 2rem;
+	font-weight: 600;
+}
+h2 {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+h3 { 
+	font-size: 1.25rem;
+	font-weight: 500;
+}
+
+p {
+	font-size: 1rem;
+	font-weight: 400;
+}
+
 .p-component {
+	/* font-family: var(--font-family); */
 	font-size: 1rem;
 	font-weight: normal;
 }
@@ -249,7 +276,7 @@
 	.p-autocomplete-multiple-container
 	.p-autocomplete-input-token
 	input {
-	font-family: poppins;
+	font-family: var(--font-family);
 	font-size: 1rem;
 	color: #39207e;
 	padding: 0;
@@ -737,7 +764,7 @@
 	padding: 0.25rem 0;
 }
 .p-chips .p-chips-multiple-container .p-chips-input-token input {
-	font-family: poppins;
+	font-family: "Quicksand", sans-serif;
 	font-size: 1rem;
 	color: #39207e;
 	padding: 0;
@@ -1141,7 +1168,7 @@
 	border-color: #fff;
 }
 .p-inputtext {
-	font-family: poppins;
+	/*font-family: 'Quicksand', sans-serif;*/
 	font-size: 1rem;
 	color: #39207e;
 	background: #f7f7f7;
@@ -2040,9 +2067,9 @@
 .p-buttonset.p-button-secondary > .p-button,
 .p-splitbutton.p-button-secondary > .p-button,
 .p-fileupload-choose.p-button-secondary {
-	color: #f7f7f7;
-	background: #c087c4;
-	border: 1px solid #c087c4;
+	color: #39207E;
+	background: #eae8f3;
+	border: 1px solid #D9D1F3;
 }
 .p-button.p-button-secondary:enabled:hover,
 .p-button.p-button-secondary:not(button):not(a):not(.p-disabled):hover,
@@ -2056,9 +2083,9 @@
 .p-fileupload-choose.p-button-secondary:not(button):not(a):not(
 		.p-disabled
 	):hover {
-	background: #b471b9;
+	background: #D9D1F3;
 	color: #f7f7f7;
-	border-color: #b471b9;
+	border-color: #D9D1F3;
 }
 .p-button.p-button-secondary:enabled:focus,
 .p-button.p-button-secondary:not(button):not(a):not(.p-disabled):focus,
@@ -2086,9 +2113,9 @@
 .p-fileupload-choose.p-button-secondary:not(button):not(a):not(
 		.p-disabled
 	):active {
-	background: #a95bae;
+	background: #D9D1F3;
 	color: #f7f7f7;
-	border-color: #a95bae;
+	border-color: #D9D1F3;
 }
 .p-button.p-button-secondary.p-button-outlined,
 .p-buttonset.p-button-secondary > .p-button.p-button-outlined,
@@ -2316,9 +2343,9 @@
 .p-buttonset.p-button-success > .p-button,
 .p-splitbutton.p-button-success > .p-button,
 .p-fileupload-choose.p-button-success {
-	color: #891891;
-	background: #d9d1f3;
-	border: 1px solid #d9d1f3;
+	color: #39207e;
+	background: #f7f7f7;
+	border: 1px solid #c087c4;
 }
 .p-button.p-button-success:enabled:hover,
 .p-button.p-button-success:not(button):not(a):not(.p-disabled):hover,
@@ -4952,10 +4979,18 @@
 .p-card {
 	background: #f7f7f7;
 	color: #39207e;
-	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-		0 1px 3px 0 rgba(0, 0, 0, 0.12);
+	border: 1px solid #c087c4;
+	box-shadow: inset #c087c4;
 	border-radius: 6px;
+	/* width: 600px;
+	height: 300px; */
 }
+
+.big-card {
+	width: 600px;
+	height: 300px;
+}
+
 .p-card .p-card-body {
 	padding: 1rem;
 }
@@ -7508,3 +7543,4 @@
 .p-datatable .p-datatable-tbody > tr.p-datatable-dragpoint-bottom > td {
 	box-shadow: inset 0 -2px 0 0 #ffd500;
 }
+
