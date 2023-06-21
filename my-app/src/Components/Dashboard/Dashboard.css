@@ -1,24 +1,59 @@
- .points{
-    grid-column-start: 2;
-    display: flex;
-  }
-  .cardTitle{
-    font-size: 4vh;
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background-color: pink;
-    display: flex;
-    flex:wrap;
+.navbar {
+	border-style: solid;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #d9d1f3;
+	width: 100%;
+	height: 60px;
+}
+
+.dashboard-page {
+	margin: 25px 50px 50px 25px;
+	border-style: solid;
+	border-color: red;
+	background-color: #f7f7f7;
+	display: flex;
+	flex-direction: column;
+}
+
+.dashboard-top {
+	border-style: solid;
+	border-color: pink;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.welcome-container {
+	display: flex;
+	flex-direction: row;
     align-items: center;
+	flex: 2 1 0;
+}
 
-    }
-    .circleAvatar {
-        border-radius: 50%;
-      }
+.user-scores {
+	border-style: solid;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex: 1 1 0;
+}
 
-    .leaderboardCard{
-        height: 200px;
-        width: 100px;
-        background-color: blueviolet;
-    }
+.dashboard-bottom {
+    display: flex;
+    flex-direction: row;
+}
+
+.learning-container {
+	display: flex;
+	flex-direction: column;
+	flex: 2 1 0;
+}
+
+.leaderboard-container {
+	border-style: solid;
+	border-color: blue;
+	display: flex;
+	flex-direction: column;
+}

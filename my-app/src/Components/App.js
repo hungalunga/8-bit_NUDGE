@@ -1,16 +1,18 @@
-import { Route, Routes } from "react-router-dom";
-import "./App.css";
-import PromptQuiz from "./PromptQuiz/PromptQuiz";
-import MainQuiz from "./MainQuiz/MainQuiz";
-import Dashboard from "./Dashboard/Dashboard";
-import { Menubar } from "primereact/menubar";
-import PromptRandomGrab from "./PromptRandomGrab/PromptRandomGrab";
-import "primeicons/primeicons.css";
-import "../theme.css";
 import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
+import PromptQuiz from "./PromptQuiz/PromptQuiz";
+import MainQuiz from "./MainQuiz/MainQuiz";
+import Dashboard from "./Dashboard/Dashboard";
 import UserProfile from "./UserProfile/UserProfile";
+import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
+import PromptRandomGrab from "./PromptRandomGrab/PromptRandomGrab";
+import { Menubar } from "primereact/menubar";
+import { Route, Routes } from "react-router-dom";
+import "primeicons/primeicons.css";
+import "../prime-react-theme/theme.css";
+import "../theme.css";
+import "./App.css";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -18,6 +20,7 @@ const supabase = createClient(
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cWZpY3N4cmZsZmdwZWJhdGh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcxNjk3ODQsImV4cCI6MjAwMjc0NTc4NH0.8HlWTJSEkeuM7lHOo8j572i3k_9eEF5855-th3yP3Hw"
 );
 
+// theme for login page for supabase
 const customTheme = {
   default: {
     colors: {
@@ -85,39 +88,63 @@ export default function App() {
   const items = [
     {
       label: "Home",
-      icon: "pi pi-fw pi-home",
       command: () => {
         window.location = "/home";
       },
     },
     {
       label: "Quiz",
-      icon: "pi pi-fw pi-calendar",
+
       command: () => {
         window.location = "/quiz";
       },
     },
     {
       label: "Logout",
-      icon: "pi pi-fw pi-power-off",
       command: () => {
         const { error } = supabase.auth.signOut();
       },
     },
   ];
-  return (
-    <>
-      <div className="App">
-        <header className="App-header">NUDGE</header>
-        <PromptQuiz />
-        <Menubar className= "menubar" model={items} />
-      </div>
-      <Routes>
-        <Route path="/profile" element={<UserProfile />} />
-        <Route path="/quiz" element={<MainQuiz />} />
-        <Route path="/home" element={<Dashboard />} />
-        <Route path="/daily-quiz" element={<PromptRandomGrab />} />
-      </Routes>
-    </>
-  );
+
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  if (!session) {
+    return (
+      <Auth
+        supabaseClient={supabase}
+        theme="default"
+        providers={["google", "facebook", "apple"]}
+      />
+    );
+  } else {
+    return (
+      <>
+        <div className="App">
+          <PromptQuiz />
+          <Menubar className="menubar" model={items} />
+        </div>
+        <Routes>
+          <Route path="/profile" element={<UserProfile />} />
+          <Route path="/quiz" element={<MainQuiz />} />
+          <Route path="/home" element={<Dashboard />} />
+          <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
+        </Routes>
+      </>
+    );
+  }
 }

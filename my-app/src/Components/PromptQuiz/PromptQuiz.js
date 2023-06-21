@@ -1,6 +1,6 @@
 import {useRef } from "react";
 import logoIcon from "./logo2.png";
-
+import { Button } from "primereact/button";
 export default function PromptQuiz() {
   const date = new Date();
   const showTime = date.getHours();
@@ -56,8 +56,8 @@ export default function PromptQuiz() {
   }
 
     return (
-      <button ref={buttonRef} onClick={handleClick}>
+      <Button ref={buttonRef} onClick={handleClick}>
         Click me to get a notification
-      </button>
+      </Button>
     );
 }
