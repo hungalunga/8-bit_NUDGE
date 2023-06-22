@@ -1,7 +1,7 @@
-import PromptQuiz from "./PromptQuiz/PromptQuiz";
+import PromptQuiz from "./PromptNotification/PromptNotification";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
-import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
+import PromptQuizDisplay from "./PromptQuiz/PromptQuiz";
 import { Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -11,7 +11,7 @@ import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
 import {Menubar} from 'primereact/menubar';
-import PromptRandomGrab from "./PromptQuizDisplay/PromptQuizDisplay";
+import PromptRandomGrab from "./PromptQuiz/PromptQuiz";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(

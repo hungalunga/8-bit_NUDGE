@@ -26,7 +26,6 @@ if (typeof props.questionObject === 'object') {
     if (props.resultsValue === 0){
     return (
         <div className="mainQuiz">
-        
             <Card className="big-card">{ question }</Card>
             {/*<p className="question"></p>*/}
             {props.promptQuestionTimer && <PromptQuestionTimer />}

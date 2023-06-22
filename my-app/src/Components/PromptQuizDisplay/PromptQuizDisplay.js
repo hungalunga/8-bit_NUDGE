@@ -1,70 +1,87 @@
-import QuestionDisplay from "../QuestionDisplay/QuestionDisplay";
-import { useState, useEffect } from "react";
-import { quizQuestions } from "../../QuizData";
-import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer"
+import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
+import { Button } from "primereact/button";
+import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
+import { Card } from 'primereact/card';
+export default function PromptQuizDisplay(props) {
 
-export default function PromptRandomGrab() {
 
-  // choose ten random questions from the main question dataset
-  // store them in an array
 
-const [questionObject, setQuestionObject] = useState({});
+// Sets the new results, new question when Next is pressed
+function handleNextClick(){
+    props.setResultsValue(0);
+    props.setQuestionNumber(props.questionNumber + 1)
+}
 
-//takes values of 0, 1, -1 corresponding to no answer, correct answer, incorrect answer
-  // This value will determine which JSX QuestionDisplay displays (q&a, "Correct!" or "Not Quite" + feedback)
-const [resultsValue, setResultsValue] = useState(0); 
-
-// carries the number of the question user is up to in the quiz 
-const [questionNumber, setQuestionNumber] = useState(1); 
-
-// an array that keeps track of the questions you got wrong
-const [incorrectAnswers, setIncorrectAnswers] = useState([]);
-
-// sets the number of questions in the quiz
-const [numberOfQuestions, setNumberOfQuestions] = useState(1);
-
-// displays the completion message at the end of the quiz (variable bc regular quiz passes a different message)
-const completionMessage = "Congratulations, you answered your daily nudge!";
-
-// displays the message on the button after answering a question (using variable bc main quiz passes a different message)
-const nextMessage = "Finish";
- 
-  function getRandomQuestion() {
-    //select random question
-    const randomIndex = Math.floor(Math.random() * quizQuestions.length);
-    const randomQuestion = quizQuestions[randomIndex];
-    
-    // grab from array of wrong answers(after preset number OR when you run out of questions (latter is for robustness))
-    if (questionNumber <= numberOfQuestions) {
-     return randomQuestion;
-    }
+// if the questionObject is empty, display loading
+if (props.questionObject && Object.keys(props.questionObject).length === 0) {
+    return <div>loading...</div>;
   }
 
-// Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
-useEffect(() => {
-    const qObject = getRandomQuestion()
-      setQuestionObject(qObject);
-  }, [questionNumber]); // when questionNumber changes, rerender
+if (typeof props.questionObject === 'object') {
+    console.log("questionObject:", typeof props.questionObject)
+    const questionObject = props.questionObject; // to pass down to AnswerCheckbox
+    const question = questionObject.question;   // to grab the question to display
+    if (props.resultsValue === 0){
+    return (
+        <div className="mainQuiz">
+            <Card className="big-card">{ question }</Card>
+            {/*<p className="question"></p>*/}
+            {props.promptQuestionTimer && <PromptQuestionTimer />}
+            <AnswerCheckbox 
+                questionObject = {questionObject}
+                wrong_answers = {questionObject.wrong_answers}
+                id = {questionObject.id}
+                question = {questionObject.question}
+                correct_answer = {questionObject.answer}
+                questionNumber = {props.questionNumber} 
+                setQuestionNumber = {props.setQuestionNumber}
+                // ^^send questionNumber props down to re-render after each answer
+                resultsValue = {props.resultsValue}
+                setResultsValue = {props.setResultsValue}
+                incorrectAnswers={props.incorrectAnswers}
+                setIncorrectAnswers={props.setIncorrectAnswers}
+    
+                 /> 
+        </div>
+    )
+    } else if (props.resultsValue === 1){
+        return (
+            <div className="MainQuiz">
+            <div className="resultsPageCorrect">
+                <p>Correct!</p>
+            </div>
+             <button onClick={handleNextClick}>Finished!</button>
+            </div>
+        )
+        
+    } else if (props.resultsValue === -1){
+        return (
+            <div className="MainQuiz">
+            <div className="resultsPageIncorrect">
+                <p>Not quite...</p>
+                <p>The correct answer for </p>
+                <p>{questionObject.question}</p>
+                <p>is</p>
+                <p>{questionObject.answer}</p>
+            </div>
+            {/* props.nextMessage has different value for main quiz than prompt quiz */}
+             <button onClick={handleNextClick}>Finished!</button>
+            </div>
+        )
+    } else {
+        return (
+            <div className="error">
+                <p>ERROR didnt recieve a value of either 1,0 or -1</p>
+            </div>
+        )
+    }
 
-// display the question & answers
-  return (
-    <div>
-    <div data-testid='question-display' className="mainQuiz">
-      {/* <h1>Question {questionNumber}</h1> */}
-      <QuestionDisplay 
-        questionObject={questionObject} 
-        questionNumber= {questionNumber} 
-        setQuestionNumber = {setQuestionNumber} 
-        incorrectAnswers = {incorrectAnswers} 
-        setIncorrectAnswers = {setIncorrectAnswers} 
-        resultsValue = {resultsValue} 
-        setResultsValue ={setResultsValue}
-        completionMessage = {completionMessage}
-        nextMessage = {nextMessage}
-        promptQuestionTimer = {true}
-        />
-    </div>
-        {/* <PromptQuestionTimer/> */}
-    </div>
-  );
+} 
+    return (
+        console.log("questionObject:", typeof questionObject),
+        <div className = "MainQuiz">
+            <p>xxxQuiz Complete!</p>
+            <Button label="Home" />
+        </div>
+    )
 }

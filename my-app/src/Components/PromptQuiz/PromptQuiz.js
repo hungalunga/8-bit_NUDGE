@@ -1,61 +1,65 @@
-import {useRef } from "react";
-import logoIcon from "./logo2.png";
-import { Button } from "primereact/button";
-export default function PromptQuiz() {
-  const date = new Date();
-  const showTime = date.getHours(); //gets the current hour of the day
-  const buttonRef = useRef(null);
+import { useState, useEffect } from "react";
+import { quizQuestions } from "../../QuizData";
+import PromptQuizDisplay from "../PromptQuizDisplay/PromptQuizDisplay";
 
-  const createNotification = (title, body) => { //function that creates the notification with the title and body
-    const options = {
-      body: body,
-      icon: logoIcon, //this shows the wizard
-      badge: logoIcon, //this shows the wizard
-    };
+export default function PromptRandomGrab() {
+  // choose ten random questions from the main question dataset
+  // store them in an array
+const [questionObject, setQuestionObject] = useState({});
+//takes values of 0, 1, -1 corresponding to no answer, correct answer, incorrect answer
+  // This value will determine which JSX QuestionDisplay displays (q&a, "Correct!" or "Not Quite" + feedback)
+const [resultsValue, setResultsValue] = useState(0); 
 
-    if ( //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
-      "Notification" in window &&
-       Notification.permission === "granted" &&
-       showTime >= 9 && showTime <= 17
-       ){
-      const notification = new Notification(title, options);
-      notification.addEventListener("click", function (event) {
-        window.open("http://localhost:3000/daily-quiz"); 
-      });
-    } else if (
-      "Notification" in window &&
-      Notification.permission === "denied" &&
-      showTime >= 9 &&
-      showTime <= 17
-    ) //this checks if the browser supports notifications, if the user has denied permission, and if the current time is between 9 and 17
-    {
-      Notification.requestPermission().then((permission) => { //this asks the user for permission to send notifications
-        if (permission === "granted") {
-          const notification = new Notification(title, options);
+// carries the number of the question user is up to in the quiz 
+const [questionNumber, setQuestionNumber] = useState(1); 
 
-          notification.addEventListener("click", function (event) {
-            window.open("http://localhost:3000/daily-quiz");;
-          });
-        }
-      });
-    }
-  };
+// an array that keeps track of the questions you got wrong
+const [incorrectAnswers, setIncorrectAnswers] = useState([]);
 
-  const handleClick = () => { createNotification("Hello, Ash! Hurry!", "👾⏰👾\nClick to complete your daily quiz too!!"); };
+// sets the number of questions in the quiz
 
+// displays the completion message at the end of the quiz (variable bc regular quiz passes a different message)
+const completionMessage = "Congratulations, you answered your daily nudge!";
 
-  if (showTime >= 9 && showTime <= 17) { // this will only run if the current time is between 9 and 17
-    let range = 17 - showTime; // this will give the number of hours between the current time and 17:00
-    let randomTime = Math.floor(Math.random() * (range * 60 * 60 * 1000 - 1000) + 1000); // this will give a random point in time between the current time and 17:00
-    console.log(randomTime);
-    setTimeout(() => { // this will run the createNotification function after the random time has passed
-      createNotification("Reminder", "Time for your daily quiz!!");
-    }, randomTime); 
+// displays the message on the button after answering a question (using variable bc main quiz passes a different message)
+
+useEffect (() => {
+  async function getQuestions() {
+    const response = await fetch("http://localhost:3001/daily_question");
+    const data = await response.json();
+    console.log(data);
+    getOneQuestion(data);
   }
+getQuestions();
+}, [questionNumber]);
 
-    return (
-      <Button ref={buttonRef} onClick={handleClick}>
-        Click me to get a notification
-      </Button>
-    );
+function getOneQuestion(data) {
+  console.log(questionNumber)
+  if (questionNumber === 1) {
+        setQuestionObject(data)}
+  else { setQuestionObject(null)}
+}
+
+
+ 
+// display the question & answers
+  return (
+    <div>
+    <div data-testid='question-display' className="mainQuiz">
+      {/* <h1>Question {questionNumber}</h1> */}
+      <PromptQuizDisplay
+        questionObject={questionObject} 
+        questionNumber= {questionNumber} 
+        setQuestionNumber = {setQuestionNumber} 
+        resultsValue = {resultsValue} 
+        setResultsValue ={setResultsValue}
+        completionMessage = {completionMessage}
+        promptQuestionTimer = {true}
+        incorrectAnswers = {incorrectAnswers}
+        setIncorrectAnswers = {setIncorrectAnswers}
+        />
+    </div>
+        {/* <PromptQuestionTimer/> */}
+    </div>
+  );
 }
