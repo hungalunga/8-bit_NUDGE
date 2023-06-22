@@ -8,6 +8,14 @@
 	height: 60px;
 }
 
+.nudgeLogo {
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	width: 100%;
+	height: 50px;
+}
+
 .dashboard-page {
 	margin: 25px 50px 50px 25px;
 	border-style: solid;

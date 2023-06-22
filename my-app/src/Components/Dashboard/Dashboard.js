@@ -3,11 +3,11 @@ import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
 import { Avatar } from "primereact/avatar";
-import { Skeleton } from "primereact/skeleton";
+import { Card } from "primereact/card";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Dashboard.css";
-// import nudgelogo from ".../public/nudgelogo.png";
+import nudgelogo from "../../images/nudgelogo.png";
 
 export default function Dashboard() {
 	const [firstChar, setFirstChar] = useState('');
@@ -23,12 +23,17 @@ export default function Dashboard() {
 		  }
 		}
 	  }, []);
-
+	  const cardStyles = {
+		width: '75px',
+		height: '75px',
+		borderRadius: '10px'
+	  };
 	return (
 		<>
 			<div className="navbar">
-				<Link to="/home"> logo </Link>
-				{/* <img src={nudgelogo} alt="nudge-logo" /> */}
+				<Link to="/home">  
+					  <img src={nudgelogo} alt="nudge-logo" className = "nudgeLogo"/>
+				</Link>
 			</div>
 			<div className="dashboard-page">
 				<div className="dashboard-top">
@@ -40,24 +45,9 @@ export default function Dashboard() {
 						</div>
 					</div>
 					<div className="user-scores">
-						<Skeleton
-							height="75px"
-							width="75px"
-							borderRadius="15px"
-							className="mb-2"
-						/>
-						<Skeleton
-							height="75px"
-							width="75px"
-							borderRadius="15px"
-							className="mb-2"
-						/>
-						<Skeleton
-							height="75px"
-							width="75px"
-							borderRadius="15px"
-							className="mb-2"
-						/>
+						<Card title="Title" subTitle="Subtitle" />
+						<Card/>
+						<Card/>
 					</div>
 				</div>
 
