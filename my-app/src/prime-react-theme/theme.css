@@ -55,16 +55,26 @@
 
 /* font sizing */
 h1 {
-	font-size: 2rem;
-	font-weight: 600;
-}
-h2 {
 	font-size: 1.5rem;
 	font-weight: 600;
+	color: #39207e;
+}
+
+.welcome-text {
+	font-size: 1.5rem;
+	font-weight: 400;
+	color: #7962C5;
+}
+
+h2 {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: #39207e;
 }
 h3 { 
-	font-size: 1.25rem;
+	font-size: 1.15rem;
 	font-weight: 500;
+	color: #39207e;
 }
 
 p {
@@ -4977,16 +4987,19 @@ p {
 	border-bottom-left-radius: 6px;
 }
 .p-card {
-	background: #f7f7f7;
-	color: #39207e;
-	border: 1px solid #c087c4;
-	box-shadow: inset #c087c4;
-	border-radius: 6px;
-	/* width: 600px;
-	height: 300px; */
+	background: white;
+	border: 2px solid #D9D1F3;
+	text-align: center;
+	height:80px;
+	width:80px;
+	border-radius: 15px;
+	box-shadow: none;
 }
 
 .big-card {
+	display: flex;
+    justify-content: center;
+    align-items: center;
 	width: 600px;
 	height: 300px;
 }
@@ -4995,14 +5008,20 @@ p {
 	padding: 1rem;
 }
 .p-card .p-card-title {
+	color: #FFD500;
 	font-size: 1.5rem;
 	font-weight: 600;
 	margin-bottom: 0.5rem;
+	display: flex;
+    justify-content: center;
 }
 .p-card .p-card-subtitle {
-	font-weight: 400;
-	margin-bottom: 0.5rem;
-	color: #891891;
+	margin-top: -10px;
+	color: #39207e;
+	font-size: 0.75rem;
+	font-weight: 600;
+	display: flex;
+    justify-content: center;
 }
 .p-card .p-card-content {
 	padding: 1rem 0;
@@ -7219,7 +7238,8 @@ p {
 }
 .p-avatar {
 	background-color: #eae8f3;
-	border-radius: 6px;
+	border-radius: 100%;
+	border: 2px solid #FFD500;
 }
 .p-avatar.p-avatar-lg {
 	width: 3rem;
@@ -7295,6 +7315,7 @@ p {
 .p-skeleton {
 	background-color: #eae8f3;
 	border-radius: 6px;
+							
 }
 .p-skeleton:after {
 	background: linear-gradient(
