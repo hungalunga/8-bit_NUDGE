@@ -1,29 +1,32 @@
 // detect when the timer hits <= 0
-// then : 
+// then :
 //  1. stop
 //  2. tell user no time bonus for you
 //  3. set a variable to no time bonus to be available for score functionality
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-export default function PromptQuestionTimer() {
-  const [seconds, setSeconds] = useState(20);
-
+export default function PromptQuestionTimer({ seconds, setSeconds }) {
+	
   useEffect(() => {
-    const intervalId = setInterval(() => {
-        setSeconds((prevSeconds) => prevSeconds > 0? prevSeconds - 1:0);
-    }, 1000);
+		const intervalId = setInterval(() => {
+			setSeconds((prevSeconds) => (prevSeconds > 0 ? prevSeconds - 1 : 0));
+		}, 1000);
 
-    // Clean up the interval when the component is unmounted
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
+		// Clean up the interval when the component is unmounted
+		return () => {
+			clearInterval(intervalId);
+		};
+	}, []);
 
-  return (
-    <div>
-      <h1>{Math.floor(seconds/60)} : {seconds%60} </h1>
-    </div>
-  );
+	const minutes = Math.floor(seconds / 60);
+	const timerValue = `${minutes} : ${seconds % 60}`;
+  console.log(seconds);
+	return (
+		<div>
+			<h1>{timerValue}</h1>
+		</div>
+	);
 }
 
+// check current value of timer

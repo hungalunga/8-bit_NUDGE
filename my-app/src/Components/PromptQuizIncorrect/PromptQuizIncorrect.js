@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 
 
-export default function PromptQuizIncorrect({ questionObject, handleNextClick }) {
+export default function PromptQuizIncorrect({ questionObject, handleNextClick, withinTime }) {
 	return (
 		<>
 			<div className="resultsPageIncorrect">

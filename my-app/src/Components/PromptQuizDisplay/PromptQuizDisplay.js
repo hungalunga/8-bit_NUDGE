@@ -1,3 +1,4 @@
+import { useState } from "react";
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
@@ -5,6 +6,9 @@ import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
 import { Card } from "primereact/card";
 
 export default function PromptQuizDisplay(props) {
+	const [withinTime, setWithinTime] = useState(true);
+    const [seconds, setSeconds] = useState(10);
+
 	const questionObject = props.questionObject; // to pass down to AnswerCheckbox
 	const question = questionObject.question; // to grab the question to display
 
@@ -12,7 +16,16 @@ export default function PromptQuizDisplay(props) {
 	function handleNextClick() {
 		props.setResultsValue(0);
 		props.setQuestionNumber(props.questionNumber + 1);
+        checkTimer();
 	}
+
+    function checkTimer() {
+        if (seconds <= 0) {
+            setWithinTime(false);
+        } else {
+            setWithinTime(true);
+        }
+    }
 
 	// if the questionObject is empty, display loading
 	if (props.questionObject && Object.keys(props.questionObject).length === 0) {
@@ -26,7 +39,7 @@ export default function PromptQuizDisplay(props) {
 			<div className="mainQuiz">
 				<Card className="big-card">{question}</Card>
 				{/*<p className="question"></p>*/}
-				{props.promptQuestionTimer && <PromptQuestionTimer />}
+				{props.promptQuestionTimer && <PromptQuestionTimer seconds={seconds} setSeconds={setSeconds}/>}
 				<AnswerCheckbox
 					questionObject={questionObject}
 					wrong_answers={questionObject.wrong_answers}
@@ -46,7 +59,7 @@ export default function PromptQuizDisplay(props) {
 	} else if (props.resultsValue === 1) {
 		return (
 			<div className="MainQuiz">
-				<PromptQuizCorrect handleNextClick={handleNextClick} />
+				<PromptQuizCorrect handleNextClick={handleNextClick} withinTime={withinTime} seconds={seconds} />
 			</div>
 		);
 	} else if (props.resultsValue === -1) {
@@ -55,6 +68,8 @@ export default function PromptQuizDisplay(props) {
 				<PromptQuizIncorrect
 					questionObject={questionObject}
 					handleNextClick={handleNextClick}
+                    withinTime={withinTime}
+                    seconds={seconds}
 				/>
 			</div>
 		);
