@@ -4980,18 +4980,12 @@ p {
 	border-bottom-left-radius: 6px;
 }
 .p-card {
-	background: #f7f7f7;
-	color: #39207e;
-	border: 1px solid #c087c4;
-	box-shadow: inset #c087c4;
-	border-radius: 6px;
-	
+	background: white;
+	border: 2px solid #D9D1F3;
+	text-align: center;
 	height:75px;
 	width:75px;
-	border-radius:10px;
-		
-	/* width: 600px;
-	height: 300px; */
+	border-radius: 15px;
 }
 
 .big-card {
@@ -5008,9 +5002,12 @@ p {
 	margin-bottom: 0.5rem;
 }
 .p-card .p-card-subtitle {
-	font-weight: 400;
-	margin-bottom: 0.5rem;
-	color: #891891;
+	text-align: center;
+	font-weight: 600;
+	color: #39207e;
+	display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .p-card .p-card-content {
 	padding: 1rem 0;
