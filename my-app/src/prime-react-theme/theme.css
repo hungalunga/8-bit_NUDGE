@@ -5016,6 +5016,7 @@ p {
     justify-content: center;
 }
 .p-card .p-card-subtitle {
+	margin-top: -10px;
 	color: #39207e;
 	font-size: 0.75rem;
 	font-weight: 600;

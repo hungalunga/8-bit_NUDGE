@@ -18,13 +18,13 @@
 }
 
 .dashboard-page {
-	margin: 50px 10%;
+	margin: 50px 5%;
 	border-style: solid;
 	border-color: red;
 	background-color: #f7f7f7;
 	display: flex;
 	flex-direction: column;
-	width: 80%;
+	width: 90%;
 	display: flex;
 	justify-content: center;
 }
@@ -49,7 +49,8 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	flex: 1 1 0;
+	flex: 1;
+	align-items: center;
 }
 
 .dashboard-bottom {
@@ -60,8 +61,7 @@
 .learning-container {
 	display: flex;
 	flex-direction: column;
-	flex: 2 1 0;
-
+    width: 60%;
 }
 
 .welcome-back-text {
@@ -74,7 +74,8 @@
 	border: 2px solid #d9d1f3;
 	display: flex;
 	flex-direction: column;
-	width: 50%;
+	width: 40%;
+    
 }
 
 .leaderboard-text {
