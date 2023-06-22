@@ -7,7 +7,7 @@ import { Skeleton } from "primereact/skeleton";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Dashboard.css";
-// import nudgelogo from "../logo-image/nudgelogo.png";
+// import nudgelogo from ".../public/nudgelogo.png";
 
 export default function Dashboard() {
 	const [firstChar, setFirstChar] = useState('');
