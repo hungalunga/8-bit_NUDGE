@@ -56,9 +56,16 @@
 /* font sizing */
 h1 {
 	font-size: 1.5rem;
-	font-weight: 450;
+	font-weight: 600;
 	color: #39207e;
 }
+
+.welcome-text {
+	font-size: 1.5rem;
+	font-weight: 400;
+	color: #7962C5;
+}
+
 h2 {
 	font-size: 1.25rem;
 	font-weight: 600;

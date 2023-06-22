@@ -36,7 +36,7 @@ export default function Dashboard() {
 					<div className="welcome-container">
 						<Avatar label={firstChar} size="xlarge" className="circleAvatar" />
 						<div className="welcome-text">
-							<h1>Welcome Back,</h1>
+							<h1 className='welcome-text'>Welcome Back,</h1>
 							<h1 id="username">ashwantspizza!</h1>
 						</div>
 					</div>
