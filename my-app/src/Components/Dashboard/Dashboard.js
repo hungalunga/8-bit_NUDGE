@@ -23,11 +23,7 @@ export default function Dashboard() {
 		  }
 		}
 	  }, []);
-	  const cardStyles = {
-		width: '75px',
-		height: '75px',
-		borderRadius: '10px'
-	  };
+
 	return (
 		<>
 			<div className="navbar">
