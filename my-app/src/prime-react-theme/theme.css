@@ -4990,9 +4990,10 @@ p {
 	background: white;
 	border: 2px solid #D9D1F3;
 	text-align: center;
-	height:75px;
-	width:75px;
+	height:80px;
+	width:80px;
 	border-radius: 15px;
+	box-shadow: none;
 }
 
 .big-card {
@@ -5007,17 +5008,19 @@ p {
 	padding: 1rem;
 }
 .p-card .p-card-title {
+	color: #FFD500;
 	font-size: 1.5rem;
 	font-weight: 600;
 	margin-bottom: 0.5rem;
-}
-.p-card .p-card-subtitle {
-	text-align: center;
-	font-weight: 600;
-	color: #39207e;
 	display: flex;
     justify-content: center;
-    align-items: center;
+}
+.p-card .p-card-subtitle {
+	color: #39207e;
+	font-size: 0.75rem;
+	font-weight: 600;
+	display: flex;
+    justify-content: center;
 }
 .p-card .p-card-content {
 	padding: 1rem 0;

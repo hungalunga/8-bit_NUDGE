@@ -41,9 +41,9 @@ export default function Dashboard() {
 						</div>
 					</div>
 					<div className="user-scores">
-						<Card subTitle="3 Day Streak!"/>
-						<Card subTitle="250 XP"/>
-						<Card subTitle="No.4 Ranking"/>
+						<Card title= "3" subTitle=" Day Streak!"/>
+						<Card title= "250" subTitle=" XP"/>
+						<Card title= "No.4" subTitle=" Ranking"/>
 					</div>
 				</div>
 
