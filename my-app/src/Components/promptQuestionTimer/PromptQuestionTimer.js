@@ -4,7 +4,7 @@
 //  2. tell user no time bonus for you
 //  3. set a variable to no time bonus to be available for score functionality
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function PromptQuestionTimer({ seconds, setSeconds }) {
 	

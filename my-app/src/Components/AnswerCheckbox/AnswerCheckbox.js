@@ -44,7 +44,12 @@ export default function AnswerCheckbox({
 	question,
 	incorrectAnswers,
 	setIncorrectAnswers,
-}) {
+	withinTime,
+	setWithinTime,
+	seconds
+})
+
+{
 	const correctAnswer = questionObject.answer;
 	const wrongAnswers = questionObject.wrong_answers;
 	const id = questionObject.id;
@@ -64,23 +69,26 @@ export default function AnswerCheckbox({
 	};
 
 	const handleClick = () => {
+		if (seconds <= 0) {
+            setWithinTime(false);
+			console.log("withinTime:", withinTime)
+        }
 		console.log("user answer:", answer, "correct answer:", correctAnswer);
 		if (answer === correctAnswer) {
 			setResultsValue(1);
 			console.log(`Answered correctly!`);
-			setFeedbackText("Correct!");
+		} else if (answer === "") {
+			setResultsValue(0);
+			console.log("No answer selected");
 		} else {
 			setResultsValue(-1);
-			console.log("Answered incorrectly. :-(");
-			setFeedbackText("Incorrect! ;-(");
+			console.log("Answered incorrectly");
 			setIncorrectAnswers([
 				...incorrectAnswers,
 				{ question, answer: correctAnswer, wrongAnswers, id },
 			]);
 		}
 	};
-
-	const [feedbackText, setFeedbackText] = useState("");
 
 	return (
 		<div className="answerBox">

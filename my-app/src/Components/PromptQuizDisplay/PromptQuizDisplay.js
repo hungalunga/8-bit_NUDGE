@@ -13,19 +13,6 @@ export default function PromptQuizDisplay(props) {
 	const question = questionObject.question; // to grab the question to display
 
 	// Sets the new results, new question when Next is pressed
-	function handleNextClick() {
-		props.setResultsValue(0);
-		props.setQuestionNumber(props.questionNumber + 1);
-        checkTimer();
-	}
-
-    function checkTimer() {
-        if (seconds <= 0) {
-            setWithinTime(false);
-        } else {
-            setWithinTime(true);
-        }
-    }
 
 	// if the questionObject is empty, display loading
 	if (props.questionObject && Object.keys(props.questionObject).length === 0) {
@@ -33,8 +20,6 @@ export default function PromptQuizDisplay(props) {
 	}
 
 	if (typeof props.questionObject === "object" && props.resultsValue === 0) {
-		console.log("questionObject:", typeof props.questionObject);
-
 		return (
 			<div className="mainQuiz">
 				<Card className="big-card">{question}</Card>
@@ -53,13 +38,16 @@ export default function PromptQuizDisplay(props) {
 					setResultsValue={props.setResultsValue}
 					incorrectAnswers={props.incorrectAnswers}
 					setIncorrectAnswers={props.setIncorrectAnswers}
+					setWithinTime={setWithinTime}
+					withinTime={withinTime}
+					seconds={seconds}
 				/>
 			</div>
 		);
 	} else if (props.resultsValue === 1) {
 		return (
 			<div className="MainQuiz">
-				<PromptQuizCorrect handleNextClick={handleNextClick} withinTime={withinTime} seconds={seconds} />
+				<PromptQuizCorrect  withinTime={withinTime} seconds={seconds} />
 			</div>
 		);
 	} else if (props.resultsValue === -1) {
@@ -67,11 +55,11 @@ export default function PromptQuizDisplay(props) {
 			<div className="MainQuiz">
 				<PromptQuizIncorrect
 					questionObject={questionObject}
-					handleNextClick={handleNextClick}
                     withinTime={withinTime}
                     seconds={seconds}
 				/>
 			</div>
 		);
+	} else {	
 	}
 }

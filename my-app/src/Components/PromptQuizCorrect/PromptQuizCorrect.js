@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 
-export default function PromptQuizCorrect({ handleNextClick, withinTime }) {
+export default function PromptQuizCorrect({withinTime }) {
 
 	if (withinTime === false) {
 		return (
@@ -8,7 +8,7 @@ export default function PromptQuizCorrect({ handleNextClick, withinTime }) {
 				<div className="resultsPageIncorrect">
 					<p>Correct but out of time!</p>
 				</div>
-				<Button onClick={handleNextClick}>Finished!</Button>
+				<Button>Finished!</Button>
 			</>
 		);
 	}
@@ -18,7 +18,7 @@ export default function PromptQuizCorrect({ handleNextClick, withinTime }) {
 			<div className="resultsPageCorrect">
 				<p>Correct and in time!</p>
 			</div>
-			<Button onClick={handleNextClick}>Finished!</Button>
+			<Button>Finished!</Button>
 		</>
 	);
 }

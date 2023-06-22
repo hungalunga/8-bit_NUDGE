@@ -1,18 +1,26 @@
 import { Button } from "primereact/button";
 
+export default function PromptQuizCorrect({withinTime }) {
 
-export default function PromptQuizIncorrect({ questionObject, handleNextClick, withinTime }) {
+	if (withinTime === false) {
+		return (
+			<>
+				<div className="resultsPageIncorrect">
+					<p>Incorrect and out of time!</p>
+				</div>
+				<Button>Finished!</Button>
+			</>
+		);
+	}
+ else {
 	return (
 		<>
-			<div className="resultsPageIncorrect">
-				<p>Not quite...</p>
-				<p>The correct answer for </p>
-				<p>{questionObject.question}</p>
-				<p>is</p>
-				<p>{questionObject.answer}</p>
+			<div className="resultsPageCorrect">
+				<p>Incorrect but in time!</p>
 			</div>
-			{/* props.nextMessage has different value for main quiz than prompt quiz */}
-			<Button onClick={handleNextClick}>Finished!</Button>
+			<Button>Finished!</Button>
 		</>
 	);
 }
+}
+
