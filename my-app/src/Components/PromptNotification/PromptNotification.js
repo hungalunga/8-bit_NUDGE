@@ -1,7 +1,7 @@
 import {useRef } from "react";
 import logoIcon from "./logo2.png";
 import { Button } from "primereact/button";
-export default function PromptQuiz() {
+export default function PromptNotification() {
   const date = new Date();
   const showTime = date.getHours(); //gets the current hour of the day
   const buttonRef = useRef(null);

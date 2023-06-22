@@ -1,10 +1,7 @@
-import PromptQuiz from "./PromptNotification/PromptNotification";
+import PromptNotification from "./PromptNotification/PromptNotification";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
-import PromptQuizDisplay from "./PromptQuiz/PromptQuiz";
 import { Route, Routes } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
 import "primeicons/primeicons.css";
@@ -109,7 +106,7 @@ export default function App() {
     <>
       <div className="App">
         <header className="App-header">NUDGE</header>
-        <PromptQuiz />
+        <PromptNotification />
         <Menubar className= "menubar" model={items} />
       </div>
       <Routes>
