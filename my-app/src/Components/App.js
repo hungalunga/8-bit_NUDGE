@@ -5,7 +5,6 @@ import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
-import PromptRandomGrab from "./PromptRandomGrab/PromptRandomGrab";
 import { Menubar } from "primereact/menubar";
 import { Route, Routes } from "react-router-dom";
 import "primeicons/primeicons.css";
