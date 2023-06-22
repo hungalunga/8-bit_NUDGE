@@ -1,6 +1,6 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
 import { Button } from "primereact/button";
-import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
+import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import { Card } from 'primereact/card';
 export default function PromptQuizDisplay(props) {
 

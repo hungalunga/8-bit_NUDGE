@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { quizQuestions } from "../../QuizData";
 import PromptQuizDisplay from "../PromptQuizDisplay/PromptQuizDisplay";
 
 export default function PromptRandomGrab() {
@@ -37,7 +36,7 @@ function getOneQuestion(data) {
   console.log(questionNumber)
   if (questionNumber === 1) {
         setQuestionObject(data)}
-  else { setQuestionObject(null)}
+  else {setQuestionObject()}
 }
 
 

@@ -20,7 +20,7 @@ export default function PromptQuiz() {
        ){
       const notification = new Notification(title, options);
       notification.addEventListener("click", function (event) {
-        window.open("http://localhost:3000/daily-quiz"); 
+        window.open("http://localhost:3000/nudge-quiz"); 
       });
     } else if (
       "Notification" in window &&
@@ -34,7 +34,7 @@ export default function PromptQuiz() {
           const notification = new Notification(title, options);
 
           notification.addEventListener("click", function (event) {
-            window.open("http://localhost:3000/daily-quiz");;
+            window.open("http://localhost:3000/nudge-quiz");;
           });
         }
       });

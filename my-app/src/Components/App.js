@@ -115,7 +115,7 @@ export default function App() {
       <Routes>
         <Route path="/quiz" element={<MainQuiz />} />
         <Route path="/home" element={<Dashboard />} />
-        <Route path="/daily-quiz" element={<PromptRandomGrab />} />
+        <Route path="/nudge-quiz" element={<PromptRandomGrab />} />
       </Routes>
     </>
   );
