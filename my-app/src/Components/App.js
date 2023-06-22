@@ -4,14 +4,12 @@ import { Auth } from "@supabase/auth-ui-react";
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
-import UserProfile from "./UserProfile/UserProfile";
 import PromptQuizDisplay from "./PromptQuizDisplay/PromptQuizDisplay";
 import PromptRandomGrab from "./PromptRandomGrab/PromptRandomGrab";
 import { Menubar } from "primereact/menubar";
 import { Route, Routes } from "react-router-dom";
 import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
-import "../theme.css";
 import "./App.css";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
@@ -81,7 +79,7 @@ const customTheme = {
       buttonBorderRadius: "4px",
       inputBorderRadius: "4px",
     },
-  }
+  },
 };
 
 export default function App() {
@@ -128,6 +126,7 @@ export default function App() {
       <Auth
         supabaseClient={supabase}
         theme="default"
+        appearance = {{theme: customTheme}}
         providers={["google", "facebook", "apple"]}
       />
     );
@@ -139,9 +138,8 @@ export default function App() {
           <Menubar className="menubar" model={items} />
         </div>
         <Routes>
-          <Route path="/profile" element={<UserProfile />} />
           <Route path="/quiz" element={<MainQuiz />} />
-          <Route path="/home" element={<Dashboard />} />
+          <Route path="/home" element={<Dashboard supabase={supabase} />} />
           <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
         </Routes>
       </>

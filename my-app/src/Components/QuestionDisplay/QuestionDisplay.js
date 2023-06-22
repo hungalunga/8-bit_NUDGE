@@ -1,10 +1,7 @@
-import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox"
-<<<<<<< HEAD
+import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import { Button } from "primereact/button";
-=======
 import { Card } from 'primereact/card';
 import "./QuestionDisplay.css"
->>>>>>> styling
 
 export default function QuestionDisplay(props) {
 
