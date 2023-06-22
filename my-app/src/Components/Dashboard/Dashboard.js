@@ -50,21 +50,21 @@ export default function Dashboard() {
 				<Divider />
 				<div className="dashboard-bottom">
 					<div className="learning-container">
-						<h2>Your Learning:</h2>
+						<h2><b>Your Learning:</b></h2>
 						<Link to="/quiz">
-							<Button label="Today's Quiz" size="large" />
+							<Button label="Daily Quiz" size="large" />
 						</Link>
-						<h3>Want to level up? Try one of these...</h3>
-					<div className="learning-buttons">
-						<Button label="Geometry" severity="secondary"/>
-						<Button label="Algebra" severity="secondary"/>
-						<Button label="Trigonometry" severity="secondary"/>
-						<Button label="Surprise me!" severity="secondary"/>
+						<h3>Want to level up? <b>Try one of these...</b></h3>
+					<div className="learning-buttons-container">
+						<Button className="learning-button" label="Geometry" severity="secondary"/>
+						<Button className="learning-button" label="Algebra" severity="secondary"/>
+						<Button className="learning-button" label="Trig" severity="secondary"/>
+						<Button className="learning-button" label="Surprise me!" severity="secondary"/>
 					</div>
 					</div>
 
 					<div className="leaderboard-container">
-						<h2 className = "leaderboard-text">Leaderboard</h2>
+						<h2 className = "leaderboard-text"><b>Leaderboard</b></h2>
 						<DataTable tableStyle={{ minWidth: "27rem" }}>
 							<Column field="user" header="User"></Column>
 							<Column field="ranking" header="Ranking"></Column>
