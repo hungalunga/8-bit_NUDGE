@@ -107,29 +107,29 @@ export default function App() {
 
   const [session, setSession] = useState(null);
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     setSession(session);
+  //   });
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session);
+  //   });
 
-    return () => subscription.unsubscribe();
-  }, []);
+  //   return () => subscription.unsubscribe();
+  // }, []);
 
-  if (!session) {
-    return (
-      <Auth
-        supabaseClient={supabase}
-        theme="default"
-        providers={["google", "facebook", "apple"]}
-      />
-    );
-  } else {
+  // if (!session) {
+  //   return (
+  //     <Auth
+  //       supabaseClient={supabase}
+  //       theme="default"
+  //       providers={["google", "facebook", "apple"]}
+  //     />
+  //   );
+  // } else {
     return (
       <>
         <div className="App">
@@ -147,4 +147,4 @@ export default function App() {
       </>
     );
   }
-}
+// }
