@@ -27,7 +27,6 @@ export default function MainQuizDisplay(props) {
 		console.log("correct_answer", props.questionObject.answer);
 		console.log(props.questionObject);
 		const questionObject = props.questionObject;
-		const question = props?.questionObject?.question;
 
 		if (props.resultsValue === 0) {
 			return (

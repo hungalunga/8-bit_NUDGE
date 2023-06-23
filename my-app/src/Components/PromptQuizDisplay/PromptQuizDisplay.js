@@ -27,10 +27,10 @@ export default function PromptQuizDisplay(props) {
 				{props.promptQuestionTimer && <PromptQuestionTimer seconds={seconds} setSeconds={setSeconds}/>}
 				<AnswerCheckbox
 					questionObject={questionObject}
-					wrong_answers={questionObject.wrong_answers}
+					wrongAnswers={questionObject.wrong_answers}
 					id={questionObject.id}
 					question={questionObject.question}
-					correct_answer={questionObject.answer}
+					correctAnswer={questionObject.answer}
 					questionNumber={props.questionNumber}
 					setQuestionNumber={props.setQuestionNumber}
 					// ^^send questionNumber props down to re-render after each answer
