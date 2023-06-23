@@ -33,8 +33,13 @@ export default function Dashboard(props) {
   const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
-    const { data: authUser } = props.supabase.auth.api.getUserByCookie();
-    setUser(authUser);
+    const fetchUser = async () => {
+        const { user } = await props.supabase.auth.user();
+        console.log(user);
+        setUser(user);
+    };
+
+    fetchUser();
   }, []);
 
   useEffect(() => {
@@ -44,9 +49,10 @@ export default function Dashboard(props) {
         .select("*")
         .eq("id", user.id)
         .single();
+		console.log(userProfile);
       setUserProfile(userProfile);
     }
-    if (user) {
+    if (user !== null) {
       getUserProfile();
     }
   }, [user]);
