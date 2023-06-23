@@ -138,7 +138,7 @@ export default function App() {
         </div>
         <Routes>
           <Route path="/quiz" element={<MainQuiz />} />
-          <Route path="/home" element={<Dashboard supabase={supabase} />} />
+          <Route path="/home" element={<Dashboard supabase={supabase} session = {session} />} />
           <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
         </Routes>
       </>

@@ -33,32 +33,38 @@ export default function Dashboard(props) {
   const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
-        const { user } = await props.supabase.auth.user();
-        console.log(user);
-        setUser(user);
-    };
+    async function fetchUser() {
+      const { user } = props.session.user;
+      console.log(props.session.user);
+      setUser(user);
+    }
 
     fetchUser();
-  }, []);
+  }, [props.session.user]);
 
   useEffect(() => {
     async function getUserProfile() {
-      const { data: userProfile } = await props.supabase
-        .from("user_profile")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-		console.log(userProfile);
-      setUserProfile(userProfile);
+      console.log('Hi, i\'m running');
+      if (user !== null) {
+        console.log(user);
+        const { data: userProfile } = await props.supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+        console.log(userProfile);
+        setUserProfile(userProfile);
+      }
     }
-    if (user !== null) {
-      getUserProfile();
+    console.log('user is null');
+    console.log(user);
+        getUserProfile();
+      
     }
-  }, [user]);
+  , [user, props.supabase]);
 
   async function handleSaveClick() {
-    await props.supabase.from("user_profile").upsert({
+    await props.supabase.from("public.profiles").upsert({
       id: user.id,
       ...userProfile,
     });
@@ -67,22 +73,18 @@ export default function Dashboard(props) {
 
   async function handleCancelClick() {
     setEditMode(false);
-	}
-	
-	async function handleEditClick() {
-		setEditMode(true);
-	}
+  }
 
-  if (!user) {
-    return <div>Hi There! please Sign up to use our App</div>;
+  async function handleEditClick() {
+    setEditMode(true);
   }
 
   return (
     <>
       {editMode ? (
-			  <>
-				  <Button label="Save" onClick={handleSaveClick} />
-				  <Button label="Cancel" onClick={handleCancelClick} />	
+        <>
+          <Button label="Save" onClick={handleSaveClick} />
+          <Button label="Cancel" onClick={handleCancelClick} />
           <div className="dashboard-page">
             <div className="dashboard-top">
               <div className="welcome-container">
@@ -135,9 +137,9 @@ export default function Dashboard(props) {
           </div>
         </>
       ) : (
-				  <>
-					  <Button label="Edit" onClick={handleEditClick} />
-		<div className="dashboard-page">
+        <>
+          <Button label="Edit" onClick={handleEditClick} />
+          <div className="dashboard-page">
             <div className="dashboard-top">
               <div className="welcome-container">
                 <Avatar label="A" size="xlarge" className="circleAvatar" />
