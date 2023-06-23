@@ -3,6 +3,7 @@ import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import { Card } from "primereact/card";
 
 export default function MainQuizQuestion(props) {
+	console.log("props.questionObject:", props.questionObject);
 	return (
 		<>
 			<Card className="big-card">{props.question}</Card>
@@ -10,13 +11,19 @@ export default function MainQuizQuestion(props) {
 			{props.promptQuestionTimer && <PromptQuestionTimer />}
 			<AnswerCheckbox
 				questionObject={props.questionObject}
-				question={props.question}
-				// ^^send questionNumber props down to re-render after each answer
-				incorrectAnswers={props.incorrectAnswers}
-				setIncorrectAnswers={props.setIncorrectAnswers}
-				resultsValue={props.resultsValue}
-				setResultsValue={props.setResultsValue}
-			/>{" "}
+						wrongAnswers={props.questionObject.wrong_answers}
+						id={props.questionObject.id}
+						question={props.questionObject.question}
+						correctAnswer={props.questionObject.answer}
+						questionNumber={props.questionNumber}
+						setQuestionNumber={props.setQuestionNumber}
+						incorrectAnswers={props.incorrectAnswers}
+						setIncorrectAnswers={props.setIncorrectAnswers}
+						resultsValue={props.resultsValue}
+						setResultsValue={props.setResultsValue}
+						withinTime={props.withinTime}
+						setWithinTime={props.setWithinTime}
+			/>
 		</>
 	);
 }

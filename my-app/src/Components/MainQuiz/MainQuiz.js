@@ -40,7 +40,6 @@ export default function MainQuiz() {
     if (questionNumber > numberOfQuestions || questionSet.length === 0) {
       if (incorrectAnswers.length > 0) {
         const wrongAnswer = incorrectAnswers[0];
-        console.log("wrongAnswer:", wrongAnswer);
         setQuestionObject(wrongAnswer);
         const tryAgain = incorrectAnswers.filter((question) => question.id !== wrongAnswer.id);
         setQuestionSet(tryAgain);
