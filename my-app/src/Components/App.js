@@ -8,7 +8,7 @@ import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
 import {Menubar} from 'primereact/menubar';
-import PromptRandomGrab from "./PromptQuiz/PromptQuiz";
+import PromptQuiz from "./PromptQuiz/PromptQuiz";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -102,48 +102,17 @@ export default function App() {
       },
     },
   ];
-*/
 
-  const [session, setSession] = useState(null);
-
-  // useEffect(() => {
-  //   supabase.auth.getSession().then(({ data: { session } }) => {
-  //     setSession(session);
-  //   });
-
-  //   const {
-  //     data: { subscription },
-  //   } = supabase.auth.onAuthStateChange((_event, session) => {
-  //     setSession(session);
-  //   });
-
-  //   return () => subscription.unsubscribe();
-  // }, []);
-
-  // if (!session) {
-  //   return (
-  //     <Auth
-  //       supabaseClient={supabase}
-  //       theme="default"
-  //       providers={["google", "facebook", "apple"]}
-  //     />
-  //   );
-  // } else {
     return (
       <>
-        <div className="App">
-        {/* <p>quick links (to be removed): </p>
-        <Link to="/home">Home</Link>
-        <Link to="/quiz">Quiz</Link>
-          <PromptQuiz /> */}
-          {/*<Menubar className="menubar" model={items} />*/}
+        <div className="App"> 
+          <Menubar className="menubar" model={items} />
         </div>
         <Routes>
           <Route path="/quiz" element={<MainQuiz />} />
           <Route path="/home" element={<Dashboard />} />
-          <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
+          <Route path="/nudge-quiz" element={<PromptQuiz />} />
         </Routes>
       </>
     );
   }
-// }
