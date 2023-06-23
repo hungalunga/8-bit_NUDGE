@@ -34,25 +34,24 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     async function fetchUser() {
-      const { user } = props.session.user;
-      console.log(props.session.user);
+      const { user } = props.session;
       setUser(user);
     }
 
     fetchUser();
-  }, [props.session.user]);
+  }, [props.session]);
 
   useEffect(() => {
     async function getUserProfile() {
-      console.log('Hi, i\'m running');
-      if (user !== null) {
+      if (user !== null && user !== undefined) {
+        console.log('user is not null');
         console.log(user);
         const { data: userProfile } = await props.supabase
           .from("profiles")
           .select("*")
           .eq("id", user.id)
           .single();
-        console.log(userProfile);
+        console.log(user.id);
         setUserProfile(userProfile);
       }
     }
