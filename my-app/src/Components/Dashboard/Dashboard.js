@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Dashboard.css";
 import nudgelogo from "../../images/nudgelogo.png";
+import "primeicons/primeicons.css";
 
 export default function Dashboard() {
 	const [firstChar, setFirstChar] = useState('');
@@ -26,6 +27,7 @@ export default function Dashboard() {
 
 	return (
 		<>
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 			<div className="navbar">
 				<Link to="/home">  
 					  <img src={nudgelogo} alt="nudge-logo" className = "nudgeLogo"/>
@@ -54,7 +56,15 @@ export default function Dashboard() {
 						<Link to="/quiz">
 							<Button label="Daily Quiz" size="large" />
 						</Link>
+						<div className = 'socials'>
+							{/* social stuff here */}
+							<p>Share your progress</p>
+							<i className = 'pi pi-facebook'></i>
+							<img alt="dropdown icon" src="/icons/arrow_down.png" />
+							<span class='material-symbols-outlined'>tiktok</span>
+						</div>
 						<h3>Want to level up? <b>Try one of these...</b></h3>
+
 					<div className="learning-buttons-container">
 						<Button className="learning-button" label="Geometry" severity="secondary"/>
 						<Button className="learning-button" label="Algebra" severity="secondary"/>

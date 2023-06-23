@@ -102,18 +102,48 @@ export default function App() {
       },
     },
   ];
-  return (
-    <>
-      <div className="App">
-        <header className="App-header">NUDGE</header>
-        <PromptNotification />
-        <Menubar className= "menubar" model={items} />
-      </div>
-      <Routes>
-        <Route path="/quiz" element={<MainQuiz />} />
-        <Route path="/home" element={<Dashboard />} />
-        <Route path="/nudge-quiz" element={<PromptRandomGrab />} />
-      </Routes>
-    </>
-  );
-}
+*/
+
+  const [session, setSession] = useState(null);
+
+  // useEffect(() => {
+  //   supabase.auth.getSession().then(({ data: { session } }) => {
+  //     setSession(session);
+  //   });
+
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((_event, session) => {
+  //     setSession(session);
+  //   });
+
+  //   return () => subscription.unsubscribe();
+  // }, []);
+
+  // if (!session) {
+  //   return (
+  //     <Auth
+  //       supabaseClient={supabase}
+  //       theme="default"
+  //       providers={["google", "facebook", "apple"]}
+  //     />
+  //   );
+  // } else {
+    return (
+      <>
+        <div className="App">
+        {/* <p>quick links (to be removed): </p>
+        <Link to="/home">Home</Link>
+        <Link to="/quiz">Quiz</Link>
+          <PromptQuiz /> */}
+          {/*<Menubar className="menubar" model={items} />*/}
+        </div>
+        <Routes>
+          <Route path="/quiz" element={<MainQuiz />} />
+          <Route path="/home" element={<Dashboard />} />
+          <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
+        </Routes>
+      </>
+    );
+  }
+// }
