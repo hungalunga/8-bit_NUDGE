@@ -1,4 +1,4 @@
-import QuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
+import MainQuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
 import { useState, useEffect } from "react";
 import { quizQuestions } from "../../QuizData";
 
@@ -57,7 +57,7 @@ export default function MainQuiz() {
 // display the question & answers
   return (
     <div data-testid='question-display' className="mainQuiz">
-      <QuizDisplay 
+      <MainQuizDisplay 
         questionObject={questionObject} 
         getRandomQuestion={getRandomQuestion}
         questionSet = {questionSet}

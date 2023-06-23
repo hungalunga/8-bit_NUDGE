@@ -6,7 +6,8 @@ import "./MainQuizDisplay.css";
 
 export default function MainQuizDisplay(props) {
 	const questionObject = props.questionObject; // to pass down to AnswerCheckbox
-	const question = props.questionObject.question; // to grab the question to display
+	// if question object is empty - question will try and find value, if it exists assign it, otherwise undefined/false
+	const question = props?.questionObject?.question; // to grab the question to display
 
 	// Sets the new results, new question when Next is pressed
 	function handleNextClick() {
@@ -20,10 +21,11 @@ export default function MainQuizDisplay(props) {
 		return <div>loading...</div>;
 	}
 
-	if (typeof props.questionObject === "object") {
-		console.log("questionObject:", typeof questionObject);
-		console.log("question", question);
+	if (props.questionObject) {
+		// console.log("questionObject:", typeof questionObject);
+		// console.log("question", question);
 		console.log("correct_answer", questionObject.answer);
+		console.log(props.questionObject)
 
 		if (props.resultsValue === 0) {
 			return (
