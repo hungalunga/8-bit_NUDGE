@@ -5,8 +5,9 @@ import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
 import "./MainQuizDisplay.css";
 
 export default function MainQuizDisplay(props) {
-	const questionObject = props.questionObject; // to pass down to AnswerCheckbox
-	const question = props.questionObject.question; // to grab the question to display
+	// to pass down to AnswerCheckbox
+	// if question object is empty - question will try and find value, if it exists assign it, otherwise undefined/false
+	// to grab the question to display
 
 	// Sets the new results, new question when Next is pressed
 	function handleNextClick() {
@@ -16,21 +17,28 @@ export default function MainQuizDisplay(props) {
 	}
 
 	// if the questionObject is empty, display loading
-	if (props.questionObject && Object.keys(questionObject).length === 0) {
+	if (props.questionObject && Object.keys(props.questionObject).length === 0) {
 		return <div>loading...</div>;
 	}
 
-	if (typeof props.questionObject === "object") {
-		console.log("questionObject:", typeof questionObject);
-		console.log("question", question);
-		console.log("correct_answer", questionObject.answer);
+	if (props.questionObject) {
+		// console.log("questionObject:", typeof questionObject);
+		// console.log("question", question);
+		console.log("correct_answer", props.questionObject.answer);
+		console.log(props.questionObject);
+		const questionObject = props.questionObject;
 
 		if (props.resultsValue === 0) {
 			return (
 				<div className="mainQuiz">
 					<MainQuizQuestion
-						question={question}
 						questionObject={questionObject}
+						wrong_answers={questionObject.wrong_answers}
+						id={questionObject.id}
+						question={questionObject.question}
+						correct_answer={questionObject.answer}
+						questionNumber={props.questionNumber}
+						setQuestionNumber={props.setQuestionNumber}
 						incorrectAnswers={props.incorrectAnswers}
 						setIncorrectAnswers={props.setIncorrectAnswers}
 						resultsValue={props.resultsValue}

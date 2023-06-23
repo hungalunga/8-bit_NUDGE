@@ -39,20 +39,20 @@ const shuffleArray = (array) => {
 };
 
 export default function AnswerCheckbox({
-	questionObject,
 	setResultsValue,
+	correctAnswer,
+	wrongAnswers,
+	id,
 	question,
+	questionNumber,
+	setQuestionNumber,
 	incorrectAnswers,
 	setIncorrectAnswers,
-	withinTime,
+	questionObject,
 	setWithinTime,
+	withinTime,
 	seconds
-})
-
-{
-	const correctAnswer = questionObject.answer;
-	const wrongAnswers = questionObject.wrong_answers;
-	const id = questionObject.id;
+}) {
 
 	const [answer, setAnswer] = useState("");
 	const [allAnswers, setAllAnswers] = useState([]);
@@ -70,23 +70,24 @@ export default function AnswerCheckbox({
 
 	const handleClick = () => {
 		if (seconds <= 0) {
-            setWithinTime(false);
-			console.log("withinTime:", withinTime)
-        }
+			setWithinTime(false);
+			console.log("withinTime:", withinTime);
+		}
 		console.log("user answer:", answer, "correct answer:", correctAnswer);
+		
 		if (answer === correctAnswer) {
 			setResultsValue(1);
-			console.log(`Answered correctly!`);
+			//console.log(`Answered correctly!`);
 		} else if (answer === "") {
 			setResultsValue(0);
-			console.log("No answer selected");
+			//console.log("No answer selected");
 		} else {
 			setResultsValue(-1);
-			console.log("Answered incorrectly");
+			//console.log("Answered incorrectly");
 			setIncorrectAnswers([
-				...incorrectAnswers,
-				{ question, answer: correctAnswer, wrongAnswers, id },
-			]);
+				...incorrectAnswers, questionObject]
+				// { question, answer: correctAnswer, wrongAnswers, id },
+			);
 		}
 	};
 

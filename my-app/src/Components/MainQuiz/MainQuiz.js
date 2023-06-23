@@ -1,4 +1,4 @@
-import QuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
+import MainQuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
 import { useState, useEffect } from "react";
 import { quizQuestions } from "../../QuizData";
 
@@ -40,7 +40,6 @@ export default function MainQuiz() {
     if (questionNumber > numberOfQuestions || questionSet.length === 0) {
       if (incorrectAnswers.length > 0) {
         const wrongAnswer = incorrectAnswers[0];
-        console.log("wrongAnswer:", wrongAnswer);
         setQuestionObject(wrongAnswer);
         const tryAgain = incorrectAnswers.filter((question) => question.id !== wrongAnswer.id);
         setQuestionSet(tryAgain);
@@ -57,7 +56,7 @@ export default function MainQuiz() {
 // display the question & answers
   return (
     <div data-testid='question-display' className="mainQuiz">
-      <QuizDisplay 
+      <MainQuizDisplay 
         questionObject={questionObject} 
         getRandomQuestion={getRandomQuestion}
         questionSet = {questionSet}

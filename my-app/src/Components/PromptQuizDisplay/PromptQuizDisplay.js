@@ -3,14 +3,17 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
+import { ProgressBar } from 'primereact/progressbar';
 import { Card } from "primereact/card";
 
 export default function PromptQuizDisplay(props) {
 	const [withinTime, setWithinTime] = useState(true);
-    const [seconds, setSeconds] = useState(10);
+    const [seconds, setSeconds] = useState(60);
 
 	const questionObject = props.questionObject; // to pass down to AnswerCheckbox
 	const question = questionObject.question; // to grab the question to display
+
+	const value = (seconds / 60) * 100;
 
 	// Sets the new results, new question when Next is pressed
 
@@ -25,12 +28,13 @@ export default function PromptQuizDisplay(props) {
 				<Card className="big-card">{question}</Card>
 				{/*<p className="question"></p>*/}
 				{props.promptQuestionTimer && <PromptQuestionTimer seconds={seconds} setSeconds={setSeconds}/>}
+				<ProgressBar value={value}></ProgressBar>
 				<AnswerCheckbox
 					questionObject={questionObject}
-					wrong_answers={questionObject.wrong_answers}
+					wrongAnswers={questionObject.wrong_answers}
 					id={questionObject.id}
 					question={questionObject.question}
-					correct_answer={questionObject.answer}
+					correctAnswer={questionObject.answer}
 					questionNumber={props.questionNumber}
 					setQuestionNumber={props.setQuestionNumber}
 					// ^^send questionNumber props down to re-render after each answer
