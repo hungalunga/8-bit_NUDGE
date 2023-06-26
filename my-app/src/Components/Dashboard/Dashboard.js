@@ -37,9 +37,9 @@ export default function Dashboard() {
 				<div className="dashboard-top">
 					<div className="welcome-container">
 						<Avatar label={firstChar} size="xlarge" className="circleAvatar" />
-						<div className="welcome-text">
+						<div className="welcome">
 							<h1 className='welcome-text'>Welcome Back,</h1>
-							<h1 id="username">ashwantspizza!</h1>
+							<h2 id="username">ashwantspizza!</h2>
 						</div>
 					</div>
 					<div className="user-scores">
@@ -52,16 +52,12 @@ export default function Dashboard() {
 				<Divider />
 				<div className="dashboard-bottom">
 					<div className="learning-container">
-						<h2><b>Your Learning:</b></h2>
+						<h2>Your Learning</h2>
 						<Link to="/quiz">
 							<Button label="Daily Quiz" size="large" />
 						</Link>
 						<div className = 'socials'>
 							{/* social stuff here */}
-							<p>Share your progress</p>
-							<i className = 'pi pi-facebook'></i>
-							<img alt="dropdown icon" src="/icons/arrow_down.png" />
-							<span class='material-symbols-outlined'>tiktok</span>
 						</div>
 						<h3>Want to level up? <b>Try one of these...</b></h3>
 

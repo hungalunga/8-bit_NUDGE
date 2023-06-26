@@ -67,12 +67,12 @@ h1 {
 }
 
 h2 {
-	font-size: 1.25rem;
-	font-weight: 600;
+	font-size: 1.75rem;
+	font-weight: 700;
 	color: #39207e;
 }
 h3 { 
-	font-size: 1.15rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 	color: #39207e;
 }
@@ -4987,11 +4987,11 @@ p {
 	border-bottom-left-radius: 6px;
 }
 .p-card {
-	background: white;
+	background: #F7F7F7;
 	border: 2px solid #D9D1F3;
 	text-align: center;
-	height:80px;
-	width:80px;
+	height:95px;
+	width:95px;
 	border-radius: 15px;
 	box-shadow: none;
 }
@@ -5009,7 +5009,7 @@ p {
 }
 .p-card .p-card-title {
 	color: #FFD500;
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 	font-weight: 600;
 	margin-bottom: 0.5rem;
 	display: flex;
@@ -5018,7 +5018,7 @@ p {
 .p-card .p-card-subtitle {
 	margin-top: -10px;
 	color: #39207e;
-	font-size: 0.75rem;
+	font-size: 1rem;
 	font-weight: 600;
 	display: flex;
     justify-content: center;
@@ -7250,8 +7250,8 @@ p {
 	font-size: 1.5rem;
 }
 .p-avatar.p-avatar-xl {
-	width: 4rem;
-	height: 4rem;
+	width: 6rem;
+	height: 6rem;
 	font-size: 2rem;
 }
 .p-avatar.p-avatar-xl .p-avatar-icon {
