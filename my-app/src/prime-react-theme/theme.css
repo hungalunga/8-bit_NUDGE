@@ -5014,6 +5014,11 @@ p {
 	height: 300px;
 }
 
+.correct-XP {
+	margin-left: 80px;
+	background-color: #F7F7F7;
+}
+
 .p-card .p-card-body {
 	padding: 1rem;
 }
