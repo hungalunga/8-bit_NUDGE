@@ -13,7 +13,7 @@
 }
 
 .nudgeLogo {
-	margin-top: 10px;
+	margin-top: 12px;
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
@@ -22,20 +22,18 @@
 }
 
 .dashboard-page {
-	margin: 50px 20px 20px 20px;
 	background-color: #f7f7f7;
 	display: flex;
 	flex-direction: column;
-	/* width: 90%; */
+	width: 100%;
 	justify-content: center;
 	align-content: center;
-	max-width: 1000px;
+	max-width: 1250px;
 	min-width: 800px;
-	padding: 10px;
+	padding: 20px;
 }
 
-#root 
-{
+#root {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -46,7 +44,6 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	height: 33%; 
 }
 
 .welcome-container {
@@ -82,9 +79,7 @@
 	border: 2px solid #d9d1f3;
 	display: flex;
 	flex-direction: column;
-	
 	width: 4cap;
-    
 }
 
 .leaderboard-text {
@@ -99,12 +94,15 @@
 
 .learning-button {
 	height: 80%; 
-	width:20%; 
-	box-shadow: 0px 2px 4px #8B008B;
+	width:20%;
 	justify-content: center;
 }
 
 .welcome-text {
 	margin-left: 10px;
 	margin-bottom: 10px;
+}
+
+.username{
+    margin-bottom: 5px;
 }

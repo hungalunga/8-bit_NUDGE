@@ -1,18 +1,16 @@
 import { Button } from "primereact/button";
-
+import { Card } from "primereact/card";
 
 export default function MainQuizIncorrect({ questionObject, nextMessage, handleNextClick }) {
 	return (
-		<>
-			<div className="resultsPageIncorrect">
-						<p>Not quite...</p>
-						<p>The correct answer for </p>
-						<p>{questionObject.question}</p>
-						<p>is</p>
-						<p>{questionObject.answer}</p>
-					</div>
-					{/* props.nextMessage has different value for main quiz than prompt quiz */}
-					<Button onClick={handleNextClick}>{nextMessage}</Button>
-		</>
+	  <>
+		<Card className="end-quiz-card">
+		  <h1>Not quite...</h1>
+		  <p>The correct answer for "{questionObject.question}" is</p>
+			<p><strong>{questionObject.answer}</strong>.</p>
+		</Card>
+		{/* props.nextMessage has different value for main quiz than prompt quiz */}
+		<Button onClick={handleNextClick}>{nextMessage}</Button>
+	  </>
 	);
-}
+  }

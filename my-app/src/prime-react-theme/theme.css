@@ -78,8 +78,9 @@ h3 {
 }
 
 p {
-	font-size: 1rem;
+	font-size: 1.15rem;
 	font-weight: 400;
+	color: #39207e;
 }
 
 .p-component {
@@ -4997,6 +4998,14 @@ p {
 }
 
 .big-card {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 600px;
+	height: 300px;
+}
+
+.end-quiz-card {
 	display: flex;
     justify-content: center;
     align-items: center;

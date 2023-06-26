@@ -1,12 +1,12 @@
 import { Button } from "primereact/button";
-
+import { Card } from "primereact/card";
 
 export default function MainQuizCorrect({nextMessage, handleNextClick}) {
 	return (
 		<>
-			<div className="resultsPageCorrect">
-				<p>Correct!</p>
-			</div>
+			<Card className="end-quiz-card">
+				<h1>🌟You got that right🌟!</h1>
+			</Card>
 			<Button onClick={handleNextClick}>{nextMessage}</Button>
 		</>
 	);
