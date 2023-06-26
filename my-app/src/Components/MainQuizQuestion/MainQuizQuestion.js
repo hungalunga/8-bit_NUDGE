@@ -1,5 +1,5 @@
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
-import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
+import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
 import { Card } from "primereact/card";
 
 export default function MainQuizQuestion(props) {
@@ -27,3 +27,4 @@ export default function MainQuizQuestion(props) {
 		</>
 	);
 }
+

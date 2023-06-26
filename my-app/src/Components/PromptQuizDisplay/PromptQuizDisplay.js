@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
-import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
+import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
 import { ProgressBar } from 'primereact/progressbar';
