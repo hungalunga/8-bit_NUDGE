@@ -4,6 +4,9 @@ import MainQuizCorrect from "../MainQuizCorrect/MainQuizCorrect";
 import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
 import "./MainQuizDisplay.css";
 import { ProgressBar } from "primereact/progressbar";
+import { Button } from "primereact/button";
+
+import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 
 export default function MainQuizDisplay(props) {
 	const progressValue = (props.questionNumber / 3) * 100;
@@ -49,6 +52,7 @@ export default function MainQuizDisplay(props) {
 							resultsValue={props.resultsValue}
 							setResultsValue={props.setResultsValue}
 						/>
+						<ExitQuizButton />
 					</div>
 				</>
 			);
@@ -60,6 +64,7 @@ export default function MainQuizDisplay(props) {
 						nextMessage={props.nextMessage}
 						handleNextClick={handleNextClick}
 					/>
+					<ExitQuizButton	/>
 				</div>
 			);
 		} else if (props.resultsValue === -1) {
@@ -72,6 +77,7 @@ export default function MainQuizDisplay(props) {
 						nextMessage={props.nextMessage}
 						handleNextClick={handleNextClick}
 					/>
+					<ExitQuizButton />
 				</div>
 			);
 		} else {
@@ -89,6 +95,7 @@ export default function MainQuizDisplay(props) {
 					<MainQuizComplete />
 				</div>
 			)
+		
 		);
 	}
 }

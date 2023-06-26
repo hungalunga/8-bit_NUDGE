@@ -10,7 +10,7 @@ export default function MainQuizComplete() {
 
 	return (
 		<>
-			<p>xxxQuiz Complete!</p>
+			<p>Quiz Complete!</p>
 			<Button label="Home" onClick = {handleClick} />
 		</>
 	);
