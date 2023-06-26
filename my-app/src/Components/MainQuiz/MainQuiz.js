@@ -1,6 +1,7 @@
 import MainQuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
 import { useState, useEffect } from "react";
 import { quizQuestions } from "../../QuizData";
+import { Button } from "primereact/button";
 
 export default function MainQuiz(props) {
 
@@ -10,6 +11,7 @@ export default function MainQuiz(props) {
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
   const [resultsValue, setResultsValue] = useState(0);
   const [quizScore, setQuizScore] = useState(0);
+  const [quizStarted, setQuizStarted] = useState(false);
   const numberOfQuestions = quizQuestions.length;
   const completionMessage = "You've completed the quiz!";
   const nextMessage = "➜";
@@ -55,28 +57,40 @@ export default function MainQuiz(props) {
  // when questionNumber changes, rerender
 
 // display the question & answers
-  return (
-    <div data-testid='question-display' className="mainQuiz">
-      <MainQuizDisplay 
-        quizScore = {quizScore}
-        setQuizScore = {setQuizScore}
-        questionObject={questionObject} 
-        getRandomQuestion={getRandomQuestion}
-        questionSet = {questionSet}
-        questionNumber= {questionNumber} 
-        setQuestionNumber = {setQuestionNumber} 
-        incorrectAnswers = {incorrectAnswers} 
-        setIncorrectAnswers = {setIncorrectAnswers} 
-        resultsValue = {resultsValue} 
-        setResultsValue ={setResultsValue}
-        completionMessage = {completionMessage}
-        nextMessage = {nextMessage}
-        promptQuestionTimer = {false}
-        totalScore = {props.totalScore} 
-        setTotalScore ={props.setTotalScore}
-        />
-    </div>
-  );
+  if (quizStarted) {
+    return (
+      <div data-testid='question-display' className="mainQuiz">
+        <MainQuizDisplay 
+          quizScore = {quizScore}
+          setQuizScore = {setQuizScore}
+          questionObject={questionObject} 
+          getRandomQuestion={getRandomQuestion}
+          questionSet = {questionSet}
+          questionNumber= {questionNumber} 
+          setQuestionNumber = {setQuestionNumber} 
+          incorrectAnswers = {incorrectAnswers} 
+          setIncorrectAnswers = {setIncorrectAnswers} 
+          resultsValue = {resultsValue} 
+          setResultsValue ={setResultsValue}
+          completionMessage = {completionMessage}
+          nextMessage = {nextMessage}
+          promptQuestionTimer = {false}
+          totalScore = {props.totalScore} 
+          setTotalScore ={props.setTotalScore}
+          />
+      </div>
+    );
+  }
+
+  else {
+    return (
+      <div className="mainQuiz">
+        <h2>You've made it this far...</h2>
+        <h1>are you ready to start?</h1>
+        <Button onClick={() => setQuizStarted(true)}>Let's go!</Button>
+      </div>
+    );
+  }
 }
 
 

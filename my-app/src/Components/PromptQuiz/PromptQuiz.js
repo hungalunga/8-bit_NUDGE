@@ -21,7 +21,7 @@ export default function PromptQuiz(props) {
 	const completionMessage = "Congratulations, you answered your daily nudge!";
 
 	// displays the message on the button after answering a question (using variable bc main quiz passes a different message)
-	
+
 	useEffect(() => {
 		async function getQuestions() {
 			const response = await fetch("http://localhost:3001/daily_question");
@@ -41,30 +41,55 @@ export default function PromptQuiz(props) {
 		}
 	}
 
-	// display the question & answers
-	return (
-		<div>
-			<div data-testid="question-display" className="mainQuiz">
-				{/* <h1>Question {questionNumber}</h1> */}
-				<PromptQuizDisplay
-					streak = {props.streak}
-					setStreak = {props.setStreak}
-					totalScore = {props.totalScore}
-					setTotalScore = {props.setTotalScore}
-					streakCount = {props.streakCount}
-					setStreakCount = {props.setStreakCount}
-					questionObject={questionObject}
-					questionNumber={questionNumber}
-					setQuestionNumber={setQuestionNumber}
-					resultsValue={resultsValue}
-					setResultsValue={setResultsValue}
-					completionMessage={completionMessage}
-					promptQuestionTimer={true}
-					incorrectAnswers={incorrectAnswers}
-					setIncorrectAnswers={setIncorrectAnswers}
-				/>
+	const [countdownNumber, setCountdownNumber] = useState(5);
+
+	useEffect(() => {
+		const intervalId = setInterval(() => {
+			setCountdownNumber((prevCountdownNum) =>
+			prevCountdownNum > 0 ? prevCountdownNum - 1 : 0
+			);
+		}, 1000);
+		return () => {
+			clearInterval(intervalId);
+		};
+	}, []);
+
+	if (countdownNumber > 0) {
+
+		return (
+			<div className="mainQuiz">
+				<h2>Woohoo, you made it!</h2>
+				<h1>Get ready to answer in...</h1>
+				<h1>{countdownNumber}</h1>
 			</div>
-			{/* <PromptQuestionTimer/> */}
-		</div>
-	);
+		);
+	}
+	// display the question & answers
+	else {
+		return (
+			<div>
+				<div data-testid="question-display" className="mainQuiz">
+					{/* <h1>Question {questionNumber}</h1> */}
+					<PromptQuizDisplay
+						streak={props.streak}
+						setStreak={props.setStreak}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
+						streakCount={props.streakCount}
+						setStreakCount={props.setStreakCount}
+						questionObject={questionObject}
+						questionNumber={questionNumber}
+						setQuestionNumber={setQuestionNumber}
+						resultsValue={resultsValue}
+						setResultsValue={setResultsValue}
+						completionMessage={completionMessage}
+						promptQuestionTimer={true}
+						incorrectAnswers={incorrectAnswers}
+						setIncorrectAnswers={setIncorrectAnswers}
+					/>
+				</div>
+				{/* <PromptQuestionTimer/> */}
+			</div>
+		);
+	}
 }
