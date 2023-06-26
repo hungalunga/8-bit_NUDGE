@@ -9,6 +9,7 @@ import "../prime-react-theme/theme.css";
 import "./App.css";
 import {Menubar} from 'primereact/menubar';
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
+import { useState, useEffect } from "react";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -103,13 +104,23 @@ export default function App() {
     },
   ];
 
+  const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(false);
+  const [streakCount, setStreakCount] = useState(0);
+
+
+
+
+
+
+
     return (
       <>
         <div className="App"> 
           <Menubar className="menubar" model={items} />
         </div>
         <Routes>
-          <Route path="/quiz" element={<MainQuiz />} />
+          <Route path="/quiz" element={<MainQuiz score = {score} setScore = {setScore} streak = {streak} setStreak = {setStreak} />} />
           <Route path="/home" element={<Dashboard />} />
           <Route path="/nudge-quiz" element={<PromptQuiz />} />
         </Routes>
