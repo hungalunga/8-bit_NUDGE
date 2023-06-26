@@ -1,8 +1,11 @@
+body {
+	background-color: #F7F7F7;
+}
+
 .App {
   display: flex;
   flex-direction: column;
   font-family: 'Quicksand', sans-serif;
-  background-color: #F7F7F7;
 }
 
 .menubar {
