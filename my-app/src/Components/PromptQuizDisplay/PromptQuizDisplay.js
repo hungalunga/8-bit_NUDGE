@@ -56,8 +56,8 @@ export default function PromptQuizDisplay(props) {
 				  seconds={seconds}
 				  streak = {props.streak}
 				  setStreak = {props.setStreak}
-				  score = {props.score}
-				  setScore = {props.setScore}
+				  totalScore = {props.totalScore}
+				  setTotalScore = {props.setTotalScore}
 				  streakCount = {props.streakCount}
 				  setStreakCount = {props.setStreakCount} 
 				/>
@@ -72,8 +72,8 @@ export default function PromptQuizDisplay(props) {
                   seconds={seconds}
 				  streak = {props.streak}
 				  setStreak = {props.setStreak}
-				  score = {props.score}
-				  setScore = {props.setScore}
+				  totalScore = {props.totalScore}
+				  setTotalScore = {props.setTotalScore}
 				  streakCount = {props.streakCount}
 				  setStreakCount = {props.setStreakCount} 
 				/>

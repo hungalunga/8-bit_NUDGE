@@ -49,8 +49,8 @@ export default function PromptQuiz(props) {
 				<PromptQuizDisplay
 					streak = {props.streak}
 					setStreak = {props.setStreak}
-					score = {props.score}
-					setScore = {props.setScore}
+					totalScore = {props.totalScore}
+					setTotalScore = {props.setTotalScore}
 					streakCount = {props.streakCount}
 					setStreakCount = {props.setStreakCount}
 					questionObject={questionObject}
