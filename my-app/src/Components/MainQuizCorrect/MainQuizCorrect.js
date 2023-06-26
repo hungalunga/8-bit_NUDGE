@@ -6,6 +6,7 @@ export default function MainQuizCorrect({nextMessage, handleNextClick}) {
 		<>
 			<Card className="end-quiz-card">
 				<h1>🌟You got that right🌟!</h1>
+				<Card title= "+5" subTitle=" XP"/>
 			</Card>
 			<Button onClick={handleNextClick}>{nextMessage}</Button>
 		</>

@@ -1,9 +1,13 @@
 import { Button } from "primereact/button";
+import { Card } from "primereact/card";
 
 export default function MainQuizComplete() {
 	return (
 		<>
-			<p>Quiz Complete!</p>
+		    <Card className="end-quiz-card">
+			<h1>Quiz Complete!</h1>
+			<Button label="Keep quizzing!" />
+			</Card>
 			<Button label="Home" />
 		</>
 	);
