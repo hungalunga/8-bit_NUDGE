@@ -56,9 +56,6 @@ export default function Dashboard(props) {
 						<Link to="/quiz">
 							<Button label="Today's Quiz" size="large" />
 						</Link>
-						<div className = 'socials'>
-							{/* social stuff here */}
-						</div>
 						<h3>Want to level up? <b>Try one of these...</b></h3>
 
 					<div className="learning-buttons-container">
