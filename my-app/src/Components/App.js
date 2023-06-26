@@ -82,6 +82,7 @@ const customTheme = {
 };
 
 export default function App() {
+  
   const items = [
     {
       label: "Home",
@@ -109,20 +110,15 @@ export default function App() {
   const [streakCount, setStreakCount] = useState(0);
 
 
-
-
-
-
-
     return (
       <>
         <div className="App"> 
           <Menubar className="menubar" model={items} />
         </div>
         <Routes>
-          <Route path="/quiz" element={<MainQuiz score = {score} setScore = {setScore} streak = {streak} setStreak = {setStreak} />} />
-          <Route path="/home" element={<Dashboard />} />
-          <Route path="/nudge-quiz" element={<PromptQuiz />} />
+          <Route path="/quiz" element={<MainQuiz score = {score} setScore = {setScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
+          <Route path="/home" element={<Dashboard score = {score} streakCount = {streakCount}/>} />
+          <Route path="/nudge-quiz" element={<PromptQuiz score = {score} setScore = {setScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
         </Routes>
       </>
     );

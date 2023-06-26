@@ -49,18 +49,37 @@ export default function PromptQuizDisplay(props) {
 			</div>
 		);
 	} else if (props.resultsValue === 1) {
+		props.setScore(props.score + 100);
 		return (
 			<div className="MainQuiz">
-				<PromptQuizCorrect  withinTime={withinTime} seconds={seconds} />
+				<PromptQuizCorrect
+				  withinTime={withinTime}
+				  seconds={seconds}
+				  streak = {props.streak}
+				  setStreak = {props.setStreak}
+				  score = {props.score}
+				  setScore = {props.setScore}
+				  streakCount = {props.streakCount}
+				  setStreakCount = {props.setStreakCount} 
+				/>
+
+
 			</div>
 		);
 	} else if (props.resultsValue === -1) {
+		props.setScore(props.score + 10);
 		return (
 			<div className="MainQuiz">
 				<PromptQuizIncorrect
-					questionObject={questionObject}
-                    withinTime={withinTime}
-                    seconds={seconds}
+				  questionObject={questionObject}
+                  withinTime={withinTime}
+                  seconds={seconds}
+				  streak = {props.streak}
+				  setStreak = {props.setStreak}
+				  score = {props.score}
+				  setScore = {props.setScore}
+				  streakCount = {props.streakCount}
+				  setStreakCount = {props.setStreakCount} 
 				/>
 			</div>
 		);

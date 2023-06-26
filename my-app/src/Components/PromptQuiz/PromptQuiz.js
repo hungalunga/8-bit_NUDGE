@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PromptQuizDisplay from "../PromptQuizDisplay/PromptQuizDisplay";
 
-export default function PromptRandomGrab() {
+export default function PromptQuiz(props) {
 	// choose ten random questions from the main question dataset
 	// store them in an array
 	const [questionObject, setQuestionObject] = useState({});
@@ -21,7 +21,7 @@ export default function PromptRandomGrab() {
 	const completionMessage = "Congratulations, you answered your daily nudge!";
 
 	// displays the message on the button after answering a question (using variable bc main quiz passes a different message)
-
+	
 	useEffect(() => {
 		async function getQuestions() {
 			const response = await fetch("http://localhost:3001/daily_question");
@@ -47,6 +47,12 @@ export default function PromptRandomGrab() {
 			<div data-testid="question-display" className="mainQuiz">
 				{/* <h1>Question {questionNumber}</h1> */}
 				<PromptQuizDisplay
+					streak = {props.streak}
+					setStreak = {props.setStreak}
+					score = {props.score}
+					setScore = {props.setScore}
+					streakCount = {props.streakCount}
+					setStreakCount = {props.setStreakCount}
 					questionObject={questionObject}
 					questionNumber={questionNumber}
 					setQuestionNumber={setQuestionNumber}

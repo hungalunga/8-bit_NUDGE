@@ -10,7 +10,7 @@ import "./Dashboard.css";
 import nudgelogo from "../../images/nudgelogo.png";
 import "primeicons/primeicons.css";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 	const [firstChar, setFirstChar] = useState('');
 
 
@@ -43,8 +43,8 @@ export default function Dashboard() {
 						</div>
 					</div>
 					<div className="user-scores">
-						<Card title= "3" subTitle=" Day Streak!"/>
-						<Card title= "250" subTitle=" XP"/>
+						<Card title= {`${props.streakCount}`} subTitle= 'Day Streak!'/>
+						<Card title= {`${props.score}`} subTitle=" Points!"/>
 						<Card title= "No.4" subTitle=" Ranking"/>
 					</div>
 				</div>
