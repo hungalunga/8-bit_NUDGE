@@ -11,63 +11,89 @@ import nudgelogo from "../../images/nudgelogo.png";
 import "primeicons/primeicons.css";
 
 export default function Dashboard(props) {
-	const [firstChar, setFirstChar] = useState('');
-
+	const [firstChar, setFirstChar] = useState("");
 
 	useEffect(() => {
-		const usernameElement = document.getElementById('username');
+		const usernameElement = document.getElementById("username");
 		if (usernameElement) {
-		  const textContent = usernameElement.textContent;
-		  if (textContent) {
-			const capitalFirstChar = textContent.charAt(0).toUpperCase();
-			setFirstChar(capitalFirstChar);
-		  }
+			const textContent = usernameElement.textContent;
+			if (textContent) {
+				const capitalFirstChar = textContent.charAt(0).toUpperCase();
+				setFirstChar(capitalFirstChar);
+			}
 		}
-	  }, []);
+	}, []);
 
 	return (
 		<>
-		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+			<link
+				href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+				rel="stylesheet"
+			/>
 			<div className="navbar">
-				<Link to="/home">  
-					  <img src={nudgelogo} alt="nudge-logo" className = "nudgeLogo"/>
+				<Link to="/home">
+					<img src={nudgelogo} alt="nudge-logo" className="nudgeLogo" />
 				</Link>
 			</div>
 			<div className="dashboard-page">
 				<div className="dashboard-top">
 					<div className="welcome-container">
 						<Avatar label={firstChar} size="xlarge" className="circleAvatar" />
-						<div className ="welcome">
-						<h1 className="welcome-text">Welcome back,</h1>
-                        <h2 id="username">ashwantspizza!</h2>
-                        </div>
-                    </div>
+						<div className="welcome">
+							<h1 className="welcome-text">Welcome back,</h1>
+							<h2 id="username">ashwantspizza!</h2>
+						</div>
+					</div>
 					<div className="user-scores">
-						<Card title= "3" subTitle=" Day Streak!"/>
-						<Card title= "250" subTitle=" XP"/>
-						<Card title= "No.4" subTitle=" Ranking"/>
+						<Card title="3" subTitle=" Streak" />
+						<Card title="250" subTitle=" XP" />
+						<Card title="No.4" subTitle=" Ranking" />
 					</div>
 				</div>
 
 				<Divider />
 				<div className="dashboard-bottom">
 					<div className="learning-container">
-						<h2>Your Learning:</h2>
+						<div className="learning-header">
+							<h2>Your Learning</h2>
+						</div>
 						<Link to="/quiz">
-							<Button label="Today's Quiz" size="large" />
+							<Button
+								className="primary-quiz-button"
+								label="Today's Quiz"
+								size="large"
+							/>
 						</Link>
-						<h3>Want to level up? <b>Try one of these...</b></h3>
+						<h3>
+							Want to level up? <b>Try one of these...</b>
+						</h3>
 
-					<div className="learning-buttons-container">
-						<Button className="learning-button" label="Geometry" severity="secondary"/>
-						<Button className="learning-button" label="Algebra" severity="secondary"/>
-						<Button className="learning-button" label="Trig" severity="secondary"/>
-						<Button className="learning-button" label="Surprise me!" severity="secondary"/>
-					</div>
+						<div className="learning-buttons-container">
+							<Button
+								className="learning-button"
+								label="Geometry"
+								severity="secondary"
+							/>
+							<Button
+								className="learning-button"
+								label="Algebra"
+								severity="secondary"
+							/>
+							<Button
+								className="learning-button"
+								label="Trig"
+								severity="secondary"
+							/>
+							<Button
+								className="learning-button"
+								label="Surprise me!"
+								severity="secondary"
+							/>
+						</div>
 					</div>
 
 					<div className="leaderboard-container">
-						<h2 className = "leaderboard-text">Leaderboard</h2>
+						<h2 className="leaderboard-text">Leaderboard</h2>
 						<DataTable tableStyle={{ minWidth: "27rem" }}>
 							<Column field="user" header="User"></Column>
 							<Column field="ranking" header="Ranking"></Column>

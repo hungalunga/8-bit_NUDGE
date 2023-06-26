@@ -38,7 +38,6 @@
 	max-width: 1250px;
 	min-width: 800px;
 	padding: 20px;
-
 }
 
 .dashboard-top {
@@ -52,7 +51,7 @@
 .welcome-container {
 	display: flex;
 	flex-direction: row;
-    align-items: center;
+	align-items: center;
 	flex: 2 1 0;
 }
 
@@ -66,17 +65,22 @@
 }
 
 .dashboard-bottom {
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
-	height: 67%; 
 }
 
 .learning-container {
 	margin-left: 15px;
 	display: flex;
 	flex-direction: column;
-    width: 50%;
+	align-items: space-evenly;
+	justify-content: center;
+	width: 50%;
+}
+
+.learning-container :first-child {
+	justify-self: flex-start;
 }
 
 .leaderboard-container {
@@ -91,15 +95,21 @@
 	text-align: center;
 }
 
+.learning-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
 .learning-buttons-container {
 	display: flex;
 	justify-content: space-around;
 	height: 33%;
-	}
+}
 
 .learning-button {
-	height: 80%; 
-	width:20%;
+	height: 100px;
+	width: 100px;
 	justify-content: center;
 }
 

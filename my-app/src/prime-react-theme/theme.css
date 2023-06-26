@@ -83,14 +83,21 @@ p {
 	color: #7962C5;
 }
 
-.answerBox {
-	margin: 10px;
+/* answer button widths */
+
+
+.answer-button {
+	width: 250px;
+}
+
+.answer-button-selected {
+	width: 250px;
 }
 
 .p-component {
-	/* font-family: var(--font-family); */
-	font-size: 1rem;
-	font-weight: normal;
+	font-family: var(--font-family);
+	font-weight: bold;
+	color: #39207e;
 }
 .p-component-overlay {
 	background-color: rgba(0, 0, 0, 0.4);
@@ -1899,27 +1906,35 @@ p {
 .p-togglebutton.p-button.p-invalid > .p-button {
 	border-color: #fff;
 }
+.primary-quiz-button {
+	height: 100px;
+	width: 400px;
+}
+
 .p-button {
 	color: #39207e;
 	background: #ffd500;
 	border: 2px solid #ffd500;
 	padding: 0.5rem 1rem;
-	font-size: 1rem;
+	box-shadow: 5px 5px 5px rgba(57,32,126, 0.2);
 	transition: background-color 0.3s, color 0.3s, border-color 0.3s,
 		box-shadow 0.3s;
 	border-radius: 6px;
+	font-size: 20px;
 }
+
+/* primary buttons on hover */
 .p-button:enabled:hover,
 .p-button:not(button):not(a):not(.p-disabled):hover {
-	background: #f2ca00;
-	color: #39207e;
-	border-color: #f2ca00;
+	background: #39207e;
+	color: #f7f7f7;
+	border-color: #39207e;
 }
 .p-button:enabled:active,
 .p-button:not(button):not(a):not(.p-disabled):active {
-	background: #e6c000;
+	background: #FFDA20;
 	color: #39207e;
-	border-color: #e6c000;
+	border-color: #FFDA20;
 }
 .p-button.p-button-outlined {
 	background-color: rgba(0, 0, 0, 0);
@@ -1960,6 +1975,7 @@ p {
 	background-color: rgba(0, 0, 0, 0);
 	color: #ffd500;
 	border-color: rgba(0, 0, 0, 0);
+	
 }
 .p-button.p-button-text:enabled:hover,
 .p-button.p-button-text:not(button):not(a):not(.p-disabled):hover {
@@ -2045,7 +2061,7 @@ p {
 	font-size: 0.875rem;
 }
 .p-button.p-button-lg {
-	font-size: 1.25rem;
+	font-size: 28px;
 	padding: 0.625rem 1.25rem;
 }
 .p-button.p-button-lg .p-button-icon {
@@ -2078,6 +2094,8 @@ p {
 .p-fluid .p-buttonset .p-button {
 	flex: 1;
 }
+
+/* secondary buttons */
 .p-button.p-button-secondary,
 .p-buttonset.p-button-secondary > .p-button,
 .p-splitbutton.p-button-secondary > .p-button,
@@ -2085,6 +2103,7 @@ p {
 	color: #39207E;
 	background: #eae8f3;
 	border: 1px solid #D9D1F3;
+	font-size: 18px;
 }
 .p-button.p-button-secondary:enabled:hover,
 .p-button.p-button-secondary:not(button):not(a):not(.p-disabled):hover,
@@ -2099,9 +2118,11 @@ p {
 		.p-disabled
 	):hover {
 	background: #D9D1F3;
-	color: #f7f7f7;
+	color: #39207E;
 	border-color: #D9D1F3;
+	font-size: 20px;
 }
+/* secondary quiz button selected */
 .p-button.p-button-secondary:enabled:focus,
 .p-button.p-button-secondary:not(button):not(a):not(.p-disabled):focus,
 .p-buttonset.p-button-secondary > .p-button:enabled:focus,
@@ -2114,6 +2135,7 @@ p {
 .p-fileupload-choose.p-button-secondary:not(button):not(a):not(
 		.p-disabled
 	):focus {
+	border-color:#39207E;
 	box-shadow: 0 0 0 0.1rem #e6cfe7;
 }
 .p-button.p-button-secondary:enabled:active,
@@ -2128,7 +2150,7 @@ p {
 .p-fileupload-choose.p-button-secondary:not(button):not(a):not(
 		.p-disabled
 	):active {
-	background: #D9D1F3;
+	background: #cabfee;
 	color: #f7f7f7;
 	border-color: #D9D1F3;
 }
@@ -2361,6 +2383,7 @@ p {
 	color: #39207e;
 	background: #f7f7f7;
 	border: 1px solid #c087c4;
+	font-size: 1rem;
 }
 .p-button.p-button-success:enabled:hover,
 .p-button.p-button-success:not(button):not(a):not(.p-disabled):hover,
@@ -5005,8 +5028,9 @@ p {
 	display: flex;
     justify-content: center;
     align-items: center;
-	width: 600px;
+	width: 750px;
 	height: 300px;
+	font-size: 35px;
 }
 
 .end-quiz-card {
@@ -5014,7 +5038,7 @@ p {
     justify-content: center;
 	background-color: #E8E4F5;
     align-items: center;
-	width: 600px;
+	width: 750px;
 	height: 300px;
 }
 
