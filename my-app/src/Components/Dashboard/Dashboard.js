@@ -61,7 +61,7 @@ export default function Dashboard(props) {
 							<p>Share your progress</p>
 							<i className = 'pi pi-facebook'></i>
 							<img alt="dropdown icon" src="/icons/arrow_down.png" />
-							<span class='material-symbols-outlined'>tiktok</span>
+							<span className='material-symbols-outlined'>tiktok</span>
 						</div>
 						<h3>Want to level up? <b>Try one of these...</b></h3>
 

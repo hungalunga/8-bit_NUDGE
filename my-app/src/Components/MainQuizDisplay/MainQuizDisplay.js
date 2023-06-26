@@ -14,6 +14,15 @@ export default function MainQuizDisplay(props) {
 		props.setResultsValue(0);
 		props.setQuestionNumber(props.questionNumber + 1);
 		props.getRandomQuestion(props.questionSet);
+
+		// if questionNumber is =< 3 then run this:
+		// WILL NEED TO CHANGE TO 10
+		if (props.questionNumber <= 3) {
+			// if resultsValue is 1, add 10 to quizScore
+			if (props.resultsValue === 1) {
+				props.setQuizScore(props.quizScore + 10);
+			}
+		}
 	}
 
 	// if the questionObject is empty, display loading
@@ -57,8 +66,8 @@ export default function MainQuizDisplay(props) {
 						handleNextClick={handleNextClick}
 						quizScore={props.quizScore}
 						setQuizScore={props.setQuizScore}
-						totalScore = {props.totalScore}
-						setTotalScore ={props.setTotalScore}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
 					/>
 				</div>
 			);
@@ -71,8 +80,8 @@ export default function MainQuizDisplay(props) {
 						handleNextClick={handleNextClick}
 						quizScore={props.quizScore}
 						setQuizScore={props.setQuizScore}
-						totalScore = {props.totalScore}
-						setTotalScore ={props.setTotalScore}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
 					/>
 				</div>
 			);
@@ -88,11 +97,11 @@ export default function MainQuizDisplay(props) {
 			console.log("questionObject:", typeof questionObject),
 			(
 				<div className="MainQuiz">
-					<MainQuizComplete 
+					<MainQuizComplete
 						quizScore={props.quizScore}
 						setQuizScore={props.setQuizScore}
-						totalScore = {props.totalScore}
-						setTotalScore ={props.setTotalScore}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
 					/>
 				</div>
 			)

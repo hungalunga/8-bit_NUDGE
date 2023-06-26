@@ -1,16 +1,20 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 export default function MainQuizComplete(props) {
-	props.setTotalScore(props.totalScore + props.quizScore);
-	props.setQuizScore(0);
 	console.log("props.totalScore:", props.totalScore);
+
+	function resetClick() {
+		props.setTotalScore(props.totalScore + props.quizScore);
+		props.setQuizScore(0);
+	}
+
 	return (
 		<>
-			<p>xxxQuiz Complete!</p>
+			<p>Quiz Complete! You answered {props.quizScore}% correctly first time!</p>
 			<Link to="/home">
-				<Button label="Home" size="large" />
+				<Button label="Home" onClick={resetClick} size="large" />
 			</Link>
 
-		</>
+		</> 
 	);
 }

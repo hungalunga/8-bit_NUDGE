@@ -79,7 +79,6 @@ export default function AnswerCheckbox({
 		
 		if (answer === correctAnswer) {
 			setResultsValue(1);
-			setQuizScore(quizScore+10);
 
 		} else if (answer === "") {
 			setResultsValue(0);

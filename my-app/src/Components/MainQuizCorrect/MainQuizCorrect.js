@@ -1,7 +1,8 @@
 import { Button } from "primereact/button";
 
 
-export default function MainQuizCorrect({nextMessage, handleNextClick}) {
+export default function MainQuizCorrect({nextMessage, setQuizScore, quizScore, handleNextClick}) {
+
 	return (
 		<>
 			<div className="resultsPageCorrect">
