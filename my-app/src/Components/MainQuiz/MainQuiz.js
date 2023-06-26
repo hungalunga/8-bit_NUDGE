@@ -2,13 +2,14 @@ import MainQuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
 import { useState, useEffect } from "react";
 import { quizQuestions } from "../../QuizData";
 
-export default function MainQuiz() {
+export default function MainQuiz(props) {
 
   const [questionObject, setQuestionObject] = useState({});
   const [questionSet, setQuestionSet] = useState([]);
   const [questionNumber, setQuestionNumber] = useState(1);
   const [incorrectAnswers, setIncorrectAnswers] = useState([]);
   const [resultsValue, setResultsValue] = useState(0);
+  const [quizScore, setQuizScore] = useState(0);
   const numberOfQuestions = quizQuestions.length;
   const completionMessage = "You've completed the quiz!";
   const nextMessage = "➜";
@@ -57,6 +58,8 @@ export default function MainQuiz() {
   return (
     <div data-testid='question-display' className="mainQuiz">
       <MainQuizDisplay 
+        quizScore = {quizScore}
+        setQuizScore = {setQuizScore}
         questionObject={questionObject} 
         getRandomQuestion={getRandomQuestion}
         questionSet = {questionSet}
@@ -69,6 +72,8 @@ export default function MainQuiz() {
         completionMessage = {completionMessage}
         nextMessage = {nextMessage}
         promptQuestionTimer = {false}
+        totalScore = {props.totalScore} 
+        setTotalScore ={props.setTotalScore}
         />
     </div>
   );

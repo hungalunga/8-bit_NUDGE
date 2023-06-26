@@ -49,7 +49,6 @@ export default function PromptQuizDisplay(props) {
 			</div>
 		);
 	} else if (props.resultsValue === 1) {
-		props.setScore(props.score + 100);
 		return (
 			<div className="MainQuiz">
 				<PromptQuizCorrect
@@ -62,12 +61,9 @@ export default function PromptQuizDisplay(props) {
 				  streakCount = {props.streakCount}
 				  setStreakCount = {props.setStreakCount} 
 				/>
-
-
 			</div>
 		);
 	} else if (props.resultsValue === -1) {
-		props.setScore(props.score + 10);
 		return (
 			<div className="MainQuiz">
 				<PromptQuizIncorrect

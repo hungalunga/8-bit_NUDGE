@@ -51,7 +51,9 @@ export default function AnswerCheckbox({
 	questionObject,
 	setWithinTime,
 	withinTime,
-	seconds
+	seconds,
+	quizScore,
+	setQuizScore,
 }) {
 
 	const [answer, setAnswer] = useState("");
@@ -77,16 +79,14 @@ export default function AnswerCheckbox({
 		
 		if (answer === correctAnswer) {
 			setResultsValue(1);
-			//console.log(`Answered correctly!`);
+			setQuizScore(quizScore+10);
+
 		} else if (answer === "") {
 			setResultsValue(0);
-			//console.log("No answer selected");
 		} else {
 			setResultsValue(-1);
-			//console.log("Answered incorrectly");
 			setIncorrectAnswers([
-				...incorrectAnswers, questionObject]
-				// { question, answer: correctAnswer, wrongAnswers, id },
+				...incorrectAnswers, questionObject],
 			);
 		}
 	};

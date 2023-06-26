@@ -82,7 +82,7 @@ const customTheme = {
 };
 
 export default function App() {
-  
+
   const items = [
     {
       label: "Home",
@@ -105,9 +105,10 @@ export default function App() {
     },
   ];
 
-  const [score, setScore] = useState(0);
+
   const [streak, setStreak] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
+  const [totalScore, setTotalScore] = useState(10);
 
 
     return (
@@ -116,9 +117,9 @@ export default function App() {
           <Menubar className="menubar" model={items} />
         </div>
         <Routes>
-          <Route path="/quiz" element={<MainQuiz score = {score} setScore = {setScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
-          <Route path="/home" element={<Dashboard score = {score} streakCount = {streakCount}/>} />
-          <Route path="/nudge-quiz" element={<PromptQuiz score = {score} setScore = {setScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
+          <Route path="/quiz" element={<MainQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
+          <Route path="/home" element={<Dashboard totalScore = {totalScore} setTotalScore ={setTotalScore} streakCount = {streakCount}/>} />
+          <Route path="/nudge-quiz" element={<PromptQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
         </Routes>
       </>
     );

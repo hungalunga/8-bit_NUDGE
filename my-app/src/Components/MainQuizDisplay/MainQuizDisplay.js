@@ -43,7 +43,10 @@ export default function MainQuizDisplay(props) {
 						setIncorrectAnswers={props.setIncorrectAnswers}
 						resultsValue={props.resultsValue}
 						setResultsValue={props.setResultsValue}
+						quizScore={props.quizScore}
+						setQuizScore={props.setQuizScore}
 					/>
+					<p>Score: {props.quizScore}</p>
 				</div>
 			);
 		} else if (props.resultsValue === 1) {
@@ -52,6 +55,10 @@ export default function MainQuizDisplay(props) {
 					<MainQuizCorrect
 						nextMessage={props.nextMessage}
 						handleNextClick={handleNextClick}
+						quizScore={props.quizScore}
+						setQuizScore={props.setQuizScore}
+						totalScore = {props.totalScore}
+						setTotalScore ={props.setTotalScore}
 					/>
 				</div>
 			);
@@ -62,6 +69,10 @@ export default function MainQuizDisplay(props) {
 						questionObject={questionObject}
 						nextMessage={props.nextMessage}
 						handleNextClick={handleNextClick}
+						quizScore={props.quizScore}
+						setQuizScore={props.setQuizScore}
+						totalScore = {props.totalScore}
+						setTotalScore ={props.setTotalScore}
 					/>
 				</div>
 			);
@@ -77,7 +88,12 @@ export default function MainQuizDisplay(props) {
 			console.log("questionObject:", typeof questionObject),
 			(
 				<div className="MainQuiz">
-					<MainQuizComplete />
+					<MainQuizComplete 
+						quizScore={props.quizScore}
+						setQuizScore={props.setQuizScore}
+						totalScore = {props.totalScore}
+						setTotalScore ={props.setTotalScore}
+					/>
 				</div>
 			)
 		);

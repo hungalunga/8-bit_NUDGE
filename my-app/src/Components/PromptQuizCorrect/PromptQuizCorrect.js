@@ -2,7 +2,9 @@ import { Button } from "primereact/button";
 
 export default function PromptQuizCorrect({withinTime, setScore, score}) {
 
+
 	if (withinTime === false) {
+
 		return (
 			<>
 				<div className="resultsPageIncorrect">
@@ -14,7 +16,6 @@ export default function PromptQuizCorrect({withinTime, setScore, score}) {
 		);
 	}
  else {
-	setScore(score + 100)
 	return (
 		<>
 			<div className="resultsPageCorrect">

@@ -44,7 +44,7 @@ export default function Dashboard(props) {
 					</div>
 					<div className="user-scores">
 						<Card title= {`${props.streakCount}`} subTitle= 'Day Streak!'/>
-						<Card title= {`${props.score}`} subTitle=" Points!"/>
+						<Card title= {`${props.totalScore}`} subTitle=" Points!"/>
 						<Card title= "No.4" subTitle=" Ranking"/>
 					</div>
 				</div>
