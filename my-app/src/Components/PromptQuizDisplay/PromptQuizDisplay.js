@@ -56,7 +56,7 @@ export default function PromptQuizDisplay(props) {
 	} else if (props.resultsValue === 1) {
 		return (
 			<div className="MainQuiz">
-				<PromptQuizCorrect withinTime={withinTime} seconds={seconds} />
+				<PromptQuizCorrect withinTime={withinTime} seconds={seconds} late = {props.late}/>
 			</div>
 		);
 	} else if (props.resultsValue === -1) {
@@ -66,6 +66,7 @@ export default function PromptQuizDisplay(props) {
 					questionObject={questionObject}
 					withinTime={withinTime}
 					seconds={seconds}
+					late = {props.late}
 				/>
 			</div>
 		);

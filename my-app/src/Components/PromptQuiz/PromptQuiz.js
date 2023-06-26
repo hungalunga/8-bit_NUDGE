@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PromptQuizDisplay from "../PromptQuizDisplay/PromptQuizDisplay";
 
-export default function PromptRandomGrab() {
+export default function PromptRandomGrab(props) {
 	// choose ten random questions from the main question dataset
 	// store them in an array
 	const [questionObject, setQuestionObject] = useState({});
@@ -41,11 +41,23 @@ export default function PromptRandomGrab() {
 		}
 	}
 
+	const late = props.late
+	let latenessMessage = ""
+	
+	if (late) {
+		latenessMessage = "You're late! You can still answer the question, but you'll get less points."
+	}
+
 	// display the question & answers
 	return (
 		<div>
 			<div data-testid="question-display" className="mainQuiz">
 				{/* <h1>Question {questionNumber}</h1> */}
+				<div className="latenessMessage">
+				<h3>
+					{latenessMessage}
+				</h3>
+				</div>
 				<PromptQuizDisplay
 					questionObject={questionObject}
 					questionNumber={questionNumber}
@@ -56,6 +68,7 @@ export default function PromptRandomGrab() {
 					promptQuestionTimer={true}
 					incorrectAnswers={incorrectAnswers}
 					setIncorrectAnswers={setIncorrectAnswers}
+					late={late}
 				/>
 			</div>
 			{/* <PromptQuestionTimer/> */}

@@ -8,7 +8,7 @@ export default function PromptNotification() {
 
   const createNotification = (title, body) => { //function that creates the notification with the title and body
     const inTimeRedirect = "http://localhost:3000/nudge-quiz"
-    const outOfTimeRedirect = "http://www.google.com"
+    const outOfTimeRedirect = "http://localhost:3000/nudge-quiz-late"
     let redirect = inTimeRedirect;
     const options = {
       body: body,
