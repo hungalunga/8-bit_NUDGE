@@ -37,11 +37,11 @@ export default function Dashboard() {
 				<div className="dashboard-top">
 					<div className="welcome-container">
 						<Avatar label={firstChar} size="xlarge" className="circleAvatar" />
-						<div className="welcome">
-							<h1 className='welcome-text'>Welcome Back,</h1>
-							<h2 id="username">ashwantspizza!</h2>
-						</div>
-					</div>
+						<div className ="welcome">
+						<h1 className="welcome-text">Welcome Back,</h1>
+                        <h2 id="username">ashwantspizza!</h2>
+                        </div>
+                    </div>
 					<div className="user-scores">
 						<Card title= "3" subTitle=" Day Streak!"/>
 						<Card title= "250" subTitle=" XP"/>

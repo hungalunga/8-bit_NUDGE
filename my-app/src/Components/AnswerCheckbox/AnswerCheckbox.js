@@ -95,7 +95,7 @@ export default function AnswerCheckbox({
 		<div className="answerBox">
 			{allAnswers.map((answerOption, index) => (
 				<Button
-					severity="success"
+					severity="secondary"
 					className={
 						answer === answerOption ? "answerButton selected" : "answerButton"
 					}
