@@ -7267,7 +7267,8 @@ p {
 .p-avatar.p-avatar-xl {
 	width: 6rem;
 	height: 6rem;
-	font-size: 2rem;
+	font-size: 3rem;
+	color: #39207E;
 }
 .p-avatar.p-avatar-xl .p-avatar-icon {
 	font-size: 2rem;
