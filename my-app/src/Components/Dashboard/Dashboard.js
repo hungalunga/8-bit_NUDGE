@@ -10,7 +10,7 @@ import "./Dashboard.css";
 import nudgelogo from "../../images/nudgelogo.png";
 import "primeicons/primeicons.css";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 	const [firstChar, setFirstChar] = useState('');
 
 
@@ -38,7 +38,7 @@ export default function Dashboard() {
 					<div className="welcome-container">
 						<Avatar label={firstChar} size="xlarge" className="circleAvatar" />
 						<div className ="welcome">
-						<h1 className="welcome-text">Welcome Back,</h1>
+						<h1 className="welcome-text">Welcome back,</h1>
                         <h2 id="username">ashwantspizza!</h2>
                         </div>
                     </div>

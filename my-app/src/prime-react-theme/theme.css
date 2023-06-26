@@ -55,32 +55,32 @@
 
 /* font sizing */
 h1 {
-	font-size: 1.5rem;
+	font-size: 2.75rem;
 	font-weight: 600;
 	color: #39207e;
 }
 
-.welcome-text {
-	font-size: 1.5rem;
-	font-weight: 400;
-	color: #7962C5;
-}
-
 h2 {
-	font-size: 1.75rem;
-	font-weight: 700;
+	font-size: 2.25rem;
+	font-weight: 600;
 	color: #39207e;
 }
 h3 { 
-	font-size: 1.5rem;
+	font-size: 1.75rem;
 	font-weight: 500;
 	color: #39207e;
 }
 
 p {
-	font-size: 1.15rem;
+	font-size: 1.5rem;
 	font-weight: 400;
 	color: #39207e;
+}
+
+.welcome-text {
+	font-size: 1.75rem;
+	font-weight: 400;
+	color: #7962C5;
 }
 
 .p-component {
@@ -5014,8 +5014,8 @@ p {
 	height: 300px;
 }
 
-.correct-XP {
-	margin-left: 80px;
+.correct-XP-card {
+	margin-left: 185px;
 	background-color: #F7F7F7;
 }
 
