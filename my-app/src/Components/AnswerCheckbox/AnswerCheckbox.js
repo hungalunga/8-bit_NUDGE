@@ -104,7 +104,7 @@ export default function AnswerCheckbox({
 					onClick={() => onAnswerChange(answerOption)}
 				/>
 			))}
-			<Button label="Confirm" className="" onClick={handleClick} />
+			<Button label="Confirm" onClick={handleClick} />
 		</div>
 	);
 }

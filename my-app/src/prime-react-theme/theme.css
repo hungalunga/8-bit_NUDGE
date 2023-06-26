@@ -6094,7 +6094,7 @@ p {
 	margin: 0;
 	padding: 0.75rem 1rem;
 	color: #39207e;
-	background: #f7f7f7;
+	background: #d9d1f3;
 	font-weight: 600;
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
@@ -6104,11 +6104,8 @@ p {
 	margin: 4px 0;
 }
 .p-menubar {
-	padding: 0.5rem;
-	background: #eae8f3;
+	background: #d9d1f3;
 	color: #39207e;
-	border: 2px solid #eae8f3;
-	border-radius: 6px;
 }
 .p-menubar .p-menuitem-link {
 	padding: 0.75rem 1rem;
