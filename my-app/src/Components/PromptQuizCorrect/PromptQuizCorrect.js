@@ -32,7 +32,7 @@ export default function PromptQuizCorrect({withinTime,late }) {
 			
 		</>
 	)}
-	else {
+	else { // this else is unnecessary now but the logic still works for if you arrive late to the nudge quiz and get the question right
 		return (
 			<>
 				<div className="resultsPageCorrect">

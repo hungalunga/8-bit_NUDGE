@@ -44,20 +44,14 @@ export default function PromptRandomGrab(props) {
 	const late = props.late
 	let latenessMessage = ""
 	
-	if (late) {
-		latenessMessage = "You're late! You can still answer the question, but you'll get less points."
-	}
+	
 
 	// display the question & answers
-	return (
+	if (!late) {return (
 		<div>
 			<div data-testid="question-display" className="mainQuiz">
 				{/* <h1>Question {questionNumber}</h1> */}
-				<div className="latenessMessage">
-				<h3>
-					{latenessMessage}
-				</h3>
-				</div>
+			
 				<PromptQuizDisplay
 					questionObject={questionObject}
 					questionNumber={questionNumber}
@@ -73,5 +67,14 @@ export default function PromptRandomGrab(props) {
 			</div>
 			{/* <PromptQuestionTimer/> */}
 		</div>
-	);
-}
+	);}
+	else {
+		return (
+			<div>
+				<h2>
+					You missed your daily nudge! You can still keep your streak if you answer the daily quiz.
+				</h2>
+			</div>
+		)
+}}
+
