@@ -31,7 +31,7 @@ export default function MainQuizDisplay(props) {
 
     if (result) {
       // If the user clicks OK, redirect them to the desired page
-      window.location.href = "http://localhost:3000/home"; // Replace with the desired URL
+      window.location.href = "/home"; // Replace with the desired URL
     } else {
       // If the user clicks Cancel, stay on the current page
       // Do nothing or perform any other desired action
