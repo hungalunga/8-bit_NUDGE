@@ -108,6 +108,9 @@ export default function App() {
         <div className="App"> 
           <Menubar className="menubar" model={items} />
         </div>
+        <div>
+          <PromptNotification/> 
+        </div>  
         <Routes>
           <Route path="/quiz" element={<MainQuiz />} />
           <Route path="/home" element={<Dashboard />} />

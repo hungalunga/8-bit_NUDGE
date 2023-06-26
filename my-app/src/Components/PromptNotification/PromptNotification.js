@@ -7,11 +7,17 @@ export default function PromptNotification() {
   const buttonRef = useRef(null);
 
   const createNotification = (title, body) => { //function that creates the notification with the title and body
+    const inTimeRedirect = "http://localhost:3000/nudge-quiz"
+    const outOfTimeRedirect = "http://www.google.com"
+    let redirect = inTimeRedirect;
     const options = {
       body: body,
       icon: logoIcon, //this shows the wizard
       badge: logoIcon, //this shows the wizard
     };
+    setTimeout(() => {
+      redirect = outOfTimeRedirect},
+      5000)
 
     if ( //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
       "Notification" in window &&
@@ -19,8 +25,10 @@ export default function PromptNotification() {
        showTime >= 9 && showTime <= 17
        ){
       const notification = new Notification(title, options);
+      
+      
       notification.addEventListener("click", function (event) {
-        window.open("http://localhost:3000/nudge-quiz"); 
+        window.open(redirect); 
       });
     } else if (
       "Notification" in window &&
@@ -34,7 +42,7 @@ export default function PromptNotification() {
           const notification = new Notification(title, options);
 
           notification.addEventListener("click", function (event) {
-            window.open("http://localhost:3000/nudge-quiz");;
+            window.open(redirect);;
           });
         }
       });
