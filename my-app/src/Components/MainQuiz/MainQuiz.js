@@ -77,6 +77,10 @@ export default function MainQuiz(props) {
           promptQuestionTimer = {false}
           totalScore = {props.totalScore} 
           setTotalScore ={props.setTotalScore}
+          setStreak = {props.setStreak}
+          streak = {props.streak}
+          setStreakCount = {props.setStreakCount}
+          streakCount = {props.streakCount}
           />
       </div>
     );

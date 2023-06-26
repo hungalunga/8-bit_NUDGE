@@ -8,88 +8,102 @@ import { Card } from "primereact/card";
 import { Link } from "react-router-dom";
 
 export default function PromptQuizDisplay(props) {
-	const [withinTime, setWithinTime] = useState(true);
-	const [seconds, setSeconds] = useState(60);
+  const [withinTime, setWithinTime] = useState(true);
+  const [seconds, setSeconds] = useState(60);
 
-	const questionObject = props.questionObject; // to pass down to AnswerCheckbox
-	const question = questionObject.question; // to grab the question to display
+  const questionObject = props.questionObject; // to pass down to AnswerCheckbox
+  const question = questionObject.question; // to grab the question to display
 
-	const value = (seconds / 60) * 100;
+  const value = (seconds / 60) * 100;
 
-	// Sets the new results, new question when Next is pressed
+  function exitAlert() {
+    // Display a confirmation dialog
+    var result = window.confirm("Do you want to leave this page?");
 
-	// if the questionObject is empty, display loading
-	if (props.questionObject && Object.keys(props.questionObject).length === 0) {
-		return <div>loading...</div>;
-	}
+    if (result) {
+      // If the user clicks OK, redirect them to the desired page
+      window.location.href = "http://localhost:3000/home"; // Replace with the desired URL
+    } else {
+      // If the user clicks Cancel, stay on the current page
+      // Do nothing or perform any other desired action
+    }
+  }
 
-	if (typeof props.questionObject === "object" && props.resultsValue === 0) {
-		return (
-			<>
-			{/* need to write functionality so prompt occurs asking 'are you sure/you'll lose your progress' when X is clicked */}
-			<div className="exit-quiz">
-				<Link to="/home">
-				X</Link>
-			</div>
+  // Sets the new results, new question when Next is pressed
 
-				<div className="mainQuiz">
-					<Card className="big-card">{question}</Card>
-					{/*<p className="question"></p>*/}
-					{props.promptQuestionTimer && (
-						<PromptQuestionTimer seconds={seconds} setSeconds={setSeconds} />
-					)}
-					<ProgressBar value={value}></ProgressBar>
-					<AnswerCheckbox
-						questionObject={questionObject}
-						wrongAnswers={questionObject.wrong_answers}
-						id={questionObject.id}
-						question={questionObject.question}
-						correctAnswer={questionObject.answer}
-						questionNumber={props.questionNumber}
-						setQuestionNumber={props.setQuestionNumber}
-						// ^^send questionNumber props down to re-render after each answer
-						resultsValue={props.resultsValue}
-						setResultsValue={props.setResultsValue}
-						incorrectAnswers={props.incorrectAnswers}
-						setIncorrectAnswers={props.setIncorrectAnswers}
-						setWithinTime={setWithinTime}
-						withinTime={withinTime}
-						seconds={seconds}
-					/>
-				</div>
-			</>
-		);
-	} else if (props.resultsValue === 1) {
-		return (
-			<div className="MainQuiz">
-				<PromptQuizCorrect
-					withinTime={withinTime}
-					seconds={seconds}
-					streak={props.streak}
-					setStreak={props.setStreak}
-					totalScore={props.totalScore}
-					setTotalScore={props.setTotalScore}
-					streakCount={props.streakCount}
-					setStreakCount={props.setStreakCount}
-				/>
-			</div>
-		);
-	} else if (props.resultsValue === -1) {
-		return (
-			<div className="MainQuiz">
-				<PromptQuizIncorrect
-					questionObject={questionObject}
-					withinTime={withinTime}
-					seconds={seconds}
-					streak={props.streak}
-					setStreak={props.setStreak}
-					totalScore={props.totalScore}
-					setTotalScore={props.setTotalScore}
-					streakCount={props.streakCount}
-					setStreakCount={props.setStreakCount}
-				/>
-			</div>
-		);
-	} else {
-	}
+  // if the questionObject is empty, display loading
+  if (props.questionObject && Object.keys(props.questionObject).length === 0) {
+    return <div>loading...</div>;
+  }
+
+  if (typeof props.questionObject === "object" && props.resultsValue === 0) {
+    return (
+      <>
+        {/* need to write functionality so prompt occurs asking 'are you sure/you'll lose your progress' when X is clicked */}
+        <div className="exit-quiz">
+          <button className="exit-quiz-button" onClick={exitAlert}>
+            X
+          </button>
+        </div>
+
+        <div className="mainQuiz">
+          <Card className="big-card">{question}</Card>
+          {/*<p className="question"></p>*/}
+          {props.promptQuestionTimer && (
+            <PromptQuestionTimer seconds={seconds} setSeconds={setSeconds} />
+          )}
+          <ProgressBar value={value}></ProgressBar>
+          <AnswerCheckbox
+            questionObject={questionObject}
+            wrongAnswers={questionObject.wrong_answers}
+            id={questionObject.id}
+            question={questionObject.question}
+            correctAnswer={questionObject.answer}
+            questionNumber={props.questionNumber}
+            setQuestionNumber={props.setQuestionNumber}
+            // ^^send questionNumber props down to re-render after each answer
+            resultsValue={props.resultsValue}
+            setResultsValue={props.setResultsValue}
+            incorrectAnswers={props.incorrectAnswers}
+            setIncorrectAnswers={props.setIncorrectAnswers}
+            setWithinTime={setWithinTime}
+            withinTime={withinTime}
+            seconds={seconds}
+          />
+        </div>
+      </>
+    );
+  } else if (props.resultsValue === 1) {
+    return (
+      <div className="MainQuiz">
+        <PromptQuizCorrect
+          withinTime={withinTime}
+          seconds={seconds}
+          streak={props.streak}
+          setStreak={props.setStreak}
+          totalScore={props.totalScore}
+          setTotalScore={props.setTotalScore}
+          streakCount={props.streakCount}
+          setStreakCount={props.setStreakCount}
+        />
+      </div>
+    );
+  } else if (props.resultsValue === -1) {
+    return (
+      <div className="MainQuiz">
+        <PromptQuizIncorrect
+          questionObject={questionObject}
+          withinTime={withinTime}
+          seconds={seconds}
+          streak={props.streak}
+          setStreak={props.setStreak}
+          totalScore={props.totalScore}
+          setTotalScore={props.setTotalScore}
+          streakCount={props.streakCount}
+          setStreakCount={props.setStreakCount}
+        />
+      </div>
+    );
+  } else {
+  }
 }

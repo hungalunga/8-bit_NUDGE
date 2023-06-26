@@ -5,8 +5,16 @@ export default function PromptQuizCorrect({
 	withinTime,
 	setTotalScore,
 	totalScore,
+	streak,
+	setStreak,
+	streakCount,
+	setStreakCount
 }) {
 	function addScore() {
+		if (streak === false) {
+			setStreakCount(streakCount+1)
+			setStreak(true) 
+		}
 		if (withinTime === false) {
 			setTotalScore(totalScore + 100);
 		} else {

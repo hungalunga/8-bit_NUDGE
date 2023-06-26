@@ -5,7 +5,10 @@ export default function MainQuizComplete(props) {
 
 	function resetClick() {
 		props.setTotalScore(props.totalScore + props.quizScore);
-
+		if (props.streak === false) {
+			props.setStreakCount(props.streakCount+1)
+			props.setStreak(true) 
+		}
 	}
 
 	return (
