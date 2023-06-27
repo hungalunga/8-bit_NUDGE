@@ -49,8 +49,9 @@ export default function Dashboard(props) {
         const { data: userProfile } = await props.supabase
           .from("profiles")
           .select("*")
+          .eq("id", user.id)
         console.log(userProfile);
-        // setUserProfile(userProfile);
+        setUserProfile(userProfile);
       }
     }
     // console.log('user is null');
