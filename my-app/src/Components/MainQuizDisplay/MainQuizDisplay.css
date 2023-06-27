@@ -38,3 +38,6 @@
     font-size: calc(10px + 3vmin);
 }
   
+.exit-quiz-button {
+  border: none;
+}

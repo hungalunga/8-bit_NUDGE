@@ -2,146 +2,124 @@ import MainQuizComplete from "../MainQuizComplete/MainQuizComplete";
 import MainQuizIncorrect from "../MainQuizIncorrect/MainQuizIncorrect";
 import MainQuizCorrect from "../MainQuizCorrect/MainQuizCorrect";
 import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
-import "./MainQuizDisplay.css";
 import { ProgressBar } from "primereact/progressbar";
-
 import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
+import "./MainQuizDisplay.css";
+import "../MainQuiz/MainQuiz.css";
+
 
 export default function MainQuizDisplay(props) {
 	const progressValue = (props.questionNumber / 3) * 100;
 	// will need to change progressValue to be /10 when we have 10 questions
-	console.log("progressValue:", progressValue);
 
-  // Sets the new results, new question when Next is pressed
-  function handleNextClick() {
-    props.setResultsValue(0);
-    props.setQuestionNumber(props.questionNumber + 1);
-    props.getRandomQuestion(props.questionSet);
+	// Sets the new results, new question when Next is pressed
+	function handleNextClick() {
+		props.setResultsValue(0);
+		props.setQuestionNumber(props.questionNumber + 1);
+		props.getRandomQuestion(props.questionSet);
 
-    // if questionNumber is =< 3 then run this:
-    // WILL NEED TO CHANGE TO 10
-    if (props.questionNumber <= 3) {
-      // if resultsValue is 1, add 10 to quizScore
-      if (props.resultsValue === 1) {
-        props.setQuizScore(props.quizScore + 10);
-      }
-    }
-  }
+		// if questionNumber is =< 3 then run this:
+		// WILL NEED TO CHANGE TO 10
+		if (props.questionNumber <= 3) {
+			// if resultsValue is 1, add 10 to quizScore
+			if (props.resultsValue === 1) {
+				props.setQuizScore(props.quizScore + 10);
+			}
+		}
+	}
 
-  function exitAlert() {
-    // Display a confirmation dialog
-    var result = window.confirm("Do you want to leave this page?");
+	// if the questionObject is empty, display loading
+	if (props.questionObject && Object.keys(props.questionObject).length === 0) {
+		return <div>loading...</div>;
+	}
 
-    if (result) {
-      // If the user clicks OK, redirect them to the desired page
-      window.location.href = "/home"; // Replace with the desired URL
-    } else {
-      // If the user clicks Cancel, stay on the current page
-      // Do nothing or perform any other desired action
-    }
-  }
+	if (props.questionObject) {
+		console.log("correct_answer", props.questionObject.answer);
+		console.log("score", props.quizScore);
+		console.log(props.questionObject);
+		const questionObject = props.questionObject;
 
-  // if the questionObject is empty, display loading
-  if (props.questionObject && Object.keys(props.questionObject).length === 0) {
-    return <div>loading...</div>;
-  }
-
-  if (props.questionObject) {
-    // console.log("questionObject:", typeof questionObject);
-    // console.log("question", question);
-    console.log("correct_answer", props.questionObject.answer);
-    console.log(props.questionObject);
-    const questionObject = props.questionObject;
-
-    if (props.resultsValue === 0) {
-      return (
+		if (props.resultsValue === 0) {
+			return (
 				<>
-	        <>
-          <div className="exit-quiz">
-            <button className="exit-quiz-button" onClick={exitAlert}>
-              X
-            </button>
-          </div>
-          <div className="mainQuiz">
-						<ProgressBar value={progressValue}></ProgressBar>
-	            <MainQuizQuestion
-	              questionObject={questionObject}
-	              wrong_answers={questionObject.wrong_answers}
-	              id={questionObject.id}
-	              question={questionObject.question}
-	              correct_answer={questionObject.answer}
-	              questionNumber={props.questionNumber}
-	              setQuestionNumber={props.setQuestionNumber}
-	              incorrectAnswers={props.incorrectAnswers}
-	              setIncorrectAnswers={props.setIncorrectAnswers}
-	              resultsValue={props.resultsValue}
-	              setResultsValue={props.setResultsValue}
-	              quizScore={props.quizScore}
-              setQuizScore={props.setQuizScore}
-            />
-						<ExitQuizButton />
-	            <p>Score: {props.quizScore}</p>
-          </div>
+					<div className="main-quiz-page">
+							<ProgressBar className="quiz-progress-bar" value={progressValue}></ProgressBar>
+							<MainQuizQuestion
+								questionObject={questionObject}
+								wrong_answers={questionObject.wrong_answers}
+								id={questionObject.id}
+								question={questionObject.question}
+								correct_answer={questionObject.answer}
+								questionNumber={props.questionNumber}
+								setQuestionNumber={props.setQuestionNumber}
+								incorrectAnswers={props.incorrectAnswers}
+								setIncorrectAnswers={props.setIncorrectAnswers}
+								resultsValue={props.resultsValue}
+								setResultsValue={props.setResultsValue}
+								quizScore={props.quizScore}
+								setQuizScore={props.setQuizScore}
+							/>
+					</div>
 				</>
-        </>
-      );
-    } else if (props.resultsValue === 1) {
-      return (
-        <div className="MainQuiz">
-					<ProgressBar value={progressValue}></ProgressBar>
-          <MainQuizCorrect
-            nextMessage={props.nextMessage}
-            handleNextClick={handleNextClick}
-            quizScore={props.quizScore}
-            setQuizScore={props.setQuizScore}
-            totalScore={props.totalScore}
-            setTotalScore={props.setTotalScore}
-          />
-					<ExitQuizButton	/>
-        </div>
-      );
-    } else if (props.resultsValue === -1) {
+			);
+		} else if (props.resultsValue === 1) {
+			return (
+				<div className="MainQuiz">
+					<ProgressBar
+						className="quiz-progress-bar"
+						value={progressValue}
+					></ProgressBar>
+					<MainQuizCorrect
+						nextMessage={props.nextMessage}
+						handleNextClick={handleNextClick}
+						quizScore={props.quizScore}
+						setQuizScore={props.setQuizScore}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
+					/>
+				</div>
+			);
+		} else if (props.resultsValue === -1) {
 			//props.setQuestionNumber(props.questionNumber - 1);
-      return (
-        <div className="MainQuiz">
-					<ProgressBar value={progressValue}></ProgressBar>
-          <MainQuizIncorrect
-            questionObject={questionObject}
-            nextMessage={props.nextMessage}
-            handleNextClick={handleNextClick}
-            quizScore={props.quizScore}
-            setQuizScore={props.setQuizScore}
-            totalScore={props.totalScore}
-            setTotalScore={props.setTotalScore}
-          />
-					<ExitQuizButton />
-        </div>
-      );
-    } else {
-      return (
-        <div className="error">
-          <p>ERROR didnt recieve a value of either 1,0 or -1</p>
-        </div>
-      );
-    }
-  } else {
-    return (
-      console.log("questionObject:", typeof questionObject),
-      (
-        <div className="MainQuiz">
-          <MainQuizComplete
-            quizScore={props.quizScore}
-            setQuizScore={props.setQuizScore}
-            totalScore={props.totalScore}
-            setTotalScore={props.setTotalScore}
-            setStreak={props.setStreak}
-            streak={props.streak}
-            setStreakCount={props.setStreakCount}
-            streakCount={props.streakCount}
-          />
-        </div>
-      )
-		
-    );
-  }
+			return (
+				<div className="MainQuiz">
+					<ProgressBar
+						className="quiz-progress-bar"
+						value={progressValue}
+					></ProgressBar>
+					<MainQuizIncorrect
+						questionObject={questionObject}
+						nextMessage={props.nextMessage}
+						handleNextClick={handleNextClick}
+						quizScore={props.quizScore}
+						setQuizScore={props.setQuizScore}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
+					/>
+				</div>
+			);
+		} else {
+			return (
+				<div className="error">
+					<p>ERROR didnt recieve a value of either 1,0 or -1</p>
+				</div>
+			);
+		}
+	} else {
+		return (
+			// console.log("questionObject:", typeof questionObject),
+			<div className="MainQuiz">
+				<MainQuizComplete
+					quizScore={props.quizScore}
+					setQuizScore={props.setQuizScore}
+					totalScore={props.totalScore}
+					setTotalScore={props.setTotalScore}
+					setStreak={props.setStreak}
+					streak={props.streak}
+					setStreakCount={props.setStreakCount}
+					streakCount={props.streakCount}
+				/>
+			</div>
+		);
+	}
 }

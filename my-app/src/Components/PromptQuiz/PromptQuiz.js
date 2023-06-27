@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import PromptQuizDisplay from "../PromptQuizDisplay/PromptQuizDisplay";
+import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
+import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuiz(props) {
 	// choose ten random questions from the main question dataset
@@ -30,7 +32,7 @@ export default function PromptQuiz(props) {
 			getOneQuestion(data);
 		}
 		getQuestions();
-	// eslint-disable-next-line react-hooks/exhaustive-deps
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [questionNumber]);
 
 	function getOneQuestion(data) {
@@ -42,25 +44,22 @@ export default function PromptQuiz(props) {
 		}
 	}
 
-	const late = props.late
-
-
+	const late = props.late;
 
 	const [countdownNumber, setCountdownNumber] = useState(5);
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
 			setCountdownNumber((prevCountdownNum) =>
-			prevCountdownNum > 0 ? prevCountdownNum - 1 : 0
+				prevCountdownNum > 0 ? prevCountdownNum - 1 : 0
 			);
 		}, 1000);
 		return () => {
 			clearInterval(intervalId);
 		};
-	},);
+	});
 
-	if (countdownNumber > 0) {
-
+	if (countdownNumber > 0 && !late) {
 		return (
 			<div className="mainQuiz">
 				<h2>Woohoo, you made it!</h2>
@@ -70,52 +69,55 @@ export default function PromptQuiz(props) {
 		);
 	}
 
-	else if (late === false) {
+	else if (late) {
 		return (
 			<div>
 				<h2>
-					You missed your daily nudge! You can still keep your streak if you answer the daily quiz.
+					Sorry, you missed your daily nudge! But you can still keep your streak if you answer the daily quiz.
 				</h2>
-			</div>
-		)
-}
-	// display the question & answers
-	else {
-		return (
-			<div>
-				<div data-testid="question-display" className="mainQuiz">
-					{/* <h1>Question {questionNumber}</h1> */}
-					<PromptQuizDisplay
-						streak={props.streak}
-						setStreak={props.setStreak}
-						totalScore={props.totalScore}
-						setTotalScore={props.setTotalScore}
-						streakCount={props.streakCount}
-						setStreakCount={props.setStreakCount}
-						questionObject={questionObject}
-						questionNumber={questionNumber}
-						setQuestionNumber={setQuestionNumber}
-						resultsValue={resultsValue}
-						setResultsValue={setResultsValue}
-						completionMessage={completionMessage}
-						promptQuestionTimer={true}
-						incorrectAnswers={incorrectAnswers}
-						setIncorrectAnswers={setIncorrectAnswers}
-					/>
-				</div>
-				{/* <PromptQuestionTimer/> */}
 			</div>
 		);
 	}
+	// display the question & answers
+	else {
+		return (
+			<>
+				{" "}
+				<div className="exit-quiz">
+					<ExitQuizButton />
+				</div>
+				<div className="main-quiz-page">
+					<div data-testid="question-display" className="mainQuiz">
+						{/* <h1>Question {questionNumber}</h1> */}
+						<PromptQuizDisplay
+							streak={props.streak}
+							setStreak={props.setStreak}
+							totalScore={props.totalScore}
+							setTotalScore={props.setTotalScore}
+							streakCount={props.streakCount}
+							setStreakCount={props.setStreakCount}
+							questionObject={questionObject}
+							questionNumber={questionNumber}
+							setQuestionNumber={setQuestionNumber}
+							resultsValue={resultsValue}
+							setResultsValue={setResultsValue}
+							completionMessage={completionMessage}
+							promptQuestionTimer={true}
+							incorrectAnswers={incorrectAnswers}
+							setIncorrectAnswers={setIncorrectAnswers}
+						/>
+					</div>
+				</div>
+			</>
+		);
+	}
 }
-	
-
 
 // if (!late) {return (
 // 	<div>
 // 		<div data-testid="question-display" className="mainQuiz">
 // 			{/* <h1>Question {questionNumber}</h1> */}
-		
+
 // 			<PromptQuizDisplay
 // 				questionObject={questionObject}
 // 				questionNumber={questionNumber}
