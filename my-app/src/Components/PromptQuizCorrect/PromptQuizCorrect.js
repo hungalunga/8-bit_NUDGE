@@ -1,5 +1,6 @@
 import { Button } from "primereact/button";
 import Confetti from 'react-confetti'
+import WebsiteEmbed from "../WebsiteEmbed/WebsiteEmbed";
 
 
 export default function PromptQuizCorrect({withinTime,late }) {
@@ -18,6 +19,7 @@ export default function PromptQuizCorrect({withinTime,late }) {
 				</div>
 				<Button onClick={handleClick}>Finished!</Button>
 				{/* <Confetti	/> */}
+				<WebsiteEmbed />
 			</>
 		);
 	}
@@ -30,6 +32,7 @@ export default function PromptQuizCorrect({withinTime,late }) {
 			<Button onClick={handleClick}>Finished!</Button>
 			<Confetti	/>
 			
+			<WebsiteEmbed />
 		</>
 	)}
 	else { // this else is unnecessary now but the logic still works for if you arrive late to the nudge quiz and get the question right
