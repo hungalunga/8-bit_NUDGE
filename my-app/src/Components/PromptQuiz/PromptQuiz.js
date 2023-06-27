@@ -42,9 +42,8 @@ export default function PromptQuiz(props) {
 	}
 
 	const late = props.late
-	let latenessMessage = ""
-	
-	
+
+
 
 	const [countdownNumber, setCountdownNumber] = useState(5);
 
@@ -57,7 +56,7 @@ export default function PromptQuiz(props) {
 		return () => {
 			clearInterval(intervalId);
 		};
-	}, []);
+	},);
 
 	if (countdownNumber > 0) {
 

@@ -17,7 +17,7 @@ export default function PromptQuestionTimer({ seconds, setSeconds }) {
 		return () => {
 			clearInterval(intervalId);
 		};
-	}, []);
+	},);
 
 	const minutes = Math.floor(seconds / 60);
 	const timerValue = `${minutes} : ${seconds % 60}`;
