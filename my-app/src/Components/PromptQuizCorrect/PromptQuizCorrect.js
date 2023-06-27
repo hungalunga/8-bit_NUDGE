@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
-
+import Confetti from 'react-confetti'
 export default function PromptQuizCorrect({
 	withinTime,
 	setTotalScore,
@@ -38,6 +38,7 @@ export default function PromptQuizCorrect({
 		return (
 			<>
 				<div className="resultsPageCorrect">
+				<Confetti></Confetti>
 					<p>Correct and in time!</p>
 					<p>2X Time Bonus!</p>
 					<p>You've gained +200 points!</p>

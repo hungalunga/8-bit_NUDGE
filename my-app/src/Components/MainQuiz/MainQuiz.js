@@ -29,7 +29,6 @@ export default function MainQuiz(props) {
   getQuestions();
   }, []);
 
-
   function getRandomQuestion(data) {
     //select random question
     const DbQuestion = data[0];

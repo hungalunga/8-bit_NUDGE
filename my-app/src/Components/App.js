@@ -104,12 +104,10 @@ export default function App() {
       },
     },
   ];
-
-
+  
   const [streak, setStreak] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
   const [totalScore, setTotalScore] = useState(10);
-
 
     return (
       <>
