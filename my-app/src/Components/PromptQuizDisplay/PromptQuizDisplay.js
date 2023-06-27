@@ -5,12 +5,8 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
-import { ProgressBar } from "primereact/progressbar";
-import { Card } from "primereact/card";
-import { Button } from "primereact/button";
 import TextToSpeech from "../TextToSpeech/TextToSpeech";
 import "../PromptQuiz/PromptQuiz.css";
-
 
 export default function PromptQuizDisplay(props) {
 	const [withinTime, setWithinTime] = useState(true);
