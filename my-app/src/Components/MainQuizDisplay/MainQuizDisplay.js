@@ -4,7 +4,7 @@ import MainQuizCorrect from "../MainQuizCorrect/MainQuizCorrect";
 import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
 import "./MainQuizDisplay.css";
 import { ProgressBar } from "primereact/progressbar";
-import { Button } from "primereact/button";
+
 
 import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 

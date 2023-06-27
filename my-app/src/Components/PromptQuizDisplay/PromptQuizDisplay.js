@@ -5,7 +5,7 @@ import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
 import { ProgressBar } from "primereact/progressbar";
 import { Card } from "primereact/card";
-import { Link } from "react-router-dom";
+
 
 export default function PromptQuizDisplay(props) {
   const [withinTime, setWithinTime] = useState(true);
