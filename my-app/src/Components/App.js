@@ -114,7 +114,7 @@ export default function App() {
           <Menubar className="menubar" model={items} />
         </div>
         <div>
-          <PromptNotification/> 
+          <PromptNotification />
         </div>  
         <Routes>
           <Route path="/quiz" element={<MainQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
