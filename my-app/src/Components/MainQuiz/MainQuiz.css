@@ -1,0 +1,15 @@
+.main-quiz-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height:100vh;
+    width: 100vw;
+    background-color: #f7f7f7;
+}
+
+.exit-quiz {
+    padding: 15px;
+    align-self: flex-start;
+    justify-self: flex-start;
+}

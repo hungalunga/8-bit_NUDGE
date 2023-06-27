@@ -24,7 +24,7 @@ export default function PromptQuestionTimer({ seconds, setSeconds }) {
   console.log(seconds);
 	return (
 		<div>
-			<h1>{timerValue}</h1>
+			<h3>{timerValue}</h3>
 		</div>
 	);
 }
