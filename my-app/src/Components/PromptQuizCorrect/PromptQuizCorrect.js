@@ -1,6 +1,8 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import Confetti from 'react-confetti'
+import WebsiteEmbed from "../WebsiteEmbed/WebsiteEmbed";
+
 export default function PromptQuizCorrect({
 	withinTime,
 	setTotalScore,
@@ -32,6 +34,7 @@ export default function PromptQuizCorrect({
 				<Link to="/home">
 					<Button onClick={addScore}>Finished!</Button>
 				</Link>
+				<WebsiteEmbed />
 			</>
 		);
 	} else {
@@ -46,6 +49,7 @@ export default function PromptQuizCorrect({
 				<Link to="/home">
 					<Button onClick={addScore}>Finished!</Button>
 				</Link>
+				<WebsiteEmbed />
 			</>
 		);
 	}

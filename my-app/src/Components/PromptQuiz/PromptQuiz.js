@@ -59,8 +59,7 @@ export default function PromptQuiz(props) {
 		};
 	},);
 
-	if (countdownNumber > 0) {
-
+	if (countdownNumber > 0 && !late) {
 		return (
 			<div className="mainQuiz">
 				<h2>Woohoo, you made it!</h2>
@@ -70,11 +69,11 @@ export default function PromptQuiz(props) {
 		);
 	}
 
-	else if (late === false) {
+	else if (late) {
 		return (
 			<div>
 				<h2>
-					You missed your daily nudge! You can still keep your streak if you answer the daily quiz.
+					Sorry, you missed your daily nudge! But you can still keep your streak if you answer the daily quiz.
 				</h2>
 			</div>
 		)
