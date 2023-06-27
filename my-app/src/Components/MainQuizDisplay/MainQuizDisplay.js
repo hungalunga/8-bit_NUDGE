@@ -2,16 +2,14 @@ import MainQuizComplete from "../MainQuizComplete/MainQuizComplete";
 import MainQuizIncorrect from "../MainQuizIncorrect/MainQuizIncorrect";
 import MainQuizCorrect from "../MainQuizCorrect/MainQuizCorrect";
 import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
-import "./MainQuizDisplay.css";
 import { ProgressBar } from "primereact/progressbar";
+import "./MainQuizDisplay.css";
+import "../MainQuiz/MainQuiz.css";
 
-
-import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 
 export default function MainQuizDisplay(props) {
 	const progressValue = (props.questionNumber / 3) * 100;
 	// will need to change progressValue to be /10 when we have 10 questions
-	console.log("progressValue:", progressValue);
 
   // Sets the new results, new question when Next is pressed
   function handleNextClick() {
@@ -29,18 +27,7 @@ export default function MainQuizDisplay(props) {
     }
   }
 
-  function exitAlert() {
-    // Display a confirmation dialog
-    var result = window.confirm("Do you want to leave this page?");
-
-    if (result) {
-      // If the user clicks OK, redirect them to the desired page
-      window.location.href = "/home"; // Replace with the desired URL
-    } else {
-      // If the user clicks Cancel, stay on the current page
-      // Do nothing or perform any other desired action
-    }
-  }
+  
 
   // if the questionObject is empty, display loading
   if (props.questionObject && Object.keys(props.questionObject).length === 0) {
@@ -48,21 +35,16 @@ export default function MainQuizDisplay(props) {
   }
 
   if (props.questionObject) {
-    // console.log("questionObject:", typeof questionObject);
-    // console.log("question", question);
     console.log("correct_answer", props.questionObject.answer);
+    console.log("score", props.quizScore)
     console.log(props.questionObject);
     const questionObject = props.questionObject;
 
     if (props.resultsValue === 0) {
       return (
 				<>
-	        <>
-          <div className="exit-quiz">
-            <button className="exit-quiz-button" onClick={exitAlert}>
-              X
-            </button>
-          </div>
+	        <div className="main-quiz-page">
+
           <div className="mainQuiz">
 						<ProgressBar value={progressValue}></ProgressBar>
 	            <MainQuizQuestion
@@ -80,10 +62,8 @@ export default function MainQuizDisplay(props) {
 	              quizScore={props.quizScore}
               setQuizScore={props.setQuizScore}
             />
-						<ExitQuizButton />
-	            <p>Score: {props.quizScore}</p>
           </div>
-				</>
+				</div>
         </>
       );
     } else if (props.resultsValue === 1) {
@@ -98,7 +78,6 @@ export default function MainQuizDisplay(props) {
             totalScore={props.totalScore}
             setTotalScore={props.setTotalScore}
           />
-					<ExitQuizButton	/>
         </div>
       );
     } else if (props.resultsValue === -1) {
@@ -115,7 +94,6 @@ export default function MainQuizDisplay(props) {
             totalScore={props.totalScore}
             setTotalScore={props.setTotalScore}
           />
-					<ExitQuizButton />
         </div>
       );
     } else {
@@ -127,7 +105,7 @@ export default function MainQuizDisplay(props) {
     }
   } else {
     return (
-      console.log("questionObject:", typeof questionObject),
+      // console.log("questionObject:", typeof questionObject),
       (
         <div className="MainQuiz">
           <MainQuizComplete
