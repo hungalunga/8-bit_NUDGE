@@ -27,7 +27,7 @@ export default function MainQuiz(props) {
       getRandomQuestion(data);
     }
   getQuestions();
-  }, []);
+  },);
 
   function getRandomQuestion(data) {
     //select random question
