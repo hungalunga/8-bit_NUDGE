@@ -27,7 +27,8 @@ export default function MainQuiz(props) {
       getRandomQuestion(data);
     }
   getQuestions();
-  },);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[questionNumber]);
 
   function getRandomQuestion(data) {
     //select random question

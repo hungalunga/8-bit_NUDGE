@@ -1,4 +1,4 @@
-import {useRef } from "react";
+import { useRef } from "react";
 import logoIcon from "./logo3.png";
 import { Button } from "primereact/button";
 export default function PromptNotification() {
@@ -6,9 +6,11 @@ export default function PromptNotification() {
   const showTime = date.getHours(); //gets the current hour of the day
   const buttonRef = useRef(null);
 
-  const createNotification = (title, body) => { //function that creates the notification with the title and body
-    const inTimeRedirect = "http://localhost:3000/nudge-quiz"
-    const outOfTimeRedirect = "http://localhost:3000/nudge-quiz-late"
+  const createNotification = (title, body) => {
+    //function that creates the notification with the title and body
+    const inTimeRedirect =
+      "https://main--endearing-macaron-a904df.netlify.app/nudge-quiz";
+    const outOfTimeRedirect = "http://localhost:3000/nudge-quiz-late";
     let redirect = inTimeRedirect;
     const options = {
       body: body,
@@ -16,72 +18,83 @@ export default function PromptNotification() {
       badge: logoIcon, //this shows the wizard
     };
     setTimeout(() => {
-      redirect = outOfTimeRedirect},
-      5000)
+      redirect = outOfTimeRedirect;
+    }, 5000);
 
-    if ( //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
+    if (
+      //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
       "Notification" in window &&
-       Notification.permission === "granted" &&
-       showTime >= 9 && showTime <= 17
-       ){
+      Notification.permission === "granted" &&
+      showTime >= 9 &&
+      showTime <= 17
+    ) {
       const notification = new Notification(title, options);
-      
-      
+
       notification.addEventListener("click", function (event) {
-        window.open(redirect); 
+        window.open(redirect);
       });
     } else if (
       "Notification" in window &&
       Notification.permission === "denied" &&
       showTime >= 9 &&
       showTime <= 17
-    ) //this checks if the browser supports notifications, if the user has denied permission, and if the current time is between 9 and 17
-    {
-      Notification.requestPermission().then((permission) => { //this asks the user for permission to send notifications
+    ) {
+      //this checks if the browser supports notifications, if the user has denied permission, and if the current time is between 9 and 17
+      Notification.requestPermission().then((permission) => {
+        //this asks the user for permission to send notifications
         if (permission === "granted") {
           const notification = new Notification(title, options);
 
           notification.addEventListener("click", function (event) {
-            window.open(redirect);;
+            window.open(redirect);
           });
         }
       });
     }
   };
 
-  let notificationUserName = "Ash"
+  let notificationUserName = "Ash";
 
-  function dQNotificationMessage (username) {
-    let messagesArray = [`Hello, ${username}! Hurry!👾⏰👾`,
-    `It's time for your daily quiz, ${username}!`,
-    `Nudge nudge! ⏰ ${username}! Get to work!`] //this is an array of messages that will be randomly selected from
+  function dQNotificationMessage(username) {
+    let messagesArray = [
+      `Hello, ${username}! Hurry!👾⏰👾`,
+      `It's time for your daily quiz, ${username}!`,
+      `Nudge nudge! ⏰ ${username}! Get to work!`,
+    ]; //this is an array of messages that will be randomly selected from
     let randomMessage = Math.floor(Math.random() * messagesArray.length); //this will select a random message from the array
     return messagesArray[randomMessage]; //this will return the random message
   }
 
-  function PromptQuizNotificationMessage (username) {
-    let messagesArray = [`Time for your daily quiz!!⏰⏰⏰`,
-    `⏰ 3 minutes counting down, ${username}!⏰⏰⏰`,
-  `⏰ 180 secs to get your bonus, ${username}`] //this is an array of messages that will be randomly selected from
+  function PromptQuizNotificationMessage(username) {
+    let messagesArray = [
+      `Time for your daily quiz!!⏰⏰⏰`,
+      `⏰ 3 minutes counting down, ${username}!⏰⏰⏰`,
+      `⏰ 180 secs to get your bonus, ${username}`,
+    ]; //this is an array of messages that will be randomly selected from
     let randomMessage = Math.floor(Math.random() * messagesArray.length); //this will select a random message from the array
     return messagesArray[randomMessage]; //this will return the random message
   }
 
-  const handleClick = () => { createNotification(PromptQuizNotificationMessage(notificationUserName)); };
+  const handleClick = () => {
+    createNotification(PromptQuizNotificationMessage(notificationUserName));
+  };
 
-
-  if (showTime >= 9 && showTime <= 17) { // this will only run if the current time is between 9 and 17
+  if (showTime >= 9 && showTime <= 17) {
+    // this will only run if the current time is between 9 and 17
     let range = 17 - showTime; // this will give the number of hours between the current time and 17:00
-    let randomTime = Math.floor(Math.random() * (range * 60 * 60 * 1000 - 1000) + 1000); // this will give a random point in time between the current time and 17:00
+    let randomTime = Math.floor(
+      Math.random() * (range * 60 * 60 * 1000 - 1000) + 1000
+    ); // this will give a random point in time between the current time and 17:00
     console.log(randomTime);
-    setTimeout(() => { // this will run the createNotification function after the random time has passed
+    setTimeout(() => {
+      // this will run the createNotification function after the random time has passed
       createNotification(dQNotificationMessage(notificationUserName));
-    }, randomTime); 
+    }, randomTime);
   }
 
-    return (
-      <Button ref={buttonRef} onClick={handleClick}>
-        Click me to get a notification
-      </Button>
-    );
+  return (
+    <Button ref={buttonRef} onClick={handleClick}>
+      Click me to get a notification
+    </Button>
+  );
 }
