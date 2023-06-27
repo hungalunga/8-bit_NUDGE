@@ -70,7 +70,7 @@ export default function PromptQuiz(props) {
 		);
 	}
 
-	else if (late === false) {
+	else if (late) {
 		return (
 			<div>
 				<h2>
