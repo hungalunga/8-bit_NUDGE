@@ -45,6 +45,7 @@ export default function PromptQuizCorrect({
 					<p>Correct and in time!</p>
 					<p>2X Time Bonus!</p>
 					<p>You've gained +200 points!</p>
+					<i className=" pi pi-volume-up" style={{ fontSize: '1.75rem' }}></i>
 				</div>
 				<Link to="/home">
 					<Button onClick={addScore}>Finished!</Button>

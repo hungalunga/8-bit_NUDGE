@@ -8,6 +8,7 @@ export default function MainQuizCorrect({nextMessage, setQuizScore, quizScore, h
 			<Card className="end-quiz-card">
 				<h1>🌟You got that right🌟!</h1>
 				<Card className="correct-XP-card" title= "+10" subTitle=" XP"/>
+				<i className=" pi pi-volume-up" style={{ fontSize: '1.75rem' }}></i>
 			</Card>
 			<Button onClick={handleNextClick}>{nextMessage}</Button>
 		</>
