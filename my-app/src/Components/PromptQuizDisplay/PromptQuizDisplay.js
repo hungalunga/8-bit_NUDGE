@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
-import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
+import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
 import { ProgressBar } from "primereact/progressbar";
@@ -106,4 +106,54 @@ export default function PromptQuizDisplay(props) {
     );
   } else {
   }
+	if (typeof props.questionObject === "object" && props.resultsValue === 0) {
+		return (
+			<div className="mainQuiz">
+				<div className="timer">
+					<ProgressBar value={value}></ProgressBar>
+					{props.promptQuestionTimer && (
+						<PromptQuestionTimer seconds={seconds} setSeconds={setSeconds} />
+					)}
+				</div>
+				<Card className="big-card">{question}</Card>
+				{/*<p className="question"></p>*/}
+
+				<AnswerCheckbox
+					questionObject={questionObject}
+					wrongAnswers={questionObject.wrong_answers}
+					id={questionObject.id}
+					question={questionObject.question}
+					correctAnswer={questionObject.answer}
+					questionNumber={props.questionNumber}
+					setQuestionNumber={props.setQuestionNumber}
+					// ^^send questionNumber props down to re-render after each answer
+					resultsValue={props.resultsValue}
+					setResultsValue={props.setResultsValue}
+					incorrectAnswers={props.incorrectAnswers}
+					setIncorrectAnswers={props.setIncorrectAnswers}
+					setWithinTime={setWithinTime}
+					withinTime={withinTime}
+					seconds={seconds}
+				/>
+			</div>
+		);
+	} else if (props.resultsValue === 1) {
+		return (
+			<div className="MainQuiz">
+				<PromptQuizCorrect withinTime={withinTime} seconds={seconds} late = {props.late}/>
+			</div>
+		);
+	} else if (props.resultsValue === -1) {
+		return (
+			<div className="MainQuiz">
+				<PromptQuizIncorrect
+					questionObject={questionObject}
+					withinTime={withinTime}
+					seconds={seconds}
+					late = {props.late}
+				/>
+			</div>
+		);
+	} else {
+	}
 }

@@ -7374,12 +7374,13 @@ p {
 }
 .p-progressbar {
 	border: 0 none;
-	height: 20px;
+	height: 18px;
 	background: #D9D1F3;
 	border-radius: 20px;
 	width: 1000px;
 }
 .p-progressbar .p-progressbar-value {
+	border-radius: 20px;
 	border: 0 none;
 	margin: 0;
 	background: #7962C5;

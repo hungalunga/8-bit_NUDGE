@@ -11,6 +11,7 @@ export default function MainQuizComplete(props) {
 		}
 	}
 
+export default function MainQuizComplete() {
 	return (
 		<>
 			<p>Quiz Complete! You answered {props.quizScore}% correctly first time!</p>

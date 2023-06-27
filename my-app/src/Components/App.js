@@ -116,10 +116,15 @@ export default function App() {
         <div className="App"> 
           <Menubar className="menubar" model={items} />
         </div>
+        <div>
+          <PromptNotification/> 
+        </div>  
         <Routes>
           <Route path="/quiz" element={<MainQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
           <Route path="/home" element={<Dashboard totalScore = {totalScore} setTotalScore ={setTotalScore} streakCount = {streakCount}/>} />
-          <Route path="/nudge-quiz" element={<PromptQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
+          <Route path="/nudge-quiz-late" element={<PromptQuiz late = {true}/>} />
+          <Route path="/nudge-quiz" element={<PromptQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />}
+           />
         </Routes>
       </>
     );

@@ -41,6 +41,11 @@ export default function PromptQuiz(props) {
 		}
 	}
 
+	const late = props.late
+	let latenessMessage = ""
+	
+	
+
 	const [countdownNumber, setCountdownNumber] = useState(5);
 
 	useEffect(() => {
@@ -93,3 +98,34 @@ export default function PromptQuiz(props) {
 		);
 	}
 }
+	if (!late) {return (
+		<div>
+			<div data-testid="question-display" className="mainQuiz">
+				{/* <h1>Question {questionNumber}</h1> */}
+			
+				<PromptQuizDisplay
+					questionObject={questionObject}
+					questionNumber={questionNumber}
+					setQuestionNumber={setQuestionNumber}
+					resultsValue={resultsValue}
+					setResultsValue={setResultsValue}
+					completionMessage={completionMessage}
+					promptQuestionTimer={true}
+					incorrectAnswers={incorrectAnswers}
+					setIncorrectAnswers={setIncorrectAnswers}
+					late={late}
+				/>
+			</div>
+			{/* <PromptQuestionTimer/> */}
+		</div>
+	);}
+	else {
+		return (
+			<div>
+				<h2>
+					You missed your daily nudge! You can still keep your streak if you answer the daily quiz.
+				</h2>
+			</div>
+		)
+}}
+

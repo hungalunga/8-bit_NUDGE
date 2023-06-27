@@ -1,5 +1,5 @@
 import {useRef } from "react";
-import logoIcon from "./logo2.png";
+import logoIcon from "./logo3.png";
 import { Button } from "primereact/button";
 export default function PromptNotification() {
   const date = new Date();
@@ -7,11 +7,17 @@ export default function PromptNotification() {
   const buttonRef = useRef(null);
 
   const createNotification = (title, body) => { //function that creates the notification with the title and body
+    const inTimeRedirect = "http://localhost:3000/nudge-quiz"
+    const outOfTimeRedirect = "http://localhost:3000/nudge-quiz-late"
+    let redirect = inTimeRedirect;
     const options = {
       body: body,
       icon: logoIcon, //this shows the wizard
       badge: logoIcon, //this shows the wizard
     };
+    setTimeout(() => {
+      redirect = outOfTimeRedirect},
+      5000)
 
     if ( //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
       "Notification" in window &&
@@ -19,8 +25,10 @@ export default function PromptNotification() {
        showTime >= 9 && showTime <= 17
        ){
       const notification = new Notification(title, options);
+      
+      
       notification.addEventListener("click", function (event) {
-        window.open("http://localhost:3000/nudge-quiz"); 
+        window.open(redirect); 
       });
     } else if (
       "Notification" in window &&
@@ -34,14 +42,32 @@ export default function PromptNotification() {
           const notification = new Notification(title, options);
 
           notification.addEventListener("click", function (event) {
-            window.open("http://localhost:3000/nudge-quiz");;
+            window.open(redirect);;
           });
         }
       });
     }
   };
 
-  const handleClick = () => { createNotification("Hello, Ash! Hurry!", "👾⏰👾\nClick to complete your daily quiz too!!"); };
+  let notificationUserName = "Ash"
+
+  function dQNotificationMessage (username) {
+    let messagesArray = [`Hello, ${username}! Hurry!👾⏰👾`,
+    `It's time for your daily quiz, ${username}!`,
+    `Nudge nudge! ⏰ ${username}! Get to work!`] //this is an array of messages that will be randomly selected from
+    let randomMessage = Math.floor(Math.random() * messagesArray.length); //this will select a random message from the array
+    return messagesArray[randomMessage]; //this will return the random message
+  }
+
+  function PromptQuizNotificationMessage (username) {
+    let messagesArray = [`Time for your daily quiz!!⏰⏰⏰`,
+    `⏰ 3 minutes counting down, ${username}!⏰⏰⏰`,
+  `⏰ 180 secs to get your bonus, ${username}`] //this is an array of messages that will be randomly selected from
+    let randomMessage = Math.floor(Math.random() * messagesArray.length); //this will select a random message from the array
+    return messagesArray[randomMessage]; //this will return the random message
+  }
+
+  const handleClick = () => { createNotification(PromptQuizNotificationMessage(notificationUserName)); };
 
 
   if (showTime >= 9 && showTime <= 17) { // this will only run if the current time is between 9 and 17
@@ -49,7 +75,7 @@ export default function PromptNotification() {
     let randomTime = Math.floor(Math.random() * (range * 60 * 60 * 1000 - 1000) + 1000); // this will give a random point in time between the current time and 17:00
     console.log(randomTime);
     setTimeout(() => { // this will run the createNotification function after the random time has passed
-      createNotification("Reminder", "Time for your daily quiz!!");
+      createNotification(dQNotificationMessage(notificationUserName));
     }, randomTime); 
   }
 

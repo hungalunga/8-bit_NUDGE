@@ -3,11 +3,15 @@ import MainQuizIncorrect from "../MainQuizIncorrect/MainQuizIncorrect";
 import MainQuizCorrect from "../MainQuizCorrect/MainQuizCorrect";
 import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
 import "./MainQuizDisplay.css";
+import { ProgressBar } from "primereact/progressbar";
+import { Button } from "primereact/button";
+
+import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 
 export default function MainQuizDisplay(props) {
-  // to pass down to AnswerCheckbox
-  // if question object is empty - question will try and find value, if it exists assign it, otherwise undefined/false
-  // to grab the question to display
+	const progressValue = (props.questionNumber / 3) * 100;
+	// will need to change progressValue to be /10 when we have 10 questions
+	console.log("progressValue:", progressValue);
 
   // Sets the new results, new question when Next is pressed
   function handleNextClick() {
@@ -52,35 +56,40 @@ export default function MainQuizDisplay(props) {
 
     if (props.resultsValue === 0) {
       return (
-        <>
+				<>
+	        <>
           <div className="exit-quiz">
             <button className="exit-quiz-button" onClick={exitAlert}>
               X
             </button>
           </div>
           <div className="mainQuiz">
-            <MainQuizQuestion
-              questionObject={questionObject}
-              wrong_answers={questionObject.wrong_answers}
-              id={questionObject.id}
-              question={questionObject.question}
-              correct_answer={questionObject.answer}
-              questionNumber={props.questionNumber}
-              setQuestionNumber={props.setQuestionNumber}
-              incorrectAnswers={props.incorrectAnswers}
-              setIncorrectAnswers={props.setIncorrectAnswers}
-              resultsValue={props.resultsValue}
-              setResultsValue={props.setResultsValue}
-              quizScore={props.quizScore}
+						<ProgressBar value={progressValue}></ProgressBar>
+	            <MainQuizQuestion
+	              questionObject={questionObject}
+	              wrong_answers={questionObject.wrong_answers}
+	              id={questionObject.id}
+	              question={questionObject.question}
+	              correct_answer={questionObject.answer}
+	              questionNumber={props.questionNumber}
+	              setQuestionNumber={props.setQuestionNumber}
+	              incorrectAnswers={props.incorrectAnswers}
+	              setIncorrectAnswers={props.setIncorrectAnswers}
+	              resultsValue={props.resultsValue}
+	              setResultsValue={props.setResultsValue}
+	              quizScore={props.quizScore}
               setQuizScore={props.setQuizScore}
             />
-            <p>Score: {props.quizScore}</p>
+						<ExitQuizButton />
+	            <p>Score: {props.quizScore}</p>
           </div>
+				</>
         </>
       );
     } else if (props.resultsValue === 1) {
       return (
         <div className="MainQuiz">
+					<ProgressBar value={progressValue}></ProgressBar>
           <MainQuizCorrect
             nextMessage={props.nextMessage}
             handleNextClick={handleNextClick}
@@ -89,11 +98,14 @@ export default function MainQuizDisplay(props) {
             totalScore={props.totalScore}
             setTotalScore={props.setTotalScore}
           />
+					<ExitQuizButton	/>
         </div>
       );
     } else if (props.resultsValue === -1) {
+			//props.setQuestionNumber(props.questionNumber - 1);
       return (
         <div className="MainQuiz">
+					<ProgressBar value={progressValue}></ProgressBar>
           <MainQuizIncorrect
             questionObject={questionObject}
             nextMessage={props.nextMessage}
@@ -103,6 +115,7 @@ export default function MainQuizDisplay(props) {
             totalScore={props.totalScore}
             setTotalScore={props.setTotalScore}
           />
+					<ExitQuizButton />
         </div>
       );
     } else {
@@ -129,6 +142,7 @@ export default function MainQuizDisplay(props) {
           />
         </div>
       )
+		
     );
   }
 }
