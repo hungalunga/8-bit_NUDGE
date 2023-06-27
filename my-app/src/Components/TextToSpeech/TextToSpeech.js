@@ -1,7 +1,10 @@
 import { Button } from 'primereact/button';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function TextToSpeech(props) {
+  const speechRef = useRef(null);
+  const isPaused = useRef(false);
+
   const getVoices = () => {
     let voices = speechSynthesis.getVoices();
     if (!voices.length) {
@@ -16,15 +19,25 @@ export default function TextToSpeech(props) {
     getVoices();
   }, []);
 
-  const handleClick = () => {
-    let voices = getVoices();
-    let rate = 5,
-        pitch = 1,
-        volume = 0.5;
-    let text = props.speech;
+  let voices = getVoices(),
+      rate = 5,
+      pitch = 1,
+      volume = 0.5,
+      text = props.speech;
 
-    speak(text, voices[0], rate, pitch, volume);
-  };
+      const handleClick = () => {
+        if (speechSynthesis.speaking) {
+          if (isPaused.current) {
+            speechSynthesis.resume();
+            isPaused.current = false;
+          } else {
+            speechSynthesis.pause();
+            isPaused.current = true;
+          }
+        } else {
+          speak(text, voices[0], rate, pitch, volume);
+        }
+      };
 
   function speak(text, voice, rate, pitch, volume) {
     let speakData = new SpeechSynthesisUtterance();
