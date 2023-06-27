@@ -2,7 +2,7 @@ import PromptNotification from "./PromptNotification/PromptNotification";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import { Route, Routes } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import { useState } from "react";
 import "primeicons/primeicons.css";
@@ -10,10 +10,10 @@ import "../prime-react-theme/theme.css";
 import "./App.css";
 
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
-const supabase = createClient(
-  "https://suqficsxrflfgpebathx.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cWZpY3N4cmZsZmdwZWJhdGh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcxNjk3ODQsImV4cCI6MjAwMjc0NTc4NH0.8HlWTJSEkeuM7lHOo8j572i3k_9eEF5855-th3yP3Hw"
-);
+// const supabase = createClient(
+//   "https://suqficsxrflfgpebathx.supabase.co",
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cWZpY3N4cmZsZmdwZWJhdGh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcxNjk3ODQsImV4cCI6MjAwMjc0NTc4NH0.8HlWTJSEkeuM7lHOo8j572i3k_9eEF5855-th3yP3Hw"
+// );
 
 // theme for login page for supabase
 // const customTheme = {
