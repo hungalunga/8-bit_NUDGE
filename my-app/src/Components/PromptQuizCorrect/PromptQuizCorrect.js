@@ -1,25 +1,13 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import Confetti from 'react-confetti'
-export default function PromptQuizCorrect({
-	withinTime,
-	setTotalScore,
-	totalScore,
-	streak,
-	setStreak,
-	streakCount,
-	setStreakCount
-}) {
-	function addScore() {
-		if (streak === false) {
-			setStreakCount(streakCount+1)
-			setStreak(true) 
-		}
-		if (withinTime === false) {
-			setTotalScore(totalScore + 100);
-		} else {
-			setTotalScore(totalScore + 200);
-		}
+
+
+export default function PromptQuizCorrect({withinTime,late }) {
+
+	// handle button redirect to home 
+	function handleClick() {
+		window.location.href = "/home";
 	}
 
 	if (withinTime === false) {
@@ -29,12 +17,23 @@ export default function PromptQuizCorrect({
 					<p>Correct but out of time!</p>
 					<p>You've gained +100 points!</p>
 				</div>
-				<Link to="/home">
-					<Button onClick={addScore}>Finished!</Button>
-				</Link>
+				<Button onClick={handleClick}>Finished!</Button>
+				{/* <Confetti	/> */}
 			</>
 		);
-	} else {
+	}
+ else if (!late) {
+	return (
+		<>
+			<div className="resultsPageCorrect">
+				<p>Correct and in time!</p>
+			</div>
+			<Button onClick={handleClick}>Finished!</Button>
+			<Confetti	/>
+			
+		</>
+	)}
+	else { // this else is unnecessary now but the logic still works for if you arrive late to the nudge quiz and get the question right
 		return (
 			<>
 				<div className="resultsPageCorrect">
