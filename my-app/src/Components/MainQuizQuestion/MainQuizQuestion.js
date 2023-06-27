@@ -5,10 +5,11 @@ import { Card } from "primereact/card";
 export default function MainQuizQuestion(props) {
   console.log("props.questionObject:", props.questionObject);
   return (
-    <><div className="main-quiz-page">
+    <>
       <Card className="big-card">{props.question}</Card>
       {/*<p className="question"></p>*/}
       {props.promptQuestionTimer && <PromptQuestionTimer />}
+      
       <AnswerCheckbox
         quizScore={props.quizScore}
         setQuizScore={props.setQuizScore}
@@ -25,7 +26,7 @@ export default function MainQuizQuestion(props) {
         setResultsValue={props.setResultsValue}
         withinTime={props.withinTime}
         setWithinTime={props.setWithinTime}
-      /></div>
+      />
     </>
   );
 }

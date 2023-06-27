@@ -1,7 +1,9 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
-import Confetti from 'react-confetti'
+import { Card } from "primereact/card";
+import Confetti from "react-confetti";
 import WebsiteEmbed from "../WebsiteEmbed/WebsiteEmbed";
+import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuizCorrect({
 	withinTime,
@@ -10,12 +12,12 @@ export default function PromptQuizCorrect({
 	streak,
 	setStreak,
 	streakCount,
-	setStreakCount
+	setStreakCount,
 }) {
 	function addScore() {
 		if (streak === false) {
-			setStreakCount(streakCount+1)
-			setStreak(true) 
+			setStreakCount(streakCount + 1);
+			setStreak(true);
 		}
 		if (withinTime === false) {
 			setTotalScore(totalScore + 100);
@@ -27,29 +29,46 @@ export default function PromptQuizCorrect({
 	if (withinTime === false) {
 		return (
 			<>
-				<div className="resultsPageIncorrect">
-					<p>Correct but out of time!</p>
-					<p>You've gained +100 points!</p>
+				<div className="content-container">
+					<Card className="end-prompt-quiz-card">
+						<h3>Better late than never...</h3>
+						<h1>You got that correct!</h1>
+						<Card className="correct-XP-card" title="+200" subTitle="XP" />
+						<h3>
+							Answer before the timer's up to get double points next time!
+						</h3>
+						<Link to="/home">
+							<Button onClick={addScore}>Try another quiz</Button>
+						</Link>
+					</Card>
+					{/* <WebsiteEmbed /> */}
 				</div>
-				<Link to="/home">
-					<Button onClick={addScore}>Finished!</Button>
-				</Link>
-				<WebsiteEmbed />
 			</>
 		);
 	} else {
 		return (
 			<>
-				<div className="resultsPageCorrect">
 				<Confetti></Confetti>
-					<p>Correct and in time!</p>
-					<p>2X Time Bonus!</p>
-					<p>You've gained +200 points!</p>
+				<div className="content-container">
+					<Card className="end-prompt-quiz-card">
+						<h2>Correct</h2>
+						<h1>You smashed it!</h1>
+						<div className="quiz-score-container">
+							<Card
+								className="correct-XP-card"
+								title="x2"
+								subTitle=" Time Bonus"
+							/>
+							<Card className="correct-XP-card" title="+200" subTitle="XP" />
+						</div>
+						<h3>Look at all those points!</h3>
+						<p> Watch out for tomorrow's NUDGE.</p>
+						<Link to="/home">
+							<Button onClick={addScore}>Try another quiz</Button>
+						</Link>
+					</Card>
 				</div>
-				<Link to="/home">
-					<Button onClick={addScore}>Finished!</Button>
-				</Link>
-				<WebsiteEmbed />
+				{/* <WebsiteEmbed /> */}
 			</>
 		);
 	}

@@ -3,8 +3,6 @@ import MainQuizIncorrect from "../MainQuizIncorrect/MainQuizIncorrect";
 import MainQuizCorrect from "../MainQuizCorrect/MainQuizCorrect";
 import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
 import { ProgressBar } from "primereact/progressbar";
-import "./MainQuizDisplay.css";
-import "../MainQuiz/MainQuiz.css";
 
 export default function MainQuizDisplay(props) {
 	const progressValue = (props.questionNumber / 3) * 100;
@@ -39,30 +37,31 @@ export default function MainQuizDisplay(props) {
 
 		if (props.resultsValue === 0) {
 			return (
-				<>
-					<div className="main-quiz-page">
-							<ProgressBar className="quiz-progress-bar" value={progressValue}></ProgressBar>
-							<MainQuizQuestion
-								questionObject={questionObject}
-								wrong_answers={questionObject.wrong_answers}
-								id={questionObject.id}
-								question={questionObject.question}
-								correct_answer={questionObject.answer}
-								questionNumber={props.questionNumber}
-								setQuestionNumber={props.setQuestionNumber}
-								incorrectAnswers={props.incorrectAnswers}
-								setIncorrectAnswers={props.setIncorrectAnswers}
-								resultsValue={props.resultsValue}
-								setResultsValue={props.setResultsValue}
-								quizScore={props.quizScore}
-								setQuizScore={props.setQuizScore}
-							/>
-					</div>
-				</>
+				<div className="content-container">
+					<ProgressBar
+						className="quiz-progress-bar"
+						value={progressValue}
+					></ProgressBar>
+					<MainQuizQuestion
+						questionObject={questionObject}
+						wrong_answers={questionObject.wrong_answers}
+						id={questionObject.id}
+						question={questionObject.question}
+						correct_answer={questionObject.answer}
+						questionNumber={props.questionNumber}
+						setQuestionNumber={props.setQuestionNumber}
+						incorrectAnswers={props.incorrectAnswers}
+						setIncorrectAnswers={props.setIncorrectAnswers}
+						resultsValue={props.resultsValue}
+						setResultsValue={props.setResultsValue}
+						quizScore={props.quizScore}
+						setQuizScore={props.setQuizScore}
+					/>
+				</div>
 			);
 		} else if (props.resultsValue === 1) {
 			return (
-				<div className="MainQuiz">
+				<div className="content-container">
 					<ProgressBar
 						className="quiz-progress-bar"
 						value={progressValue}
@@ -80,7 +79,7 @@ export default function MainQuizDisplay(props) {
 		} else if (props.resultsValue === -1) {
 			//props.setQuestionNumber(props.questionNumber - 1);
 			return (
-				<div className="MainQuiz">
+				<div className="content-container">
 					<ProgressBar
 						className="quiz-progress-bar"
 						value={progressValue}
@@ -106,7 +105,7 @@ export default function MainQuizDisplay(props) {
 	} else {
 		return (
 			// console.log("questionObject:", typeof questionObject),
-			<div className="MainQuiz">
+			<div className="content-container">
 				<MainQuizComplete
 					quizScore={props.quizScore}
 					setQuizScore={props.setQuizScore}

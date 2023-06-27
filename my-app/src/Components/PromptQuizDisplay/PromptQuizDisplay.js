@@ -5,7 +5,7 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
-import "../PromptQuiz/PromptQuiz.css";
+import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuizDisplay(props) {
 	const [withinTime, setWithinTime] = useState(true);
@@ -28,7 +28,7 @@ export default function PromptQuizDisplay(props) {
 			<>
 				{/* need to write functionality so prompt occurs asking 'are you sure/you'll lose your progress' when X is clicked */}
 
-				<div className="mainQuiz">
+				<div className="content-container">
 					<div className="timer-container">
 						<ProgressBar className="timer-bar" value={value}></ProgressBar>
 						{props.promptQuestionTimer && (
@@ -69,6 +69,7 @@ export default function PromptQuizDisplay(props) {
 					setTotalScore={props.setTotalScore}
 					streakCount={props.streakCount}
 					setStreakCount={props.setStreakCount}
+					
 				/>
 			</div>
 		);
@@ -85,6 +86,8 @@ export default function PromptQuizDisplay(props) {
 					setTotalScore={props.setTotalScore}
 					streakCount={props.streakCount}
 					setStreakCount={props.setStreakCount}
+					correctAnswer={questionObject.answer}
+					question={questionObject.question}
 				/>
 			</div>
 		);
