@@ -9,7 +9,6 @@ import "./App.css";
 import {Menubar} from 'primereact/menubar';
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import { useState } from "react";
-import TextToSpeech from "./TextToSpeech/TextToSpeech";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -111,8 +110,7 @@ export default function App() {
 
     return (
       <>
-        <div className="App"> 
-        {/* <TextToSpeech /> */}
+        <div className="App">
           <Menubar className="menubar" model={items} />
         </div>
         <div>

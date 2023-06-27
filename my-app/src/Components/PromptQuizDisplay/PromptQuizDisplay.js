@@ -49,7 +49,7 @@ export default function PromptQuizDisplay(props) {
         </div>
 
         <div className="mainQuiz">
-          <Card className="big-card">{question}<TextToSpeech /></Card>
+          <Card className="big-card">{question}<TextToSpeech speech={`${questionObject.question}`}/></Card>
           {/*<p className="question"></p>*/}
           {props.promptQuestionTimer && (
             <PromptQuestionTimer seconds={seconds} setSeconds={setSeconds} />

@@ -9,7 +9,7 @@ export default function MainQuizIncorrect({ questionObject, nextMessage, handleN
 		  <h1>Not quite...</h1>
 		  <p>The correct answer for "{questionObject.question}" is</p>
 			<p><strong>{questionObject.answer}</strong>.</p>
-			<TextToSpeech />
+			<TextToSpeech speech= {`Not quite... The question was ${questionObject.question}. The answer is ${questionObject.answer}.`}/>
 		</Card>
 		{/* props.nextMessage has different value for main quiz than prompt quiz */}
 		<Button onClick={handleNextClick}>{nextMessage}</Button>

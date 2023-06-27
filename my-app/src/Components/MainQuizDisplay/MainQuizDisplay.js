@@ -5,7 +5,6 @@ import MainQuizQuestion from "../MainQuizQuestion/MainQuizQuestion";
 import "./MainQuizDisplay.css";
 import { ProgressBar } from "primereact/progressbar";
 
-
 import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 
 export default function MainQuizDisplay(props) {

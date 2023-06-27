@@ -10,7 +10,7 @@ export default function MainQuizQuestion(props) {
   return (
     <>
       <Card className="big-card">{props.question}
-      <TextToSpeech />
+      <TextToSpeech speech={`${props.questionObject.question}`}/>
       </Card>
       {/*<p className="question"></p>*/}
       {props.promptQuestionTimer && <PromptQuestionTimer />}
