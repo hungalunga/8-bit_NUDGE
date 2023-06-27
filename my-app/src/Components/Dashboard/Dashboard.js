@@ -32,6 +32,7 @@ export default function Dashboard(props) {
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
   const [username, setUsername] = useState(null);
+  const [firstLetter, setFirstLetter] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -42,7 +43,7 @@ export default function Dashboard(props) {
     fetchUser();
   }, [props.session]);
 
-  
+
   useEffect(() => {
     async function getUserProfile() {
       if (user !== null && user !== undefined) {
@@ -53,29 +54,43 @@ export default function Dashboard(props) {
         .select("*")
         .eq("id", user.id)
         console.log(userProfile);
+        console.log(userProfile[0].user_name);
         setUserProfile(userProfile);
+
+        function getUsernameFromEmail(email) {
+          const index = email.indexOf("@");
+          const username = email.slice(0, index);
+          // capitalise the first letter of the username
+          const upperCaseUsername = username.charAt(0).toUpperCase();
+          return upperCaseUsername + username.slice(1);
+        }
+
+        setUsername(getUsernameFromEmail(userProfile[0].user_name))
+
+        console.log("username is:", username);  
         
+          // function that takes the first letter of username and capitalises it for the avatar
+          if (username) {
+          function getFirstLetter(username) {
+        
+        const firstLetter = username.charAt(0).toUpperCase();
+        return firstLetter;
         
       }
+      setFirstLetter(getFirstLetter(username));
+      console.log("first letter is:", firstLetter);
     }
+      }
+    }
+  
     // console.log('user is null');
     // console.log(user);
     getUserProfile();
     
   }
-  , [user, props.supabase]);
+  , [user, props.supabase, username, firstLetter]);
   
-  useEffect(() => {
-      // function that removes everything after and including the @ symbol
-      function getUsernameFromEmail(email) {
-        const index = email.indexOf("@");
-        const username = email.slice(0, index);
-        return username;
-      }
-  
-      setUsername(getUsernameFromEmail(userProfile.user_name))
-      console.log(username);
-    }, [userProfile]);
+
   async function handleSaveClick() {
     await props.supabase.from("public.profiles").upsert({
       id: user.id,
@@ -155,7 +170,7 @@ export default function Dashboard(props) {
           <div className="dashboard-page">
             <div className="dashboard-top">
               <div className="welcome-container">
-                <Avatar label="A" size="xlarge" className="circleAvatar" />
+                <Avatar label={firstLetter} size="xlarge" className="circleAvatar" />
                 <div className="welcome-text">
                   <p>Welcome Back,</p>
                   <h1>{username}</h1>
