@@ -7293,6 +7293,17 @@ p {
 	border-radius: 100%;
 	border: 2px solid #ffd500;
 }
+
+.avatar-small {
+	height: 50px;
+	width: 50px;
+}
+
+.avatar-large {
+	height: 150px;
+	width: 150px;
+}
+
 .p-avatar.p-avatar-lg {
 	width: 3rem;
 	height: 3rem;
@@ -7302,8 +7313,8 @@ p {
 	font-size: 1.5rem;
 }
 .p-avatar.p-avatar-xl {
-	width: 6rem;
-	height: 6rem;
+	width: 9rem;
+	height: 9rem;
 	font-size: 3rem;
 	color: #39207e;
 }
