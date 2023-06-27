@@ -41,8 +41,7 @@ export default function MainQuizDisplay(props) {
 			return (
 				<>
 					<div className="main-quiz-page">
-						<div className="mainQuiz">
-							<ProgressBar value={progressValue}></ProgressBar>
+							<ProgressBar className="quiz-progress-bar" value={progressValue}></ProgressBar>
 							<MainQuizQuestion
 								questionObject={questionObject}
 								wrong_answers={questionObject.wrong_answers}
@@ -58,7 +57,6 @@ export default function MainQuizDisplay(props) {
 								quizScore={props.quizScore}
 								setQuizScore={props.setQuizScore}
 							/>
-						</div>
 					</div>
 				</>
 			);

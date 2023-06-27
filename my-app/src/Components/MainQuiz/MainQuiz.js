@@ -71,7 +71,6 @@ export default function MainQuiz(props) {
 		<ExitQuizButton />
 		</div>
 			<div className="main-quiz-page">
-
 				<MainQuizDisplay
 					quizScore={quizScore}
 					setQuizScore={setQuizScore}
@@ -97,14 +96,16 @@ export default function MainQuiz(props) {
 			</div></>
 		);
 	} else {
-		return (
+		return (		<><div className="exit-quiz">
+		<ExitQuizButton />
+		</div>
 			<div className="main-quiz-page">
 				<Card className="big-card">
 					<h2>You've made it this far...</h2>
 					<h1>are you ready to start?</h1>{" "}
 					<Button onClick={() => setQuizStarted(true)}>Let's go!</Button>
-				</Card>
-			</div>
+				</Card></div>
+</>
 		);
 	}
 }
