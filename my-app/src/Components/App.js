@@ -3,7 +3,6 @@ import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import { Route, Routes } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
-import {Menubar} from 'primereact/menubar';
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import { useState } from "react";
 import "primeicons/primeicons.css";
@@ -82,27 +81,27 @@ const supabase = createClient(
 
 export default function App() {
 
-  const items = [
-    {
-      label: "Home",
-      command: () => {
-        window.location = "/home";
-      },
-    },
-    {
-      label: "Quiz",
+  // const items = [
+  //   {
+  //     label: "Home",
+  //     command: () => {
+  //       window.location = "/home";
+  //     },
+  //   },
+  //   {
+  //     label: "Quiz",
 
-      command: () => {
-        window.location = "/quiz";
-      },
-    },
-    {
-      label: "Logout",
-      command: () => {
-       supabase.auth.signOut();
-      },
-    },
-  ];
+  //     command: () => {
+  //       window.location = "/quiz";
+  //     },
+  //   },
+  //   {
+  //     label: "Logout",
+  //     command: () => {
+  //      supabase.auth.signOut();
+  //     },
+  //   },
+  // ];
 
   const [streak, setStreak] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
