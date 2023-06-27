@@ -30,7 +30,7 @@ export default function MainQuizQuestion(props) {
         setResultsValue={props.setResultsValue}
         withinTime={props.withinTime}
         setWithinTime={props.setWithinTime}
-      /></div>
+      />
     </>
   );
 }
