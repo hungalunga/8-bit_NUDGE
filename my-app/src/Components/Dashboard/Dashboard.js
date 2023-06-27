@@ -31,6 +31,7 @@ export default function Dashboard(props) {
   const [editMode, setEditMode] = useState(false);
   const [user, setUser] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
+  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -41,26 +42,40 @@ export default function Dashboard(props) {
     fetchUser();
   }, [props.session]);
 
+  
   useEffect(() => {
     async function getUserProfile() {
       if (user !== null && user !== undefined) {
         // console.log('user is not null');
         // console.log(user);
         const { data: userProfile } = await props.supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", user.id)
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
         console.log(userProfile);
         setUserProfile(userProfile);
+        
+        
       }
     }
     // console.log('user is null');
     // console.log(user);
-        getUserProfile();
-      
-    }
+    getUserProfile();
+    
+  }
   , [user, props.supabase]);
-
+  
+  useEffect(() => {
+      // function that removes everything after and including the @ symbol
+      function getUsernameFromEmail(email) {
+        const index = email.indexOf("@");
+        const username = email.slice(0, index);
+        return username;
+      }
+  
+      setUsername(getUsernameFromEmail(userProfile.user_name))
+      console.log(username);
+    }, [userProfile]);
   async function handleSaveClick() {
     await props.supabase.from("public.profiles").upsert({
       id: user.id,
@@ -143,7 +158,7 @@ export default function Dashboard(props) {
                 <Avatar label="A" size="xlarge" className="circleAvatar" />
                 <div className="welcome-text">
                   <p>Welcome Back,</p>
-                  <h1>ashwantspizza</h1>
+                  <h1>{username}</h1>
                 </div>
               </div>
               <div className="user-scores">
