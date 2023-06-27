@@ -44,19 +44,17 @@ export default function Dashboard(props) {
   useEffect(() => {
     async function getUserProfile() {
       if (user !== null && user !== undefined) {
-        console.log('user is not null');
-        console.log(user);
+        // console.log('user is not null');
+        // console.log(user);
         const { data: userProfile } = await props.supabase
           .from("profiles")
           .select("*")
-          .eq("id", user.id)
-          .single();
-        console.log(user.id);
-        setUserProfile(userProfile);
+        console.log(userProfile);
+        // setUserProfile(userProfile);
       }
     }
-    console.log('user is null');
-    console.log(user);
+    // console.log('user is null');
+    // console.log(user);
         getUserProfile();
       
     }

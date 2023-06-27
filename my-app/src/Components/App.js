@@ -86,7 +86,7 @@ export default function App() {
     {
       label: "Home",
       command: () => {
-        window.location = "/home";
+        window.location = "/";
       },
     },
     {
@@ -138,7 +138,7 @@ export default function App() {
         </div>
         <Routes>
           <Route path="/quiz" element={<MainQuiz />} />
-          <Route path="/home" element={<Dashboard supabase={supabase} session = {session} />} />
+          <Route path="/" element={<Dashboard supabase={supabase} session = {session} />} />
           <Route path="/daily-quiz" element={<PromptQuizDisplay />} />
         </Routes>
       </>
