@@ -1,0 +1,22 @@
+.answer-confirm-container {
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+	justify-content: space-between;
+    height: 175px;
+
+}
+
+.answers {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	width: 600px;
+}
+
+.confirm-button {
+	display: flex;
+    align-self: flex-end;
+}

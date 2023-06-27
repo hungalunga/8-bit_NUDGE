@@ -10,6 +10,7 @@ export default function MainQuizComplete(props) {
 			props.setStreak(true) 
 		}
 	}
+import { Card } from "primereact/card";
 
 export default function MainQuizComplete() {
 	return (
@@ -20,5 +21,11 @@ export default function MainQuizComplete() {
 			</Link>
 
 		</> 
+		    <Card className="end-quiz-card">
+			<h1>Quiz Complete!</h1>
+			<Button label="Keep quizzing!" />
+			</Card>
+			<Button label="Home" />
+		</>
 	);
 }
