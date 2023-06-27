@@ -1,5 +1,6 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
+import TextToSpeech from "../TextToSpeech/TextToSpeech";
 
 export default function PromptQuizCorrect({
 	withinTime,
@@ -33,7 +34,6 @@ export default function PromptQuizCorrect({
 					<p>Incorrect but in time!</p>
 					<p>2X Time Bonus!</p>
 					<p>You've gained +20 points!</p>
-					<i className=" pi pi-volume-up" style={{ fontSize: '1.75rem' }}></i>
 				</div>
 				<Link to="/home">
 					<Button onClick={addScore}>Finished!</Button>

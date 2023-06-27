@@ -5,6 +5,8 @@ import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
 import { ProgressBar } from "primereact/progressbar";
 import { Card } from "primereact/card";
+import { Button } from "primereact/button";
+import TextToSpeech from "../TextToSpeech/TextToSpeech";
 
 
 export default function PromptQuizDisplay(props) {
@@ -47,7 +49,7 @@ export default function PromptQuizDisplay(props) {
         </div>
 
         <div className="mainQuiz">
-          <Card className="big-card">{question}<i className=" pi pi-volume-up" style={{ fontSize: '1.75rem' }}></i></Card>
+          <Card className="big-card">{question}<TextToSpeech /></Card>
           {/*<p className="question"></p>*/}
           {props.promptQuestionTimer && (
             <PromptQuestionTimer seconds={seconds} setSeconds={setSeconds} />
