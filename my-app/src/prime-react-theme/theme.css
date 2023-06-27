@@ -7413,12 +7413,24 @@ p {
 	outline-offset: 0;
 	box-shadow: 0 0 0 0.1rem #fe9;
 }
+
+/* progress bars */
+
+.timer-bar {
+min-width: 550px;
+width: 675px;
+}
+
+.quiz-progress-bar {
+	min-width: 750px;
+}
+
 .p-progressbar {
 	border: 0 none;
 	height: 18px;
 	background: #D9D1F3;
 	border-radius: 20px;
-	width: 1000px;
+
 }
 .p-progressbar .p-progressbar-value {
 	border-radius: 20px;

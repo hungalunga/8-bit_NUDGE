@@ -1,9 +1,11 @@
 import MainQuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
+import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 import { useState, useEffect } from "react";
 import { quizQuestions } from "../../QuizData";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import "./MainQuiz.css";
+
 
 export default function MainQuiz(props) {
 	const [questionObject, setQuestionObject] = useState({});
@@ -57,31 +59,19 @@ export default function MainQuiz(props) {
 		} else return DbQuestion;
 	}
 
-  function exitAlert() {
-    // Display a confirmation dialog
-    var result = window.confirm("Don't quit now! You'll lose any points you've earned so far! Are you sure you want to exit the quiz? ");
-
-    if (result) {
-      // If the user clicks OK, redirect them to the desired page
-      window.location.href = "/home"; // Replace with the desired URL
-    } else {
-      // If the user clicks Cancel, stay on the current page
-      // Do nothing or perform any other desired action
-    }
-  }
+  
 
 	// Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
 	// when questionNumber changes, rerender
 
 	// display the question & answers
 	if (quizStarted) {
-		return (
-			<div data-testid="question-display" className="mainQuiz">
-				<div className="exit-quiz">
-					<button className="exit-quiz-button" onClick={exitAlert}>
-						X Leave Quiz
-					</button>
-				</div>
+		return (				<>
+		<div className="exit-quiz">
+		<ExitQuizButton />
+		</div>
+			<div className="main-quiz-page">
+
 				<MainQuizDisplay
 					quizScore={quizScore}
 					setQuizScore={setQuizScore}
@@ -104,7 +94,7 @@ export default function MainQuiz(props) {
 					setStreakCount={props.setStreakCount}
 					streakCount={props.streakCount}
 				/>
-			</div>
+			</div></>
 		);
 	} else {
 		return (
