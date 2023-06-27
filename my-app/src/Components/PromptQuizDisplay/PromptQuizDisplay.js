@@ -5,7 +5,12 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
+import { ProgressBar } from "primereact/progressbar";
+import { Card } from "primereact/card";
+import { Button } from "primereact/button";
+import TextToSpeech from "../TextToSpeech/TextToSpeech";
 import "../PromptQuiz/PromptQuiz.css";
+
 
 export default function PromptQuizDisplay(props) {
 	const [withinTime, setWithinTime] = useState(true);
@@ -27,69 +32,66 @@ export default function PromptQuizDisplay(props) {
 		return (
 			<>
 				{/* need to write functionality so prompt occurs asking 'are you sure/you'll lose your progress' when X is clicked */}
-
-				<div className="mainQuiz">
-					<div className="timer-container">
-						<ProgressBar className="timer-bar" value={value}></ProgressBar>
-						{props.promptQuestionTimer && (
-							<PromptQuestionTimer seconds={seconds} setSeconds={setSeconds} />
-						)}
-					</div>
-					<Card className="big-card">{question}</Card>
-					{/*<p className="question"></p>*/}
-					<AnswerCheckbox
-						questionObject={questionObject}
-						wrongAnswers={questionObject.wrong_answers}
-						id={questionObject.id}
-						question={questionObject.question}
-						correctAnswer={questionObject.answer}
-						questionNumber={props.questionNumber}
-						setQuestionNumber={props.setQuestionNumber}
-						// ^^send questionNumber props down to re-render after each answer
-						resultsValue={props.resultsValue}
-						setResultsValue={props.setResultsValue}
-						incorrectAnswers={props.incorrectAnswers}
-						setIncorrectAnswers={props.setIncorrectAnswers}
-						setWithinTime={setWithinTime}
-						withinTime={withinTime}
-						seconds={seconds}
-					/>
-				</div>
-			</>
-		);
-	} else if (props.resultsValue === 1) {
-		return (
-			<div className="MainQuiz">
-				<PromptQuizCorrect
-					withinTime={withinTime}
-					seconds={seconds}
-					streak={props.streak}
-					setStreak={props.setStreak}
-					totalScore={props.totalScore}
-					setTotalScore={props.setTotalScore}
-					streakCount={props.streakCount}
-					setStreakCount={props.setStreakCount}
-				/>
-			</div>
-		);
-	} else if (props.resultsValue === -1) {
-		return (
-			<div className="MainQuiz">
-				<PromptQuizIncorrect
-					questionObject={questionObject}
-					withinTime={withinTime}
-					seconds={seconds}
-					streak={props.streak}
-					setStreak={props.setStreak}
-					totalScore={props.totalScore}
-					setTotalScore={props.setTotalScore}
-					streakCount={props.streakCount}
-					setStreakCount={props.setStreakCount}
-				/>
-			</div>
-		);
-	} else {
-	}
+        <div className="mainQuiz">
+          <Card className="big-card">{question}<TextToSpeech speech={`${questionObject.question}`}/></Card>
+          {/*<p className="question"></p>*/}
+          {props.promptQuestionTimer && (
+            <PromptQuestionTimer seconds={seconds} setSeconds={setSeconds} />
+          )}
+          <ProgressBar value={value}></ProgressBar>
+          <AnswerCheckbox
+            questionObject={questionObject}
+            wrongAnswers={questionObject.wrong_answers}
+            id={questionObject.id}
+            question={questionObject.question}
+            correctAnswer={questionObject.answer}
+            questionNumber={props.questionNumber}
+            setQuestionNumber={props.setQuestionNumber}
+            // ^^send questionNumber props down to re-render after each answer
+            resultsValue={props.resultsValue}
+            setResultsValue={props.setResultsValue}
+            incorrectAnswers={props.incorrectAnswers}
+            setIncorrectAnswers={props.setIncorrectAnswers}
+            setWithinTime={setWithinTime}
+            withinTime={withinTime}
+            seconds={seconds}
+          />
+        </div>
+      </>
+    );
+  } else if (props.resultsValue === 1) {
+    return (
+      <div className="MainQuiz">
+        <PromptQuizCorrect
+          withinTime={withinTime}
+          seconds={seconds}
+          streak={props.streak}
+          setStreak={props.setStreak}
+          totalScore={props.totalScore}
+          setTotalScore={props.setTotalScore}
+          streakCount={props.streakCount}
+          setStreakCount={props.setStreakCount}
+        />
+      </div>
+    );
+  } else if (props.resultsValue === -1) {
+    return (
+      <div className="MainQuiz">
+        <PromptQuizIncorrect
+          questionObject={questionObject}
+          withinTime={withinTime}
+          seconds={seconds}
+          streak={props.streak}
+          setStreak={props.setStreak}
+          totalScore={props.totalScore}
+          setTotalScore={props.setTotalScore}
+          streakCount={props.streakCount}
+          setStreakCount={props.setStreakCount}
+        />
+      </div>
+    );
+  } else {
+  }
 	if (typeof props.questionObject === "object" && props.resultsValue === 0) {
 		return (
 			<div className="mainQuiz">

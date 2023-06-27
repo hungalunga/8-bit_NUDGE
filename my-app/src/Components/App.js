@@ -110,8 +110,8 @@ export default function App() {
 
     return (
       <>
-        <div className="App"> 
-          {/* <Menubar className="menubar" model={items} /> */}
+        <div className="App">
+          <Menubar className="menubar" model={items} />
         </div>
         <div>
           {/* <PromptNotification/>  */}

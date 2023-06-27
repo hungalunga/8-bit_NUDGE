@@ -1,5 +1,6 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
+import TextToSpeech from "../TextToSpeech/TextToSpeech";
 
 export default function PromptQuizCorrect({
 	withinTime,
