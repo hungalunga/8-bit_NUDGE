@@ -10,7 +10,7 @@ import "./Dashboard.css";
 import nudgelogo from "../../images/nudgelogo.png";
 import "primeicons/primeicons.css";
 
-export default function Dashboard(propsprops) {
+export default function Dashboard(props) {
 	const [firstChar, setFirstChar] = useState("");
 
 	useEffect(() => {

@@ -127,5 +127,5 @@ export default function PromptQuiz(props) {
 				</h2>
 			</div>
 		)
-}}
+}
 
