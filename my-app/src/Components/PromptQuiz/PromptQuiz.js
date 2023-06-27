@@ -30,6 +30,7 @@ export default function PromptQuiz(props) {
 			getOneQuestion(data);
 		}
 		getQuestions();
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [questionNumber]);
 
 	function getOneQuestion(data) {
