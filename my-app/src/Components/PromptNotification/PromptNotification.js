@@ -10,7 +10,7 @@ export default function PromptNotification() {
     //function that creates the notification with the title and body
     const inTimeRedirect =
       "https://main--endearing-macaron-a904df.netlify.app/nudge-quiz";
-    const outOfTimeRedirect = "http://localhost:3000/nudge-quiz-late";
+    const outOfTimeRedirect = "https://main--endearing-macaron-a904df.netlify.app/nudge-quiz-late";
     let redirect = inTimeRedirect;
     const options = {
       body: body,
