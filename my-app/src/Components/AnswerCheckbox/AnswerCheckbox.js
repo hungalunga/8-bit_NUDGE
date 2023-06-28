@@ -28,6 +28,7 @@ import { useState, useEffect } from "react";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import { Button } from "primereact/button";
+import "./AnswerCheckbox.css";
 
 const shuffleArray = (array) => {
 	const shuffledArray = [...array];
@@ -51,9 +52,10 @@ export default function AnswerCheckbox({
 	questionObject,
 	setWithinTime,
 	withinTime,
-	seconds
+	seconds,
+	quizScore,
+	setQuizScore,
 }) {
-
 	const [answer, setAnswer] = useState("");
 	const [allAnswers, setAllAnswers] = useState([]);
 
@@ -74,37 +76,37 @@ export default function AnswerCheckbox({
 			console.log("withinTime:", withinTime);
 		}
 		console.log("user answer:", answer, "correct answer:", correctAnswer);
-		
+
 		if (answer === correctAnswer) {
 			setResultsValue(1);
-			//console.log(`Answered correctly!`);
 		} else if (answer === "") {
 			setResultsValue(0);
-			//console.log("No answer selected");
 		} else {
 			setResultsValue(-1);
-			//console.log("Answered incorrectly");
-			setIncorrectAnswers([
-				...incorrectAnswers, questionObject]
-				// { question, answer: correctAnswer, wrongAnswers, id },
-			);
+			setIncorrectAnswers([...incorrectAnswers, questionObject]);
 		}
 	};
 
 	return (
-		<div className="answerBox">
-			{allAnswers.map((answerOption, index) => (
-				<Button
-					severity="success"
-					className={
-						answer === answerOption ? "answerButton selected" : "answerButton"
-					}
-					key={index}
-					label={answerOption}
-					onClick={() => onAnswerChange(answerOption)}
-				/>
-			))}
-			<Button label="Confirm" className="" onClick={handleClick} />
-		</div>
+		<>
+			<div className="answers">
+				{allAnswers.map((answerOption, index) => (
+					<Button
+						severity="secondary"
+						className={
+							answer === answerOption
+								? "answer-button-selected"
+								: "answer-button"
+						}
+						key={index}
+						label={answerOption}
+						onClick={() => onAnswerChange(answerOption)}
+					/>
+				))}
+			</div>
+			<div className="confirm-button">
+				<Button label="Submit" onClick={handleClick} />
+			</div>
+		</>
 	);
 }

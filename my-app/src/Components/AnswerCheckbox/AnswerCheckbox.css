@@ -1,0 +1,15 @@
+.answers {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	min-height: 125px;
+	width: 600px;
+	min-width: 500px;
+}
+
+.confirm-button {
+	display: flex;
+    align-self: flex-end;
+}
