@@ -9,7 +9,6 @@ import { useState } from "react";
 import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
-import {Menubar} from 'primereact/menubar';
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
