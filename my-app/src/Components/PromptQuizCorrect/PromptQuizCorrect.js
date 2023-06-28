@@ -2,7 +2,7 @@ import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import { Card } from "primereact/card";
 import Confetti from "react-confetti";
-import WebsiteEmbed from "../WebsiteEmbed/WebsiteEmbed";
+// import WebsiteEmbed from "../WebsiteEmbed/WebsiteEmbed";
 import TextToSpeech from "../TextToSpeech/TextToSpeech";
 import "../MainQuiz/MainQuiz.css";
 
