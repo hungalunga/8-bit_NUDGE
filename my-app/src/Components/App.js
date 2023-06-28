@@ -1,11 +1,12 @@
-import PromptNotification from "./PromptNotification/PromptNotification";
+import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { Auth } from "@supabase/auth-ui-react";
+import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import { Route, Routes } from "react-router-dom";
-import { createClient } from "@supabase/supabase-js";
 import { Menubar } from "primereact/menubar";
-import PromptQuiz from "./PromptQuiz/PromptQuiz";
-import { useState } from "react";
+import PromptNotification from "./PromptNotification/PromptNotification";
 import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
@@ -17,75 +18,75 @@ const supabase = createClient(
 );
 
 // theme for login page for supabase
-// const customTheme = {
-//   default: {
-//     colors: {
-//       brand: "#FFD500",
-//       brandAccent: "#D9D1F3",
-//       brandButtonText: "#39207E",
-//       defaultButtonBackground: "#F7F7F7",
-//       defaultButtonBackgroundHover: "#D9D1F3",
-//       defaultButtonBorder: "#F7F7F7",
-//       defaultButtonText: "#39207E",
-//       dividerBackground: "#eaeaea",
-//       inputBackground: "transparent",
-//       inputBorder: "lightgray",
-//       inputBorderHover: "gray",
-//       inputBorderFocus: "gray",
-//       inputText: "black",
-//       inputLabelText: "gray",
-//       inputPlaceholder: "darkgray",
-//       messageText: "gray",
-//       messageTextDanger: "red",
-//       anchorTextColor: "gray",
-//       anchorTextHoverColor: "darkgray",
-//     },
-//     space: {
-//       spaceSmall: "4px",
-//       spaceMedium: "8px",
-//       spaceLarge: "16px",
-//       labelBottomMargin: "8px",
-//       anchorBottomMargin: "4px",
-//       emailInputSpacing: "4px",
-//       socialAuthSpacing: "4px",
-//       buttonPadding: "10px 15px",
-//       inputPadding: "10px 15px",
-//     },
-//     fontSizes: {
-//       baseBodySize: "13px",
-//       baseInputSize: "14px",
-//       baseLabelSize: "14px",
-//       baseButtonSize: "14px",
-//     },
-//     fonts: {
-//       bodyFontFamily: `ui-sans-serif, sans-serif`,
-//       buttonFontFamily: `ui-sans-serif, sans-serif`,
-//       inputFontFamily: `ui-sans-serif, sans-serif`,
-//       labelFontFamily: `ui-sans-serif, sans-serif`,
-//     },
-//     // fontWeights: {},
-//     // lineHeights: {},
-//     // letterSpacings: {},
-//     // sizes: {},
-//     borderWidths: {
-//       buttonBorderWidth: "1px",
-//       inputBorderWidth: "1px",
-//     },
-//     // borderStyles: {},
-//     radii: {
-//       borderRadiusButton: "4px",
-//       buttonBorderRadius: "4px",
-//       inputBorderRadius: "4px",
-//     },
-//   }
-// };
+const customTheme = {
+  default: {
+    colors: {
+      brand: "#FFD500",
+      brandAccent: "#D9D1F3",
+      brandButtonText: "#39207E",
+      defaultButtonBackground: "#F7F7F7",
+      defaultButtonBackgroundHover: "#D9D1F3",
+      defaultButtonBorder: "#F7F7F7",
+      defaultButtonText: "#39207E",
+      dividerBackground: "#eaeaea",
+      inputBackground: "transparent",
+      inputBorder: "lightgray",
+      inputBorderHover: "gray",
+      inputBorderFocus: "gray",
+      inputText: "black",
+      inputLabelText: "gray",
+      inputPlaceholder: "darkgray",
+      messageText: "gray",
+      messageTextDanger: "red",
+      anchorTextColor: "gray",
+      anchorTextHoverColor: "darkgray",
+    },
+    space: {
+      spaceSmall: "4px",
+      spaceMedium: "8px",
+      spaceLarge: "16px",
+      labelBottomMargin: "8px",
+      anchorBottomMargin: "4px",
+      emailInputSpacing: "4px",
+      socialAuthSpacing: "4px",
+      buttonPadding: "10px 15px",
+      inputPadding: "10px 15px",
+    },
+    fontSizes: {
+      baseBodySize: "13px",
+      baseInputSize: "14px",
+      baseLabelSize: "14px",
+      baseButtonSize: "14px",
+    },
+    fonts: {
+      bodyFontFamily: `ui-sans-serif, sans-serif`,
+      buttonFontFamily: `ui-sans-serif, sans-serif`,
+      inputFontFamily: `ui-sans-serif, sans-serif`,
+      labelFontFamily: `ui-sans-serif, sans-serif`,
+    },
+    // fontWeights: {},
+    // lineHeights: {},
+    // letterSpacings: {},
+    // sizes: {},
+    borderWidths: {
+      buttonBorderWidth: "1px",
+      inputBorderWidth: "1px",
+    },
+    // borderStyles: {},
+    radii: {
+      borderRadiusButton: "4px",
+      buttonBorderRadius: "4px",
+      inputBorderRadius: "4px",
+    },
+  },
+};
 
 export default function App() {
   const items = [
     {
       label: "Home",
       command: () => {
-        window.location = "/home";
+        window.location = "/";
       },
     },
     {
@@ -106,53 +107,83 @@ export default function App() {
   const [streak, setStreak] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
   const [totalScore, setTotalScore] = useState(10);
+  const [session, setSession] = useState(null);
 
-  return (
-    <>
-      <div className="App">
-        <Menubar className="menubar" model={items} />
-      </div>
-      <div>{<PromptNotification />}</div>
-      <Routes>
-        <Route
-          path="/quiz"
-          element={
-            <MainQuiz
-              totalScore={totalScore}
-              setTotalScore={setTotalScore}
-              streak={streak}
-              setStreak={setStreak}
-              streakCount={streakCount}
-              setStreakCount={setStreakCount}
-            />
-          }
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  if (!session) {
+    return (
+      <>
+        <Auth
+          supabaseClient={supabase}
+          theme="default"
+          appearance={{ theme: customTheme }}
+          providers={["google", "facebook", "apple"]}
         />
-        <Route
-          path="/home"
-          element={
-            <Dashboard
-              supabase={supabase}
-              totalScore={totalScore}
-              setTotalScore={setTotalScore}
-              streakCount={streakCount}
-            />
-          }
-        />
-        <Route path="/nudge-quiz-late" element={<PromptQuiz late={true} />} />
-        <Route
-          path="/nudge-quiz"
-          element={
-            <PromptQuiz
-              totalScore={totalScore}
-              setTotalScore={setTotalScore}
-              streak={streak}
-              setStreak={setStreak}
-              streakCount={streakCount}
-              setStreakCount={setStreakCount}
-            />
-          }
-        />
-      </Routes>
-    </>
-  );
+        <p>About us: We are a team of 4 developers who are passionate about</p>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="App">
+          <Menubar className="menubar" model={items} />
+        </div>
+        <div>{<PromptNotification />}</div>
+        <Routes>
+          <Route
+            path="/quiz"
+            element={
+              <MainQuiz
+                totalScore={totalScore}
+                setTotalScore={setTotalScore}
+                streak={streak}
+                setStreak={setStreak}
+                streakCount={streakCount}
+                setStreakCount={setStreakCount}
+              />
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <Dashboard
+                session={session}
+                supabase={supabase}
+                totalScore={totalScore}
+                setTotalScore={setTotalScore}
+                streakCount={streakCount}
+              />
+            }
+          />
+          <Route path="/nudge-quiz-late" element={<PromptQuiz late={true} />} />
+          <Route
+            path="/nudge-quiz"
+            element={
+              <PromptQuiz
+                totalScore={totalScore}
+                setTotalScore={setTotalScore}
+                streak={streak}
+                setStreak={setStreak}
+                streakCount={streakCount}
+                setStreakCount={setStreakCount}
+              />
+            }
+          />
+        </Routes>
+      </>
+    );
+  }
 }

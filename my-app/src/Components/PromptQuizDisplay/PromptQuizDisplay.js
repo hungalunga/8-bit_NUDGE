@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ProgressBar } from "primereact/progressbar";
 import { Card } from "primereact/card";
 import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
-import PromptQuestionTimer from "../promptQuestionTimer/PromptQuestionTimer";
+import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
 import TextToSpeech from "../TextToSpeech/TextToSpeech";
