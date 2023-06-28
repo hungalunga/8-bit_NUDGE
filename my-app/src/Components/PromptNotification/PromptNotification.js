@@ -26,7 +26,7 @@ export default function PromptNotification() {
       "Notification" in window &&
       Notification.permission === "granted" &&
       showTime >= 9 &&
-      showTime <= 17
+      showTime <= 8
     ) {
       const notification = new Notification(title, options);
 
