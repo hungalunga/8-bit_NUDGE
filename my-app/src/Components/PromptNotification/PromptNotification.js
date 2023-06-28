@@ -30,6 +30,7 @@ export default function PromptNotification() {
     ) {
       console.log("notification requested")
       const notification = new Notification(title, options);
+      console.log(notification)
 
       notification.addEventListener("click", function (event) {
         window.open(redirect);
