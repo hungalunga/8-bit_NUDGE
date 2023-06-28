@@ -9,12 +9,13 @@ export default function MainQuizQuestion(props) {
   console.log("props.questionObject:", props.questionObject);
   return (
     <>
-      <Card className="big-card">{props.question}
-      <TextToSpeech speech={`${props.questionObject.question}`}/>
+      <Card className="big-card">
+        {props.question}
+        <TextToSpeech speech={`${props.questionObject.question}`} />
       </Card>
       {/*<p className="question"></p>*/}
       {props.promptQuestionTimer && <PromptQuestionTimer />}
-      
+
       <AnswerCheckbox
         quizScore={props.quizScore}
         setQuizScore={props.setQuizScore}
