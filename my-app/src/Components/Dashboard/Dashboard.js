@@ -22,6 +22,7 @@ export default function Dashboard(props) {
   const [firstLetter, setFirstLetter] = useState(null);
   const [leaderboard, setLeaderboard] = useState(null);
   const [rank, setRank] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -87,7 +88,7 @@ export default function Dashboard(props) {
       console.table("rankedProfiles:", rankedProfiles);
       setLeaderboard(rankedProfiles);
     }
-     
+
     getLeaderboard();
 
     async function getScore() {
@@ -101,7 +102,7 @@ export default function Dashboard(props) {
     }
 
     getScore();
-  }, [props.supabase]);
+  }, [props.supabase, user]);
 
   const menuRight = useRef(null);
   //const router = useRouter();
@@ -142,6 +143,12 @@ export default function Dashboard(props) {
 
   // function to cause a reRender of the page when the user_name is updated
   async function handleSaveClick() {
+    if (selectedFile) {
+      await props.supabase.storage
+        .from("profile_pictures")
+        .upload(`public/${user.id}`, selectedFile);
+    }
+
     await props.supabase
       .from("profiles")
       .update({
@@ -168,8 +175,6 @@ export default function Dashboard(props) {
     getRank();
   }, [leaderboard, username]);
 
-
-
   // handleChange function to update the user_name in the userProfile state
   // access the user_name from the userProfile state
   // update the user_name in the userProfile state
@@ -188,9 +193,7 @@ export default function Dashboard(props) {
     // bucket is called profile_pictures
     // file is uploaded to public folder
     const file = e.target.files[0];
-    await props.supabase.storage
-      .from("profile_pictures")
-      .upload(`public/${user.id}`, file);
+    setSelectedFile(file);
   }
 
   return (
@@ -232,9 +235,7 @@ export default function Dashboard(props) {
                   className="circleAvatar"
                 />
                 <FileUpload
-                  name={props.supabase.storage
-                    .from("profile_pictures")
-                    .getPublicUrl(`public/${user.id}`)}
+                  name=""
                   url=""
                   multiple
                   accept="image/*"
@@ -244,6 +245,13 @@ export default function Dashboard(props) {
                       Drag and drop files to here to upload.
                     </p>
                   }
+                  chooseLabel="Select"
+                  uploadLabel="Upload"
+                  cancelLabel="Cancel"
+                  customUpload
+                  uploadHandler={onUpload}
+                  onClear={() => setSelectedFile(null)}
+                  selectedFiles={selectedFile ? [selectedFile] : []}
                 />
                 <div className="welcome">
                   <h1 className="welcome-text">Welcome back,</h1>

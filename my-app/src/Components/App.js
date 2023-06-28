@@ -87,7 +87,6 @@ export default function App() {
 
   useEffect(() => {
     async function updateScore() {
-      console.log("hey i ran");
       await supabase
         .from("profiles")
         .update({ user_score: totalScore })
