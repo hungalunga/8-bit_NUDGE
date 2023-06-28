@@ -21,10 +21,10 @@ export default function PromptNotification() {
       redirect = outOfTimeRedirect;
     }, 5000);
 
-    if (
+    if (false
       //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
       //"Notification" in window //&&
-       Notification.permission === "granted" //&&
+       //Notification.permission === "granted" //&&
       // showTime >= 0 &&
       // showTime <= 24
     ) {
@@ -35,13 +35,14 @@ export default function PromptNotification() {
       notification.addEventListener("click", function (event) {
         window.open(redirect);
       });
-    } else if (
+    } else if (true
       // "Notification" in window &&
-      Notification.permission === "denied" // &&
+      // Notification.permission !== "granted"  // &&
       // showTime >= 9 &&
       // showTime <= 17
     ) {
       //this checks if the browser supports notifications, if the user has denied permission, and if the current time is between 9 and 17
+      console.log("notification permission not granted")
       Notification.requestPermission().then((permission) => {
         //this asks the user for permission to send notifications
         if (permission === "granted") {
