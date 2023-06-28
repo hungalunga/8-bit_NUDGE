@@ -25,9 +25,10 @@ export default function PromptNotification() {
       //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
       "Notification" in window &&
       Notification.permission === "granted" &&
-      showTime >= 9 &&
-      showTime <= 8
+      showTime >= 0 &&
+      showTime <= 24
     ) {
+      console.log("notification requested")
       const notification = new Notification(title, options);
 
       notification.addEventListener("click", function (event) {
