@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { HashLink } from 'react-router-hash-link';
+import { HashLink } from "react-router-hash-link";
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
-import { Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import { Button } from "primereact/button";
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
-import { Route, Routes } from "react-router-dom";
-import { Menubar } from "primereact/menubar";
 import PromptNotification from "./PromptNotification/PromptNotification";
-import nudgelogo from "../images/nudgelogo.png"
+import nudgelogo from "../images/nudgelogo.png";
+import notification from "../images/notification.png";
+import alarm from "../images/alarm.png";
+import calendar from "../images/calendar.png";
 import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
@@ -104,60 +106,86 @@ export default function App() {
 		return () => subscription.unsubscribe();
 	}, []);
 
-	
-
 	// if not logged in, then show login page
 	if (!session) {
 		return (
 			<>
-				<div className="login-page">
+				<div id="getstarted" className="login-page">
 					<div className="login-container">
-					<div className="logo-tagline-container">
-					<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
-					<h2>The revision app that <strong>actually works</strong>.</h2>
-					<HashLink smooth to="/#findoutmore">Find out more</HashLink>
-					</div>
-						<div className="login-form"> 
-						<div className="auth">
-							<Auth
-								supabaseClient={supabase}
-								theme="default"
-								appearance={{ theme: customTheme }}
-								providers={["google", "facebook"]}
-							/> </div>
+						<div className="logo-tagline-container">
+							<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
+							<h2>
+								The revision app that <strong>actually works</strong>.
+							</h2>
+							<HashLink smooth to="/#findoutmore">
+								Find out more
+							</HashLink>
 						</div>
-					</div>
-
-					<div id="findoutmore" className="description-container">
-						<h1>How it works</h1>
-						<div className="steps-container">
-							<div className="step">
-								<h3 className="magenta">
-									<strong>Each day we’ll send you a NUDGE.</strong>
-								</h3>
-								<p>The catch? You won’t know when to expect it.</p>
-							</div>
-							<div className="step">
-								<h3 className="magenta">
-									<strong>Act fast!</strong>
-								</h3>
-								<p>
-									You have 3 minutes to tap the notification & answer the
-									question.
-								</p>
-							</div>
-							<div className="step">
-								<h3 className="magenta">
-									<strong>Missed your NUDGE?</strong>
-								</h3>
-								<p>
-									Keep your streak by completing any of the quizzes on the app.
-								</p>
+						<div className="login-form">
+							<div className="auth">
+								<Auth
+									supabaseClient={supabase}
+									theme="default"
+									appearance={{ theme: customTheme }}
+									providers={["google", "facebook"]}
+								/>{" "}
 							</div>
 						</div>
 					</div>
-					<div className="about-us-container">
-					lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed	ultrices, nisl nec aliquam tincidunt, nunc nisl aliquet nunc, nec aliquam nisl nisl nec ipsum.
+					<div className="landing-footer">
+						<div id="findoutmore" className="description-container">
+							<h1 className="magenta">How it works</h1>
+							<div className="steps-container">
+								<div className="step">
+									<img
+										src={notification}
+										alt="notification"
+										className="step-icon"
+									/>
+									<h3>
+										<strong>Each day we’ll send you a NUDGE.</strong>
+									</h3>
+									<p className="step-p">
+										The catch? You won’t know when to expect it.
+									</p>
+								</div>
+								<div className="step">
+									<img src={alarm} alt="alarm" className="step-icon" />
+									<h3>
+										<strong>Act fast!</strong>
+									</h3>
+									<p className="step-p">
+										You have 3 minutes to tap the notification & answer the
+										question.
+									</p>
+								</div>
+								<div className="step">
+									<img src={calendar} alt="calendar" className="step-icon" />
+									<h3>
+										<strong>Missed your NUDGE?</strong>
+									</h3>
+									<p className="step-p">
+										Save your streak by finishing any quiz on the app.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div className="about-us-container">
+							<div className="about-us">
+								<h3 className="off-white">
+									The hardest part of revising is finding the will-power to get
+									started - NUDGE disrupts your doom-scrolling, getting you
+									right back into your learning.
+								</h3><div className="get-started-button">
+								<HashLink smooth to="/#getstarted">
+									<Button
+										className="confirm-button"
+										severity="primary"
+										label="Get Started"
+									></Button>
+								</HashLink></div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</>
@@ -167,7 +195,6 @@ export default function App() {
 		return (
 			<>
 				<Routes>
-				
 					<Route
 						path="/quiz"
 						element={

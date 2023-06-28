@@ -78,6 +78,11 @@ h3 {
 	color: #891891;
 }
 
+.off-white {
+	color: #f7f7f7;
+	line-height: 140%;
+}
+
 p {
 	font-size: 1.5rem;
 	font-weight: 400;
@@ -1916,6 +1921,8 @@ p {
 	height: 100px;
 	width: 400px;
 }
+
+
 
 .p-button {
 	color: #39207e;
