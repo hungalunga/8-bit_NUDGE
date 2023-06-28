@@ -27,6 +27,8 @@ export default function MainQuiz(props) {
       const data = await response.json();
       console.log(data);
       getRandomQuestion(data);
+      // some comments
+      let x = 5;
     }
     getQuestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
