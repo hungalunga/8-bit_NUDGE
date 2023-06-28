@@ -27,7 +27,7 @@ export default function PromptQuiz(props) {
 
   useEffect(() => {
     async function getQuestions() {
-      const response = await fetch("http://localhost:3001/daily_question");
+      const response = await fetch("https://eight-bit-nudge-backend.onrender.com/daily_question");
       const data = await response.json();
       console.log(data);
       getOneQuestion(data);
