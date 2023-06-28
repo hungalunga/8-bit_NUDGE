@@ -2,8 +2,9 @@ import { Button } from 'primereact/button';
 import React, { useEffect, useRef } from 'react';
 
 export default function TextToSpeech(props) {
-  const speechRef = useRef(null);
+  //const speechRef = useRef(null);
   const isPaused = useRef(false);
+  speechSynthesis.cancel();
 
   const getVoices = () => {
     let voices = speechSynthesis.getVoices();
@@ -16,7 +17,7 @@ export default function TextToSpeech(props) {
   };
 
   useEffect(() => {
-    getVoices();
+    getVoices(); 
   }, []);
 
   let voices = getVoices(),
