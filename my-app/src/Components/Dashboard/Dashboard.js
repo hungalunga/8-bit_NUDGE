@@ -297,9 +297,9 @@ export default function Dashboard(props) {
                 </div>
               </div>
               <div className="user-scores">
-                <Card title={`${props.streakCount}`} subTitle="Day Streak!" />
-                <Card title={`${props.totalScore}`} subTitle=" Points!" />
-                <Card title="No.4" subTitle=" Ranking" />
+                <Card className="correct-XP-card" title={`${props.streakCount}`} subTitle="Day Streak!" />
+                <Card className="correct-XP-card"title={`${props.totalScore}`} subTitle=" Points!" />
+                <Card className="correct-XP-card"title="No.4" subTitle=" Ranking" />
               </div>
             </div>
 

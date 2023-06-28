@@ -23,8 +23,7 @@
 .nudge-logo {
 	display: flex;
 	margin-left: 20px;
-	margin-bottom: 10px;
-	height: 60px;
+	width: 50px;
 }
 
 .avatar-small {
