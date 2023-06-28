@@ -1,13 +1,10 @@
 import React from "react";
 
-
 function WebsiteEmbed() {
-
   const iframeStyle = {
     width: "100%",
     height: "725px",
     border: "none",
-  
   };
 
   const overlayStyle = {
@@ -21,13 +18,12 @@ function WebsiteEmbed() {
 
   return (
     <div>
-
-
       <h3>Getting stuck? Ask NUDGE-bot for help</h3>
-      <iframe  
-      title="W3Schools Free Online Web Tutorials"
-      style={iframeStyle}
-      src="https://app.insertchatgpt.com/embed/349cbae1-318e-4328-9735-deaafd7edb8a"></iframe>
+      <iframe
+        title="W3Schools Free Online Web Tutorials"
+        style={iframeStyle}
+        src="https://app.insertchatgpt.com/embed/349cbae1-318e-4328-9735-deaafd7edb8a"
+      ></iframe>
       <div style={overlayStyle}></div>
       {/* <Button variant="contained">Hello World</Button> */}
     </div>
