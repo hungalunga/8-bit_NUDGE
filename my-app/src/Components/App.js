@@ -138,10 +138,6 @@ export default function App() {
   } else {
     return (
       <>
-        <div className="App">
-          <Menubar className="menubar" model={items} />
-        </div>
-        <div>{<PromptNotification />}</div>
         <Routes>
           <Route
             path="/quiz"
@@ -157,7 +153,7 @@ export default function App() {
             }
           />
           <Route
-            path="/home"
+            path="/"
             element={
               <Dashboard
                 session={session}

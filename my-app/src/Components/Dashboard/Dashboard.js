@@ -85,7 +85,7 @@ import "primeicons/primeicons.css";
     {
       label: "My Dashboard",
       command: () => {
-        window.location = "/home";
+        window.location = "/";
       },
     },
     {
@@ -102,6 +102,12 @@ import "primeicons/primeicons.css";
         window.location = "/quiz";
       },
     },
+    {
+      template: (item, options) => {
+        return (
+          <button label="Edit Profile" onClick={handleEditClick} />
+        )
+      }},
     {
       label: "Logout",
       command: () => {
@@ -243,7 +249,6 @@ import "primeicons/primeicons.css";
         </>
       ) : (
         <>
-          <Button label="Edit" onClick={handleEditClick} />
       <link
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
         rel="stylesheet"
