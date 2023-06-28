@@ -21,6 +21,7 @@ export default function MainQuiz(props) {
   // creating initial states as empty arrays
   // questions that have already been asked
 
+
   useEffect(() => {
     async function getQuestions() {
       const response = await fetch("https://eight-bit-nudge-backend.onrender.com/math_questions");
@@ -29,6 +30,7 @@ export default function MainQuiz(props) {
       getRandomQuestion(data);
       // some comments
       let x = 5;
+      
     }
     getQuestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps

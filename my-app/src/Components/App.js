@@ -81,6 +81,8 @@ const supabase = createClient(
 // };
 
 export default function App() {
+  console.log("netlify");
+  
   const items = [
     {
       label: "Home",
