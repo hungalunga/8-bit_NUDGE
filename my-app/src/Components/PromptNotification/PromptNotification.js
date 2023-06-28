@@ -21,10 +21,10 @@ export default function PromptNotification() {
       redirect = outOfTimeRedirect;
     }, 5000);
 
-    if (true
+    if (
       //if the user has granted permission, and if the current time is between 9 and 17, then the notification will be created and the user will be able to click on it to go to the daily quiz
       //"Notification" in window //&&
-      // Notification.permission === "granted" &&
+       Notification.permission === "granted" //&&
       // showTime >= 0 &&
       // showTime <= 24
     ) {
