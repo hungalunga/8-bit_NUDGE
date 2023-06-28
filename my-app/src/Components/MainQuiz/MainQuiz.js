@@ -70,6 +70,8 @@ export default function MainQuiz(props) {
             <ExitQuizButton />
           </div>
           <MainQuizDisplay
+            supabase={props.supabase}
+            session={props.session}
             quizScore={quizScore}
             setQuizScore={setQuizScore}
             questionObject={questionObject}

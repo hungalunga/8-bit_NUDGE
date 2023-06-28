@@ -87,10 +87,20 @@ const customTheme = {
 };
 
 export default function App() {
-	const [streak, setStreak] = useState(false);
-	const [streakCount, setStreakCount] = useState(0);
-	const [totalScore, setTotalScore] = useState(10);
-	const [session, setSession] = useState(null);
+  const [streak, setStreak] = useState(false);
+  const [streakCount, setStreakCount] = useState(0);
+  const [session, setSession] = useState(null);
+  const [totalScore, setTotalScore] = useState(0);
+
+  useEffect(() => {
+    async function updateScore() {
+      await supabase
+        .from("profiles")
+        .update({ user_score: totalScore })
+        .eq("id", session.user.id);
+    }
+    updateScore();
+  }, [totalScore]);
 
 	useEffect(() => {
 		supabase.auth.getSession().then(({ data: { session } }) => {
@@ -199,6 +209,8 @@ export default function App() {
 						path="/quiz"
 						element={
 							<MainQuiz
+                supabase={supabase}
+                session={session}
 								totalScore={totalScore}
 								setTotalScore={setTotalScore}
 								streak={streak}
@@ -212,26 +224,26 @@ export default function App() {
 						path="/"
 						element={
 							<Dashboard
-								session={session}
-								supabase={supabase}
-								totalScore={totalScore}
-								setTotalScore={setTotalScore}
-								streakCount={streakCount}
-							/>
+                session={session}
+                supabase={supabase}
+                totalScore={totalScore}
+                setTotalScore={setTotalScore}
+                streakCount={streakCount}
+              />
 						}
 					/>
 					<Route path="/nudge-quiz-late" element={<PromptQuiz late={true} />} />
 					<Route
 						path="/nudge-quiz"
 						element={
-							<PromptQuiz
-								totalScore={totalScore}
-								setTotalScore={setTotalScore}
-								streak={streak}
-								setStreak={setStreak}
-								streakCount={streakCount}
-								setStreakCount={setStreakCount}
-							/>
+              <PromptQuiz
+                totalScore={totalScore}
+                setTotalScore={setTotalScore}
+                streak={streak}
+                setStreak={setStreak}
+                streakCount={streakCount}
+                setStreakCount={setStreakCount}
+              />
 						}
 					/>
 				</Routes>
