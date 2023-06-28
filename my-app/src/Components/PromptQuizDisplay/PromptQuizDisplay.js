@@ -5,6 +5,7 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import PromptQuizCorrect from "../PromptQuizCorrect/PromptQuizCorrect";
 import PromptQuizIncorrect from "../PromptQuizIncorrect/PromptQuizIncorrect";
+import { Button } from "primereact/button";
 import TextToSpeech from "../TextToSpeech/TextToSpeech";
 import "../MainQuiz/MainQuiz.css";
 

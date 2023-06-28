@@ -107,6 +107,8 @@ export default function App() {
   const [streakCount, setStreakCount] = useState(0);
   const [totalScore, setTotalScore] = useState(10);
 
+
+  
   return (
     <>
       <div className="App">
