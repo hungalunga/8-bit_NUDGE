@@ -107,7 +107,7 @@ export default function App() {
 		return (
 			<>
 				<div className="login-page">
-					<div className="login-page-auth">
+					<div className="login-container">
 					<div className="logo-tagline-container">
 					<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
 					<h3>The revision app that <strong>actually works</strong>.</h3>
@@ -122,6 +122,7 @@ export default function App() {
 							/> </div>
 						</div>
 					</div>
+					
 					<div className="description-container">
 						<h1>How it works</h1>
 						<div className="steps-container">
