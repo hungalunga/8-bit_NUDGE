@@ -1,15 +1,46 @@
+/* main-quiz-page div sits in MainQuiz & PromptQuiz components as parent to each quiz*/
 .main-quiz-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height:100vh;
-    width: 100vw;
-    background-color: #f7f7f7;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	height: 100vh;
+	width: 100vw;
+	background-color: #f7f7f7;
+}
+
+/* contains countdown progress bar & number timer in PromptQuiz*/
+.timer-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .exit-quiz {
-    padding: 15px;
-    align-self: flex-start;
-    justify-self: flex-start;
+	padding-left: 20px;
+	padding-top: 20px;
+	align-self: flex-start;
+	border: none;
+}
+
+.content-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 600px;
+}
+
+.quiz-score-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	min-height: 100px;
+}
+
+.next-button {
+	display: flex;
+	align-self: flex-end;
 }

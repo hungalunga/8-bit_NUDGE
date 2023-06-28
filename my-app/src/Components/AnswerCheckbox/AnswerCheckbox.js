@@ -29,6 +29,7 @@ import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import { Button } from "primereact/button";
 import "./AnswerCheckbox.css";
+import TextToSpeech from "../TextToSpeech/TextToSpeech";
 
 const shuffleArray = (array) => {
 	const shuffledArray = [...array];
@@ -79,35 +80,37 @@ export default function AnswerCheckbox({
 
 		if (answer === correctAnswer) {
 			setResultsValue(1);
-
 		} else if (answer === "") {
 			setResultsValue(0);
 		} else {
 			setResultsValue(-1);
-			setIncorrectAnswers([
-				...incorrectAnswers, questionObject],
-			);
+			setIncorrectAnswers([...incorrectAnswers, questionObject]);
 		}
 	};
 
 	return (
-		<div className="answer-confirm-container">
+		<>
 			<div className="answers">
 				{allAnswers.map((answerOption, index) => (
+					<div>
 					<Button
 						severity="secondary"
 						className={
-							answer === answerOption ? "answer-button-selected" : "answer-button"
+							answer === answerOption
+								? "answer-button-selected"
+								: "answer-button"
 						}
 						key={index}
 						label={answerOption}
 						onClick={() => onAnswerChange(answerOption)}
 					/>
+					<TextToSpeech speech = {answerOption}/>
+					</div>
 				))}
 			</div>
 			<div className="confirm-button">
-				<Button label="Confirm" onClick={handleClick} />
+				<Button label="Submit" onClick={handleClick} />
 			</div>
-		</div>
+		</>
 	);
 }

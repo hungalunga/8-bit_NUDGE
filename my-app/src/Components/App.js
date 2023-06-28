@@ -3,6 +3,7 @@ import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import { Route, Routes } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
+import { Menubar } from "primereact/menubar";
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import { useState } from "react";
 import "primeicons/primeicons.css";
@@ -81,7 +82,6 @@ const supabase = createClient(
 // };
 
 export default function App() {
-
   const items = [
     {
       label: "Home",
@@ -99,7 +99,7 @@ export default function App() {
     {
       label: "Logout",
       command: () => {
-       supabase.auth.signOut();
+        supabase.auth.signOut();
       },
     },
   ];
@@ -108,21 +108,54 @@ export default function App() {
   const [streakCount, setStreakCount] = useState(0);
   const [totalScore, setTotalScore] = useState(10);
 
-    return (
-      <>
-        <div className="App"> 
-          {<Menubar className="menubar" model={items} />}
-        </div>
-        <div>
-          <PromptNotification />
-        </div>  
-        <Routes>
-          <Route path="/quiz" element={<MainQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />} />
-          <Route path="/home" element={<Dashboard totalScore = {totalScore} setTotalScore ={setTotalScore} streakCount = {streakCount}/>} />
-          <Route path="/nudge-quiz-late" element={<PromptQuiz late = {true}/>} />
-          <Route path="/nudge-quiz" element={<PromptQuiz totalScore = {totalScore} setTotalScore ={setTotalScore} streak = {streak} setStreak = {setStreak} streakCount = {streakCount} setStreakCount = {setStreakCount} />}
-           />
-        </Routes>
-      </>
-    );
-  }
+
+  
+  return (
+    <>
+      <div className="App">
+        <Menubar className="menubar" model={items} />
+      </div>
+      <div>{<PromptNotification />}</div>
+      <Routes>
+        <Route
+          path="/quiz"
+          element={
+            <MainQuiz
+              totalScore={totalScore}
+              setTotalScore={setTotalScore}
+              streak={streak}
+              setStreak={setStreak}
+              streakCount={streakCount}
+              setStreakCount={setStreakCount}
+            />
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <Dashboard
+              supabase={supabase}
+              totalScore={totalScore}
+              setTotalScore={setTotalScore}
+              streakCount={streakCount}
+            />
+          }
+        />
+        <Route path="/nudge-quiz-late" element={<PromptQuiz late={true} />} />
+        <Route
+          path="/nudge-quiz"
+          element={
+            <PromptQuiz
+              totalScore={totalScore}
+              setTotalScore={setTotalScore}
+              streak={streak}
+              setStreak={setStreak}
+              streakCount={streakCount}
+              setStreakCount={setStreakCount}
+            />
+          }
+        />
+      </Routes>
+    </>
+  );
+}
