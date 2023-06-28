@@ -31,15 +31,15 @@ const customTheme = {
 			defaultButtonText: "#39207E",
 			dividerBackground: "#eaeaea",
 			inputBackground: "transparent",
-			inputBorder: "lightgray",
-			inputBorderHover: "gray",
-			inputBorderFocus: "gray",
-			inputText: "black",
-			inputLabelText: "gray",
+			inputBorder: "transparent",
+			inputBorderHover: "#891891",
+			inputBorderFocus: "#39207E",
+			inputText: "#39207E",
+			inputLabelText: "#39207E",
 			inputPlaceholder: "darkgray",
 			messageText: "gray",
 			messageTextDanger: "red",
-			anchorTextColor: "gray",
+			anchorTextColor: "#891891",
 			anchorTextHoverColor: "darkgray",
 		},
 		space: {
@@ -55,15 +55,15 @@ const customTheme = {
 		},
 		fontSizes: {
 			baseBodySize: "13px",
-			baseInputSize: "14px",
-			baseLabelSize: "14px",
-			baseButtonSize: "14px",
+			baseInputSize: "15px",
+			baseLabelSize: "20px",
+			baseButtonSize: "18px",
 		},
 		fonts: {
-			bodyFontFamily: `ui-sans-serif, sans-serif`,
-			buttonFontFamily: `ui-sans-serif, sans-serif`,
-			inputFontFamily: `ui-sans-serif, sans-serif`,
-			labelFontFamily: `ui-sans-serif, sans-serif`,
+			bodyFontFamily: `"Quicksand", sans-serif`,
+			buttonFontFamily: `"Quicksand", sans-serif`,
+			inputFontFamily: `"Quicksand", sans-serif`,
+			labelFontFamily: `"Quicksand", sans-serif`,
 		},
 		// fontWeights: {},
 		// lineHeights: {},
@@ -75,9 +75,9 @@ const customTheme = {
 		},
 		// borderStyles: {},
 		radii: {
-			borderRadiusButton: "4px",
-			buttonBorderRadius: "4px",
-			inputBorderRadius: "4px",
+			borderRadiusButton: "15px",
+			buttonBorderRadius: "30px",
+			inputBorderRadius: "8px",
 		},
 	},
 };
@@ -107,18 +107,19 @@ export default function App() {
 		return (
 			<>
 				<div className="login-page">
-					<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
-					<h3>
-						The revision app that <strong>actually works.</strong>
-					</h3>
 					<div className="login-page-auth">
-						<div className="login-form">
+					<div className="logo-tagline-container">
+					<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
+					<h3>The revision app that <strong>actually works</strong>.</h3>
+					</div>
+						<div className="login-form"> 
+						<div className="auth">
 							<Auth
 								supabaseClient={supabase}
 								theme="default"
 								appearance={{ theme: customTheme }}
-								providers={["google", "facebook", "apple"]}
-							/>
+								providers={["google", "facebook"]}
+							/> </div>
 						</div>
 					</div>
 					<div className="description-container">
