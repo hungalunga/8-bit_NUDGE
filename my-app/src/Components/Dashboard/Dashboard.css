@@ -10,6 +10,7 @@
 	justify-content: space-between;
 	width: 100vw;
 	height: 100vh;
+	background-image: linear-gradient(#f7f7f7,#F0ECFE );
 }
 
 
@@ -35,7 +36,6 @@
 }
 
 .dashboard-page {
-	background-color: #f7f7f7;
 	display: flex;
 	flex-direction: column;
 	width: 100vw;
@@ -88,6 +88,7 @@
 	min-width: 550px;
 	border-radius: 10px;
 	border: 2px solid #d9d1f3;
+	background-color: #f7f7f7;
 }
 
 .learning-container :first-child {
@@ -100,6 +101,7 @@
 	display: flex;
 	flex-direction: column;
 	margin-right: 20px;
+	background-color: #f7f7f7;
 }
 
 .leaderboard-text {
