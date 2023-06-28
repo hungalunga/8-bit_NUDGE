@@ -122,12 +122,20 @@ export default function App() {
 
   if (!session) {
     return (
+      <>
+
+
       <Auth
         supabaseClient={supabase}
         theme="default"
         appearance = {{theme: customTheme}}
         providers={["google", "facebook", "apple"]}
       />
+      <p>
+          About us: We are a team of 4 developers who are passionate about
+      </p>
+      </>
+
     );
   } else {
     return (

@@ -6,6 +6,8 @@ import { Avatar } from "primereact/avatar";
 import { Skeleton } from "primereact/skeleton";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { InputText } from "primereact/inputtext";
+import { FileUpload } from "primereact/fileupload";
 import "./Dashboard.css";
 
 // write a specific user profile page
@@ -107,6 +109,16 @@ export default function Dashboard(props) {
     setEditMode(true);
   }
 
+  async function onUpload(e) {
+    // upload file to storage bucket
+    // bucket is called profile_pictures
+    // file is uploaded to public folder
+    const file = e.target.files[0];
+    await props.supabase.storage
+      .from("profile_pictures")
+      .upload(`public/${user.id}`, file);
+  }
+
   return (
     <>
       {editMode ? (
@@ -116,10 +128,11 @@ export default function Dashboard(props) {
           <div className="dashboard-page">
             <div className="dashboard-top">
               <div className="welcome-container">
-                <Avatar label="A" size="xlarge" className="circleAvatar" />
+                <Avatar label={firstLetter} size="xlarge" className="circleAvatar" />
+                <FileUpload mode="basic" name="demo[]" url="/api/upload" accept="image/*" maxFileSize={1000000} onUpload={onUpload} />
                 <div className="welcome-text">
                   <p>Welcome Back,</p>
-                  <h1>ashwantspizza</h1>
+                  <InputText type="text" className="p-inputtext-lg" placehodler={username} />
                 </div>
               </div>
               <div className="user-scores">
