@@ -36,10 +36,10 @@ export default function PromptNotification() {
         window.open(redirect);
       });
     } else if (
-      "Notification" in window &&
-      Notification.permission === "denied" &&
-      showTime >= 9 &&
-      showTime <= 17
+      // "Notification" in window &&
+      Notification.permission === "denied" // &&
+      // showTime >= 9 &&
+      // showTime <= 17
     ) {
       //this checks if the browser supports notifications, if the user has denied permission, and if the current time is between 9 and 17
       Notification.requestPermission().then((permission) => {
