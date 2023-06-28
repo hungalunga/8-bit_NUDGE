@@ -128,7 +128,7 @@ export default function App() {
 									theme="default"
 									appearance={{ theme: customTheme }}
 									providers={["google", "facebook"]}
-								/>{" "}
+								/>
 							</div>
 						</div>
 					</div>

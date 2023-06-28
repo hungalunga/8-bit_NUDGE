@@ -1922,7 +1922,10 @@ p {
 	width: 400px;
 }
 
-
+.get-started-button {
+	height: 100px;
+	width: 400px;
+}
 
 .p-button {
 	color: #39207e;
