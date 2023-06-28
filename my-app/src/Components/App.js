@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { HashLink } from 'react-router-hash-link';
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
+import { Link } from "react-router-dom";
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
@@ -30,7 +32,7 @@ const customTheme = {
 			defaultButtonBorder: "#F7F7F7",
 			defaultButtonText: "#39207E",
 			dividerBackground: "#eaeaea",
-			inputBackground: "transparent",
+			inputBackground: "#F7F7F7",
 			inputBorder: "transparent",
 			inputBorderHover: "#891891",
 			inputBorderFocus: "#39207E",
@@ -102,6 +104,8 @@ export default function App() {
 		return () => subscription.unsubscribe();
 	}, []);
 
+	
+
 	// if not logged in, then show login page
 	if (!session) {
 		return (
@@ -110,7 +114,8 @@ export default function App() {
 					<div className="login-container">
 					<div className="logo-tagline-container">
 					<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
-					<h3>The revision app that <strong>actually works</strong>.</h3>
+					<h2>The revision app that <strong>actually works</strong>.</h2>
+					<HashLink smooth to="/#findoutmore">Find out more</HashLink>
 					</div>
 						<div className="login-form"> 
 						<div className="auth">
@@ -122,8 +127,8 @@ export default function App() {
 							/> </div>
 						</div>
 					</div>
-					
-					<div className="description-container">
+
+					<div id="findoutmore" className="description-container">
 						<h1>How it works</h1>
 						<div className="steps-container">
 							<div className="step">
@@ -151,6 +156,9 @@ export default function App() {
 							</div>
 						</div>
 					</div>
+					<div className="big-ass-container">
+					lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed	ultrices, nisl nec aliquam tincidunt, nunc nisl aliquet nunc, nec aliquam nisl nisl nec ipsum.
+					</div>
 				</div>
 			</>
 		);
@@ -159,6 +167,7 @@ export default function App() {
 		return (
 			<>
 				<Routes>
+				
 					<Route
 						path="/quiz"
 						element={
