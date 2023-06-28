@@ -23,7 +23,7 @@ export default function MainQuiz(props) {
 
   useEffect(() => {
     async function getQuestions() {
-      const response = await fetch("http://localhost:3001/math_questions");
+      const response = await fetch("https://eight-bit-nudge-backend.onrender.com/math_questions");
       const data = await response.json();
       console.log(data);
       getRandomQuestion(data);
