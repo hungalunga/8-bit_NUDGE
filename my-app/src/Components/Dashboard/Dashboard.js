@@ -292,7 +292,7 @@ export default function Dashboard(props) {
 								/>
 								<div className="welcome">
 									<h1 className="welcome-text">Welcome back,</h1>
-									<h1 id="username">{username}!</h1>
+									<h1 className="magenta" id="username">{username}!</h1>
 								</div>
 							</div>
 							<div className="user-scores">

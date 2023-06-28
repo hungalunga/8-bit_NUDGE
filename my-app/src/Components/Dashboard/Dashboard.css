@@ -10,7 +10,7 @@
 	justify-content: space-between;
 	width: 100vw;
 	height: 100vh;
-	background-image: linear-gradient(#f7f7f7,#F0ECFE );
+	background-image: linear-gradient(#f7f7f7,#f3f1fb );
 }
 
 
@@ -100,6 +100,7 @@
 	border: 2px solid #d9d1f3;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	margin-right: 20px;
 	background-color: #f7f7f7;
 }
