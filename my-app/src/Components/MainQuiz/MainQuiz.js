@@ -6,7 +6,6 @@ import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import "./MainQuiz.css";
 
-
 export default function MainQuiz(props) {
 	const [questionObject, setQuestionObject] = useState({});
 	const [questionSet, setQuestionSet] = useState([]);
@@ -59,53 +58,58 @@ export default function MainQuiz(props) {
 		} else return DbQuestion;
 	}
 
-  
-
 	// Whenever questionNumber changes value (i.e. user advances one question in quiz), change the questionObject to new random from DBcopy
 	// when questionNumber changes, rerender
 
 	// display the question & answers
 	if (quizStarted) {
-		return (				<>
-		<div className="exit-quiz">
-		<ExitQuizButton />
-		</div>
-			<div className="main-quiz-page">
-				<MainQuizDisplay
-					quizScore={quizScore}
-					setQuizScore={setQuizScore}
-					questionObject={questionObject}
-					getRandomQuestion={getRandomQuestion}
-					questionSet={questionSet}
-					questionNumber={questionNumber}
-					setQuestionNumber={setQuestionNumber}
-					incorrectAnswers={incorrectAnswers}
-					setIncorrectAnswers={setIncorrectAnswers}
-					resultsValue={resultsValue}
-					setResultsValue={setResultsValue}
-					completionMessage={completionMessage}
-					nextMessage={nextMessage}
-					promptQuestionTimer={false}
-					totalScore={props.totalScore}
-					setTotalScore={props.setTotalScore}
-					setStreak={props.setStreak}
-					streak={props.streak}
-					setStreakCount={props.setStreakCount}
-					streakCount={props.streakCount}
-				/>
-			</div></>
+		return (
+			<>
+				<div className="main-quiz-page">
+					<div className="exit-quiz">
+						<ExitQuizButton />
+					</div>
+					<MainQuizDisplay
+						quizScore={quizScore}
+						setQuizScore={setQuizScore}
+						questionObject={questionObject}
+						getRandomQuestion={getRandomQuestion}
+						questionSet={questionSet}
+						questionNumber={questionNumber}
+						setQuestionNumber={setQuestionNumber}
+						incorrectAnswers={incorrectAnswers}
+						setIncorrectAnswers={setIncorrectAnswers}
+						resultsValue={resultsValue}
+						setResultsValue={setResultsValue}
+						completionMessage={completionMessage}
+						nextMessage={nextMessage}
+						promptQuestionTimer={false}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
+						setStreak={props.setStreak}
+						streak={props.streak}
+						setStreakCount={props.setStreakCount}
+						streakCount={props.streakCount}
+					/>
+				</div>
+			</>
 		);
 	} else {
-		return (		<><div className="exit-quiz">
-		<ExitQuizButton />
-		</div>
-			<div className="main-quiz-page">
-				<Card className="big-card">
-					<h2>You've made it this far...</h2>
-					<h1>are you ready to start?</h1>{" "}
-					<Button onClick={() => setQuizStarted(true)}>Let's go!</Button>
-				</Card></div>
-</>
+		return (
+			<>
+				<div className="main-quiz-page">
+					<div className="exit-quiz">
+						<ExitQuizButton />
+					</div>
+					<div className="content-container">
+						<Card className="big-card">
+							<h2>You've made it this far...</h2>
+							<h1>are you ready to start?</h1>
+							<Button onClick={() => setQuizStarted(true)}>Let's go!</Button>
+						</Card>
+					</div>
+				</div>
+			</>
 		);
 	}
 }

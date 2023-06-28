@@ -32,8 +32,9 @@ export default function Dashboard(props) {
 			/>
 			<div className="navbar">
 				<Link to="/home">
-					<img src={nudgelogo} alt="nudge-logo" className="nudgeLogo" />
+					<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
 				</Link>
+				<Avatar label={firstChar} className="avatar-small" />
 			</div>
 			<div className="dashboard-page">
 				<div className="dashboard-top">
@@ -41,13 +42,13 @@ export default function Dashboard(props) {
 						<Avatar label={firstChar} size="xlarge" className="circleAvatar" />
 						<div className="welcome">
 							<h1 className="welcome-text">Welcome back,</h1>
-							<h2 id="username">ashwantspizza!</h2>
+							<h1 id="username">ashwantspizza!</h1>
 						</div>
 					</div>
 					<div className="user-scores">
-						<Card title= {`${props.streakCount}`} subTitle= 'Day Streak!'/>
-						<Card title= {`${props.totalScore}`} subTitle=" Points!"/>
-						<Card title= "No.4" subTitle=" Ranking"/>
+						<Card title={`${props.streakCount}`} subTitle="Day Streak!" />
+						<Card title={`${props.totalScore}`} subTitle=" Points!" />
+						<Card title="No.4" subTitle=" Ranking" />
 					</div>
 				</div>
 
@@ -55,7 +56,7 @@ export default function Dashboard(props) {
 				<div className="dashboard-bottom">
 					<div className="learning-container">
 						<div className="learning-header">
-							<h2>Your Learning</h2>
+							<h2><strong>Your Learning</strong></h2>
 						</div>
 						<Link to="/quiz">
 							<Button
@@ -93,7 +94,7 @@ export default function Dashboard(props) {
 					</div>
 
 					<div className="leaderboard-container">
-						<h2 className="leaderboard-text">Leaderboard</h2>
+						<h2 className="leaderboard-text"><strong>Leaderboard</strong></h2>
 						<DataTable tableStyle={{ minWidth: "27rem" }}>
 							<Column field="user" header="User"></Column>
 							<Column field="ranking" header="Ranking"></Column>

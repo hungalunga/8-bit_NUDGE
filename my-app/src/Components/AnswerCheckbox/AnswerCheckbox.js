@@ -79,25 +79,24 @@ export default function AnswerCheckbox({
 
 		if (answer === correctAnswer) {
 			setResultsValue(1);
-
 		} else if (answer === "") {
 			setResultsValue(0);
 		} else {
 			setResultsValue(-1);
-			setIncorrectAnswers([
-				...incorrectAnswers, questionObject],
-			);
+			setIncorrectAnswers([...incorrectAnswers, questionObject]);
 		}
 	};
 
 	return (
-		<div className="answer-confirm-container">
+		<>
 			<div className="answers">
 				{allAnswers.map((answerOption, index) => (
 					<Button
 						severity="secondary"
 						className={
-							answer === answerOption ? "answer-button-selected" : "answer-button"
+							answer === answerOption
+								? "answer-button-selected"
+								: "answer-button"
 						}
 						key={index}
 						label={answerOption}
@@ -106,8 +105,8 @@ export default function AnswerCheckbox({
 				))}
 			</div>
 			<div className="confirm-button">
-				<Button label="Confirm" onClick={handleClick} />
+				<Button label="Submit" onClick={handleClick} />
 			</div>
-		</div>
+		</>
 	);
 }

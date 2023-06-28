@@ -14,18 +14,21 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	align-items: center;
 	background-color: #d9d1f3;
 	width: 100%;
 	height: 70px;
 }
 
-.nudgeLogo {
-	margin-top: 16px;
+.nudge-logo {
 	display: flex;
-	justify-content: flex-start;
-	flex-direction: column;
-	width: 100%;
+	margin-left: 20px;
+	width: 85%;
 	height: 35px;
+}
+
+.avatar-small {
+	margin-right: 20px;
 }
 
 .dashboard-page {
@@ -103,7 +106,8 @@
 
 .learning-buttons-container {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	width: 500px;
 	height: 33%;
 }
 

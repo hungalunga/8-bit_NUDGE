@@ -1,5 +1,5 @@
 import React from "react";
-import "../MainQuiz/MainQuiz.css";
+import "./ExitQuizButton.css";
 
 export default function ExitQuizButton() {
 	function exitAlert() {

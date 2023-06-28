@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PromptQuizDisplay from "../PromptQuizDisplay/PromptQuizDisplay";
 import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
+import { Card } from "primereact/card";
 import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuiz(props) {
@@ -61,20 +62,27 @@ export default function PromptQuiz(props) {
 
 	if (countdownNumber > 0 && !late) {
 		return (
-			<div className="mainQuiz">
-				<h2>Woohoo, you made it!</h2>
-				<h1>Get ready to answer in...</h1>
-				<h1>{countdownNumber}</h1>
+			<div className="main-quiz-page">
+				<div className="content-container">
+					<Card className="end-quiz-card">
+						<h2>Woohoo, you made it!</h2>
+						<h1>Get ready to answer in...</h1>
+						<h1>{countdownNumber}</h1>
+					</Card>
+				</div>
 			</div>
 		);
-	}
-
-	else if (late) {
+	} else if (late) {
 		return (
-			<div>
-				<h2>
-					Sorry, you missed your daily nudge! But you can still keep your streak if you answer the daily quiz.
-				</h2>
+			<div className="main-quiz-page">
+				<div className="content-container">
+					<Card className="end-quiz-card">
+						<h2>
+							Sorry, you missed your daily nudge! But you can still keep your
+							streak if you answer the daily quiz.
+						</h2>
+					</Card>
+				</div>
 			</div>
 		);
 	}
@@ -82,31 +90,27 @@ export default function PromptQuiz(props) {
 	else {
 		return (
 			<>
-				{" "}
-				<div className="exit-quiz">
-					<ExitQuizButton />
-				</div>
 				<div className="main-quiz-page">
-					<div data-testid="question-display" className="mainQuiz">
-						{/* <h1>Question {questionNumber}</h1> */}
-						<PromptQuizDisplay
-							streak={props.streak}
-							setStreak={props.setStreak}
-							totalScore={props.totalScore}
-							setTotalScore={props.setTotalScore}
-							streakCount={props.streakCount}
-							setStreakCount={props.setStreakCount}
-							questionObject={questionObject}
-							questionNumber={questionNumber}
-							setQuestionNumber={setQuestionNumber}
-							resultsValue={resultsValue}
-							setResultsValue={setResultsValue}
-							completionMessage={completionMessage}
-							promptQuestionTimer={true}
-							incorrectAnswers={incorrectAnswers}
-							setIncorrectAnswers={setIncorrectAnswers}
-						/>
+					<div className="exit-quiz">
+						<ExitQuizButton />
 					</div>
+					<PromptQuizDisplay
+						streak={props.streak}
+						setStreak={props.setStreak}
+						totalScore={props.totalScore}
+						setTotalScore={props.setTotalScore}
+						streakCount={props.streakCount}
+						setStreakCount={props.setStreakCount}
+						questionObject={questionObject}
+						questionNumber={questionNumber}
+						setQuestionNumber={setQuestionNumber}
+						resultsValue={resultsValue}
+						setResultsValue={setResultsValue}
+						completionMessage={completionMessage}
+						promptQuestionTimer={true}
+						incorrectAnswers={incorrectAnswers}
+						setIncorrectAnswers={setIncorrectAnswers}
+					/>
 				</div>
 			</>
 		);

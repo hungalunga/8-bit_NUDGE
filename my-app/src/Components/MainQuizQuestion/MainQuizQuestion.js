@@ -14,6 +14,7 @@ export default function MainQuizQuestion(props) {
       </Card>
       {/*<p className="question"></p>*/}
       {props.promptQuestionTimer && <PromptQuestionTimer />}
+      
       <AnswerCheckbox
         quizScore={props.quizScore}
         setQuizScore={props.setQuizScore}
