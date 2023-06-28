@@ -29,7 +29,7 @@ const customTheme = {
 			brandButtonText: "#39207E",
 			defaultButtonBackground: "#F7F7F7",
 			defaultButtonBackgroundHover: "#D9D1F3",
-			defaultButtonBorder: "#F7F7F7",
+			defaultButtonBorder: "#D9D1F3",
 			defaultButtonText: "#39207E",
 			dividerBackground: "#eaeaea",
 			inputBackground: "#F7F7F7",
@@ -156,7 +156,7 @@ export default function App() {
 							</div>
 						</div>
 					</div>
-					<div className="big-ass-container">
+					<div className="about-us-container">
 					lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed	ultrices, nisl nec aliquam tincidunt, nunc nisl aliquet nunc, nec aliquam nisl nisl nec ipsum.
 					</div>
 				</div>
