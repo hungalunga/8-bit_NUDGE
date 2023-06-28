@@ -144,10 +144,31 @@ export default function Dashboard(props) {
   // function to cause a reRender of the page when the user_name is updated
   async function handleSaveClick() {
     if (selectedFile) {
-      await props.supabase.storage
-        .from("profile_pictures")
-        .upload(`public/${user.id}`, selectedFile);
+      try {
+        const { data, error } = await props.supabase.storage
+          .from("profile_pictures")
+          .upload(
+            `${props.session.user.id}/${selectedFile.name}`,
+            selectedFile
+          );
+
+        if (error) {
+          console.error("Error uploading file:", error);
+        } else {
+          console.log("Successfully uploaded file:", data);
+        }
+      } catch (err) {
+        console.error("Unexpected error uploading file:", err);
+      }
     }
+
+    await props.supabase
+      .from("profiles")
+      .update({
+        profile_picture:
+          (userProfile[0].profile_picture = `https://suqficsxrflfgpebathx.supabase.co/storage/v1/object/public/profile_pictures/${props.session.user.id}/${selectedFile.name}`),
+      })
+      .eq("id", user.id);
 
     await props.supabase
       .from("profiles")
@@ -192,260 +213,155 @@ export default function Dashboard(props) {
     // upload file to storage bucket
     // bucket is called profile_pictures
     // file is uploaded to public folder
-    const file = e.target.files[0];
+    const file = e.files[0];
+    console.log("file:", file);
     setSelectedFile(file);
   }
 
   return (
     <>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+        rel="stylesheet"
+      />
+      <div className="navbar">
+        <Link to="/">
+          <img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
+        </Link>
+        <Toast ref={toast}></Toast>
+  
+        <Menu
+          model={menuItems}
+          popup
+          ref={menuRight}
+          id="popup_menu_right"
+          popupAlignment="right"
+        />
+        <Avatar
+          label={firstLetter}
+          className="avatar-small"
+          onClick={(event) => menuRight.current.toggle(event)}
+          aria-controls="popup_menu_right"
+          aria-haspopup
+        />
+      </div>
+  
+      <div className="dashboard-page">
+        <div className="dashboard-top">
+          <div className="welcome-container">
+            <Avatar
+              label={firstLetter}
+              size="xlarge"
+              className="circleAvatar"
+            />
+            {editMode ? (
+              <FileUpload
+                name=""
+                url=""
+                multiple
+                accept="image/*"
+                maxFileSize={1000000}
+                emptyTemplate={
+                  <p className="m-0">Drag and drop files here to upload.</p>
+                }
+                chooseLabel="Select"
+                uploadLabel="Upload"
+                cancelLabel="Cancel"
+                customUpload
+                uploadHandler={onUpload}
+                onClear={() => setSelectedFile(null)}
+                selectedFiles={selectedFile ? [selectedFile] : []}
+              />
+            ) : null}
+            <div className="welcome">
+              <h1 className="welcome-text">Welcome back,</h1>
+              {editMode ? (
+                <InputText
+                  type="text"
+                  className="p-inputtext-lg"
+                  placeholder={username}
+                  onChange={(e) => {
+                    const updatedUserProfile = userProfile.map((profile) => ({
+                      ...profile,
+                      user_name: e.target.value,
+                    }));
+                    setUserProfile(updatedUserProfile);
+                  }}
+                />
+              ) : (
+                <h1 id="username">{username}!</h1>
+              )}
+            </div>
+          </div>
+          <div className="user-scores">
+            <Card title={`${props.streakCount}`} subTitle="Day Streak!" />
+            <Card title={`${props.totalScore}`} subTitle="Points!" />
+            <Card title={`No.${rank}`} subTitle="Ranking" />
+          </div>
+        </div>
+  
+        <Divider />
+        <div className="dashboard-bottom">
+          <div className="learning-container">
+            <div className="learning-header">
+              <h2>
+                <strong>Your Learning</strong>
+              </h2>
+            </div>
+            <Link to="/quiz">
+              <Button
+                className="primary-quiz-button"
+                label="Today's Quiz"
+                size="large"
+              />
+            </Link>
+            <h3>
+              Want to level up? <b>Try one of these...</b>
+            </h3>
+  
+            <div className="learning-buttons-container">
+              <Button
+                className="learning-button"
+                label="Geometry"
+                severity="secondary"
+              />
+              <Button
+                className="learning-button"
+                label="Algebra"
+                severity="secondary"
+              />
+              <Button
+                className="learning-button"
+                label="Trig"
+                severity="secondary"
+              />
+              <Button
+                className="learning-button"
+                label="Surprise me!"
+                severity="secondary"
+              />
+            </div>
+          </div>
+  
+          <div className="leaderboard-container">
+            <h2 className="leaderboard-text">
+              <strong>Leaderboard</strong>
+            </h2>
+            <DataTable tableStyle={{ minWidth: "27rem" }} value={leaderboard}>
+              <Column field="rank" header="Rank" sortable></Column>
+              <Column field="user_name" header="Username" sortable></Column>
+              <Column field="user_score" header="XP" sortable></Column>
+            </DataTable>
+          </div>
+        </div>
+      </div>
       {editMode ? (
-        <>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-            rel="stylesheet"
-          />
-          <div className="navbar">
-            <Link to="/">
-              <img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
-            </Link>
-            <Toast ref={toast}></Toast>
-
-            <Menu
-              model={menuItems}
-              popup
-              ref={menuRight}
-              id="popup_menu_right"
-              popupAlignment="right"
-            />
-            <Avatar
-              label={firstLetter}
-              className="avatar-small"
-              onClick={(event) => menuRight.current.toggle(event)}
-              aria-controls="popup_menu_right"
-              aria-haspopup
-            />
-          </div>
-
-          <div className="dashboard-page">
-            <div className="dashboard-top">
-              <div className="welcome-container">
-                <Avatar
-                  label={firstLetter}
-                  size="xlarge"
-                  className="circleAvatar"
-                />
-                <FileUpload
-                  name=""
-                  url=""
-                  multiple
-                  accept="image/*"
-                  maxFileSize={1000000}
-                  emptyTemplate={
-                    <p className="m-0">
-                      Drag and drop files to here to upload.
-                    </p>
-                  }
-                  chooseLabel="Select"
-                  uploadLabel="Upload"
-                  cancelLabel="Cancel"
-                  customUpload
-                  uploadHandler={onUpload}
-                  onClear={() => setSelectedFile(null)}
-                  selectedFiles={selectedFile ? [selectedFile] : []}
-                />
-                <div className="welcome">
-                  <h1 className="welcome-text">Welcome back,</h1>
-                  <InputText
-                    type="text"
-                    className="p-inputtext-lg"
-                    placeholder={username}
-                    onChange={(e) => {
-                      const updatedUserProfile = userProfile.map((profile) => ({
-                        ...profile,
-                        user_name: e.target.value,
-                      }));
-                      setUserProfile(updatedUserProfile);
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="user-scores">
-                <Card title={`${props.streakCount}`} subTitle="Day Streak!" />
-                <Card title={`${props.totalScore}`} subTitle=" Points!" />
-                <Card title="No.4" subTitle=" Ranking" />
-              </div>
-            </div>
-
-            <Divider />
-            <div className="dashboard-bottom">
-              <div className="learning-container">
-                <div className="learning-header">
-                  <h2>
-                    <strong>Your Learning</strong>
-                  </h2>
-                </div>
-                <Link to="/quiz">
-                  <Button
-                    className="primary-quiz-button"
-                    label="Today's Quiz"
-                    size="large"
-                  />
-                </Link>
-                <h3>
-                  Want to level up? <b>Try one of these...</b>
-                </h3>
-
-                <div className="learning-buttons-container">
-                  <Button
-                    className="learning-button"
-                    label="Geometry"
-                    severity="secondary"
-                  />
-                  <Button
-                    className="learning-button"
-                    label="Algebra"
-                    severity="secondary"
-                  />
-                  <Button
-                    className="learning-button"
-                    label="Trig"
-                    severity="secondary"
-                  />
-                  <Button
-                    className="learning-button"
-                    label="Surprise me!"
-                    severity="secondary"
-                  />
-                </div>
-              </div>
-
-              <div className="leaderboard-container">
-                <h2 className="leaderboard-text">
-                  <strong>Leaderboard</strong>
-                </h2>
-                <DataTable
-                  tableStyle={{ minWidth: "27rem" }}
-                  value={leaderboard}
-                >
-                  <Column field="rank" header="Rank" sortable></Column>
-                  <Column field="user_name" header="Username" sortable></Column>
-                  <Column field="user_score" header="Score" sortable></Column>
-                </DataTable>
-              </div>
-            </div>
-          </div>
-          <div>
-            <Button label="Save" onClick={handleSaveClick} />
-            <Button label="Cancel" onClick={handleCancelClick} />
-          </div>
-        </>
-      ) : (
-        <>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-            rel="stylesheet"
-          />
-          <div className="navbar">
-            <Link to="/home">
-              <img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
-            </Link>
-            <Toast ref={toast}></Toast>
-
-            <Menu
-              model={menuItems}
-              popup
-              ref={menuRight}
-              id="popup_menu_right"
-              popupAlignment="right"
-            />
-            <Avatar
-              label={firstLetter}
-              className="avatar-small"
-              onClick={(event) => menuRight.current.toggle(event)}
-              aria-controls="popup_menu_right"
-              aria-haspopup
-            />
-          </div>
-          <div className="dashboard-page">
-            <div className="dashboard-top">
-              <div className="welcome-container">
-                <Avatar
-                  label={firstLetter}
-                  size="xlarge"
-                  className="circleAvatar"
-                />
-                <div className="welcome">
-                  <h1 className="welcome-text">Welcome back,</h1>
-                  <h1 id="username">{username}!</h1>
-                </div>
-              </div>
-              <div className="user-scores">
-                <Card title={`${props.streakCount}`} subTitle="Day Streak!" />
-                <Card title={`${props.totalScore}`} subTitle=" Points!" />
-                <Card title={`No.${rank}`} subTitle=" Ranking" />
-              </div>
-            </div>
-
-            <Divider />
-            <div className="dashboard-bottom">
-              <div className="learning-container">
-                <div className="learning-header">
-                  <h2>
-                    <strong>Your Learning</strong>
-                  </h2>
-                </div>
-                <Link to="/quiz">
-                  <Button
-                    className="primary-quiz-button"
-                    label="Today's Quiz"
-                    size="large"
-                  />
-                </Link>
-                <h3>
-                  Want to level up? <b>Try one of these...</b>
-                </h3>
-
-                <div className="learning-buttons-container">
-                  <Button
-                    className="learning-button"
-                    label="Geometry"
-                    severity="secondary"
-                  />
-                  <Button
-                    className="learning-button"
-                    label="Algebra"
-                    severity="secondary"
-                  />
-                  <Button
-                    className="learning-button"
-                    label="Trig"
-                    severity="secondary"
-                  />
-                  <Button
-                    className="learning-button"
-                    label="Surprise me!"
-                    severity="secondary"
-                  />
-                </div>
-              </div>
-
-              <div className="leaderboard-container">
-                <h2 className="leaderboard-text">
-                  <strong>Leaderboard</strong>
-                </h2>
-                <DataTable
-                  tableStyle={{ minWidth: "27rem" }}
-                  value={leaderboard}
-                >
-                  <Column field="rank" header="Rank" sortable></Column>
-                  <Column field="user_name" header="Username" sortable></Column>
-                  <Column field="user_score" header="XP" sortable></Column>
-                </DataTable>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
+        <div>
+          <Button label="Save" onClick={handleSaveClick} />
+          <Button label="Cancel" onClick={handleCancelClick} />
+        </div>
+      ) : null}
     </>
   );
+  
 }
