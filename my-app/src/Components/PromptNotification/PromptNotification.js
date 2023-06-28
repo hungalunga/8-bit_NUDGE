@@ -35,9 +35,9 @@ export default function PromptNotification() {
       notification.addEventListener("click", function (event) {
         window.open(redirect);
       });
-    } else if (true
-      // "Notification" in window &&
-      // Notification.permission !== "granted"  // &&
+    } else if (
+      "Notification" in window &&
+      Notification.permission !== "granted"  // &&
       // showTime >= 9 &&
       // showTime <= 17
     ) {
