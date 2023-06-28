@@ -1,7 +1,7 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import { Card } from "primereact/card";
-import TextToSpeech from "../TextToSpeech/TextToSpeech";
+// import TextToSpeech from "../TextToSpeech/TextToSpeech";
 import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuizCorrect({

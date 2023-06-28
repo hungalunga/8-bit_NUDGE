@@ -29,7 +29,7 @@ export default function MainQuiz(props) {
       console.log(data);
       getRandomQuestion(data);
       // some comments
-      let x = 5;
+      // let x = 5;
       
     }
     getQuestions();
