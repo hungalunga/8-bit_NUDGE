@@ -5,8 +5,6 @@ import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import Dashboard from "./Dashboard/Dashboard";
 import { Route, Routes } from "react-router-dom";
-import { Menubar } from "primereact/menubar";
-import PromptNotification from "./PromptNotification/PromptNotification";
 import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
@@ -82,32 +80,21 @@ const customTheme = {
 };
 
 export default function App() {
-  const items = [
-    {
-      label: "Home",
-      command: () => {
-        window.location = "/";
-      },
-    },
-    {
-      label: "Quiz",
-
-      command: () => {
-        window.location = "/quiz";
-      },
-    },
-    {
-      label: "Logout",
-      command: () => {
-        supabase.auth.signOut();
-      },
-    },
-  ];
-
   const [streak, setStreak] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
-  const [totalScore, setTotalScore] = useState(10);
   const [session, setSession] = useState(null);
+  const [totalScore, setTotalScore] = useState(0);
+
+  useEffect(() => {
+    async function updateScore() {
+      console.log("hey i ran");
+      await supabase
+        .from("profiles")
+        .update({ user_score: totalScore })
+        .eq("id", session.user.id);
+    }
+    updateScore();
+  }, [totalScore]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -143,6 +130,8 @@ export default function App() {
             path="/quiz"
             element={
               <MainQuiz
+                supabase={supabase}
+                session={session}
                 totalScore={totalScore}
                 setTotalScore={setTotalScore}
                 streak={streak}

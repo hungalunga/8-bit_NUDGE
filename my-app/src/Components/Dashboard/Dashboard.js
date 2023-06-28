@@ -20,6 +20,8 @@ export default function Dashboard(props) {
   const [userProfile, setUserProfile] = useState(null);
   const [username, setUsername] = useState(null);
   const [firstLetter, setFirstLetter] = useState(null);
+  const [leaderboard, setLeaderboard] = useState(null);
+  const [rank, setRank] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
@@ -33,14 +35,11 @@ export default function Dashboard(props) {
   useEffect(() => {
     async function getUserProfile() {
       if (user !== null && user !== undefined) {
-        // console.log('user is not null');
-        // console.log(user);
         const { data: userProfile } = await props.supabase
           .from("profiles")
           .select("*")
           .eq("id", user.id);
-        console.log(userProfile);
-        console.log(userProfile[0].user_name);
+
         setUserProfile(userProfile);
 
         function getUsernameFromEmail(email) {
@@ -51,11 +50,13 @@ export default function Dashboard(props) {
           return upperCaseUsername + username.slice(1);
         }
 
-        setUsername(getUsernameFromEmail(userProfile[0].user_name));
+        if (userProfile[0].user_name.includes("@")) {
+          setUsername(getUsernameFromEmail(userProfile[0].user_name));
+        } else {
+          setUsername(userProfile[0].user_name);
+        }
 
-        console.log("username is:", username);
-
-        // function that takes the first letter of username and capitalises it for the avatar
+        // function that takes the first letter of username and capitalizes it for the avatar
         if (username) {
           function getFirstLetter(username) {
             const firstLetter = username.charAt(0).toUpperCase();
@@ -67,10 +68,40 @@ export default function Dashboard(props) {
       }
     }
 
-    // console.log('user is null');
-    // console.log(user);
     getUserProfile();
-  }, [user, props.supabase, username, firstLetter]);
+  }, [user, props.supabase, editMode]);
+
+  useEffect(() => {
+    async function getLeaderboard() {
+      const { data: leaderboard } = await props.supabase
+        .from("profiles")
+        .select("user_name, user_score")
+        .order("user_score", { descending: true })
+        .limit(10);
+      const rankedProfiles = leaderboard.map((profile, index) => ({
+        ...profile,
+        rank: index + 1,
+      }));
+
+      console.table("leaderboard:", leaderboard);
+      console.table("rankedProfiles:", rankedProfiles);
+      setLeaderboard(rankedProfiles);
+    }
+     
+    getLeaderboard();
+
+    async function getScore() {
+      const { data: score } = await props.supabase
+        .from("profiles")
+        .select("user_score")
+        .eq("id", user.id);
+      console.log("score:", score);
+      const currentScore = score[0].user_score;
+      props.setTotalScore(currentScore);
+    }
+
+    getScore();
+  }, [props.supabase]);
 
   const menuRight = useRef(null);
   //const router = useRouter();
@@ -109,13 +140,40 @@ export default function Dashboard(props) {
     },
   ];
 
+  // function to cause a reRender of the page when the user_name is updated
   async function handleSaveClick() {
-    await props.supabase.from("public.profiles").upsert({
-      id: user.id,
-      ...userProfile,
-    });
+    await props.supabase
+      .from("profiles")
+      .update({
+        user_name: userProfile[0].user_name,
+      })
+      .eq("id", user.id);
+
     setEditMode(false);
   }
+
+  // function to get the rank of the user from the leaderboard
+  // access the user_name from the userProfile state
+  // access the leaderboard state
+  // find the user_name in the leaderboard state
+  // set the rank of the user to the rank state
+
+  useEffect(() => {
+    async function getRank() {
+      const userRank = leaderboard.find(
+        (leaderboard) => leaderboard.user_name === username
+      );
+      setRank(userRank.rank);
+    }
+    getRank();
+  }, [leaderboard, username]);
+
+
+
+  // handleChange function to update the user_name in the userProfile state
+  // access the user_name from the userProfile state
+  // update the user_name in the userProfile state
+  // pass the updated userProfile state to the handleSaveClick function
 
   async function handleCancelClick() {
     setEditMode(false);
@@ -164,6 +222,7 @@ export default function Dashboard(props) {
               aria-haspopup
             />
           </div>
+
           <div className="dashboard-page">
             <div className="dashboard-top">
               <div className="welcome-container">
@@ -173,12 +232,18 @@ export default function Dashboard(props) {
                   className="circleAvatar"
                 />
                 <FileUpload
-                  mode="basic"
-                  name="demo[]"
-                  url="/api/upload"
+                  name={props.supabase.storage
+                    .from("profile_pictures")
+                    .getPublicUrl(`public/${user.id}`)}
+                  url=""
+                  multiple
                   accept="image/*"
                   maxFileSize={1000000}
-                  onUpload={onUpload}
+                  emptyTemplate={
+                    <p className="m-0">
+                      Drag and drop files to here to upload.
+                    </p>
+                  }
                 />
                 <div className="welcome">
                   <h1 className="welcome-text">Welcome back,</h1>
@@ -186,6 +251,13 @@ export default function Dashboard(props) {
                     type="text"
                     className="p-inputtext-lg"
                     placeholder={username}
+                    onChange={(e) => {
+                      const updatedUserProfile = userProfile.map((profile) => ({
+                        ...profile,
+                        user_name: e.target.value,
+                      }));
+                      setUserProfile(updatedUserProfile);
+                    }}
                   />
                 </div>
               </div>
@@ -243,10 +315,13 @@ export default function Dashboard(props) {
                 <h2 className="leaderboard-text">
                   <strong>Leaderboard</strong>
                 </h2>
-                <DataTable tableStyle={{ minWidth: "27rem" }}>
-                  <Column field="user" header="User"></Column>
-                  <Column field="ranking" header="Ranking"></Column>
-                  <Column field="xp" header="XP"></Column>
+                <DataTable
+                  tableStyle={{ minWidth: "27rem" }}
+                  value={leaderboard}
+                >
+                  <Column field="rank" header="Rank" sortable></Column>
+                  <Column field="user_name" header="Username" sortable></Column>
+                  <Column field="user_score" header="Score" sortable></Column>
                 </DataTable>
               </div>
             </div>
@@ -299,7 +374,7 @@ export default function Dashboard(props) {
               <div className="user-scores">
                 <Card title={`${props.streakCount}`} subTitle="Day Streak!" />
                 <Card title={`${props.totalScore}`} subTitle=" Points!" />
-                <Card title="No.4" subTitle=" Ranking" />
+                <Card title={`No.${rank}`} subTitle=" Ranking" />
               </div>
             </div>
 
@@ -350,10 +425,13 @@ export default function Dashboard(props) {
                 <h2 className="leaderboard-text">
                   <strong>Leaderboard</strong>
                 </h2>
-                <DataTable tableStyle={{ minWidth: "27rem" }}>
-                  <Column field="user" header="User"></Column>
-                  <Column field="ranking" header="Ranking"></Column>
-                  <Column field="xp" header="XP"></Column>
+                <DataTable
+                  tableStyle={{ minWidth: "27rem" }}
+                  value={leaderboard}
+                >
+                  <Column field="rank" header="Rank" sortable></Column>
+                  <Column field="user_name" header="Username" sortable></Column>
+                  <Column field="user_score" header="XP" sortable></Column>
                 </DataTable>
               </div>
             </div>
