@@ -70,27 +70,26 @@ export default function Dashboard(props) {
     }
 
     getUserProfile();
-  }, [user, props.supabase, username, props.session]);
+  }, [user, props.supabase, username, props.session, editMode]);
 
   useEffect(() => {
-    
-      async function getLeaderboard() {
-        const { data: leaderboard } = await props.supabase
-          .from("profiles")
-          .select("user_name, user_score")
-          .order("user_score", { descending: true })
-          .limit(10);
-        const rankedProfiles = leaderboard.map((profile, index) => ({
-          ...profile,
-          rank: index + 1,
-        }));
+    async function getLeaderboard() {
+      const { data: leaderboard } = await props.supabase
+        .from("profiles")
+        .select("user_name, user_score")
+        .order("user_score", { descending: true })
+        .limit(10);
+      const rankedProfiles = leaderboard.map((profile, index) => ({
+        ...profile,
+        rank: index + 1,
+      }));
 
-        console.table("leaderboard:", leaderboard);
-        console.table("rankedProfiles:", rankedProfiles);
-        setLeaderboard(rankedProfiles);
-      }
-    
-      if (user !== null && user !== undefined) {
+      console.table("leaderboard:", leaderboard);
+      console.table("rankedProfiles:", rankedProfiles);
+      setLeaderboard(rankedProfiles);
+    }
+
+    if (user !== null && user !== undefined) {
       getLeaderboard();
     }
     async function getScore() {
@@ -146,7 +145,8 @@ export default function Dashboard(props) {
 
   // function to cause a reRender of the page when the user_name is updated
   async function handleSaveClick() {
-    if (selectedFile) {
+    console.log("selectedFile:", selectedFile);
+    if (selectedFile !== null) {
       try {
         const { data, error } = await props.supabase.storage
           .from("profile_pictures")
@@ -163,16 +163,15 @@ export default function Dashboard(props) {
       } catch (err) {
         console.error("Unexpected error uploading file:", err);
       }
+
+      await props.supabase
+        .from("profiles")
+        .update({
+          profile_picture:
+            (userProfile[0].profile_picture = `https://suqficsxrflfgpebathx.supabase.co/storage/v1/object/public/profile_pictures/${props.session.user.id}/${selectedFile.name}`),
+        })
+        .eq("id", user.id);
     }
-
-    await props.supabase
-      .from("profiles")
-      .update({
-        profile_picture:
-          (userProfile[0].profile_picture = `https://suqficsxrflfgpebathx.supabase.co/storage/v1/object/public/profile_pictures/${props.session.user.id}/${selectedFile.name}`),
-      })
-      .eq("id", user.id);
-
     await props.supabase
       .from("profiles")
       .update({
@@ -234,7 +233,7 @@ export default function Dashboard(props) {
           <img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
         </Link>
         <Toast ref={toast}></Toast>
-  
+
         <Menu
           model={menuItems}
           popup
@@ -242,25 +241,45 @@ export default function Dashboard(props) {
           id="popup_menu_right"
           popupAlignment="right"
         />
-        <Avatar
-          image = {userProfile ? userProfile[0].profile_picture : null}
-          className="avatar-small"
-          onClick={(event) => menuRight.current.toggle(event)}
-          aria-controls="popup_menu_right"
-          aria-haspopup
-          shape="circle"
-        />
+        {userProfile ? (
+          <Avatar
+            image={userProfile ? userProfile[0].profile_picture : null}
+            className="avatar-small"
+            onClick={(event) => menuRight.current.toggle(event)}
+            aria-controls="popup_menu_right"
+            aria-haspopup
+            shape="circle"
+          />
+        ) : (
+          <Avatar
+            label={firstLetter}
+            className="avatar-small"
+            onClick={(event) => menuRight.current.toggle(event)}
+            aria-controls="popup_menu_right"
+            aria-haspopup
+            shape="circle"
+          />
+        )}
       </div>
-  
+
       <div className="dashboard-page">
         <div className="dashboard-top">
           <div className="welcome-container">
-            <Avatar
-              image = {userProfile ? userProfile[0].profile_picture : null}
-              size="xlarge"
-              className="circleAvatar"
-              shape="circle"
-            />
+            {userProfile ? (
+              <Avatar
+                image={userProfile[0].profile_picture}
+                size="xlarge"
+                className="circleAvatar"
+                shape="circle"
+              />
+            ) : (
+              <Avatar
+                label={firstLetter}
+                size="xlarge"
+                className="circleAvatar"
+                shape="circle"
+              />
+            )}
             {editMode ? (
               <FileUpload
                 name=""
@@ -301,12 +320,18 @@ export default function Dashboard(props) {
             </div>
           </div>
           <div className="user-scores">
-            <Card title={props.streakCount ? (`${props.streakCount}`):null} subTitle="Day Streak!" />
-            <Card title={props.totalScore ? (`${props.totalScore}`):null} subTitle="Points!" />
-            <Card title={rank ? (`No.${rank}`):null} subTitle="Ranking" />
+            <Card
+              title={props.streakCount ? `${props.streakCount}` : null}
+              subTitle="Day Streak!"
+            />
+            <Card
+              title={props.totalScore ? `${props.totalScore}` : null}
+              subTitle="Points!"
+            />
+            <Card title={rank ? `No.${rank}` : null} subTitle="Ranking" />
           </div>
         </div>
-  
+
         <Divider />
         <div className="dashboard-bottom">
           <div className="learning-container">
@@ -325,7 +350,7 @@ export default function Dashboard(props) {
             <h3>
               Want to level up? <b>Try one of these...</b>
             </h3>
-  
+
             <div className="learning-buttons-container">
               <Button
                 className="learning-button"
@@ -349,7 +374,7 @@ export default function Dashboard(props) {
               />
             </div>
           </div>
-  
+
           <div className="leaderboard-container">
             <h2 className="leaderboard-text">
               <strong>Leaderboard</strong>
@@ -370,5 +395,4 @@ export default function Dashboard(props) {
       ) : null}
     </>
   );
-  
 }
