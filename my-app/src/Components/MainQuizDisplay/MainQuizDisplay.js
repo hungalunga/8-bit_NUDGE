@@ -108,6 +108,8 @@ export default function MainQuizDisplay(props) {
       // console.log("questionObject:", typeof questionObject),
       <div className="content-container">
         <MainQuizComplete
+          supabase={props.supabase}
+          session={props.session}
           quizScore={props.quizScore}
           setQuizScore={props.setQuizScore}
           totalScore={props.totalScore}

@@ -95,6 +95,8 @@ export default function PromptQuiz(props) {
             <ExitQuizButton />
           </div>
           <PromptQuizDisplay
+            supabase={props.supabase}
+            session={props.session}
             streak={props.streak}
             setStreak={props.setStreak}
             totalScore={props.totalScore}

@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import logoIcon from "./logo3.png";
 import { Button } from "primereact/button";
+import nudgeicon from "../../images/nudgeicon.ico";
 export default function PromptNotification() {
   const date = new Date();
   const showTime = date.getHours(); //gets the current hour of the day
@@ -14,8 +14,8 @@ export default function PromptNotification() {
     let redirect = inTimeRedirect;
     const options = {
       body: body,
-      icon: logoIcon, //this shows the wizard
-      badge: logoIcon, //this shows the wizard
+      icon: nudgeicon, //this shows the nudge icon
+      badge: nudgeicon, //this shows the nudge icon
     };
     setTimeout(() => {
       redirect = outOfTimeRedirect;
