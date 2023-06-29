@@ -68,7 +68,7 @@ export default function Dashboard(props) {
     }
 
     getUserProfile();
-  }, [user, props.supabase, username, props.session, editMode]);
+  }, [user, props.supabase, username, props.session, editMode, firstLetter]);
 
   useEffect(() => {
     async function getLeaderboard() {
@@ -103,7 +103,7 @@ export default function Dashboard(props) {
     if (user !== null && user !== undefined) {
       getScore();
     }
-  }, [props.supabase, user, props.setTotalScore, props.session, editMode]);
+  }, [props.supabase, user, props.setTotalScore, props.session, editMode,props]);
 
   const menuRight = useRef(null);
   //const router = useRouter();

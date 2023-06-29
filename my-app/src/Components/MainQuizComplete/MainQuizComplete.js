@@ -15,20 +15,22 @@ export default function MainQuizComplete(props) {
   }
 
   async function updateScore(quizscore) {
-    const {data: score} = await props.supabase
+    const { data: score } = await props.supabase
       .from("profiles")
       .select("user_score")
       .eq("id", props.session.user.id);
 
     console.log("score:", score);
-    const currentScore = score[0].user_score || 0;
-    const newScore = currentScore + quizscore;
-    props.setTotalScore(newScore);
-    console.log("newScore:", newScore);
-    await props.supabase
-      .from("profiles")
-      .update({ user_score: newScore })
-      .eq("id", props.session.user.id);
+    if (isNaN(score[0].user_score) === false) {
+      const currentScore = score[0].user_score;
+      const newScore = currentScore + quizscore;
+      props.setTotalScore(newScore);
+      console.log("newScore:", newScore);
+      await props.supabase
+        .from("profiles")
+        .update({ user_score: newScore })
+        .eq("id", props.session.user.id);
+    }
   }
 
   return (

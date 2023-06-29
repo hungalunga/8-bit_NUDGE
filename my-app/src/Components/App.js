@@ -104,7 +104,7 @@ export default function App() {
     if (session !== null) {
       updateScore();
     }
-  }, [totalScore]);
+  }, [totalScore, session]);
 
 	useEffect(() => {
 		supabase.auth.getSession().then(({ data: { session } }) => {
@@ -249,6 +249,8 @@ export default function App() {
 						path="/nudge-quiz"
 						element={
               <PromptQuiz
+                supabase={supabase}
+                session={session}
                 totalScore={totalScore}
                 setTotalScore={setTotalScore}
                 streak={streak}

@@ -8,6 +8,8 @@ import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuizCorrect({
   withinTime,
+  supabase,
+  session,
   setTotalScore,
   totalScore,
   streak,
@@ -21,11 +23,32 @@ export default function PromptQuizCorrect({
       setStreak(true);
     }
     if (withinTime === false) {
-      setTotalScore(totalScore + 100);
+      updateScore(100);
     } else {
-      setTotalScore(totalScore + 200);
+      updateScore(200);
     }
   }
+
+
+  async function updateScore(quizscore) {
+    const { data: score } = await supabase
+      .from("profiles")
+      .select("user_score")
+      .eq("id", session.user.id);
+
+    console.log("score:", score);
+    if (isNaN(score[0].user_score) === false) {
+      const currentScore = score[0].user_score;
+      const newScore = currentScore + quizscore;
+      setTotalScore(newScore);
+      console.log("newScore:", newScore);
+      await supabase
+        .from("profiles")
+        .update({ user_score: newScore })
+        .eq("id", session.user.id);
+    } 
+  }
+
 
   if (withinTime === false) {
     return (

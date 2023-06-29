@@ -5,6 +5,8 @@ import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuizCorrect({
   withinTime,
+  supabase,
+  session,
   setTotalScore,
   totalScore,
   correctAnswer,
@@ -12,9 +14,29 @@ export default function PromptQuizCorrect({
 }) {
   function addScore() {
     if (withinTime === false) {
-      setTotalScore(totalScore + 10);
+      updateScore(10);
     } else {
-      setTotalScore(totalScore + 20);
+      updateScore(20);
+    }
+  }
+
+
+  async function updateScore(quizscore) {
+    const { data: score } = await supabase
+      .from("profiles")
+      .select("user_score")
+      .eq("id", session.user.id);
+
+    console.log("score:", score);
+    if (isNaN(score[0].user_score) === false) {
+      const currentScore = score[0].user_score;
+      const newScore = currentScore + quizscore;
+      setTotalScore(newScore);
+      console.log("newScore:", newScore);
+      await supabase
+        .from("profiles")
+        .update({ user_score: newScore })
+        .eq("id", session.user.id);
     }
   }
 
