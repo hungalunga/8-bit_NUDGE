@@ -266,6 +266,7 @@ export default function Dashboard(props) {
         )}
       </div>
 
+      <div className="dashboard-full-page">
       <div className="dashboard-page">
         <div className="dashboard-top">
           <div className="welcome-container">
@@ -391,7 +392,7 @@ export default function Dashboard(props) {
             <h2 className="leaderboard-text">
               <strong>Leaderboard</strong>
             </h2>
-            <DataTable tableStyle={{ minWidth: "27rem" }} value={leaderboard}>
+            <DataTable paginator rows={4} tableStyle={{ minWidth: "27rem" }} value={leaderboard}>
               <Column field="rank" header="Rank" sortable></Column>
               <Column field="user_name" header="Username" sortable></Column>
               <Column field="user_score" header="XP" sortable></Column>
@@ -404,7 +405,7 @@ export default function Dashboard(props) {
           <Button label="Save" onClick={handleSaveClick} />
           <Button label="Cancel" onClick={handleCancelClick} />
         </div>
-      ) : null}
+      ) : null} </div>
     </>
   );
 }
