@@ -107,6 +107,14 @@ export default function App() {
   }, [totalScore, session]);
 
 	useEffect(() => {
+		supabase.auth.signInWithOAuth("google", { provider: "google" });
+	}, []);
+
+	useEffect(() => {
+		supabase.auth.signInWithOAuth("facebook", { provider: "facebook" });
+	}, []);
+
+	useEffect(() => {
 		supabase.auth.getSession().then(({ data: { session } }) => {
 			setSession(session);
 		});
