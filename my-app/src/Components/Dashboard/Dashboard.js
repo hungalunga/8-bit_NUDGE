@@ -24,14 +24,14 @@ export default function Dashboard(props) {
   const [rank, setRank] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
-	useEffect(() => {
-		async function fetchUser() {
-			const { user } = props.session;
-			setUser(user);
-		}
+  useEffect(() => {
+    async function fetchUser() {
+      const { user } = props.session;
+      setUser(user);
+    }
 
-		fetchUser();
-	}, [props.session]);
+    fetchUser();
+  }, [props.session]);
 
   useEffect(() => {
     async function getUserProfile() {
@@ -41,15 +41,15 @@ export default function Dashboard(props) {
           .select("*")
           .eq("id", user.id);
 
-        setUserProfile(userProfile)
+        setUserProfile(userProfile);
 
-				function getUsernameFromEmail(email) {
-					const index = email.indexOf("@");
-					const username = email.slice(0, index);
-					// capitalise the first letter of the username
-					const upperCaseUsername = username.charAt(0).toUpperCase();
-					return upperCaseUsername + username.slice(1);
-				}
+        function getUsernameFromEmail(email) {
+          const index = email.indexOf("@");
+          const username = email.slice(0, index);
+          // capitalise the first letter of the username
+          const upperCaseUsername = username.charAt(0).toUpperCase();
+          return upperCaseUsername + username.slice(1);
+        }
         if (userProfile[0].user_name.includes("@")) {
           setUsername(getUsernameFromEmail(userProfile[0].user_name));
         } else {
@@ -105,55 +105,55 @@ export default function Dashboard(props) {
     }
   }, [props.supabase, user, props.setTotalScore, props.session, editMode]);
 
-	const menuRight = useRef(null);
-	//const router = useRouter();
-	const toast = useRef(null);
-	const menuItems = [
-		{
-			label: "My Dashboard",
-			command: () => {
-				window.location = "/";
-			},
-		},
-		{
-			label: "Today's Quiz",
+  const menuRight = useRef(null);
+  //const router = useRouter();
+  const toast = useRef(null);
+  const menuItems = [
+    {
+      label: "My Dashboard",
+      command: () => {
+        window.location = "/";
+      },
+    },
+    {
+      label: "Today's Quiz",
 
-			command: () => {
-				window.location = "/quiz";
-			},
-		},
-		{
-			label: "NUDGE-bot Help",
+      command: () => {
+        window.location = "/quiz";
+      },
+    },
+    {
+      label: "NUDGE-bot Help",
 
-			command: () => {
-				window.location = "/quiz";
-			},
-		},
-		{
-			template: (item, options) => {
-				return <button label="Edit Profile" onClick={handleEditClick} />;
-			},
-		},
-		{
-			label: "Logout",
-			command: () => {
-				props.supabase.auth.signOut();
-			},
-		},
-	];
+      command: () => {
+        window.location = "/quiz";
+      },
+    },
+    {
+      template: (item, options) => {
+        return <button label="Edit Profile" onClick={handleEditClick} />;
+      },
+    },
+    {
+      label: "Logout",
+      command: () => {
+        props.supabase.auth.signOut();
+      },
+    },
+  ];
 
   // function to cause a reRender of the page when the user_name is updated
   async function handleSaveClick() {
     console.log("selectedFile:", selectedFile);
-
-    await props.supabase
-      .from("profiles")
-      .update({
-        profile_picture:
-          (userProfile[0].profile_picture = `https://suqficsxrflfgpebathx.supabase.co/storage/v1/object/public/profile_pictures/${props.session.user.id}/${selectedFile.name}`),
-      })
-      .eq("id", user.id);
-
+    if (selectedFile !== null) {
+      await props.supabase
+        .from("profiles")
+        .update({
+          profile_picture:
+            (userProfile[0].profile_picture = `https://suqficsxrflfgpebathx.supabase.co/storage/v1/object/public/profile_pictures/${props.session.user.id}/${selectedFile.name}`),
+        })
+        .eq("id", user.id);
+    }
     await props.supabase
       .from("profiles")
       .update({
@@ -193,9 +193,9 @@ export default function Dashboard(props) {
     setEditMode(false);
   }
 
-	async function handleEditClick() {
-		setEditMode(true);
-	}
+  async function handleEditClick() {
+    setEditMode(true);
+  }
 
   async function onUpload(e) {
     // upload file to storage bucket
@@ -206,29 +206,24 @@ export default function Dashboard(props) {
     setSelectedFile(file);
     handleUpload(file);
   }
-  
- 
-    async function handleUpload(file) {
-      if (file) {
-        try {
-          const { data, error } = await props.supabase.storage
-            .from("profile_pictures")
-            .upload(
-              `${props.session.user.id}/${file.name}`,
-              file
-            );
 
-          if (error) {
-            console.error("Error uploading file:", error);
-          } else {
-            console.log("Successfully uploaded file:", data);
-          }
-        } catch (err) {
-          console.error("Unexpected error uploading file:", err);
+  async function handleUpload(file) {
+    if (file) {
+      try {
+        const { data, error } = await props.supabase.storage
+          .from("profile_pictures")
+          .upload(`${props.session.user.id}/${file.name}`, file);
+
+        if (error) {
+          console.error("Error uploading file:", error);
+        } else {
+          console.log("Successfully uploaded file:", data);
         }
+      } catch (err) {
+        console.error("Unexpected error uploading file:", err);
       }
     }
-
+  }
 
   return (
     <>
@@ -315,26 +310,40 @@ export default function Dashboard(props) {
                   className="p-inputtext-lg"
                   placeholder={username}
                   onChange={(e) => {
-                    const updatedUserProfile = userProfile.map((profile) => ({
-                      ...profile,
-                      user_name: e.target.value,
-                    }));
-                    console.log("updatedUserProfile:", updatedUserProfile)
-                    setUserProfile(updatedUserProfile);
+                    setUserProfile([
+                      {
+                        ...userProfile[0],
+                        user_name: e.target.value,
+                      },
+                    ]);
                   }}
                 />
               ) : (
-                <h1 className="magenta" id="username">{username}!</h1>
+                <h1 className="magenta" id="username">
+                  {username}!
+                </h1>
               )}
             </div>
           </div>
           <div className="user-scores">
-            <Card title={props.streakCount ? (`${props.streakCount}`):null} subTitle="Day Streak!" className="correct-XP-card"  />
-            <Card title={props.totalScore ? (`${props.totalScore}`):null} subTitle="Points!" className="correct-XP-card"  />
-            <Card title={rank ? (`No.${rank}`):null} subTitle="Ranking" className="correct-XP-card"  />
+            <Card
+              title={props.streakCount ? `${props.streakCount}` : null}
+              subTitle="Day Streak!"
+              className="correct-XP-card"
+            />
+            <Card
+              title={props.totalScore ? `${props.totalScore}` : null}
+              subTitle="Points!"
+              className="correct-XP-card"
+            />
+            <Card
+              title={rank ? `No.${rank}` : null}
+              subTitle="Ranking"
+              className="correct-XP-card"
+            />
           </div>
         </div>
-  
+
         <div className="dashboard-bottom">
           <div className="learning-container">
             <div className="learning-header">
@@ -397,5 +406,4 @@ export default function Dashboard(props) {
       ) : null}
     </>
   );
-
 }
