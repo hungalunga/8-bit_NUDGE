@@ -67,7 +67,11 @@ export default function PromptNotification() {
     return messagesArray[randomMessage]; //this will return the random message
   }
 
-  const handleClick = () => { createNotification(PromptQuizNotificationMessage(notificationUserName)); };
+  const handleClick = () => {
+    setTimeout(() => {
+     createNotification(PromptQuizNotificationMessage(notificationUserName));
+     }, 10000);
+    };
 
 
   if (showTime >= 9 && showTime <= 17) { // this will only run if the current time is between 9 and 17
