@@ -76,7 +76,8 @@ export default function Dashboard(props) {
       const { data: leaderboard } = await props.supabase
         .from("profiles")
         .select("user_name, user_score")
-        .order("user_score", { descending: true })
+        .not("user_score", "is", null)
+        .order("user_score", { ascending: false })
         .limit(10);
       const rankedProfiles = leaderboard.map((profile, index) => ({
         ...profile,
@@ -130,8 +131,9 @@ export default function Dashboard(props) {
       },
     },
     {
-      template: (item, options) => {
-        return <button label="Edit Profile" onClick={handleEditClick} />;
+      label: "Edit Profile",
+      command: () => {
+        setEditMode(true);
       },
     },
     {
@@ -193,9 +195,9 @@ export default function Dashboard(props) {
     setEditMode(false);
   }
 
-  async function handleEditClick() {
-    setEditMode(true);
-  }
+  // async function handleEditClick() {
+  //   setEditMode(true);
+  // }
 
   async function onUpload(e) {
     // upload file to storage bucket
@@ -326,9 +328,21 @@ export default function Dashboard(props) {
             </div>
           </div>
           <div className="user-scores">
-            <Card title={props.streakCount ? (`${props.streakCount}`):"0"} subTitle="Day Streak!" className="correct-XP-card"  />
-            <Card title={props.totalScore ? (`${props.totalScore}`):"0"} subTitle="Points!" className="correct-XP-card"  />
-            <Card title={rank ? (`No.${rank}`):"No.0"} subTitle="Ranking" className="correct-XP-card"  />
+            <Card
+              title={props.streakCount ? `${props.streakCount}` : "0"}
+              subTitle="Day Streak!"
+              className="correct-XP-card"
+            />
+            <Card
+              title={props.totalScore ? `${props.totalScore}` : "0"}
+              subTitle="Points!"
+              className="correct-XP-card"
+            />
+            <Card
+              title={rank ? `No.${rank}` : "No.0"}
+              subTitle="Ranking"
+              className="correct-XP-card"
+            />
           </div>
         </div>
 

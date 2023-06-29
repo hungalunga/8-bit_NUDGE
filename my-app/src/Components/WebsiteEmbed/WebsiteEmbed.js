@@ -1,6 +1,42 @@
-import React from "react";
+import { useRef } from "react";
+import nudgelogo from "../../images/nudgelogo.png";
+import { Menu } from "primereact/menu";
+import { Toast } from "primereact/toast";
+import { Link } from "react-router-dom";
+import { Button } from "primereact/button";
 
-function WebsiteEmbed() {
+function WebsiteEmbed(props) {
+  const menuRight = useRef(null);
+  const toast = useRef(null);
+  const menuItems = [
+    {
+      label: "My Dashboard",
+      command: () => {
+        window.location = "/";
+      },
+    },
+    {
+      label: "Today's Quiz",
+
+      command: () => {
+        window.location = "/quiz";
+      },
+    },
+    {
+      label: "NUDGE-bot Help",
+
+      command: () => {
+        window.location = "/nudgebot";
+      },
+    },
+    {
+      label: "Logout",
+      command: () => {
+        props.supabase.auth.signOut();
+      },
+    },
+  ];
+
   const iframeStyle = {
     width: "100%",
     height: "725px",
@@ -17,7 +53,29 @@ function WebsiteEmbed() {
   };
 
   return (
-    <div>
+    <>
+      <div className="navbar">
+        <Link to="/">
+          <img src={nudgelogo} alt="nav-logo" className="nav-logo" />
+        </Link>
+        <Toast ref={toast}></Toast>
+
+        <Menu
+          model={menuItems}
+          popup
+          ref={menuRight}
+          id="popup_menu_right"
+          popupAlignment="right"
+        />
+        <Button
+          label="Menu"
+          icon="pi pi-align-right"
+          className="mr-2"
+          onClick={(event) => menuRight.current.toggle(event)}
+          aria-controls="popup_menu_right"
+          aria-haspopup
+        />
+      </div>
       <h3>Getting stuck? Ask NUDGE-bot for help</h3>
       <iframe
         title="W3Schools Free Online Web Tutorials"
@@ -26,7 +84,7 @@ function WebsiteEmbed() {
       ></iframe>
       <div style={overlayStyle}></div>
       {/* <Button variant="contained">Hello World</Button> */}
-    </div>
+    </>
   );
 }
 

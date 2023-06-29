@@ -226,7 +226,8 @@ export default function App() {
 										<Route
 						path="/nudgebot"
 						element={
-							<WebsiteEmbed
+              <WebsiteEmbed
+                supabase={supabase}
 							/>
 						}
 					/>
