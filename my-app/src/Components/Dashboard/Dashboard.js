@@ -368,26 +368,35 @@ export default function Dashboard(props) {
             </h3>
 
             <div className="learning-buttons-container">
+            <Link to="/geometry_quiz">
               <Button
                 className="learning-button"
                 label="Geometry"
                 severity="secondary"
+                topic = "geometry"
               />
+              </Link>
+              <Link to="/algebra_quiz">
               <Button
                 className="learning-button"
                 label="Algebra"
                 severity="secondary"
               />
+              </Link>
+              <Link to="/statistics_quiz">
               <Button
                 className="learning-button"
-                label="Trig"
+                label="Stats"
                 severity="secondary"
               />
+              </Link>
+              <Link to="/surprise_quiz">
               <Button
                 className="learning-button"
                 label="Surprise me!"
                 severity="secondary"
               />
+              </Link>
             </div>
           </div>
 

@@ -214,22 +214,87 @@ export default function App() {
 						path="/quiz"
 						element={
 							<MainQuiz
-                supabase={supabase}
-                session={session}
+                				supabase={supabase}
+                				session={session}
 								totalScore={totalScore}
 								setTotalScore={setTotalScore}
 								streak={streak}
 								setStreak={setStreak}
 								streakCount={streakCount}
 								setStreakCount={setStreakCount}
+								topic = "math"
 							/>
 						}
 					/>
-										<Route
+					<Route
+						path="/geometry_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "geometry"
+							/>
+						}
+					/>
+					<Route
+						path="/algebra_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "algebra"
+							/>
+						}
+					/>
+					<Route
+						path="/statistics_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "statistics"
+							/>
+						}
+					/>
+					<Route
+						path="/surprise_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "surprise"
+							/>
+						}
+					/>
+					<Route
 						path="/nudgebot"
 						element={
-              <WebsiteEmbed
-                supabase={supabase}
+             				 <WebsiteEmbed
+                			 supabase={supabase}
 							/>
 						}
 					/>
@@ -237,29 +302,29 @@ export default function App() {
 						path="/"
 						element={
 							<Dashboard
-                session={session}
-                supabase={supabase}
-                totalScore={totalScore}
-                setTotalScore={setTotalScore}
-                streakCount={streakCount}
-              />
+                				session={session}
+                				supabase={supabase}
+                				totalScore={totalScore}
+                				setTotalScore={setTotalScore}
+                				streakCount={streakCount}
+              				/>
 						}
 					/>
 					<Route path="/nudge-quiz-late" element={<PromptQuiz late={true} />} />
 					<Route
 						path="/nudge-quiz"
 						element={
-              <PromptQuiz
-                supabase={supabase}
-                session={session}
-                totalScore={totalScore}
-                setTotalScore={setTotalScore}
-                streak={streak}
-                setStreak={setStreak}
-                streakCount={streakCount}
-                setStreakCount={setStreakCount}
-              />
-						}
+              				<PromptQuiz
+                			supabase={supabase}
+                			session={session}
+                			totalScore={totalScore}
+                			setTotalScore={setTotalScore}
+                			streak={streak}
+                			setStreak={setStreak}
+                			streakCount={streakCount}
+                			setStreakCount={setStreakCount}
+              				/>
+							}
 					/>
 				</Routes>
 			</>
