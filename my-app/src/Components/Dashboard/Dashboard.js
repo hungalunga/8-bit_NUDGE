@@ -70,7 +70,7 @@ export default function Dashboard(props) {
     }
 
     getUserProfile();
-  }, [user, props.supabase, editMode]);
+  }, [user, props.supabase, username, props.session]);
 
   useEffect(() => {
     async function getLeaderboard() {
@@ -102,7 +102,7 @@ export default function Dashboard(props) {
     }
 
     getScore();
-  }, [props.supabase, user]);
+  }, [props.supabase, user, props.setTotalScore, props.session]);
 
   const menuRight = useRef(null);
   //const router = useRouter();
@@ -194,7 +194,7 @@ export default function Dashboard(props) {
       setRank(userRank.rank);
     }
     getRank();
-  }, [leaderboard, username]);
+  }, [leaderboard, username, user]);
 
   // handleChange function to update the user_name in the userProfile state
   // access the user_name from the userProfile state
@@ -294,9 +294,9 @@ export default function Dashboard(props) {
             </div>
           </div>
           <div className="user-scores">
-            <Card title={`${props.streakCount}`} subTitle="Day Streak!" />
-            <Card title={`${props.totalScore}`} subTitle="Points!" />
-            <Card title={`No.${rank}`} subTitle="Ranking" />
+            <Card title={props.streakCount ? (`${props.streakCount}`):null} subTitle="Day Streak!" />
+            <Card title={props.totalScore ? (`${props.totalScore}`):null} subTitle="Points!" />
+            <Card title={rank ? (`No.${rank}`):null} subTitle="Ranking" />
           </div>
         </div>
   
