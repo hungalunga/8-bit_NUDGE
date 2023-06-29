@@ -142,7 +142,7 @@ export default function App() {
 									supabaseClient={supabase}
 									theme="default"
 									appearance={{ theme: customTheme }}
-									providers={[supabase.auth.signInWithOAuth("google", { provider: "google" }), supabase.auth.signInWithOAuth("facebook", { provider: "facebook" })]}
+									providers={["google","facebook"]}
 								/>
 							</div>
 						</div>
