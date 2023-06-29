@@ -64,10 +64,10 @@ export default function PromptQuizCorrect({
             </div>
             <h3>Look at all those points!</h3>
             <p> Watch out for tomorrow's NUDGE.</p>
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
-            </Link>
-            <TextToSpeech speech="Correct and in time! Double Time Bonus! You've gained +200 points" />
+            </Link><div className="quiz-speech">
+            <TextToSpeech speech="Correct and in time! Double Time Bonus! You've gained +200 points" /></div>
           </Card>
         </div>
         {/* <WebsiteEmbed /> */}
