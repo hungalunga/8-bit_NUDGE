@@ -38,7 +38,7 @@ export default function PromptQuizCorrect({
             <h3>
               Answer before the timer's up to get double points next time!
             </h3>
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
             </Link>
           </Card>
