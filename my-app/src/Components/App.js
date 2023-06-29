@@ -106,13 +106,6 @@ export default function App() {
     }
   }, [totalScore, session]);
 
-	useEffect(() => {
-		supabase.auth.signInWithOAuth("google", { provider: "google" });
-	}, []);
-
-	useEffect(() => {
-		supabase.auth.signInWithOAuth("facebook", { provider: "facebook" });
-	}, []);
 
 	useEffect(() => {
 		supabase.auth.getSession().then(({ data: { session } }) => {
@@ -149,7 +142,7 @@ export default function App() {
 									supabaseClient={supabase}
 									theme="default"
 									appearance={{ theme: customTheme }}
-									providers={["google", "facebook"]}
+									providers={[supabase.auth.signInWithOAuth("google", { provider: "google" }), supabase.auth.signInWithOAuth("facebook", { provider: "facebook" })]}
 								/>
 							</div>
 						</div>
