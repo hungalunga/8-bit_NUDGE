@@ -24,14 +24,14 @@ export default function Dashboard(props) {
   const [rank, setRank] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
 
-  useEffect(() => {
-    async function fetchUser() {
-      const { user } = props.session;
-      setUser(user);
-    }
+	useEffect(() => {
+		async function fetchUser() {
+			const { user } = props.session;
+			setUser(user);
+		}
 
-    fetchUser();
-  }, [props.session]);
+		fetchUser();
+	}, [props.session]);
 
   useEffect(() => {
     async function getUserProfile() {
@@ -41,16 +41,15 @@ export default function Dashboard(props) {
           .select("*")
           .eq("id", user.id);
 
-        setUserProfile(userProfile);
+        setUserProfile(userProfile)
 
-        function getUsernameFromEmail(email) {
-          const index = email.indexOf("@");
-          const username = email.slice(0, index);
-          // capitalise the first letter of the username
-          const upperCaseUsername = username.charAt(0).toUpperCase();
-          return upperCaseUsername + username.slice(1);
-        }
-
+				function getUsernameFromEmail(email) {
+					const index = email.indexOf("@");
+					const username = email.slice(0, index);
+					// capitalise the first letter of the username
+					const upperCaseUsername = username.charAt(0).toUpperCase();
+					return upperCaseUsername + username.slice(1);
+				}
         if (userProfile[0].user_name.includes("@")) {
           setUsername(getUsernameFromEmail(userProfile[0].user_name));
         } else {
@@ -106,42 +105,42 @@ export default function Dashboard(props) {
     }
   }, [props.supabase, user, props.setTotalScore, props.session, editMode]);
 
-  const menuRight = useRef(null);
-  //const router = useRouter();
-  const toast = useRef(null);
-  const menuItems = [
-    {
-      label: "My Dashboard",
-      command: () => {
-        window.location = "/";
-      },
-    },
-    {
-      label: "Today's Quiz",
+	const menuRight = useRef(null);
+	//const router = useRouter();
+	const toast = useRef(null);
+	const menuItems = [
+		{
+			label: "My Dashboard",
+			command: () => {
+				window.location = "/";
+			},
+		},
+		{
+			label: "Today's Quiz",
 
-      command: () => {
-        window.location = "/quiz";
-      },
-    },
-    {
-      label: "NUDGE-bot Help",
+			command: () => {
+				window.location = "/quiz";
+			},
+		},
+		{
+			label: "NUDGE-bot Help",
 
-      command: () => {
-        window.location = "/quiz";
-      },
-    },
-    {
-      template: (item, options) => {
-        return <button label="Edit Profile" onClick={handleEditClick} />;
-      },
-    },
-    {
-      label: "Logout",
-      command: () => {
-        props.supabase.auth.signOut();
-      },
-    },
-  ];
+			command: () => {
+				window.location = "/quiz";
+			},
+		},
+		{
+			template: (item, options) => {
+				return <button label="Edit Profile" onClick={handleEditClick} />;
+			},
+		},
+		{
+			label: "Logout",
+			command: () => {
+				props.supabase.auth.signOut();
+			},
+		},
+	];
 
   // function to cause a reRender of the page when the user_name is updated
   async function handleSaveClick() {
@@ -194,9 +193,9 @@ export default function Dashboard(props) {
     setEditMode(false);
   }
 
-  async function handleEditClick() {
-    setEditMode(true);
-  }
+	async function handleEditClick() {
+		setEditMode(true);
+	}
 
   async function onUpload(e) {
     // upload file to storage bucket
@@ -239,7 +238,7 @@ export default function Dashboard(props) {
       />
       <div className="navbar">
         <Link to="/">
-          <img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
+          <img src={nudgelogo} alt="nav-logo" className="nav-logo" />
         </Link>
         <Toast ref={toast}></Toast>
 
@@ -325,24 +324,17 @@ export default function Dashboard(props) {
                   }}
                 />
               ) : (
-                <h1 id="username">{username}!</h1>
+                <h1 className="magenta" id="username">{username}!</h1>
               )}
             </div>
           </div>
           <div className="user-scores">
-            <Card
-              title={props.streakCount ? `${props.streakCount}` : null}
-              subTitle="Day Streak!"
-            />
-            <Card
-              title={props.totalScore ? `${props.totalScore}` : null}
-              subTitle="Points!"
-            />
-            <Card title={rank ? `No.${rank}` : null} subTitle="Ranking" />
+            <Card title={props.streakCount ? (`${props.streakCount}`):null} subTitle="Day Streak!" className="correct-XP-card"  />
+            <Card title={props.totalScore ? (`${props.totalScore}`):null} subTitle="Points!" className="correct-XP-card"  />
+            <Card title={rank ? (`No.${rank}`):null} subTitle="Ranking" className="correct-XP-card"  />
           </div>
         </div>
-
-        <Divider />
+  
         <div className="dashboard-bottom">
           <div className="learning-container">
             <div className="learning-header">
@@ -405,4 +397,5 @@ export default function Dashboard(props) {
       ) : null}
     </>
   );
+
 }
