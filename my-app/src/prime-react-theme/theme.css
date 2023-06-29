@@ -5051,12 +5051,10 @@ p {
 	font-size: 35px;
 }
 
-
-
 .end-quiz-card {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: center;
 	background-color: #e8e4f5;
 	align-items: center;
 	width: 750px;

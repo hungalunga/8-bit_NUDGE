@@ -126,7 +126,7 @@ export default function Dashboard(props) {
       label: "NUDGE-bot Help",
 
       command: () => {
-        window.location = "/quiz";
+        window.location = "/nudgebot";
       },
     },
     {

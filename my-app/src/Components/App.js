@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { Button } from "primereact/button";
 import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
+import WebsiteEmbed from "./WebsiteEmbed/WebsiteEmbed";
 import Dashboard from "./Dashboard/Dashboard";
 import PromptNotification from "./PromptNotification/PromptNotification";
 import nudgelogo from "../images/nudgelogo.png";
@@ -219,6 +220,13 @@ export default function App() {
 								setStreak={setStreak}
 								streakCount={streakCount}
 								setStreakCount={setStreakCount}
+							/>
+						}
+					/>
+										<Route
+						path="/nudgebot"
+						element={
+							<WebsiteEmbed
 							/>
 						}
 					/>
