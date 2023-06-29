@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-expressions
-[
+export const quizQuestions = [
     {
       "id": 1,
       "difficulty": "Easy",
