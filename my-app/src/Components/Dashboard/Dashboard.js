@@ -73,24 +73,26 @@ export default function Dashboard(props) {
   }, [user, props.supabase, username, props.session]);
 
   useEffect(() => {
-    async function getLeaderboard() {
-      const { data: leaderboard } = await props.supabase
-        .from("profiles")
-        .select("user_name, user_score")
-        .order("user_score", { descending: true })
-        .limit(10);
-      const rankedProfiles = leaderboard.map((profile, index) => ({
-        ...profile,
-        rank: index + 1,
-      }));
+    
+      async function getLeaderboard() {
+        const { data: leaderboard } = await props.supabase
+          .from("profiles")
+          .select("user_name, user_score")
+          .order("user_score", { descending: true })
+          .limit(10);
+        const rankedProfiles = leaderboard.map((profile, index) => ({
+          ...profile,
+          rank: index + 1,
+        }));
 
-      console.table("leaderboard:", leaderboard);
-      console.table("rankedProfiles:", rankedProfiles);
-      setLeaderboard(rankedProfiles);
+        console.table("leaderboard:", leaderboard);
+        console.table("rankedProfiles:", rankedProfiles);
+        setLeaderboard(rankedProfiles);
+      }
+    
+      if (user !== null && user !== undefined) {
+      getLeaderboard();
     }
-
-    getLeaderboard();
-
     async function getScore() {
       const { data: score } = await props.supabase
         .from("profiles")
@@ -100,8 +102,9 @@ export default function Dashboard(props) {
       const currentScore = score[0].user_score;
       props.setTotalScore(currentScore);
     }
-
-    getScore();
+    if (user !== null && user !== undefined) {
+      getScore();
+    }
   }, [props.supabase, user, props.setTotalScore, props.session]);
 
   const menuRight = useRef(null);
@@ -193,7 +196,9 @@ export default function Dashboard(props) {
       );
       setRank(userRank.rank);
     }
-    getRank();
+    if (leaderboard !== null && leaderboard !== undefined) {
+      getRank();
+    }
   }, [leaderboard, username, user]);
 
   // handleChange function to update the user_name in the userProfile state
@@ -238,11 +243,12 @@ export default function Dashboard(props) {
           popupAlignment="right"
         />
         <Avatar
-          label={firstLetter}
+          image = {userProfile ? userProfile[0].profile_picture : null}
           className="avatar-small"
           onClick={(event) => menuRight.current.toggle(event)}
           aria-controls="popup_menu_right"
           aria-haspopup
+          shape="circle"
         />
       </div>
   
@@ -250,9 +256,10 @@ export default function Dashboard(props) {
         <div className="dashboard-top">
           <div className="welcome-container">
             <Avatar
-              label={firstLetter}
+              image = {userProfile ? userProfile[0].profile_picture : null}
               size="xlarge"
               className="circleAvatar"
+              shape="circle"
             />
             {editMode ? (
               <FileUpload
