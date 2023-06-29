@@ -88,29 +88,6 @@ const customTheme = {
 
 export default function App() {
   console.log("netlify");
-  
-  const items = [
-    {
-      label: "Home",
-      command: () => {
-        window.location = "/home";
-      },
-    },
-    {
-      label: "Quiz",
-
-      command: () => {
-        window.location = "/quiz";
-      },
-    },
-    {
-      label: "Logout",
-      command: () => {
-        supabase.auth.signOut();
-      },
-    },
-  ];
-
 
   const [streak, setStreak] = useState(false);
   const [streakCount, setStreakCount] = useState(0);
