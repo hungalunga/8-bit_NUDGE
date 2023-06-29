@@ -1,7 +1,7 @@
 import MainQuizDisplay from "../MainQuizDisplay/MainQuizDisplay";
 import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 import { useState, useEffect } from "react";
-import { quizQuestions } from "../../QuizData";
+//import { quizQuestions } from "../../QuizData";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import "./MainQuiz.css";
@@ -14,7 +14,7 @@ export default function MainQuiz(props) {
 	const [resultsValue, setResultsValue] = useState(0);
 	const [quizScore, setQuizScore] = useState(0);
 	const [quizStarted, setQuizStarted] = useState(false);
-	const numberOfQuestions = quizQuestions.length;
+	//const numberOfQuestions = quizQuestions.length;
 	const completionMessage = "You've completed the quiz!";
 	const nextMessage = "➜";
 
@@ -47,7 +47,8 @@ export default function MainQuiz(props) {
 		setQuestionSet(remainingQuestions);
 		console.log("1 incorrect answers:", incorrectAnswers);
 		// grab from array of wrong answers(after preset number OR when you run out of questions (latter is for robustness))
-		if (questionNumber > numberOfQuestions || questionSet.length === 0) {
+		//if (questionNumber > numberOfQuestions || questionSet.length === 0) {
+		if (questionSet.length === 0) {
 			if (incorrectAnswers.length > 0) {
 				const wrongAnswer = incorrectAnswers[0];
 				setQuestionObject(wrongAnswer);
