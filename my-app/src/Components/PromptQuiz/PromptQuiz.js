@@ -62,6 +62,7 @@ export default function PromptQuiz(props) {
 
   if (countdownNumber > 0 && !late) {
     return (
+      <div className="main-quiz-full-page">
       <div className="main-quiz-page">
         <div className="content-container">
           <Card className="end-quiz-card">
@@ -70,10 +71,11 @@ export default function PromptQuiz(props) {
             <h1>{countdownNumber}</h1>
           </Card>
         </div>
-      </div>
+      </div></div>
     );
   } else if (late) {
     return (
+      <div className="main-quiz-full-page">
       <div className="main-quiz-page">
         <div className="content-container">
           <Card className="end-quiz-card">
@@ -83,17 +85,17 @@ export default function PromptQuiz(props) {
             </h2>
           </Card>
         </div>
-      </div>
+      </div></div>
     );
   }
   // display the question & answers
   else {
     return (
-      <>
-        <div className="main-quiz-page">
-          <div className="exit-quiz">
+      <><div className="main-quiz-full-page">
+        <div className="exit-quiz">
             <ExitQuizButton />
           </div>
+        <div className="main-quiz-page">
           <PromptQuizDisplay
             supabase={props.supabase}
             session={props.session}
@@ -113,7 +115,7 @@ export default function PromptQuiz(props) {
             incorrectAnswers={incorrectAnswers}
             setIncorrectAnswers={setIncorrectAnswers}
           />
-        </div>
+        </div></div>
       </>
     );
   }

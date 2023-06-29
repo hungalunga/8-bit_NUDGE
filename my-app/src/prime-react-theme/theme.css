@@ -7457,8 +7457,7 @@ p {
 /* progress bars */
 
 .timer-bar {
-	min-width: 550px;
-	width: 675px;
+	width: 630px;
 }
 
 .quiz-progress-bar {
