@@ -142,7 +142,7 @@ export default function App() {
 									supabaseClient={supabase}
 									theme="default"
 									appearance={{ theme: customTheme }}
-									providers={["google","facebook"]}
+									providers={[]}
 								/>
 							</div>
 						</div>
