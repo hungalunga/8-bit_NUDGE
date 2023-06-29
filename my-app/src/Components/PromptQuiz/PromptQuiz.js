@@ -3,6 +3,8 @@ import PromptQuizDisplay from "../PromptQuizDisplay/PromptQuizDisplay";
 import ExitQuizButton from "../ExitQuizButton/ExitQuizButton";
 import { Card } from "primereact/card";
 import "../MainQuiz/MainQuiz.css";
+import { Button } from "primereact/button";
+import { Link } from "react-router-dom";
 
 export default function PromptQuiz(props) {
   // choose ten random questions from the main question dataset
@@ -84,10 +86,15 @@ export default function PromptQuiz(props) {
               streak if you answer the daily quiz.
             </h2>
           </Card>
+          <Link to="/">
+            <Button label="Keep Quizzing" size="large" />
+          </Link>
         </div>
       </div></div>
     );
   }
+
+
   // display the question & answers
   else {
     return (
