@@ -104,7 +104,7 @@ export default function Dashboard(props) {
     if (user !== null && user !== undefined) {
       getScore();
     }
-  }, [props.supabase, user, props.setTotalScore, props.session]);
+  }, [props.supabase, user, props.setTotalScore, props.session, editMode]);
 
   const menuRight = useRef(null);
   //const router = useRouter();
@@ -146,32 +146,15 @@ export default function Dashboard(props) {
   // function to cause a reRender of the page when the user_name is updated
   async function handleSaveClick() {
     console.log("selectedFile:", selectedFile);
-    if (selectedFile !== null) {
-      try {
-        const { data, error } = await props.supabase.storage
-          .from("profile_pictures")
-          .upload(
-            `${props.session.user.id}/${selectedFile.name}`,
-            selectedFile
-          );
 
-        if (error) {
-          console.error("Error uploading file:", error);
-        } else {
-          console.log("Successfully uploaded file:", data);
-        }
-      } catch (err) {
-        console.error("Unexpected error uploading file:", err);
-      }
+    await props.supabase
+      .from("profiles")
+      .update({
+        profile_picture:
+          (userProfile[0].profile_picture = `https://suqficsxrflfgpebathx.supabase.co/storage/v1/object/public/profile_pictures/${props.session.user.id}/${selectedFile.name}`),
+      })
+      .eq("id", user.id);
 
-      await props.supabase
-        .from("profiles")
-        .update({
-          profile_picture:
-            (userProfile[0].profile_picture = `https://suqficsxrflfgpebathx.supabase.co/storage/v1/object/public/profile_pictures/${props.session.user.id}/${selectedFile.name}`),
-        })
-        .eq("id", user.id);
-    }
     await props.supabase
       .from("profiles")
       .update({
@@ -193,12 +176,14 @@ export default function Dashboard(props) {
       const userRank = leaderboard.find(
         (leaderboard) => leaderboard.user_name === username
       );
-      setRank(userRank.rank);
+      if (userRank !== undefined && userRank !== null) {
+        setRank(userRank.rank);
+      }
     }
     if (leaderboard !== null && leaderboard !== undefined) {
       getRank();
     }
-  }, [leaderboard, username, user]);
+  }, [leaderboard, username, user, editMode]);
 
   // handleChange function to update the user_name in the userProfile state
   // access the user_name from the userProfile state
@@ -220,7 +205,31 @@ export default function Dashboard(props) {
     const file = e.files[0];
     console.log("file:", file);
     setSelectedFile(file);
+    handleUpload(file);
   }
+  
+ 
+    async function handleUpload(file) {
+      if (file) {
+        try {
+          const { data, error } = await props.supabase.storage
+            .from("profile_pictures")
+            .upload(
+              `${props.session.user.id}/${file.name}`,
+              file
+            );
+
+          if (error) {
+            console.error("Error uploading file:", error);
+          } else {
+            console.log("Successfully uploaded file:", data);
+          }
+        } catch (err) {
+          console.error("Unexpected error uploading file:", err);
+        }
+      }
+    }
+
 
   return (
     <>
@@ -285,7 +294,7 @@ export default function Dashboard(props) {
                 name=""
                 url=""
                 multiple
-                accept="image/*"
+                accept="image/png , image/jpeg"
                 maxFileSize={1000000}
                 emptyTemplate={
                   <p className="m-0">Drag and drop files here to upload.</p>
@@ -311,6 +320,7 @@ export default function Dashboard(props) {
                       ...profile,
                       user_name: e.target.value,
                     }));
+                    console.log("updatedUserProfile:", updatedUserProfile)
                     setUserProfile(updatedUserProfile);
                   }}
                 />

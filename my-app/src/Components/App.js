@@ -92,7 +92,9 @@ export default function App() {
         .update({ user_score: totalScore })
         .eq("id", session.user.id);
     }
-    updateScore();
+    if (session !== null) {
+      updateScore();
+    }
   }, [totalScore]);
 
   useEffect(() => {
