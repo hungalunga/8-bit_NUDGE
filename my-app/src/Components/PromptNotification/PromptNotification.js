@@ -79,7 +79,9 @@ export default function PromptNotification() {
   }
 
   const handleClick = () => {
+    setTimeout(() => {
     createNotification(PromptQuizNotificationMessage(notificationUserName));
+  }, 10000);
   };
 
   if (showTime >= 9 && showTime <= 17) {

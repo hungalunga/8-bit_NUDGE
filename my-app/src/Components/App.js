@@ -15,6 +15,7 @@ import calendar from "../images/calendar.png";
 import "primeicons/primeicons.css";
 import "../prime-react-theme/theme.css";
 import "./App.css";
+import PromptNotification from "./PromptNotification/PromptNotification";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
@@ -208,6 +209,7 @@ export default function App() {
 	} else {
 		return (
 			<>
+      <PromptNotification/>
 				<Routes>
 					<Route
 						path="/quiz"
@@ -261,6 +263,7 @@ export default function App() {
 						}
 					/>
 				</Routes>
+        
 			</>
 		);
 	}
