@@ -1,7 +1,6 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import { Divider } from "primereact/divider";
 import { Avatar } from "primereact/avatar";
 import { Card } from "primereact/card";
 import { Link } from "react-router-dom";

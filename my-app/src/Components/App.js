@@ -8,7 +8,6 @@ import PromptQuiz from "./PromptQuiz/PromptQuiz";
 import MainQuiz from "./MainQuiz/MainQuiz";
 import WebsiteEmbed from "./WebsiteEmbed/WebsiteEmbed";
 import Dashboard from "./Dashboard/Dashboard";
-import PromptNotification from "./PromptNotification/PromptNotification";
 import nudgelogo from "../images/nudgelogo.png";
 import notification from "../images/notification.png";
 import alarm from "../images/alarm.png";

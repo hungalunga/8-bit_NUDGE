@@ -1,5 +1,4 @@
 import {useRef } from "react";
-import logoIcon from "./logo3.png";
 import { Button } from "primereact/button";
 import nudgeicon from "../../images/nudgeicon.ico";
 export default function PromptNotification() {

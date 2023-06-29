@@ -1,7 +1,6 @@
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
 import { Card } from "primereact/card";
-import { useEffect } from "react";
 
 export default function MainQuizComplete(props) {
   // console.log("props.totalScore:", props.totalScore);
