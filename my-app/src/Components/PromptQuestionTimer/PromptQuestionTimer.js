@@ -22,7 +22,7 @@ export default function PromptQuestionTimer({ seconds, setSeconds }) {
   const timerValue = `${minutes} : ${seconds % 60}`;
   console.log(seconds);
   return (
-    <div>
+    <div className="countdown">
       <h3>{timerValue}</h3>
     </div>
   );

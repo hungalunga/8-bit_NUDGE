@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-expressions
 [
     {
       "id": 1,
@@ -216,7 +217,7 @@
 "question": "Evaluate the expression: (3⁴)/(3²)",
 "answer": "9",
 "wrong_answers": ["3", "27", "81"]
-}
+},
     {
       "id": 28,
       "difficulty": "Hard",
@@ -312,7 +313,7 @@
 "question": "Expand the expression: (2x - 3)(x + 4)",
 "answer": "2x² + 5x - 12",
 "wrong_answers": ["2x² + 5x + 12", "2x² - 5x + 12", "2x² - 5x - 12"]
-}
+},
     {
       "id": 40,
       "difficulty": "Easy",
@@ -455,8 +456,8 @@
 "topic": "Number",
 "question": "Evaluate the expression: (2⁵)/(2²)",
 "answer": "8",
-"wrong_answers": ["4", "16", "32"]
-}
+"wrong_answers": ["4", "16", "32"],
+    },
     {
       "id": 58,
       "difficulty": "Hard",
