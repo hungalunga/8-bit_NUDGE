@@ -74,6 +74,15 @@ h3 {
 	color: #39207e;
 }
 
+.magenta {
+	color: #891891;
+}
+
+.off-white {
+	color: #f7f7f7;
+	line-height: 140%;
+}
+
 p {
 	font-size: 1.5rem;
 	font-weight: 400;
@@ -1909,6 +1918,11 @@ p {
 	border-color: #fff;
 }
 .primary-quiz-button {
+	height: 100px;
+	width: 400px;
+}
+
+.get-started-button {
 	height: 100px;
 	width: 400px;
 }
@@ -5029,6 +5043,7 @@ p {
 
 .big-card {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 750px;
@@ -5039,7 +5054,7 @@ p {
 .end-quiz-card {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: center;
 	background-color: #e8e4f5;
 	align-items: center;
 	width: 750px;
@@ -5057,6 +5072,10 @@ p {
 }
 
 .correct-XP-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	background-color: #f7f7f7;
 }
 

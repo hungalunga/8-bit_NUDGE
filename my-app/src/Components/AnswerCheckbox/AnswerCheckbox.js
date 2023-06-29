@@ -92,7 +92,7 @@ export default function AnswerCheckbox({
 		<>
 			<div className="answers">
 				{allAnswers.map((answerOption, index) => (
-					<div>
+					<div className="answer-button-container">
 					<Button
 						severity="secondary"
 						className={

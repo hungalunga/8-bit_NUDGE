@@ -8,6 +8,8 @@ import "../MainQuiz/MainQuiz.css";
 
 export default function PromptQuizCorrect({
   withinTime,
+  supabase,
+  session,
   setTotalScore,
   totalScore,
   streak,
@@ -21,11 +23,32 @@ export default function PromptQuizCorrect({
       setStreak(true);
     }
     if (withinTime === false) {
-      setTotalScore(totalScore + 100);
+      updateScore(100);
     } else {
-      setTotalScore(totalScore + 200);
+      updateScore(200);
     }
   }
+
+
+  async function updateScore(quizscore) {
+    const { data: score } = await supabase
+      .from("profiles")
+      .select("user_score")
+      .eq("id", session.user.id);
+
+    console.log("score:", score);
+    if (isNaN(score[0].user_score) === false) {
+      const currentScore = score[0].user_score;
+      const newScore = currentScore + quizscore;
+      setTotalScore(newScore);
+      console.log("newScore:", newScore);
+      await supabase
+        .from("profiles")
+        .update({ user_score: newScore })
+        .eq("id", session.user.id);
+    } 
+  }
+
 
   if (withinTime === false) {
     return (
@@ -38,7 +61,7 @@ export default function PromptQuizCorrect({
             <h3>
               Answer before the timer's up to get double points next time!
             </h3>
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
             </Link>
           </Card>
@@ -64,10 +87,10 @@ export default function PromptQuizCorrect({
             </div>
             <h3>Look at all those points!</h3>
             <p> Watch out for tomorrow's NUDGE.</p>
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
-            </Link>
-            <TextToSpeech speech="Correct and in time! Double Time Bonus! You've gained +200 points" />
+            </Link><div className="quiz-speech">
+            <TextToSpeech speech="Correct and in time! Double Time Bonus! You've gained +200 points" /></div>
           </Card>
         </div>
         {/* <WebsiteEmbed /> */}

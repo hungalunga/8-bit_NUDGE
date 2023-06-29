@@ -2,7 +2,7 @@ import AnswerCheckbox from "../AnswerCheckbox/AnswerCheckbox";
 import PromptQuestionTimer from "../PromptQuestionTimer/PromptQuestionTimer";
 import "primeicons/primeicons.css";
 import { Card } from "primereact/card";
-import { Button } from "primereact/button";
+// import { Button } from "primereact/button";
 import TextToSpeech from "../TextToSpeech/TextToSpeech";
 
 export default function MainQuizQuestion(props) {
@@ -11,7 +11,8 @@ export default function MainQuizQuestion(props) {
     <>
       <Card className="big-card">
         {props.question}
-        <TextToSpeech speech={`${props.questionObject.question}`} />
+        <div className="quiz-speech">
+        <TextToSpeech speech={`${props.questionObject.question}`} /></div>
       </Card>
       {/*<p className="question"></p>*/}
       {props.promptQuestionTimer && <PromptQuestionTimer />}

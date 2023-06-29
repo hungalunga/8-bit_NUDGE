@@ -21,12 +21,16 @@ export default function MainQuiz(props) {
   // creating initial states as empty arrays
   // questions that have already been asked
 
+
   useEffect(() => {
     async function getQuestions() {
-      const response = await fetch("http://localhost:3001/math_questions");
+      const response = await fetch("https://eight-bit-nudge-backend.onrender.com/math_questions");
       const data = await response.json();
       console.log(data);
       getRandomQuestion(data);
+      // some comments
+      // let x = 5;
+      
     }
     getQuestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,6 +74,8 @@ export default function MainQuiz(props) {
             <ExitQuizButton />
           </div>
           <MainQuizDisplay
+            supabase={props.supabase}
+            session={props.session}
             quizScore={quizScore}
             setQuizScore={setQuizScore}
             questionObject={questionObject}

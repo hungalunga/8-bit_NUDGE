@@ -6,10 +6,15 @@
 #root {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	
+	width: 100vw;
+	height: 100vh;
+	background-image: linear-gradient(#f7f7f7,#f3f1fb );
 }
 
+
+/* navbar & items */
 .navbar {
 	display: flex;
 	flex-direction: row;
@@ -20,11 +25,10 @@
 	height: 70px;
 }
 
-.nudge-logo {
-	display: flex;
+.nav-logo {
+	width: 160px;
+	object-fit: contain;
 	margin-left: 20px;
-	margin-bottom: 10px;
-	height: 60px;
 }
 
 .avatar-small {
@@ -32,15 +36,14 @@
 }
 
 .dashboard-page {
-	background-color: #f7f7f7;
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 100vw;
 	justify-content: center;
-	align-content: center;
+
 	max-width: 1250px;
 	min-width: 800px;
-	padding: 20px;
+	padding: 25px 75px 0px;
 }
 
 .dashboard-top {
@@ -56,6 +59,7 @@
 	flex-direction: row;
 	align-items: center;
 	flex: 2 1 0;
+	margin-left: 20px;
 }
 
 .user-scores {
@@ -71,15 +75,21 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	padding-top: 25px;
+	padding-bottom: 20px;
 }
 
 .learning-container {
 	margin-left: 15px;
 	display: flex;
 	flex-direction: column;
-	align-items: space-evenly;
-	justify-content: center;
-	width: 50%;
+	justify-content: space-between;
+	align-items: center;
+	min-width: 550px;
+	border-radius: 10px;
+	border: 2px solid #d9d1f3;
+	background-color: #f7f7f7;
+	min-height: 120%;
 }
 
 .learning-container :first-child {
@@ -91,7 +101,10 @@
 	border: 2px solid #d9d1f3;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	margin-right: 20px;
+	background-color: #f7f7f7;
+	min-height: 120%;
 }
 
 .leaderboard-text {
