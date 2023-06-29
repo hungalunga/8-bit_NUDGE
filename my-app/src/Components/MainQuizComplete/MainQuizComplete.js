@@ -36,7 +36,7 @@ export default function MainQuizComplete(props) {
     <>
       <Card className="end-quiz-card">
         <h1>You did it!</h1>
-        <h3>You answered {props.quizScore}% correctly first time.</h3>
+        <h3>You answered {props.quizScore/10} questions correctly first time.</h3>
         <Card
           className="correct-XP-card"
           title={`+${props.quizScore}`}

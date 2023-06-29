@@ -5043,12 +5043,15 @@ p {
 
 .big-card {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 750px;
 	height: 275px;
 	font-size: 35px;
 }
+
+
 
 .end-quiz-card {
 	display: flex;

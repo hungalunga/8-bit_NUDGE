@@ -5,11 +5,16 @@
 	justify-content: space-between;
 	align-items: center;
 	min-height: 125px;
-	width: 600px;
+	width: 650px;
 	min-width: 500px;
 }
 
 .confirm-button {
 	display: flex;
     align-self: flex-end;
+}
+
+.answer-button-container {
+	display: flex;
+	flex-direction: row;
 }

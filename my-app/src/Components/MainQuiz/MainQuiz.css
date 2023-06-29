@@ -44,3 +44,7 @@
 	display: flex;
 	align-self: flex-end;
 }
+
+.quiz-speech {
+	padding-top: 10px;
+}
