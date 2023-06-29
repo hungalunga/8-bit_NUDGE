@@ -7,7 +7,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: space-between;
+	
 	width: 100vw;
 	height: 100vh;
 	background-image: linear-gradient(#f7f7f7,#f3f1fb );
@@ -40,7 +40,7 @@
 	flex-direction: column;
 	width: 100vw;
 	justify-content: center;
-	flex-grow: 1;
+
 	max-width: 1250px;
 	min-width: 800px;
 	padding: 25px 75px 0px;
@@ -75,7 +75,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	height: 150%;
+	padding-top: 25px;
 	padding-bottom: 20px;
 }
 
@@ -89,6 +89,7 @@
 	border-radius: 10px;
 	border: 2px solid #d9d1f3;
 	background-color: #f7f7f7;
+	min-height: 120%;
 }
 
 .learning-container :first-child {
@@ -103,6 +104,7 @@
 	align-items: center;
 	margin-right: 20px;
 	background-color: #f7f7f7;
+	min-height: 120%;
 }
 
 .leaderboard-text {
