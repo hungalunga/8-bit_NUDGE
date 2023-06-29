@@ -28,7 +28,7 @@ export default function PromptQuizCorrect({
             <p>The correct answer is</p>
             <h2>{correctAnswer}</h2>
             <Card className="correct-XP-card" title="+10" subTitle="XP" />
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
             </Link>
           </Card>
@@ -54,7 +54,7 @@ export default function PromptQuizCorrect({
 							/>
 						</div> */}
 
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
             </Link>
           </Card>{" "}

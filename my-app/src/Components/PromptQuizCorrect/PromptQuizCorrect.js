@@ -38,7 +38,7 @@ export default function PromptQuizCorrect({
             <h3>
               Answer before the timer's up to get double points next time!
             </h3>
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
             </Link>
           </Card>
@@ -64,7 +64,7 @@ export default function PromptQuizCorrect({
             </div>
             <h3>Look at all those points!</h3>
             <p> Watch out for tomorrow's NUDGE.</p>
-            <Link to="/home">
+            <Link to="/">
               <Button onClick={addScore}>Try another quiz</Button>
             </Link>
             <TextToSpeech speech="Correct and in time! Double Time Bonus! You've gained +200 points" />
