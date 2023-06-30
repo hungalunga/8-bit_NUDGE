@@ -236,7 +236,7 @@ export default function Dashboard(props) {
       <div className="navbar">
         <Link to="/">
           <img src={nudgelogo} alt="nav-logo" className="nav-logo" />
-        </Link>
+        </Link><PromptNotification/> 
         <Toast ref={toast}></Toast>
 
         <Menu
@@ -266,10 +266,10 @@ export default function Dashboard(props) {
           />
         )}
         {/* comment out the following if you must but PLEASE DO NOT DELETE */}
-        <PromptNotification/> 
+
       </div>
 
-      <div className="dashboard-full-page">
+      <div className="dashboard-full-page">      
       <div className="dashboard-page">
         <div className="dashboard-top">
           <div className="welcome-container">

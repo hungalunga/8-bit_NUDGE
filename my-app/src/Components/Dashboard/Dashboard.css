@@ -34,6 +34,8 @@
 }
 
 .nav-logo {
+	display: flex;
+	justify-self: left;
 	width: 160px;
 	object-fit: contain;
 	margin-left: 20px;

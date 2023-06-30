@@ -97,7 +97,7 @@ export default function PromptNotification() {
 
   return (
     <Button ref={buttonRef} onClick={handleClick}>
-      Click me to get a notification
+      Click me to get a NUDGE
     </Button>
   );
 }
