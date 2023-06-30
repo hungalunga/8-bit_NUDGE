@@ -12,6 +12,7 @@ import { FileUpload } from "primereact/fileupload";
 import "./Dashboard.css";
 import nudgelogo from "../../images/nudgelogo.png";
 import "primeicons/primeicons.css";
+import PromptNotification from "../PromptNotification/PromptNotification"
 
 export default function Dashboard(props) {
   const [editMode, setEditMode] = useState(false);
@@ -264,6 +265,8 @@ export default function Dashboard(props) {
             shape="circle"
           />
         )}
+        {/* comment out the following if you must but PLEASE DO NOT DELETE */}
+        <PromptNotification/> 
       </div>
 
       <div className="dashboard-full-page">
