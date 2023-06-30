@@ -43,7 +43,7 @@ export default function MainQuizComplete(props) {
           className="correct-XP-card"
           title={`+${props.quizScore}`}
           subTitle=" XP"
-        />
+        ></Card>
         <Link to="/">
           <Button label="Keep Quizzing" onClick={resetClick} size="large" />
         </Link>

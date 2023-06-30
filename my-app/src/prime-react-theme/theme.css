@@ -5076,6 +5076,8 @@ p {
 	align-items: center;
 	justify-content: center;
 	background-color: #f7f7f7;
+	margin: 0 auto;
+
 }
 
 .p-card .p-card-body {
