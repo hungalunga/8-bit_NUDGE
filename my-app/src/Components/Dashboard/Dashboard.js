@@ -255,7 +255,7 @@ export default function Dashboard(props) {
       <div className="navbar">
         <Link to="/">
           <img src={nudgelogo} alt="nav-logo" className="nav-logo" />
-        </Link><PromptNotification/> 
+        </Link><PromptNotification username={username} /> 
         <Toast ref={toast}></Toast>
 
         <Menu

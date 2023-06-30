@@ -18,72 +18,72 @@ import "./App.css";
 // import { ThemeSupa } from "@supabase/auth-ui-shared";
 
 const supabase = createClient(
-	"https://suqficsxrflfgpebathx.supabase.co",
-	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cWZpY3N4cmZsZmdwZWJhdGh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcxNjk3ODQsImV4cCI6MjAwMjc0NTc4NH0.8HlWTJSEkeuM7lHOo8j572i3k_9eEF5855-th3yP3Hw"
+  "https://suqficsxrflfgpebathx.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN1cWZpY3N4cmZsZmdwZWJhdGh4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODcxNjk3ODQsImV4cCI6MjAwMjc0NTc4NH0.8HlWTJSEkeuM7lHOo8j572i3k_9eEF5855-th3yP3Hw"
 );
 
 // theme for login page for supabase
 const customTheme = {
-	default: {
-		colors: {
-			brand: "#FFD500",
-			brandAccent: "#D9D1F3",
-			brandButtonText: "#39207E",
-			defaultButtonBackground: "#F7F7F7",
-			defaultButtonBackgroundHover: "#D9D1F3",
-			defaultButtonBorder: "#D9D1F3",
-			defaultButtonText: "#39207E",
-			dividerBackground: "#eaeaea",
-			inputBackground: "#F7F7F7",
-			inputBorder: "transparent",
-			inputBorderHover: "#891891",
-			inputBorderFocus: "#39207E",
-			inputText: "#39207E",
-			inputLabelText: "#39207E",
-			inputPlaceholder: "darkgray",
-			messageText: "gray",
-			messageTextDanger: "red",
-			anchorTextColor: "#891891",
-			anchorTextHoverColor: "darkgray",
-		},
-		space: {
-			spaceSmall: "4px",
-			spaceMedium: "8px",
-			spaceLarge: "16px",
-			labelBottomMargin: "8px",
-			anchorBottomMargin: "4px",
-			emailInputSpacing: "4px",
-			socialAuthSpacing: "4px",
-			buttonPadding: "10px 15px",
-			inputPadding: "10px 15px",
-		},
-		fontSizes: {
-			baseBodySize: "13px",
-			baseInputSize: "15px",
-			baseLabelSize: "20px",
-			baseButtonSize: "18px",
-		},
-		fonts: {
-			bodyFontFamily: `"Quicksand", sans-serif`,
-			buttonFontFamily: `"Quicksand", sans-serif`,
-			inputFontFamily: `"Quicksand", sans-serif`,
-			labelFontFamily: `"Quicksand", sans-serif`,
-		},
-		// fontWeights: {},
-		// lineHeights: {},
-		// letterSpacings: {},
-		// sizes: {},
-		borderWidths: {
-			buttonBorderWidth: "1px",
-			inputBorderWidth: "1px",
-		},
-		// borderStyles: {},
-		radii: {
-			borderRadiusButton: "15px",
-			buttonBorderRadius: "30px",
-			inputBorderRadius: "8px",
-		},
-	},
+  default: {
+    colors: {
+      brand: "#FFD500",
+      brandAccent: "#D9D1F3",
+      brandButtonText: "#39207E",
+      defaultButtonBackground: "#F7F7F7",
+      defaultButtonBackgroundHover: "#D9D1F3",
+      defaultButtonBorder: "#D9D1F3",
+      defaultButtonText: "#39207E",
+      dividerBackground: "#eaeaea",
+      inputBackground: "#F7F7F7",
+      inputBorder: "transparent",
+      inputBorderHover: "#891891",
+      inputBorderFocus: "#39207E",
+      inputText: "#39207E",
+      inputLabelText: "#39207E",
+      inputPlaceholder: "darkgray",
+      messageText: "gray",
+      messageTextDanger: "red",
+      anchorTextColor: "#891891",
+      anchorTextHoverColor: "darkgray",
+    },
+    space: {
+      spaceSmall: "4px",
+      spaceMedium: "8px",
+      spaceLarge: "16px",
+      labelBottomMargin: "8px",
+      anchorBottomMargin: "4px",
+      emailInputSpacing: "4px",
+      socialAuthSpacing: "4px",
+      buttonPadding: "10px 15px",
+      inputPadding: "10px 15px",
+    },
+    fontSizes: {
+      baseBodySize: "13px",
+      baseInputSize: "15px",
+      baseLabelSize: "20px",
+      baseButtonSize: "18px",
+    },
+    fonts: {
+      bodyFontFamily: `"Quicksand", sans-serif`,
+      buttonFontFamily: `"Quicksand", sans-serif`,
+      inputFontFamily: `"Quicksand", sans-serif`,
+      labelFontFamily: `"Quicksand", sans-serif`,
+    },
+    // fontWeights: {},
+    // lineHeights: {},
+    // letterSpacings: {},
+    // sizes: {},
+    borderWidths: {
+      buttonBorderWidth: "1px",
+      inputBorderWidth: "1px",
+    },
+    // borderStyles: {},
+    radii: {
+      borderRadiusButton: "15px",
+      buttonBorderRadius: "30px",
+      inputBorderRadius: "8px",
+    },
+  },
 };
 
 export default function App() {
@@ -106,17 +106,19 @@ export default function App() {
     }
   }, [totalScore, session]);
 
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
 
-	useEffect(() => {
-		supabase.auth.getSession().then(({ data: { session } }) => {
-			setSession(session);
-		});
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
 
-		const {
-			data: { subscription },
-		} = supabase.auth.onAuthStateChange((_event, session) => {
-			setSession(session);
-		});
+    return () => subscription.unsubscribe();
+  }, []);
 
 		return () => subscription.unsubscribe();
 	}, []);
@@ -330,4 +332,4 @@ export default function App() {
 			</>
 		);
 	}
-}
+

@@ -1,10 +1,14 @@
 import { useRef } from "react";
 import { Button } from "primereact/button";
 import nudgeicon from "../../images/nudgeicon.ico";
-export default function PromptNotification() {
+
+
+export default function PromptNotification(props) {
   const date = new Date();
   const showTime = date.getHours(); //gets the current hour of the day
   const buttonRef = useRef(null);
+
+  const username = props.username;
 
   const createNotification = (title, body) => {
     //function that creates the notification with the title and body
@@ -56,7 +60,6 @@ export default function PromptNotification() {
     }
   };
 
-  let notificationUserName = "Ash";
 
   function dQNotificationMessage(username) {
     let messagesArray = [
@@ -79,7 +82,7 @@ export default function PromptNotification() {
   }
 
   const handleClick = () => {
-    createNotification(PromptQuizNotificationMessage(notificationUserName));
+    createNotification(PromptQuizNotificationMessage(username));
   };
 
   if (showTime >= 9 && showTime <= 17) {
@@ -91,7 +94,7 @@ export default function PromptNotification() {
     console.log(randomTime);
     setTimeout(() => {
       // this will run the createNotification function after the random time has passed
-      createNotification(dQNotificationMessage(notificationUserName));
+      createNotification(dQNotificationMessage(username));
     }, randomTime);
   }
 
