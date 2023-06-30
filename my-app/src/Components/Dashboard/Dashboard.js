@@ -71,6 +71,15 @@ export default function Dashboard(props) {
   }, [user, props.supabase, username, props.session, editMode, firstLetter]);
 
   useEffect(() => {
+
+    function getUsernameFromEmail(email) {
+      const index = email.indexOf("@");
+      const username = email.slice(0, index);
+      // capitalise the first letter of the username
+      const upperCaseUsername = username.charAt(0).toUpperCase();
+      return upperCaseUsername + username.slice(1);
+    }
+
     async function getLeaderboard() {
       const { data: leaderboard } = await props.supabase
         .from("profiles")
@@ -78,10 +87,20 @@ export default function Dashboard(props) {
         .not("user_score", "is", null)
         .order("user_score", { ascending: false })
         .limit(10);
-      const rankedProfiles = leaderboard.map((profile, index) => ({
-        ...profile,
-        rank: index + 1,
-      }));
+        const rankedProfiles = leaderboard.map((profile, index) => {
+          let username;
+          if (profile.user_name.includes("@")) {
+            username = getUsernameFromEmail(profile.user_name);
+          } else {
+            username = profile.user_name;
+          }
+          
+          return {
+            ...profile,
+            rank: index + 1,
+            user_name: username,
+          };
+        });
 
       console.table("leaderboard:", leaderboard);
       console.table("rankedProfiles:", rankedProfiles);
