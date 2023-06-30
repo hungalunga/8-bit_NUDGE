@@ -120,146 +120,217 @@ export default function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-  // if not logged in, then show login page
-  if (!session) {
-    return (
-      <>
-        <div id="getstarted" className="login-page">
-          <div className="login-container">
-            <div className="logo-tagline-container">
-              <img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
-              <h2>
-                The revision app that <strong>actually works</strong>.
-              </h2>
-              <HashLink smooth to="/#findoutmore">
-                Find out more
-              </HashLink>
-            </div>
-            <div className="login-form">
-              <div className="auth">
-                <Auth
-                  supabaseClient={supabase}
-                  theme="default"
-                  appearance={{ theme: customTheme }}
-                  providers={[]}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="landing-footer">
-            <div id="findoutmore" className="description-container">
-              <h1 className="magenta">How it works</h1>
-              <div className="steps-container">
-                <div className="step">
-                  <img
-                    src={notification}
-                    alt="notification"
-                    className="step-icon"
-                  />
-                  <h3>
-                    <strong>Each day we’ll send you a NUDGE.</strong>
-                  </h3>
-                  <p className="step-p">
-                    The catch? You won’t know when to expect it.
-                  </p>
-                </div>
-                <div className="step">
-                  <img src={alarm} alt="alarm" className="step-icon" />
-                  <h3>
-                    <strong>Act fast!</strong>
-                  </h3>
-                  <p className="step-p">
-                    You have 3 minutes to tap the notification & answer the
-                    question.
-                  </p>
-                </div>
-                <div className="step">
-                  <img src={calendar} alt="calendar" className="step-icon" />
-                  <h3>
-                    <strong>Missed your NUDGE?</strong>
-                  </h3>
-                  <p className="step-p">
-                    Save your streak by finishing any quiz on the app.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="about-us-container">
-              <div className="about-us">
-                <h3 className="off-white">
-                  The hardest part of revising is finding the will-power to get
-                  started - NUDGE disrupts your doom-scrolling, getting you
-                  right back into your learning.
-                </h3>
-                <div className="get-started-button">
-                  <HashLink smooth to="/#getstarted">
-                    <Button
-                      className="confirm-button"
-                      severity="primary"
-                      label="Get Started"
-                    ></Button>
-                  </HashLink>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-    // else if logged in, then show dashboard
-  } else {
-    return (
-      <>
-        <Routes>
-          <Route
-            path="/quiz"
-            element={
-              <MainQuiz
-                supabase={supabase}
-                session={session}
-                totalScore={totalScore}
-                setTotalScore={setTotalScore}
-                streak={streak}
-                setStreak={setStreak}
-                streakCount={streakCount}
-                setStreakCount={setStreakCount}
-              />
-            }
-          />
-          <Route
-            path="/nudgebot"
-            element={<WebsiteEmbed supabase={supabase} />}
-          />
-          <Route
-            path="/"
-            element={
-              <Dashboard
-                session={session}
-                supabase={supabase}
-                totalScore={totalScore}
-                setTotalScore={setTotalScore}
-                streakCount={streakCount}
-              />
-            }
-          />
-          <Route path="/nudge-quiz-late" element={<PromptQuiz late={true} />} />
-          <Route
-            path="/nudge-quiz"
-            element={
-              <PromptQuiz
-                supabase={supabase}
-                session={session}
-                totalScore={totalScore}
-                setTotalScore={setTotalScore}
-                streak={streak}
-                setStreak={setStreak}
-                streakCount={streakCount}
-                setStreakCount={setStreakCount}
-              />
-            }
-          />
-        </Routes>
-      </>
-    );
-  }
+	// 	return () => subscription.unsubscribe();
+	// }, []);
+
+	// if not logged in, then show login page
+	if (!session) {
+		return (
+			<>
+				<div id="getstarted" className="login-page">
+					<div className="login-container">
+						<div className="logo-tagline-container">
+							<img src={nudgelogo} alt="nudge-logo" className="nudge-logo" />
+							<h2>
+								The revision app that <strong>actually works</strong>.
+							</h2>
+							<HashLink smooth to="/#findoutmore">
+								Find out more
+							</HashLink>
+						</div>
+						<div className="login-form">
+							<div className="auth">
+								<Auth
+									supabaseClient={supabase}
+									theme="default"
+									appearance={{ theme: customTheme }}
+									providers={[]}
+								/>
+							</div>
+						</div>
+					</div>
+					<div className="landing-footer">
+						<div id="findoutmore" className="description-container">
+							<h1 className="magenta">How it works</h1>
+							<div className="steps-container">
+								<div className="step">
+									<img
+										src={notification}
+										alt="notification"
+										className="step-icon"
+									/>
+									<h3>
+										<strong>Each day we’ll send you a NUDGE.</strong>
+									</h3>
+									<p className="step-p">
+										The catch? You won’t know when to expect it.
+									</p>
+								</div>
+								<div className="step">
+									<img src={alarm} alt="alarm" className="step-icon" />
+									<h3>
+										<strong>Act fast!</strong>
+									</h3>
+									<p className="step-p">
+										You have 3 minutes to tap the notification & answer the
+										question.
+									</p>
+								</div>
+								<div className="step">
+									<img src={calendar} alt="calendar" className="step-icon" />
+									<h3>
+										<strong>Missed your NUDGE?</strong>
+									</h3>
+									<p className="step-p">
+										Save your streak by finishing any quiz on the app.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div className="about-us-container">
+							<div className="about-us">
+								<h3 className="off-white">
+									The hardest part of revising is finding the will-power to get
+									started - NUDGE disrupts your doom-scrolling, getting you
+									right back into your learning.
+								</h3><div className="get-started-button">
+								<HashLink smooth to="/#getstarted">
+									<Button
+										className="confirm-button"
+										severity="primary"
+										label="Get Started"
+									></Button>
+								</HashLink></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</>
+		);
+		// else if logged in, then show dashboard
+	} else {
+		return (
+			<>
+				<Routes>
+					<Route
+						path="/quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "math"
+							/>
+						}
+					/>
+					<Route
+						path="/geometry_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "geometry"
+							/>
+						}
+					/>
+					<Route
+						path="/algebra_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "algebra"
+							/>
+						}
+					/>
+					<Route
+						path="/statistics_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "statistics"
+							/>
+						}
+					/>
+					<Route
+						path="/surprise_quiz"
+						element={
+							<MainQuiz
+                				supabase={supabase}
+                				session={session}
+								totalScore={totalScore}
+								setTotalScore={setTotalScore}
+								streak={streak}
+								setStreak={setStreak}
+								streakCount={streakCount}
+								setStreakCount={setStreakCount}
+								topic = "surprise"
+							/>
+						}
+					/>
+					<Route
+						path="/nudgebot"
+						element={
+             				 <WebsiteEmbed
+                			 supabase={supabase}
+							/>
+						}
+					/>
+					<Route
+						path="/"
+						element={
+							<Dashboard
+                				session={session}
+                				supabase={supabase}
+                				totalScore={totalScore}
+                				setTotalScore={setTotalScore}
+                				streakCount={streakCount}
+              				/>
+						}
+					/>
+					<Route path="/nudge-quiz-late" element={<PromptQuiz late={true} />} />
+					<Route
+						path="/nudge-quiz"
+						element={
+              				<PromptQuiz
+                			supabase={supabase}
+                			session={session}
+                			totalScore={totalScore}
+                			setTotalScore={setTotalScore}
+                			streak={streak}
+                			setStreak={setStreak}
+                			streakCount={streakCount}
+                			setStreakCount={setStreakCount}
+              				/>
+							}
+					/>
+				</Routes>
+			</>
+		);
+	}
+
 }

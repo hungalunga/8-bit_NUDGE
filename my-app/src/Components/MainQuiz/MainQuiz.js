@@ -21,19 +21,24 @@ export default function MainQuiz(props) {
 	// creating initial states as empty arrays
 	// questions that have already been asked
 
+	const topic = props.topic; 
+
 	useEffect(() => {
-		async function getQuestions() {
-			const response = await fetch(
-				"https://eight-bit-nudge-backend.onrender.com/math_questions"
-			);
+		async function getTopicQuestions(subject) {
+			const backendAddress = "https://eight-bit-nudge-backend.onrender.com/"+subject+"_questions"
+			//const backendAddress = "http://localhost:3001/"+subject+"_questions"
+			console.log("backend address is: ",backendAddress )
+			const response = await fetch(backendAddress);
 			const data = await response.json();
 			console.log(data);
 			getRandomQuestion(data);
 			//console.log("data is:", data)
 		}
-		getQuestions();
+		getTopicQuestions(topic);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	//////////////////////////////////////////
 
 	function getRandomQuestion(data) {
 		//select random question
