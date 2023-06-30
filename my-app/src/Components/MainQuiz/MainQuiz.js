@@ -25,8 +25,8 @@ export default function MainQuiz(props) {
 
 	useEffect(() => {
 		async function getTopicQuestions(subject) {
-			//const backendAddress = "https://eight-bit-nudge-backend.onrender.com/"+subject+"_questions"
-			const backendAddress = "http://localhost:3001/"+subject+"_questions"
+			const backendAddress = "https://eight-bit-nudge-backend.onrender.com/"+subject+"_questions"
+			//const backendAddress = "http://localhost:3001/"+subject+"_questions"
 			console.log("backend address is: ",backendAddress )
 			const response = await fetch(backendAddress);
 			const data = await response.json();
