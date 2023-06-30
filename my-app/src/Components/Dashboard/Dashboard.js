@@ -12,6 +12,7 @@ import { FileUpload } from "primereact/fileupload";
 import "./Dashboard.css";
 import nudgelogo from "../../images/nudgelogo.png";
 import "primeicons/primeicons.css";
+import PromptNotification from "../PromptNotification/PromptNotification"
 
 export default function Dashboard(props) {
   const [editMode, setEditMode] = useState(false);
@@ -254,7 +255,7 @@ export default function Dashboard(props) {
       <div className="navbar">
         <Link to="/">
           <img src={nudgelogo} alt="nav-logo" className="nav-logo" />
-        </Link>
+        </Link><PromptNotification/> 
         <Toast ref={toast}></Toast>
 
         <Menu
@@ -283,8 +284,11 @@ export default function Dashboard(props) {
             shape="circle"
           />
         )}
+        {/* comment out the following if you must but PLEASE DO NOT DELETE */}
+
       </div>
 
+      <div className="dashboard-full-page">      
       <div className="dashboard-page">
         <div className="dashboard-top">
           <div className="welcome-container">
@@ -410,7 +414,7 @@ export default function Dashboard(props) {
             <h2 className="leaderboard-text">
               <strong>Leaderboard</strong>
             </h2>
-            <DataTable tableStyle={{ minWidth: "27rem" }} value={leaderboard}>
+            <DataTable paginator rows={4} tableStyle={{ minWidth: "27rem" }} value={leaderboard}>
               <Column field="rank" header="Rank" sortable></Column>
               <Column field="user_name" header="Username" sortable></Column>
               <Column field="user_score" header="XP" sortable></Column>
@@ -423,7 +427,7 @@ export default function Dashboard(props) {
           <Button label="Save" onClick={handleSaveClick} />
           <Button label="Cancel" onClick={handleCancelClick} />
         </div>
-      ) : null}
+      ) : null} </div>
     </>
   );
 }

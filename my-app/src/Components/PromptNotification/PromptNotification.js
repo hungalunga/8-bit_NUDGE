@@ -9,8 +9,8 @@ export default function PromptNotification() {
   const createNotification = (title, body) => {
     //function that creates the notification with the title and body
     const inTimeRedirect =
-      "https://main--endearing-macaron-a904df.netlify.app/nudge-quiz";
-    const outOfTimeRedirect = "https://main--endearing-macaron-a904df.netlify.app/nudge-quiz-late";
+      "https://8bit-nudge.netlify.app/nudge-quiz";
+    const outOfTimeRedirect = "https://8bit-nudge.netlify.app/nudge-quiz-late";
     let redirect = inTimeRedirect;
     const options = {
       body: body,
@@ -97,7 +97,7 @@ export default function PromptNotification() {
 
   return (
     <Button ref={buttonRef} onClick={handleClick}>
-      Click me to get a notification
+      Click me to get a NUDGE
     </Button>
   );
 }

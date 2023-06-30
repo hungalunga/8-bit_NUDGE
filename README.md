@@ -1,6 +1,6 @@
 # 8-bit_NUDGE
 
-<img width="602" alt="nudgelogo" src="https://github.com/hungalunga/8-bit_NUDGE/assets/127150103/adbd332a-588c-4d98-b0d2-387caa7c77e9">
+<img width="915" alt="nudge" src="https://github.com/hungalunga/8-bit_NUDGE/assets/127150103/a6051305-7abe-47b2-be74-fc08e9934b29">
 
 ---------------------------------------------------------------------
 

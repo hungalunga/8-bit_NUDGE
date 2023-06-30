@@ -7318,8 +7318,8 @@ p {
 }
 
 .avatar-large {
-	height: 150px;
-	width: 150px;
+	height: 140px;
+	width: 140px;
 }
 
 .p-avatar.p-avatar-lg {
@@ -7457,8 +7457,7 @@ p {
 /* progress bars */
 
 .timer-bar {
-	min-width: 550px;
-	width: 675px;
+	width: 630px;
 }
 
 .quiz-progress-bar {
