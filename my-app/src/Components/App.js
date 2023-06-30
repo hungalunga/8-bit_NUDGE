@@ -120,8 +120,8 @@ export default function App() {
     return () => subscription.unsubscribe();
   }, []);
 
-		return () => subscription.unsubscribe();
-	}, []);
+	// 	return () => subscription.unsubscribe();
+	// }, []);
 
 	// if not logged in, then show login page
 	if (!session) {
@@ -333,3 +333,4 @@ export default function App() {
 		);
 	}
 
+}
