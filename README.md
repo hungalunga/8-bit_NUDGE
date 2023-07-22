@@ -13,7 +13,7 @@ Our team at the School of Code bootcamp came together to address real-world issu
 - View your leaderboard and your friends' scores
 - User personalisation (change username and profile picture)
 
-## **_Getting Started_** ✅
+## **_Get Started!_**
 
 ### **Front-end**
 
@@ -33,11 +33,10 @@ To run the front-end locally, follow the steps below:
   npm i
 ```
 
-## **_Tech Stack⚙️_**
+## **_Tech Stack⚙_**
 **Front-End:** React.js, CSS, Prime React (Component Library)
 
 **Front-End Testing:** React Testing Library, Jest
-
 
 ## **_Colour Reference_** 🖌️
 
